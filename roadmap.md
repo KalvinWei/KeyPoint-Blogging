@@ -3,9 +3,9 @@
 This file is to keep record of our plans.
 
 Group members:
-- Yihao Wang
 - Kalvin Wei
 - Esther Zhang
+- Yihao Wang
 
 ## Currently
 
@@ -41,8 +41,13 @@ Group members:
 
 ## Time Schedule
 
+## Page Design
+
 ## API Design
+| url | type | description | example |
+|:---|:---:|:---:|:---:|
+| ~/ | html | displays the index page | - |
+| ~/index | html | displays the index page | - | 
 
 ## Database Schema
 
-## Page Design
