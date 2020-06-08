@@ -2,11 +2,6 @@
 
 This file is to keep record of our plans.
 
-Group members:
-- Kalvin Wei
-- Esther Zhang
-- Yihao Wang
-
 ## Today (*09/06/2020*)
 
 #### To do
