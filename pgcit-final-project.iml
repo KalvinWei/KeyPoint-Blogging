@@ -25,5 +25,13 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.30" level="application_server_libraries" />
+    <orderEntry type="library" name="javax.annotation" level="project" />
+    <orderEntry type="library" name="javax.ejb" level="project" />
+    <orderEntry type="library" name="javax.jms" level="project" />
+    <orderEntry type="library" name="javax.persistence" level="project" />
+    <orderEntry type="library" name="javax.resource" level="project" />
+    <orderEntry type="library" name="javax.servlet" level="project" />
+    <orderEntry type="library" name="javax.servlet.jsp" level="project" />
+    <orderEntry type="library" name="javax.transaction" level="project" />
   </component>
 </module>
