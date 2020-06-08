@@ -7,7 +7,7 @@ Group members:
 - Esther Zhang
 - Yihao Wang
 
-## Today
+## Today (*09/06/2020*)
 
 #### To do
 - Set up the database account and try deploy
