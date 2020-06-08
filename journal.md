@@ -3,7 +3,13 @@
 This file is used to keep record of what has been done each day
 
 ### 8/6, Mon
-- Create team name
+- Created team name and project name
+- Scheduled future meeting time
+- Got familiar with and tested Git and Gitlab workflow
+- Set up work planning and recording files
+- Understood and discussed on project requirements
+- Set goals for tomorrow
+
 ### 9/6, Tue
 ### 10/6, Wed
 ### 11/6, Thu
