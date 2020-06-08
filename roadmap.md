@@ -49,7 +49,15 @@ Group members:
 ## Time Schedule
 
 ## Page Design
+- Index page (url: ~/ , ~/index)
 
+- Login page (url: ~/login)
+
+- Register page (url: ~/register)
+
+- Account management page
+
+- Authors page
 
 
 ## API Design
