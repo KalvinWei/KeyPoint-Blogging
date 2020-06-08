@@ -4,6 +4,7 @@ This file is to keep record of our plans.
 
 Group members:
 - Yihao Wang
+- Kalvin Wei
 
 ## Currently
 
