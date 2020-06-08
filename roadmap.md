@@ -10,6 +10,7 @@ Group members:
 ## Today
 
 #### To do
+- Set up the database account and try deploy
 - Design page functions
 - Design APIs
 - Design Database schema
