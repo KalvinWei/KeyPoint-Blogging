@@ -11,9 +11,10 @@ Group members:
 
 #### To do
 - Set up the database account and try deploy
-- Design page functions
+- Design page functions (Axure)
 - Design APIs
 - Design Database schema
+- Create basic files
 
 #### Doing
 - *nothing yet*
