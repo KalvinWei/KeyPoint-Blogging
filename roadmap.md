@@ -7,13 +7,18 @@ Group members:
 - Esther Zhang
 - Yihao Wang
 
-## Currently
+## Today
 
 #### To do
+- Design page functions
+- Design APIs
+- Design Database schema
 
 #### Doing
+- *nothing yet*
 
 #### Done
+- *nothing yet*
 
 ## Planned Features
 #### Compulsory
@@ -31,6 +36,7 @@ Group members:
 - [ ] Display comments
 - [ ] Responsiveness
 - [ ] Deploy
+
 #### Extra
 - [ ] Nested comments
 - [ ] WYSIWYG editor
