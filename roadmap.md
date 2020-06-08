@@ -41,12 +41,14 @@ Group members:
 #### Extra
 - [ ] Nested comments
 - [ ] WYSIWYG editor
-- [ ] Search and sort
+- [ ] ~~Search and sort~~
 
 #### Other
 - ?
 
 ## Time Schedule
+- 8/6 ~ 14/6: basic backend
+- 15/6 ~ 18/6: frontend and additional features
 
 ## Page Design
 - Index page (url: ~/ , ~/index)
