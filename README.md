@@ -1,8 +1,16 @@
-# PGCertIT Final Project - A Personal Blogging System
+# KeyPoint: a blog
+
+#### Team name
+The KEY
+
+#### Members:
+- Kalvin Wei
+- Esther Zhang
+- Yihao Wang
 
 **TODO:** Include some information about your team's project within this README. The following information must be included:
 
-- Team name
+- ~~Team name~~
 
 - Website URL on the course server (trex-sandwich)
 
