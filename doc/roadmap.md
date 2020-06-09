@@ -37,7 +37,7 @@ This file is to keep record of our plans.
 - [ ] ~~Search and sort~~
 
 #### Other
-- ?
+- [ ] Likes
 
 ## Time Schedule
 - 8/6 ~ 14/6: basic backend
