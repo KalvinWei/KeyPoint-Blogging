@@ -64,6 +64,16 @@ This file contains the documentation of page design, database design, etc.
 |:---|:---:|:---:|:---:|
 | ~/ | html | displays the index page | - |
 | ~/index | html | displays the index page | - | 
+|~/signIn||||
+|~/editProfile||||
+|~/editArticle||||
+|~/article||||
+|~/logOut||||
+|||||
+|||||
+|||||
+|||||
+
 
 ## Page Design
 - Index page (url: ~/ , ~/index)
