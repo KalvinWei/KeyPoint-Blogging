@@ -38,6 +38,7 @@ This file is to keep record of our plans.
 
 #### Other
 - [ ] Likes
+- [ ] Tags on articles
 
 ## Time Schedule
 - 8/6 ~ 14/6: basic backend
