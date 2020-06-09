@@ -11,6 +11,15 @@ This file is used to keep record of what has been done each day
 - Set goals for tomorrow
 
 ### 9/6, Tue
+- Designed web pages structure
+- Designed end points
+- Designed database schema
+- Created database initialization files
+- Created stub jsp files
+
+**Problem**
+- Failed to deploy
+
 ### 10/6, Wed
 ### 11/6, Thu
 ### 12/6, Fri
