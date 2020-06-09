@@ -5,30 +5,33 @@ This file contains the documentation of page design, database design, etc.
 ```
 .
 |- .idea
-|- doc
 |- lib
 |- out
+|- doc
+|   |- documentation.md     [this file]
+|   |- journal.md           [diary]
+|   `- roadmap.md           [plans]
 |- scripts
-    |- initSchema.sql
-    `- sampleData.sql
+|   |- initSchema.sql       [create tables]
+|   `- sampleData.sql       [generate sample data for testing]
 |- src
-    `- ictgradschool.project
-        |- servlet
-        |- DAO
-        |- util
-        `- model
-            |- data
-            |- viewModel
-            `- jsonProvider
+|   `- ictgradschool.project
+|       |- servlet
+|       |   |- page         [servlets which directly dispatch to jsps]
+|       |   |- action       [servlets which respond to a form action]
+|       |   `- ajax         [servlets which respond to ajax]
+|       |- DAO              [DAOs]
+|       |- model            [java beans to be passed to jsps]  
+|       `- util             [utility static classes]
 `- web
     |- images
-        |- avatars
-        `- covers
+    |   |- avatars          [default avatars]
+    |   `- covers           [default covers]
     `- WEB-INF
         |- lib
         |- res
-        |- jsp
-            `- shared
+        `- jsp              [jsp files]
+            `- shared       [shared jsp components]
 ```
 
 ## Database Schema
@@ -51,26 +54,26 @@ This file contains the documentation of page design, database design, etc.
 (***article**, **tag**)
 
 ## API Design
-| url | type | description | example |
-|:---|:---:|:---:|:---:|
-| ~/ | html | displays the index page | - |
-| ~/index | html | displays the index page | - | 
-| ~/guestPage |html| displays the index page | - |
-| ~/signInPage |html| displays the sign in / sign up page| - |
-| ~/editProfilePage |html| displays the profile editing page | - |
-| ~/editArticlePage |html| displays the article editing/creating page| - |
-| ~/articlesPage |html| displays the page showing user profile and all articles| - |
-| ~/articlePage |html| displays a single article| - |
-| ~/signOut |action| sign out, redirect to index| - |
-| ~/signIn |action| submit sign in form, redirect to the original place| - |
-| ~/signUp |action| submit sign up form, redirect to profile editing page| - |
-| ~/saveProfile |action| submit file editing form, redirect to sign in page| - |
-| ~/deleteAccount |action| submit account deletion form, redirect to index| - |
-| ~/postArticle |action| submit article editing form, redirect to this article| - |
-| ~/deleteArticle |action| submit article deletion form, redirect to all articles page| - |
-| ~/postComment |action| submit comment creating form, returns a json response? | - |
-| ~/deleteComment |action| submit comment deleting form, returns a json response? | - |
-| ~/checkUserName |json| test whether the user name is available, returns a json response | - |
+| url | type | description |
+|:---|:---:|:---:|
+| ~/ | html | displays the index page |
+| ~/index | html | displays the index page |
+| ~/indexPage |html| displays the index page |
+| ~/signInPage |html| displays the sign in / sign up page|
+| ~/editProfilePage |html| displays the profile editing page |
+| ~/editArticlePage |html| displays the article editing/creating page|
+| ~/articlesPage |html| displays the page showing user profile and all articles|
+| ~/articlePage |html| displays a single article|
+| ~/signOut |action| sign out, redirect to index|
+| ~/signIn |action| submit sign in form, redirect to the original place|
+| ~/signUp |action| submit sign up form, redirect to profile editing page|
+| ~/saveProfile |action| submit file editing form, redirect to sign in page|
+| ~/deleteAccount |action| submit account deletion form, redirect to index|
+| ~/postArticle |action| submit article editing form, redirect to this article|
+| ~/deleteArticle |action| submit article deletion form, redirect to all articles page|
+| ~/postComment |action| submit comment creating form, returns a json response? |
+| ~/deleteComment |action| submit comment deleting form, returns a json response? |
+| ~/checkUserName |json| test whether the user name is available, returns a json response |
 
 ## Page Design
 
@@ -78,7 +81,7 @@ This file contains the documentation of page design, database design, etc.
 
 (password: pgcert)
 
-- Guest page (~/, ~/index, ~/guestPage)
+- Index page (~/, ~/index, ~/indexPage)
     - contains a list of all article summaries
     - depending on login status, display user nickname and avatar or sign in link
     
