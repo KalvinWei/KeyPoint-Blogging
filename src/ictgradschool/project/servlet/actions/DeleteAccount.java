@@ -1,4 +1,6 @@
 package ictgradschool.project.servlet.actions;
 
-public class DeleteAccount {
+import javax.servlet.http.HttpServlet;
+
+public class DeleteAccount extends HttpServlet {
 }

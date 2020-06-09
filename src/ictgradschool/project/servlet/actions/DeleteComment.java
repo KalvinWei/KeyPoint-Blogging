@@ -1,4 +1,6 @@
 package ictgradschool.project.servlet.actions;
 
-public class DeleteComment {
+import javax.servlet.http.HttpServlet;
+
+public class DeleteComment extends HttpServlet {
 }

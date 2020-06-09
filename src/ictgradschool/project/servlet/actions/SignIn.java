@@ -1,4 +1,6 @@
 package ictgradschool.project.servlet.actions;
 
-public class SignIn {
+import javax.servlet.http.HttpServlet;
+
+public class SignIn extends HttpServlet {
 }

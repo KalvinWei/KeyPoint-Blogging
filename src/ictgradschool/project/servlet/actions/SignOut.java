@@ -1,4 +1,6 @@
 package ictgradschool.project.servlet.actions;
 
-public class SignOut {
+import javax.servlet.http.HttpServlet;
+
+public class SignOut extends HttpServlet {
 }

@@ -1,4 +1,6 @@
 package ictgradschool.project.servlet.actions;
 
-public class PostArticle {
+import javax.servlet.http.HttpServlet;
+
+public class PostArticle extends HttpServlet {
 }

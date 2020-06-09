@@ -1,4 +1,6 @@
 package ictgradschool.project.servlet.actions;
 
-public class DeleteArticle {
+import javax.servlet.http.HttpServlet;
+
+public class DeleteArticle extends HttpServlet {
 }

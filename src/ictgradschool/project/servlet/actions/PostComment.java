@@ -1,4 +1,6 @@
 package ictgradschool.project.servlet.actions;
 
-public class PostComment {
+import javax.servlet.http.HttpServlet;
+
+public class PostComment extends HttpServlet {
 }
