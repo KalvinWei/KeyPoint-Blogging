@@ -32,6 +32,10 @@ This file contains the documentation of page design, database design, etc.
 ```
 
 ## Page Design
+prototype of all pages is here: 
+https://3uzaen.axshare.com/ 
+(password: pgcert)
+
 - Index page (url: ~/ , ~/index)
 
 - Login page (url: ~/login)
