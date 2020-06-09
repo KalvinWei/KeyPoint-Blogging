@@ -8,38 +8,30 @@ This file contains the documentation of page design, database design, etc.
 |- lib
 |- out
 |- doc
-    |- documentation.md     [this file]
-    |- journal.md           [diary]
-    `- roadmap.md           [plans]
+|   |- documentation.md     [this file]
+|   |- journal.md           [diary]
+|   `- roadmap.md           [plans]
 |- scripts
-    |- initSchema.sql       [create tables]
-    `- sampleData.sql       [generate sample data for testing]
+|   |- initSchema.sql       [create tables]
+|   `- sampleData.sql       [generate sample data for testing]
 |- src
-    `- ictgradschool.project
-        |- servlet
-            |- page         [servlets which directly dispatch to jsps]
-                `- ... 
-            |- action       [servlets which respond to a form action]
-                `- ...
-            `- ajax         [servlets which respond to ajax]
-                `- ... 
-        |- DAO              [DAOs]
-            `- ...      
-        |- model            [java beans to be passed to jsps]
-            `- ...        
-        `- util
-            `- ...          [utility static classes]
+|   `- ictgradschool.project
+|       |- servlet
+|       |   |- page         [servlets which directly dispatch to jsps]
+|       |   |- action       [servlets which respond to a form action]
+|       |   `- ajax         [servlets which respond to ajax]
+|       |- DAO              [DAOs]
+|       |- model            [java beans to be passed to jsps]  
+|       `- util             [utility static classes]
 `- web
     |- images
-        |- avatars
-        `- covers
+    |   |- avatars          [default avatars]
+    |   `- covers           [default covers]
     `- WEB-INF
         |- lib
         |- res
-        |- jsp              [jsp files]
-            |- ...
+        `- jsp              [jsp files]
             `- shared       [shared jsp components]
-                `- ...
 ```
 
 ## Database Schema
