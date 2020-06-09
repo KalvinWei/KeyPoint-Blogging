@@ -1,4 +1,4 @@
-package ictgradschool.project.servlet.pages;
+package ictgradschool.project.servlet.page;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

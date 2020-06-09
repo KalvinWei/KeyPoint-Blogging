@@ -1,4 +1,4 @@
-package ictgradschool.project.servlet.actions;
+package ictgradschool.project.servlet.action;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

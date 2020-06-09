@@ -5,21 +5,30 @@ This file contains the documentation of page design, database design, etc.
 ```
 .
 |- .idea
-|- doc
 |- lib
 |- out
+|- doc
+    |- documentation.md     [this file]
+    |- journal.md           [diary]
+    `- roadmap.md           [plans]
 |- scripts
-    |- initSchema.sql
-    `- sampleData.sql
+    |- initSchema.sql       [create tables]
+    `- sampleData.sql       [generate sample data for testing]
 |- src
     `- ictgradschool.project
         |- servlet
-        |- DAO
-        |- util
-        `- model
-            |- data
-            |- viewModel
-            `- jsonProvider
+            |- page         [servlets which directly dispatch to jsps]
+                `- ... 
+            |- action       [servlets which respond to a form action]
+                `- ...
+            `- ajax         [servlets which respond to ajax]
+                `- ... 
+        |- DAO              [DAOs]
+            `- ...      
+        |- model            [java beans to be passed to jsps]
+            `- ...        
+        `- util
+            `- ...          [utility static classes]
 `- web
     |- images
         |- avatars
@@ -27,8 +36,10 @@ This file contains the documentation of page design, database design, etc.
     `- WEB-INF
         |- lib
         |- res
-        |- jsp
-            `- shared
+        |- jsp              [jsp files]
+            |- ...
+            `- shared       [shared jsp components]
+                `- ...
 ```
 
 ## Database Schema
