@@ -64,11 +64,11 @@ This file contains the documentation of page design, database design, etc.
 |:---|:---:|:---:|:---:|
 | ~/ | html | displays the index page | - |
 | ~/index | html | displays the index page | - | 
-|~/signIn||||
-|~/editProfile||||
-|~/editArticle||||
-|~/article||||
-|~/logOut||||
+|~/signIn|html|||
+|~/editProfile|html|||
+|~/editArticle|html|||
+|~/article|html|||
+|~/logOut|html|||
 |||||
 |||||
 |||||
@@ -76,6 +76,11 @@ This file contains the documentation of page design, database design, etc.
 
 
 ## Page Design
+
+[Page prototypes on Axure](https://3uzaen.axshare.com/)
+
+(password: pgcert)
+
 - Index page (url: ~/ , ~/index)
 
 - Login page (url: ~/login)
