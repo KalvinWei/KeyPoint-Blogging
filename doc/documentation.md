@@ -70,7 +70,7 @@ This file contains the documentation of page design, database design, etc.
 | ~/editArticlePage |html| displays the article editing/creating page| - |
 | ~/articlesPage |html| displays the page showing user profile and all articles| - |
 | ~/articlePage |html| displays a single article| - |
-| ~/logOut |action| logout, redirect to index| - |
+| ~/signOut |action| sign out, redirect to index| - |
 | ~/signIn |action| submit sign in form, redirect to the original place| - |
 | ~/signUp |action| submit sign up form, redirect to profile editing page| - |
 | ~/saveProfile |action| submit file editing form, redirect to sign in page| - |
@@ -88,13 +88,17 @@ This file contains the documentation of page design, database design, etc.
 (password: pgcert)
 
 - Guest page (~/, ~/index, ~/guestPage)
-
+    - contains a list of all article summaries
+    - depending on login status, display user nickname and avatar or sign in link
 - Sign in page (~/signInPage)
-
+    - contains two forms, sign in and sign up; front end to toggle among them
+    - when submitted, redirect page
 - Edit profile page (~/editProfilePage)
-
+    - allows the user to edit his/her profile
 - Edit article page (~/editArticlePage)
-
+    - allows the user to edit a certain article
 - Articles page (~/articlesPage)
-
+    - displays the user information, followed by all the article summaries by this user
 - Article page (~/articlePage)
+    - displays the a certain article
+    - displays all the related comments
