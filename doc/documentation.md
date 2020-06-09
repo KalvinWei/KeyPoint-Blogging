@@ -64,15 +64,22 @@ This file contains the documentation of page design, database design, etc.
 |:---|:---:|:---:|:---:|
 | ~/ | html | displays the index page | - |
 | ~/index | html | displays the index page | - | 
-|~/signIn|html|||
-|~/editProfile|html|||
-|~/editArticle|html|||
-|~/article|html|||
-|~/logOut|html|||
-|||||
-|||||
-|||||
-|||||
+| ~/guestPage |html| displays the index page | - |
+| ~/signInPage |html| displays the sign in / sign up page| - |
+| ~/editProfilePage |html| displays the profile editing page | - |
+| ~/editArticlePage |html| displays the article editing/creating page| - |
+| ~/articlesPage |html| displays the page showing user profile and all articles| - |
+| ~/articlePage |html| displays a single article| - |
+| ~/logOut |html| logout, redirect to index| - |
+| ~/signIn |action| submit sign in form, redirect to profile editing page| - |
+| ~/signUp |action| submit sign up form, redirect to sign in page| - |
+| ~/saveProfile |action| submit file editing form, redirect to articles page | - |
+| ~/deleteAccount |action| submit account deletion form, redirect to index| - |
+| ~/postArticle |action| submit article editing form, redirect to this article| - |
+| ~/deleteArticle |action| submit article deletion form, redirect to all articles page| - |
+| ~/postComment |action| submit comment creating form, returns a json response? | - |
+| ~/deleteComment |action| submit comment deleting form, returns a json response? | - |
+| ~/checkUserName |json| test whether the user name is available, returns a json response | - |
 
 
 ## Page Design
