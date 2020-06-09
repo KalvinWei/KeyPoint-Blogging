@@ -16,6 +16,7 @@ This file is used to keep record of what has been done each day
 - Designed database schema
 - Created database initialization files
 - Created stub jsp files
+- Created stub servlet, DAO, java bean files
 
 **Problem**
 - Failed to deploy
