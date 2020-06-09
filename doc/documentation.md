@@ -50,4 +50,29 @@ This file contains the documentation of page design, database design, etc.
 | ~/index | html | displays the index page | - | 
 
 ## Database Schema
+- **user**
+(**id**, userName, nickName, firstName, lastName, dateOfBirth, email, phone, signature, description, passwordHash, salt, iteration, *avatar)
 
+- **article**
+(**id**, title, content, time, isDeleted, *user, *cover)
+
+- **comment**
+(**id**, content, time, isDeleted, *user, *article, *parent)
+
+- **avatar**
+(**id**, filePath)
+
+- **cover**
+(**id**, filePath)
+
+- **likeArticle**
+(***user**, ***article**)
+
+- **likeComment**
+(***user**, ***comment**)
+
+- **tag**
+(**id**, description)
+
+- **hasTag**
+(***article**, ***tag**)
