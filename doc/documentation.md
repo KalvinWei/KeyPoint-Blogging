@@ -55,7 +55,7 @@ This file contains the documentation of page design, database design, etc.
 |:---|:---:|:---:|:---:|
 | ~/ | html | displays the index page | - |
 | ~/index | html | displays the index page | - | 
-| ~/guestPage |html| displays the index page | - |
+| ~/indexPage |html| displays the index page | - |
 | ~/signInPage |html| displays the sign in / sign up page| - |
 | ~/editProfilePage |html| displays the profile editing page | - |
 | ~/editArticlePage |html| displays the article editing/creating page| - |
