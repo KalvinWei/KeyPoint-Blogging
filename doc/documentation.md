@@ -31,28 +31,6 @@ This file contains the documentation of page design, database design, etc.
             `- shared
 ```
 
-## Page Design
-prototype of all pages is here: 
-https://3uzaen.axshare.com/ 
-(password: pgcert)
-
-- Index page (url: ~/ , ~/index)
-
-- Login page (url: ~/login)
-
-- Register page (url: ~/register)
-
-- Account management page
-
-- Authors page
-
-
-## API Design
-| url | type | description | example |
-|:---|:---:|:---:|:---:|
-| ~/ | html | displays the index page | - |
-| ~/index | html | displays the index page | - | 
-
 ## Database Schema
 - **user**
 (**id**, userName, nickName, firstName, lastName, dateOfBirth, email, phone, signature, description, passwordHash, salt, iteration, *avatar)
@@ -80,3 +58,42 @@ https://3uzaen.axshare.com/
 
 - **hasTag**
 (***article**, ***tag**)
+
+## API Design
+| url | type | description | example |
+|:---|:---:|:---:|:---:|
+| ~/ | html | displays the index page | - |
+| ~/index | html | displays the index page | - | 
+| ~/guestPage |html| displays the index page | - |
+| ~/signInPage |html| displays the sign in / sign up page| - |
+| ~/editProfilePage |html| displays the profile editing page | - |
+| ~/editArticlePage |html| displays the article editing/creating page| - |
+| ~/articlesPage |html| displays the page showing user profile and all articles| - |
+| ~/articlePage |html| displays a single article| - |
+| ~/logOut |html| logout, redirect to index| - |
+| ~/signIn |action| submit sign in form, redirect to profile editing page| - |
+| ~/signUp |action| submit sign up form, redirect to sign in page| - |
+| ~/saveProfile |action| submit file editing form, redirect to articles page | - |
+| ~/deleteAccount |action| submit account deletion form, redirect to index| - |
+| ~/postArticle |action| submit article editing form, redirect to this article| - |
+| ~/deleteArticle |action| submit article deletion form, redirect to all articles page| - |
+| ~/postComment |action| submit comment creating form, returns a json response? | - |
+| ~/deleteComment |action| submit comment deleting form, returns a json response? | - |
+| ~/checkUserName |json| test whether the user name is available, returns a json response | - |
+
+
+## Page Design
+
+[Page prototypes on Axure](https://3uzaen.axshare.com/)
+
+(password: pgcert)
+
+- Index page (url: ~/ , ~/index)
+
+- Login page (url: ~/login)
+
+- Register page (url: ~/register)
+
+- Account management page
+
+- Authors page
