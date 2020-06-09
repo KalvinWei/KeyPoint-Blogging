@@ -31,24 +31,6 @@ This file contains the documentation of page design, database design, etc.
             `- shared
 ```
 
-## Page Design
-- Index page (url: ~/ , ~/index)
-
-- Login page (url: ~/login)
-
-- Register page (url: ~/register)
-
-- Account management page
-
-- Authors page
-
-
-## API Design
-| url | type | description | example |
-|:---|:---:|:---:|:---:|
-| ~/ | html | displays the index page | - |
-| ~/index | html | displays the index page | - | 
-
 ## Database Schema
 - **user**
 (**id**, userName, nickName, firstName, lastName, dateOfBirth, email, phone, signature, description, passwordHash, salt, iteration, *avatar)
@@ -76,3 +58,20 @@ This file contains the documentation of page design, database design, etc.
 
 - **hasTag**
 (***article**, ***tag**)
+
+## API Design
+| url | type | description | example |
+|:---|:---:|:---:|:---:|
+| ~/ | html | displays the index page | - |
+| ~/index | html | displays the index page | - | 
+
+## Page Design
+- Index page (url: ~/ , ~/index)
+
+- Login page (url: ~/login)
+
+- Register page (url: ~/register)
+
+- Account management page
+
+- Authors page
