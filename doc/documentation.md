@@ -39,10 +39,10 @@ This file contains the documentation of page design, database design, etc.
 (**id**, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, passwordHash, salt, iteration)
 
 - **article**
-(**id**, title, content, time, user, cover, isDeleted)
+(**id**, title, content, time, *user, cover, isDeleted)
 
 - **comment**
-(**id**, content, time, user, article, parent, isDeleted,)
+(**id**, content, time, *user, *article, parent, isDeleted,)
 
 - **likeArticle**
 (***user**, ***article**)
