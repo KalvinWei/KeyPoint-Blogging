@@ -68,7 +68,7 @@ CREATE TABLE likeComment
 
 CREATE TABLE tag
 (
-    article INT NOT NULL,
+    article INT          NOT NULL,
     tag     VARCHAR(128) NOT NULL,
     PRIMARY KEY (article, tag),
     FOREIGN KEY (article) REFERENCES article (id)
