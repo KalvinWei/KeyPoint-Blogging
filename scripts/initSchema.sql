@@ -12,19 +12,19 @@ DROP TABLE IF EXISTS hasTag;
 
 CREATE TABLE user
 (
-    id           INT      PRIMARY KEY ,
+    id           INT PRIMARY KEY,
     userName     VARCHAR(128),
     nickname     VARCHAR(128),
     firstName    VARCHAR(128),
     lastName     VARCHAR(128),
-    dateOfBirth  DATE  NOT NULL,
+    dateOfBirth  DATE         NOT NULL,
     email        VARCHAR(128),
-    avatar       INT      NOT NULL,
-    signature    TEXT        ,
-    passwordHash varchar(600) NOT NULL,
-    salt         varchar(32)  NOT NULL,
-    iteration    int          NOT NULL,
-    description  TEXT         NOT NULL,
+    avatar       INT          NOT NULL,
+    signature    TEXT,
+    description  TEXT,
+    passwordHash VARCHAR(128) NOT NULL,
+    salt         VARCHAR(128)  NOT NULL,
+    iteration    INT          NOT NULL,
     FOREIGN KEY (avatar) REFERENCES avatar (id)
 
 );
