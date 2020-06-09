@@ -81,19 +81,20 @@ This file contains the documentation of page design, database design, etc.
 | ~/deleteComment |action| submit comment deleting form, returns a json response? | - |
 | ~/checkUserName |json| test whether the user name is available, returns a json response | - |
 
-
 ## Page Design
 
 [Page prototypes on Axure](https://3uzaen.axshare.com/)
 
 (password: pgcert)
 
-- Index page (url: ~/ , ~/index)
+- Guest page (~/, ~/index, ~/guestPage)
 
-- Login page (url: ~/login)
+- Sign in page (~/signInPage)
 
-- Register page (url: ~/register)
+- Edit profile page (~/editProfilePage)
 
-- Account management page
+- Edit article page (~/editArticlePage)
 
-- Authors page
+- Articles page (~/articlesPage)
+
+- Article page (~/articlePage)
