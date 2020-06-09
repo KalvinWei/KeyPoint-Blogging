@@ -1,5 +1,6 @@
 # Documentation
 This file contains the documentation of page design, database design, etc.
+Kalvin added a line.
 
 ## Project structure
 ```
