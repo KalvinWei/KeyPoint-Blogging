@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user
 (
     id           INT PRIMARY KEY,
-    userName     VARCHAR(128),
+    userName     VARCHAR(128) UNIQUE,
     nickname     VARCHAR(128),
     firstName    VARCHAR(128),
     lastName     VARCHAR(128),
@@ -17,7 +17,7 @@ CREATE TABLE user
     signature    TEXT,
     description  TEXT,
     avatar       VARCHAR(128) NOT NULL,
-    passwordHash VARCHAR(128) NOT NULL,
+    passwordHash VARCHAR(600) NOT NULL,
     salt         VARCHAR(128) NOT NULL,
     iteration    INT          NOT NULL
 );
