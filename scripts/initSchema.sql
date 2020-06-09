@@ -1,4 +1,3 @@
--- TODO: Add your database init script here. This should initialize all your tables, and add any initial data required.
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS article;
 DROP TABLE IF EXISTS comment;
