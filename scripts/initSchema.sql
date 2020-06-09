@@ -1,24 +1,9 @@
-DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS article;
-DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS cover;
-DROP TABLE IF EXISTS avatar;
+DROP TABLE IF EXISTS tag;
 DROP TABLE IF EXISTS likeArticle;
 DROP TABLE IF EXISTS likeComment;
-DROP TABLE IF EXISTS tag;
-DROP TABLE IF EXISTS hasTag;
-
-CREATE TABLE cover
-(
-    id       VARCHAR(128) PRIMARY KEY,
-    filePath VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE avatar
-(
-    id       VARCHAR(128) PRIMARY KEY,
-    filePath VARCHAR(128) NOT NULL
-);
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS article;
+DROP TABLE IF EXISTS user;
 
 CREATE TABLE user
 (
@@ -27,15 +12,14 @@ CREATE TABLE user
     nickname     VARCHAR(128),
     firstName    VARCHAR(128),
     lastName     VARCHAR(128),
-    dateOfBirth  DATE         NOT NULL,
+    dateOfBirth  DATE,
     email        VARCHAR(128),
     signature    TEXT,
     description  TEXT,
+    avatar       VARCHAR(128) NOT NULL,
     passwordHash VARCHAR(128) NOT NULL,
     salt         VARCHAR(128) NOT NULL,
-    iteration    INT          NOT NULL,
-    avatar       VARCHAR(128),
-    FOREIGN KEY (avatar) REFERENCES avatar (id)
+    iteration    INT          NOT NULL
 );
 
 CREATE TABLE article
@@ -43,23 +27,22 @@ CREATE TABLE article
     id        INT PRIMARY KEY,
     title     TEXT         NOT NULL,
     content   TEXT,
-    time  TIMESTAMP    NOT NULL,
+    time      TIMESTAMP    NOT NULL,
     cover     VARCHAR(128) NOT NULL,
     user      INT          NOT NULL,
     isDeleted BOOLEAN      NOT NULL,
-    FOREIGN KEY (cover) REFERENCES cover (id),
     FOREIGN KEY (user) REFERENCES user (id)
 );
 
 CREATE TABLE comment
 (
-    id        INT    PRIMARY KEY,
-    content   TEXT       NOT NULL,
+    id        INT PRIMARY KEY,
+    content   TEXT      NOT NULL,
     time      TIMESTAMP NOT NULL,
-    parent    INT   ,
-    user      INT    NOT NULL,
-    article   INT   NOT NULL,
-    isDeleted BOOLEAN NOT NULL,
+    parent    INT,
+    user      INT       NOT NULL,
+    article   INT       NOT NULL,
+    isDeleted BOOLEAN   NOT NULL,
     FOREIGN KEY (parent) REFERENCES comment (id),
     FOREIGN KEY (user) REFERENCES user (id),
     FOREIGN KEY (article) REFERENCES article (id)
@@ -85,15 +68,8 @@ CREATE TABLE likeComment
 
 CREATE TABLE tag
 (
-    id          INT PRIMARY KEY,
-    description TEXT    NOT NULL
-);
-
-CREATE TABLE hasTag
-(
     article INT NOT NULL,
-    tag     INT NOT NULL,
+    tag     VARCHAR(128) NOT NULL,
     PRIMARY KEY (article, tag),
-    FOREIGN KEY (article) REFERENCES article (id),
-    FOREIGN KEY (tag) REFERENCES tag (id)
+    FOREIGN KEY (article) REFERENCES article (id)
 );
