@@ -33,19 +33,13 @@ This file contains the documentation of page design, database design, etc.
 
 ## Database Schema
 - **user**
-(**id**, userName, nickName, firstName, lastName, dateOfBirth, email, phone, signature, description, passwordHash, salt, iteration, *avatar)
+(**id**, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, passwordHash, salt, iteration)
 
 - **article**
-(**id**, title, content, time, isDeleted, *user, *cover)
+(**id**, title, content, time, user, cover, isDeleted)
 
 - **comment**
-(**id**, content, time, isDeleted, *user, *article, *parent)
-
-- **avatar**
-(**id**, filePath)
-
-- **cover**
-(**id**, filePath)
+(**id**, content, time, user, article, parent, isDeleted,)
 
 - **likeArticle**
 (***user**, ***article**)
@@ -54,10 +48,7 @@ This file contains the documentation of page design, database design, etc.
 (***user**, ***comment**)
 
 - **tag**
-(**id**, description)
-
-- **hasTag**
-(***article**, ***tag**)
+(***article**, **tag**)
 
 ## API Design
 | url | type | description | example |
