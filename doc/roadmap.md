@@ -8,7 +8,7 @@ This file is to keep record of our plans.
 - ~~**[K]** Design page functions (Axure)~~
 - ~~**[K, E, Y]** Design APIs~~
 - ~~**[K, E, Y]** Design Database schema~~
-- **[K]** Create jsp stub files
+- ~~**[K]** Create jsp stub files~~
 - ~~**[K]** Snapshot page designs~~
 - ~~**[E]** Create database schema files~~
 - ~~**[Y]** Update documentation for page design, API design and database design~~
