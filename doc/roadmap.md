@@ -4,18 +4,15 @@ This file is to keep record of our plans.
 
 ## Today (*09/06/2020*)
 
-#### To do
-- Set up the database account and try deploy
-- Design page functions (Axure)
-- Design APIs
-- Design Database schema
-- Create basic files
-
-#### Doing
-- *nothing yet*
-
-#### Done
-- *nothing yet*
+- **[Y]** Set up the database account and try deploy
+- ~~**[K]** Design page functions (Axure)~~
+- ~~**[K, E, Y]** Design APIs~~
+- ~~**[K, E, Y]** Design Database schema~~
+- **[K]** Create jsp stub files
+- **[K]** Snapshot page designs
+- **[E]** Create database schema files
+- **[Y]** Update documentation for page design, API design and database design
+- **[Y]** Create stub files for servlets and DAOs
 
 ## Planned Features
 #### Compulsory
@@ -40,29 +37,8 @@ This file is to keep record of our plans.
 - [ ] ~~Search and sort~~
 
 #### Other
-- ?
+- [ ] Likes
 
 ## Time Schedule
 - 8/6 ~ 14/6: basic backend
 - 15/6 ~ 18/6: frontend and additional features
-
-## Page Design
-- Index page (url: ~/ , ~/index)
-
-- Login page (url: ~/login)
-
-- Register page (url: ~/register)
-
-- Account management page
-
-- Authors page
-
-
-## API Design
-| url | type | description | example |
-|:---|:---:|:---:|:---:|
-| ~/ | html | displays the index page | - |
-| ~/index | html | displays the index page | - | 
-
-## Database Schema
-
