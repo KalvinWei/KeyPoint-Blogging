@@ -9,6 +9,17 @@ DROP TABLE IF EXISTS likeComment;
 DROP TABLE IF EXISTS tag;
 DROP TABLE IF EXISTS hasTag;
 
+CREATE TABLE cover
+(
+    id       VARCHAR(128) PRIMARY KEY,
+    filePath VARCHAR(128) NOT NULL
+);
+
+CREATE TABLE avatar
+(
+    id       VARCHAR(128) PRIMARY KEY,
+    filePath VARCHAR(128) NOT NULL
+);
 
 CREATE TABLE user
 (
@@ -19,108 +30,71 @@ CREATE TABLE user
     lastName     VARCHAR(128),
     dateOfBirth  DATE         NOT NULL,
     email        VARCHAR(128),
-    avatar       INT          NOT NULL,
     signature    TEXT,
     description  TEXT,
     passwordHash VARCHAR(128) NOT NULL,
-    salt         VARCHAR(128)  NOT NULL,
+    salt         VARCHAR(128) NOT NULL,
     iteration    INT          NOT NULL,
+    avatar       VARCHAR(128),
     FOREIGN KEY (avatar) REFERENCES avatar (id)
-
 );
 
 CREATE TABLE article
 (
-    id        int(11)       NOT NULL,
-    title     varchar(32)   NOT NULL,
-    content   TEXT          NOT NULL,
-    dateTime  timestamp(14) NOT NULL,
-    cover     int(11)       NOT NULL,
-    user      int(11)       NOT NULL,
-    isDeleted varchar(1)    NOT NULL,
-    PRIMARY KEY (id),
+    id        INT PRIMARY KEY,
+    title     TEXT         NOT NULL,
+    content   TEXT,
+    time  TIMESTAMP    NOT NULL,
+    cover     VARCHAR(128) NOT NULL,
+    user      INT          NOT NULL,
+    isDeleted BOOLEAN      NOT NULL,
     FOREIGN KEY (cover) REFERENCES cover (id),
     FOREIGN KEY (user) REFERENCES user (id)
-
-
 );
+
 CREATE TABLE comment
 (
-    id        int(11)    NOT NULL,
+    id        INT    PRIMARY KEY,
     content   TEXT       NOT NULL,
-    date      varchar(10),
-    parent    int(11)    NOT NULL,
-    user      int(11)    NOT NULL,
-    article   int(11)    NOT NULL,
-    isDeleted varchar(1) NOT NULL,
-
-    PRIMARY KEY (id),
+    time      TIMESTAMP NOT NULL,
+    parent    INT   ,
+    user      INT    NOT NULL,
+    article   INT   NOT NULL,
+    isDeleted BOOLEAN NOT NULL,
     FOREIGN KEY (parent) REFERENCES comment (id),
     FOREIGN KEY (user) REFERENCES user (id),
     FOREIGN KEY (article) REFERENCES article (id)
-
 );
-
-CREATE TABLE cover
-(
-    id       varchar(11) NOT NULL,
-    filePath varchar(10) NOT NULL,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE avatar
-(
-    id       varchar(11) NOT NULL,
-    filePath varchar(10) NOT NULL,
-    PRIMARY KEY (id)
-);
-
 
 CREATE TABLE likeArticle
 (
-    user    int(11) NOT NULL,
-    article int(10) NOT NULL,
+    user    INT NOT NULL,
+    article INT NOT NULL,
     PRIMARY KEY (user, article),
     FOREIGN KEY (user) REFERENCES user (id),
     FOREIGN KEY (article) REFERENCES article (id)
-
-
 );
 
 CREATE TABLE likeComment
 (
-    user    int(11) NOT NULL,
-    comment int(10) NOT NULL,
+    user    INT NOT NULL,
+    comment INT NOT NULL,
     PRIMARY KEY (user, comment),
     FOREIGN KEY (user) REFERENCES user (id),
     FOREIGN KEY (comment) REFERENCES comment (id)
-
 );
 
 CREATE TABLE tag
 (
-    id          int(11) NOT NULL,
-    description TEXT    NOT NULL,
-    PRIMARY KEY (id)
-
+    id          INT PRIMARY KEY,
+    description TEXT    NOT NULL
 );
-
 
 CREATE TABLE hasTag
 (
-    article int(11) NOT NULL,
-    tag     int(11) NOT NULL,
+    article INT NOT NULL,
+    tag     INT NOT NULL,
     PRIMARY KEY (article, tag),
     FOREIGN KEY (article) REFERENCES article (id),
     FOREIGN KEY (tag) REFERENCES tag (id)
-
-
 );
-
-
-
-
-
-
-
-
