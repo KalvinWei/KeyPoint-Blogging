@@ -1,6 +1,36 @@
 # Documentation
 This file contains the documentation of page design, database design, etc.
 
+## Project structure
+```
+.
+|- .idea
+|- doc
+|- lib
+|- out
+|- scripts
+    |- initSchema.sql
+    `- sampleData.sql
+|- src
+    `- ictgradschool.project
+        |- servlet
+        |- DAO
+        |- util
+        `- model
+            |- data
+            |- viewModel
+            `- jsonProvider
+`- web
+    |- images
+        |- avatars
+        `- covers
+    `- WEB-INF
+        |- lib
+        |- res
+        |- jsp
+            `- shared
+```
+
 ## Page Design
 - Index page (url: ~/ , ~/index)
 
