@@ -63,4 +63,8 @@ public class UserDAO {
 
     }
 
+    public static boolean deleteUserByUserName(String userName) {
+        return false;
+    }
+
 }
