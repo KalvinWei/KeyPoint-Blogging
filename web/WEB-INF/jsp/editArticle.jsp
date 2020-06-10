@@ -11,6 +11,8 @@
   --from ~/editArticlePage                      [to post new]
   userId
 
+  # => article (this includes user information)
+
   --to ~/postArticle
   aId,aTitle,aContent,aTime,aCover,aUser
 

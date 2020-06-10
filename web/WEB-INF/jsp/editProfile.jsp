@@ -8,6 +8,8 @@
   --from ~/editProfilePage                          [to edit, to create]
   user(* except passwordHash,salt,interation)
 
+  # => userProfile
+
   --to ~/saveProfile
   uID,uSignature,uFirstName,uLastName,
   uNickname,uEmail,uNewPassword,uAvatar

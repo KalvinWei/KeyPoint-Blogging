@@ -9,6 +9,9 @@
   user (id,nickname,avatar)                                        [check article belonging]
   article (id,title,user,time,content,cover,comments[])            [display article, check article belonging]
 
+  # => userProfile
+  # => article
+
   --to ~/postComment
   cContent,cTime,cParent,cUser,cArticle
 
