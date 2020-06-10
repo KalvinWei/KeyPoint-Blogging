@@ -45,7 +45,7 @@
         <input id="pswConfirmation" type="text"  placeholder="password confirmation">
         <textarea name="description" placeholder="description"></textarea>
         <button type="submit">save</button>
-        <button formaction="./deleteAcount">delete account</button>
+        <button formaction="./deleteAccount">delete account</button>
     </div>
 
     <div id="rightBlock">
