@@ -28,7 +28,7 @@ public class SignIn extends HttpServlet {
                 req.getRequestDispatcher("/Index").forward(req, resp);
             } else {
                 req.setAttribute("hasLogInFailed", true);
-                req.getRequestDispatcher("/signInPage").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp").forward(req, resp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
