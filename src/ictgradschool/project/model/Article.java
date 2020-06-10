@@ -34,6 +34,10 @@ public class Article implements Serializable {
     public Article() {
     }
 
+    public static Article getBlankArticle(String userName) {
+        return null;
+    }
+
     public int getId() {
         return id;
     }

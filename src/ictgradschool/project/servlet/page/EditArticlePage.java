@@ -1,6 +1,7 @@
 package ictgradschool.project.servlet.page;
 
 import ictgradschool.project.DAO.ArticleDAO;
+import ictgradschool.project.model.Article;
 import ictgradschool.project.util.AuthenticationUtil;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ public class EditArticlePage extends HttpServlet {
         String idString = req.getParameter("id");
         if (idString == null) {
             String userName = AuthenticationUtil.getLoggedInUserName(req);
-            req.setAttribute("article", ArticleDAO.getBlankArticle(userName));
+            req.setAttribute("article", Article.getBlankArticle(userName));
         } else {
             int id = Integer.parseInt(req.getParameter("id"));
             req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
