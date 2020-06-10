@@ -22,6 +22,9 @@ public class AuthenticationUtil {
     }
 
     public static boolean authenticate(User user, String password) {
+        if (user == null)
+            return false;
+
         return PasswordUtil.isExpectedPassword(
                 password.toCharArray(),
                 PasswordUtil.base64Decode(user.getSalt()),
