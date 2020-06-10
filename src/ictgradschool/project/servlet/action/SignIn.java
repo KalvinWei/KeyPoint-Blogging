@@ -25,10 +25,11 @@ public class SignIn extends HttpServlet {
         try {
             if (AuthenticationUtil.authenticate(UserDAO.getUserFromUserName(userName), password)) {
                 req.getSession(true).setAttribute("loggedInUserName", userName);
-                req.getRequestDispatcher("/Index").forward(req, resp);
+                req.setAttribute("isUserLoggedIn", true);
+                req.getRequestDispatcher("/indexPage").forward(req, resp);
             } else {
                 req.setAttribute("hasLogInFailed", true);
-                req.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp").forward(req, resp);
+                req.getRequestDispatcher("/signInPage").forward(req, resp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
