@@ -28,10 +28,10 @@ public class SignIn extends HttpServlet {
         try {
             if (AuthenticationUtil.authenticate(UserDAO.getUserFromUserName(userName), password)) {
                 req.getSession(true).setAttribute("loggedInUserName", userName);
-                req.getRequestDispatcher("/indexPage").forward(req, resp);
+                req.getRequestDispatcher("./indexPage").forward(req, resp);
             } else {
                 req.setAttribute("hasLogInFailed", true);
-                req.getRequestDispatcher("/signInPage").forward(req, resp);
+                req.getRequestDispatcher("./signInPage").forward(req, resp);
             }
         } catch (SQLException e) {
             e.printStackTrace();
