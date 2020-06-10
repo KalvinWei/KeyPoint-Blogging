@@ -27,5 +27,29 @@
 </head>
 <body>
 <%@include file="shared/navbar.jsp"%>
+<div id="wrapper">
+    <div id="article">
+        <h3>${article.title}</h3>
+        <p>${article.userNickname} / ${article.time}</p>
+        <p>${article.content}</p>
+    </div>
+    <div id="commentsWrapper">
+        <h4>comments</h4>
+        <div id="composeComment">
+            <img src="./images/avatar/${userProfile.avatar}">
+            <div id="commentBox" class="commentBox">
+                <textarea></textarea>
+                <button>post</button>
+            </div>
+        </div>
+
+        <div id="comments">
+            <c:forEach var="comment" items="article.commentList"
+            <div class="commentBox">
+                <img src=
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
