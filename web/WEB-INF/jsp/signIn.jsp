@@ -43,7 +43,7 @@
     <p><a>Sign In</a> / <a>Sign Up</a></p>
 
     <div id="signIn">
-        <form action="/signIn" method="post">
+        <form action="./signIn" method="post">
             <input type="text" name="userName" placeholder="username">
             <input type="password" name="password" placeholder="password">
             <c:if test="${!hasLogInfail}" >
