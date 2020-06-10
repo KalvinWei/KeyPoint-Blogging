@@ -37,9 +37,9 @@
     <!--if signed-in, click avatar, show navlist -->
     <div id="navList">
         <ul>
-            <li><a href="/allArticles">My Space</a></li>
-            <li><a href="/editArticle">New Article</a></li>
-            <li><a href="/editProfile">Edit Profile</a></li>
+            <li><a href="/articlesPage">My Space</a></li>
+            <li><a href="/editArticlePage">New Article</a></li>
+            <li><a href="/editProfilePage">Edit Profile</a></li>
             <li><a href="/signOut">Sign Out</a></li>
         </ul>
     </div>
