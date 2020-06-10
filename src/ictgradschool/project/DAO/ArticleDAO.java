@@ -10,7 +10,7 @@ public class ArticleDAO {
         return null;
     }
 
-    public static List<ArticleSummary> getArticleSummariesByUserId(int id) {
+    public static List<ArticleSummary> getArticleSummariesByUserName(String userName) {
         return null;
     }
 
