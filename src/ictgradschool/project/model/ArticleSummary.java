@@ -9,7 +9,7 @@ public class ArticleSummary implements Serializable {
     private String contentSummary;
     private String cover;
     private int userId;
-    private String userNickName;
+    private String userNickname;
     private String userAvatar;
     private Timestamp time;
     private int likes;
