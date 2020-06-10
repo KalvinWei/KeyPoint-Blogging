@@ -5,19 +5,15 @@
   Time: 16:51
   To change this template use File | Settings | File Templates.
 
-  --from ~/editArticlePage                      [to edit]
+  --from ~/editArticlePage                      [to edit. check if fields except userid in "article" are null, and populate textbox accordingly.]
   article(* expect isDeleted)
-
-  --from ~/editArticlePage                      [to post new]
-  userId
-
   # => article (this includes user information)
 
-  --to ~/postArticle
-  aId,aTitle,aContent,aTime,aCover,aUser
+  --to ~/postArticle                            [when submitting, servlet detect if articleId is null, if so, it means to create, not modify]
+  id,title,content,time,cover,user
 
   --to ~/deleteArticle
-  articleId
+  id
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
