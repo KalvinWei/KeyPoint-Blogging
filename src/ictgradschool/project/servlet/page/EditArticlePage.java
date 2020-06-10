@@ -15,8 +15,14 @@ public class EditArticlePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
-        int id = Integer.parseInt(req.getParameter("id"));
-        req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
+        String idString = req.getParameter("id");
+        if (idString == null) {
+            String userName = AuthenticationUtil.getLoggedInUserName(req);
+            req.setAttribute("article", ArticleDAO.getBlankArticle(userName));
+        } else {
+            int id = Integer.parseInt(req.getParameter("id"));
+            req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
+        }
         req.getRequestDispatcher("/WEB-INF/jsp/editArticle.jsp").forward(req, resp);
     }
 

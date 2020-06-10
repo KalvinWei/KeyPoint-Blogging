@@ -17,4 +17,8 @@ public class ArticleDAO {
     public static Article getArticleByArticleId(int id) {
         return null;
     }
+
+    public static Article getBlankArticle(String userName) {
+        return null;
+    }
 }
