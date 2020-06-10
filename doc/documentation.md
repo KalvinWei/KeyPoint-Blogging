@@ -113,21 +113,58 @@ This file contains the documentation of page design, database design, etc.
         - userProfileSummary : UserProfileSummary?
         - userProfile : UserProfile
     - **sends**
+        - to saveProfile
+            - id
+            - signature
+            - firstName
+            - lastName
+            - nickname
+            - email
+            - password
+            - avatar
+        - to deleteAccount
+            - id
     
 - Edit article page (~/editArticlePage)
     - **consumes**
         - isUserLoggedIn : Boolean
         - userProfileSummary : UserProfileSummary?
+        - article : Article
     - **sends**
+        - to postArticle
+            - id
+            - title
+            - content
+            - time
+            - cover
+            - user
+        - to deleteArticle
+            - id
     
 - Articles page (~/articlesPage)
     - **consumes**
         - isUserLoggedIn : Boolean
         - userProfileSummary : UserProfileSummary?
+        - userProfile : UserProfile
+        - articleSummaries : List\<ArticleSummaries\>
     - **sends**
+        - to editArticlePage
+            - id
+        - to deleteArticle
+            -id
     
 - Article page (~/articlePage)
     - **consumes**
         - isUserLoggedIn : Boolean
         - userProfileSummary : UserProfileSummary?
+        - userProfile : UserProfile
+        - article : Article
     - **sends**
+        - to postComment
+            - content
+            - time
+            - parent
+            - user
+            - article
+        - to deleteComment
+            - id
