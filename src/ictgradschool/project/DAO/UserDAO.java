@@ -1,6 +1,7 @@
 package ictgradschool.project.DAO;
 
 import ictgradschool.project.model.User;
+import ictgradschool.project.model.UserProfileSummary;
 import ictgradschool.project.util.DBConnectionUtils;
 
 import java.io.IOException;
@@ -25,6 +26,10 @@ public class UserDAO {
                 }
             }
         }
+    }
+
+    public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) {
+        return null;
     }
 
     public static boolean insertUser(User user) throws IOException, SQLException {
