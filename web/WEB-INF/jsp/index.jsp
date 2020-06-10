@@ -22,7 +22,7 @@
 
 <div id="recentArticles">
     <p><span>RECENTLY ON HIT</span></p>
-    <c:forEach items="articleSummaries" var="article">
+    <c:forEach items="${articleSummaries}" var="article">
         <div class="article">
             <div class="articleHeader">
                 <p>${article.title}</p>
