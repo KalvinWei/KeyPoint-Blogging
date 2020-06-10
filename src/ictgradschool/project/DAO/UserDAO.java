@@ -1,6 +1,7 @@
 package ictgradschool.project.DAO;
 
 import ictgradschool.project.model.User;
+import ictgradschool.project.model.UserProfile;
 import ictgradschool.project.model.UserProfileSummary;
 import ictgradschool.project.util.DBConnectionUtils;
 
@@ -28,10 +29,6 @@ public class UserDAO {
         }
     }
 
-    public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) {
-        return null;
-    }
-
     public static boolean insertUser(User user) throws IOException, SQLException {
         String defaultAvatarPath = "./images/guest.png";
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
@@ -54,6 +51,14 @@ public class UserDAO {
                 }
             }
         }
+    }
+
+    public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) {
+        return null;
+    }
+
+    public static void saveProfile(UserProfile userProfile) {
+
     }
 
 }
