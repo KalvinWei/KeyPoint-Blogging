@@ -9,7 +9,7 @@
   user (id,nickname,avatar)                                        [check article belonging]
   article (id,title,user,time,content,cover,comments[])            [display article, check article belonging]
 
-  # => userProfile
+  # => userProfileSummary !!
   # => article
   # => isUserLoggedIn (boolean)
 
@@ -28,18 +28,15 @@
 <body>
 <%@include file="shared/navbar.jsp" %>
 <div id="wrapper">
-    <!--article-->
     <div id="article">
         <h3>${article.title}</h3>
         <p>${article.userNickname} / ${article.time}</p>
         <p>${article.content}</p>
     </div>
-
-    <!--comments-->
     <div id="commentsWrapper">
         <h4>comments</h4>
         <div id="composeComment">
-            <img src="./images/avatar/${userProfile.avatar}">
+            <img src="./images/avatar/${userProfileSummary.avatar}">
             <div id="commentBox" class="commentBox">
                 <c:if test="${isUserLoggedIn}">
                     <textarea></textarea>
@@ -53,9 +50,8 @@
         </div>
 
         <div id="comments">
-            <!-- top level comment box -->
-            <c:forEach var="comment" items="${article.commentList}">
-                <div class="commentBox level-1">
+            <c:forEach var="comment" items="article.commentList">
+                <div class="commentBox">
                     <img src="./images/avatar/${comment.userAvatar}">
                     <div>
                         <p>${comment.userNickname} / ${comment.time}</p>
@@ -63,7 +59,7 @@
                         <input type="hidden" value="${comment.id}">
                         <c:if test="${isUserLoggedIn}">
                             <button onclick="//reply()">reply</button>
-                            <c:if test="${userProfile.id == article.userId || userProfile.id == comment.userId}">
+                            <c:if test="${userProfileSummary.id == article.userId || userProfileSummary.id == comment.userId}">
                                 <button onclick="//delete()">delete</button>
                             </c:if>
                         </c:if>
@@ -78,7 +74,7 @@
                                     <input type="hidden" value="${comment.id}">
                                     <c:if test="${isUserLoggedIn}">
                                         <button onclick="//reply()">reply</button>
-                                        <c:if test="${userProfile.id == article.userId || userProfile.id == comment.userId}">
+                                        <c:if test="${userProfileSummary.id == article.userId || userProfileSummary.id == comment.userId}">
                                             <button onclick="//delete()">delete</button>
                                         </c:if>
                                     </c:if>
@@ -93,7 +89,7 @@
                                                 <input type="hidden" value="${comment.id}">
                                                 <c:if test="${isUserLoggedIn}">
                                                     <button onclick="//reply()">reply</button>
-                                                    <c:if test="${userProfile.id == article.userId || userProfile.id == comment.userId}">
+                                                    <c:if test="${userProfileSummary.id == article.userId || userProfileSummary.id == comment.userId}">
                                                         <button onclick="//delete()">delete</button>
                                                     </c:if>
                                                 </c:if>

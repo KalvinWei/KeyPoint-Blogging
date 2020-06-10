@@ -1,5 +1,6 @@
 package ictgradschool.project.DAO;
 
+import ictgradschool.project.model.Article;
 import ictgradschool.project.model.ArticleSummary;
 
 import java.util.List;
@@ -9,8 +10,15 @@ public class ArticleDAO {
         return null;
     }
 
-    public static List<ArticleSummary> getArticleSummariesByUserId(int id) {
+    public static List<ArticleSummary> getArticleSummariesByUserName(String userName) {
         return null;
     }
 
+    public static Article getArticleByArticleId(int id) {
+        return null;
+    }
+
+    public static Article getBlankArticle(String userName) {
+        return null;
+    }
 }

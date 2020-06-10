@@ -18,17 +18,17 @@
 </head>
 <body>
 <!-- left: LOGO-->
-<h1 id="home"><a href="/indexPage">KeyPoint</a></h1>
+<h1 id="home"><a href="./indexPage">KeyPoint</a></h1>
 
 <!-- right: nav -->
 <div id="navElements">
     <!--basic: show avatar and nickname -->
     <div id="avatarAndName">
-        <c:if test="${sessionScope.isUserLoggedIn}">
+        <c:if test="${!isUserLoggedIn}">
             <span><a>Sign In</a> / <a>Sign Up</a></span>
             <img src="./images/guest.png">
         </c:if>
-        <c:if test="${sessionScope.isUserLoggedIn}">
+        <c:if test="${isUserLoggedIn}">
             <span><a href="./articlesPage?user=${userProfileSummary.userName}">${userProfileSummary.nickname}</a></span>
             <img src="./images/avatar/${userProfileSummary.avatar}" onclick="//toggleNavList()">
         </c:if>
