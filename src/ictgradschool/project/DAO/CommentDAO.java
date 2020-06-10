@@ -12,4 +12,8 @@ public class CommentDAO {
     private static List<Comment> getCommentsByParentId(int id) {
         return null;
     }
+
+    private static boolean deleteCommentByCommentId(int id) {
+        return false;
+    }
 }

@@ -33,4 +33,8 @@ public class ArticleDAO {
     public static boolean editArticle(Article article) {
         return false;
     }
+
+    public static boolean deleteArticleByArticleId(int id) {
+        return false;
+    }
 }
