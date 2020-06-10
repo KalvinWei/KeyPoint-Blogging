@@ -12,10 +12,11 @@ public class Comment implements Serializable {
     private String userNickname;
     private String userAvatar;
     private int likes;
+    private int level;
     private List<Comment> comments;
 
 
-    public Comment(int id, String content, Timestamp time, int userId, String userNickname, String userAvatar, int likes, List<Comment> comments) {
+    public Comment(int id, String content, Timestamp time, int userId, String userNickname, String userAvatar, int likes, int level, List<Comment> comments) {
         this.id = id;
         this.content = content;
         this.time = time;
@@ -23,6 +24,7 @@ public class Comment implements Serializable {
         this.userNickname = userNickname;
         this.userAvatar = userAvatar;
         this.likes = likes;
+        this.level = level;
         this.comments = comments;
     }
 
@@ -83,6 +85,14 @@ public class Comment implements Serializable {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public List<Comment> getComments() {
