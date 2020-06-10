@@ -54,7 +54,7 @@
     </div>
 
     <div id="signUp">
-        <form style="display: none"  action="/editProfilePage" method="post">
+        <form style="display: none"  action="./editProfilePage" method="post">
             <input type="text" name="userName" placeholder="username">
             <label style="display:none;color:red;">* username has been taken</label>
             <input type="text" name="nickname" placeholder="nickname">

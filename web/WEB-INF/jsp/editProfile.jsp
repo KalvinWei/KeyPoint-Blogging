@@ -32,7 +32,7 @@
 <div id="wrapper">
     <h3>${userProfile.nickName}</h3>
 
-    <form action="/editProfile" method="post">
+    <form action="./editProfile" method="post">
 
     <div id="leftBlock">
         <input id="signature" type="text" name="signature" placeholder="signature">
@@ -45,7 +45,7 @@
         <input id="pswConfirmation" type="text"  placeholder="password confirmation">
         <textarea name="description" placeholder="description"></textarea>
         <button type="submit">save</button>
-        <button formaction="/deleteAcount">delete account</button>
+        <button formaction="./deleteAcount">delete account</button>
     </div>
 
     <div id="rightBlock">

@@ -31,23 +31,23 @@
         <span>click this area to change cover</span>
         <!-- article.title is empty, signifies this page is to create a new article -->
         <c:if test="${empty article.title}">
-            <img src="/images/cover/noCover.jpg">
+            <img src="./images/cover/noCover.jpg">
         </c:if>
         <!-- this is to edit an existent article -->
         <c:if test="${not empty article.title}">
-            <img src="/images/cover/${article.cover}">
+            <img src="./images/cover/${article.cover}">
         </c:if>
     </div>
 
 
-    <form action="/editArticle" method="post">
+    <form action="./editArticle" method="post">
         <input type="hidden" name="cover" value="${article.cover}">
         <input type="hidden" name="time" value="">
         <input type="hidden" name="user" value="${article.user}">
         <input type="text" name="title" value="${article.title}" placeholder="title">
         <textarea name="content">${article.content}</textarea>
         <button type="submit">post</button>
-        <button formaction="/deleteArticle">delete</button>
+        <button formaction="./deleteArticle">delete</button>
 
     </form>
 </div>
