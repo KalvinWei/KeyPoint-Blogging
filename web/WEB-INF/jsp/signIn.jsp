@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: kalvinwei
@@ -8,6 +9,12 @@
   --from MULTIPLE PAGES             [in order to redirect back to the previous page]
   lastPage
   # => lastPage (String)
+
+  --from ~/signIn
+  boolean hasLogInFail              [if true, show error msg]
+
+  --from ~/checkUserName            [this value would be got through js code]
+  boolean hasBeenTaken
 
   --to ~/signIn
   userName,password
@@ -34,21 +41,29 @@
 
 <div id="contentBox">
     <p><a>Sign In</a> / <a>Sign Up</a></p>
-    <form id="signIn" action="/signIn" method="post">
-        <input type="text" name="username" placeholder="username">
-        <input type="password" name="password" placeholder="password">
-        <label style="display: none; color:red">* non-existent user or wrong password!</label>
-        <input type="submit" value="sign in">
-    </form>
-    <form style="display: none" id="signUp" action="/editProfile" method="post">
-        <input type="text" name="username" placeholder="username">
-        <label style="display:none;color:red;">* username has been taken</label>
-        <input type="text" name="nickname" placeholder="nickname">
-        <input type="password" name="password" placeholder="password">
-        <input type="password" name="pswConfirmation" placeholder="confirm your password here">
-        <label style="display:none;color:red;">* passwords don't match</label>
-        <input type="submit" value="sign up">
-    </form>
+
+    <div id="signIn">
+        <form action="/signIn" method="post">
+            <input type="text" name="userName" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <c:if test="${!hasLogInfail}" >
+                <label style="display: none; color:red">* login failed. wrong username or password.</label>
+            </c:if>
+            <input type="submit" value="sign in">
+        </form>
+    </div>
+
+    <div id="signUp">
+        <form style="display: none"  action="/editProfilePage" method="post">
+            <input type="text" name="userName" placeholder="username">
+            <label style="display:none;color:red;">* username has been taken</label>
+            <input type="text" name="nickname" placeholder="nickname">
+            <input type="password" name="password" placeholder="password">
+            <input type="password" placeholder="confirm your password here">
+            <label style="display:none;color:red;">* passwords don't match</label>
+            <input type="submit" value="sign up">
+        </form>
+    </div>
 
 </div>
 
