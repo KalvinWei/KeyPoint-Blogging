@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class Article implements Serializable {
-    private int id;
+    private Integer id;
     private String title;
     private String content;
     private Timestamp time;
@@ -38,11 +38,11 @@ public class Article implements Serializable {
         return null;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -17,4 +17,20 @@ public class ArticleDAO {
     public static Article getArticleByArticleId(int id) {
         return null;
     }
+
+    public static boolean insertOrEditArticle(Article article) {
+        if (article.getId() == null) {
+            return insertArticle(article);
+        } else {
+            return editArticle(article);
+        }
+    }
+
+    public static boolean insertArticle(Article article) {
+        return false;
+    }
+
+    public static boolean editArticle(Article article) {
+        return false;
+    }
 }
