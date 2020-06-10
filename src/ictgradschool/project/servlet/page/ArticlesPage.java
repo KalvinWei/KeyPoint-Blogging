@@ -14,6 +14,7 @@ public class ArticlesPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
+
         req.getRequestDispatcher("/WEB-INF/jsp/articles.jsp").forward(req, resp);
     }
 

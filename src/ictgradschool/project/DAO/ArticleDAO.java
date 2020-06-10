@@ -17,5 +17,4 @@ public class ArticleDAO {
     public static Article getArticleByArticleId(int id) {
         return null;
     }
-
 }

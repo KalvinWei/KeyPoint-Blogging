@@ -15,6 +15,8 @@ public class ArticlePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
+        int id = Integer.parseInt(req.getParameter("id"));
+        req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
         req.getRequestDispatcher("/WEB-INF/jsp/article.jsp").forward(req, resp);
     }
 
