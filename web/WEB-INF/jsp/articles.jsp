@@ -29,6 +29,8 @@
     <title>Title</title>
 </head>
 <body>
+<%@include file="shared/navbar.jsp"%>
+
 <div id="profile">
     <div id="nameAndSignature">
         <span id="nickname">${userProfile.nickname}</span>

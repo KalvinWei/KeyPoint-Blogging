@@ -19,6 +19,7 @@
 </head>
 <body>
 <%@include file="shared/navbar.jsp"%>
+
 <div id="recentArticles">
     <p><span>RECENTLY ON HIT</span></p>
     <c:forEach items="articleSummaries" var="article">
