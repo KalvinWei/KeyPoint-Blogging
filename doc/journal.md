@@ -22,6 +22,16 @@ This file is used to keep record of what has been done each day
 - Failed to deploy
 
 ### 10/6, Wed
+- Wrote jsp structure
+- Finished routing
+- Completed models
+- Completed page servlets
+- Completed sign in, sign up, sign out
+- Add sample data to database
+
+**Problem**
+- Still failing to deploy
+
 ### 11/6, Thu
 ### 12/6, Fri
 ### 13/6, Sat
