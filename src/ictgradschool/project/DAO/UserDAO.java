@@ -1,6 +1,8 @@
 package ictgradschool.project.DAO;
 
 import ictgradschool.project.model.User;
+import ictgradschool.project.model.UserProfile;
+import ictgradschool.project.model.UserProfileSummary;
 import ictgradschool.project.util.DBConnectionUtils;
 
 import java.io.IOException;
@@ -49,6 +51,16 @@ public class UserDAO {
                 }
             }
         }
+    }
+
+    public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) {
+        return null;
+    }
+
+    public static UserProfile getUserProfileFromUserName(String userName) {return null;}
+
+    public static void saveProfile(UserProfile userProfile) {
+
     }
 
 }

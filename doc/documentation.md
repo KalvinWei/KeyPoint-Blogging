@@ -157,7 +157,6 @@ This file contains the documentation of page design, database design, etc.
     - **consumes**
         - isUserLoggedIn : Boolean
         - userProfileSummary : UserProfileSummary?
-        - userProfile : UserProfile
         - article : Article
     - **sends**
         - to postComment

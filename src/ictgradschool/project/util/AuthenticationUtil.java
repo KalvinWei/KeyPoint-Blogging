@@ -40,4 +40,26 @@ public class AuthenticationUtil {
                 PasswordUtil.base64Decode(user.getPasswordHash())
         );
     }
+
+    public static void signIn(HttpServletRequest req, String userName) {
+        req.getSession(true).setAttribute("loggedInUserName", userName);
+    }
+
+    public static String getLoggedInUserName(HttpServletRequest req) {
+        return (String)req.getSession().getAttribute("loggedInUserName");
+    }
+
+    public static boolean checkLogInStatus(HttpServletRequest req) {
+        boolean isUserLoggedIn;
+        if (req.getSession() == null || req.getSession().getAttribute("loggedInUserName") == null) {
+            req.setAttribute("isUserLoggedIn", false);
+            isUserLoggedIn = false;
+        } else {
+            req.setAttribute("isUserLoggedIn", true);
+            isUserLoggedIn = true;
+            String loggedInUserName = (String)req.getSession().getAttribute("loggedInUserName");
+            req.setAttribute("userProfileSummary", UserDAO.getUserProfileSummaryFromUserName(loggedInUserName));
+        }
+        return isUserLoggedIn;
+    }
 }

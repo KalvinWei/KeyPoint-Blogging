@@ -9,7 +9,7 @@
   user (id,nickname,avatar)                                        [check article belonging]
   article (id,title,user,time,content,cover,comments[])            [display article, check article belonging]
 
-  # => userProfile
+  # => userProfileSummary !!
   # => article
   # => isUserLoggedIn (boolean)
 
@@ -36,7 +36,7 @@
     <div id="commentsWrapper">
         <h4>comments</h4>
         <div id="composeComment">
-            <img src="./images/avatar/${userProfile.avatar}">
+            <img src="./images/avatar/${userProfileSummary.avatar}">
             <div id="commentBox" class="commentBox">
                 <c:if test="${isUserLoggedIn}">
                     <textarea></textarea>

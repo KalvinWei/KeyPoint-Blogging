@@ -1,5 +1,7 @@
 package ictgradschool.project.servlet.page;
 
+import ictgradschool.project.util.AuthenticationUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,9 +16,7 @@ public class SignInPage extends HttpServlet {
         if (req.getAttribute("hasLogInFailed") == null) {
             req.setAttribute("hasLogInFailed", false);
         }
-        if (req.getSession() == null || req.getSession().getAttribute("loggedInUserName") == null) {
-            req.setAttribute("isUserLoggedIn", true);
-        }
+        AuthenticationUtil.checkLogInStatus(req);
         req.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp").forward(req, resp);
     }
 
