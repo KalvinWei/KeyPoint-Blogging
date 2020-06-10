@@ -4,6 +4,22 @@
   Date: 9/06/20
   Time: 16:45
   To change this template use File | Settings | File Templates.
+
+  --from MULTIPLE PAGES             [in order to redirect back to the previous page]
+  lastPage
+  # => lastPage (String)
+
+  --to ~/signIn
+  userName,password
+
+  --to ~/checkUserName
+  username
+
+  --to ~/signUp
+  username,password,nickname
+
+
+
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

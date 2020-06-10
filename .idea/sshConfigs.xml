@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="629370ec-df53-441a-ad97-dca8d8480066" port="22" customName="MyServer" nameFormat="CUSTOM" />
+    </configs>
+  </component>
+</project>

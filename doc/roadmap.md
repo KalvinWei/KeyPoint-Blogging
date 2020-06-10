@@ -2,17 +2,13 @@
 
 This file is to keep record of our plans.
 
-## Today (*09/06/2020*)
+## Today (*10/06/2020*)
 
 - **[Y]** Set up the database account and try deploy
-- ~~**[K]** Design page functions (Axure)~~
-- ~~**[K, E, Y]** Design APIs~~
-- ~~**[K, E, Y]** Design Database schema~~
-- ~~**[K]** Create jsp stub files~~
-- ~~**[K]** Snapshot page designs~~
-- ~~**[E]** Create database schema files~~
-- ~~**[Y]** Update documentation for page design, API design and database design~~
-- **[Y]** Create stub files for servlets and DAOs
+- **[E]** Create sample data
+- **[K]** Complete jsp structures
+- **[Y, K, E]** Complete model objects
+- **[Y]** Try write log in functionality 
 
 ## Planned Features
 #### Compulsory
