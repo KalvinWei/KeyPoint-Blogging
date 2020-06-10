@@ -30,7 +30,7 @@
         </c:if>
         <c:if test="${sessionScope.isUserLoggedIn}">
             <span><a href="/articlesPage?user=${userProfileSummary.userName}">${userProfileSummary.nickname}</a></span>
-            <img src="./images/${userProfileSummary.avatar}.png" onclick="//toggleNavList()">
+            <img src="./images/avatar/${userProfileSummary.avatar}" onclick="//toggleNavList()">
         </c:if>
     </div>
 
