@@ -11,6 +11,9 @@ import java.io.IOException;
 public class IndexPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession() == null || req.getSession().getAttribute("loggedInUserName") == null) {
+            req.setAttribute("isUserLoggedIn", true);
+        }
         req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
     }
 

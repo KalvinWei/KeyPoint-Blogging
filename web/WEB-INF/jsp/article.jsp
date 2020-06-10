@@ -43,7 +43,7 @@
                     <button onclick="//postComment();">post</button>
                 </c:if>
                 <c:if test="${!isUserLoggedIn}">
-                    <p><a href="/signInPage">sign in to comment on this article</a></p>
+                    <p><a href="./signInPage">sign in to comment on this article</a></p>
                 </c:if>
 
             </div>

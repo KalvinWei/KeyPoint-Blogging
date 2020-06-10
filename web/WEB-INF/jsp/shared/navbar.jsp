@@ -18,7 +18,7 @@
 </head>
 <body>
 <!-- left: LOGO-->
-<h1 id="home"><a href="index.jsp">KeyPoint</a></h1>
+<h1 id="home"><a href="/indexPage">KeyPoint</a></h1>
 
 <!-- right: nav -->
 <div id="navElements">
@@ -29,7 +29,7 @@
             <img src="./images/guest.png">
         </c:if>
         <c:if test="${sessionScope.isUserLoggedIn}">
-            <span><a href="/articlesPage?user=${userProfileSummary.userName}">${userProfileSummary.nickname}</a></span>
+            <span><a href="./articlesPage?user=${userProfileSummary.userName}">${userProfileSummary.nickname}</a></span>
             <img src="./images/avatar/${userProfileSummary.avatar}" onclick="//toggleNavList()">
         </c:if>
     </div>
@@ -37,10 +37,10 @@
     <!--if signed-in, click avatar, show navlist -->
     <div id="navList">
         <ul>
-            <li><a href="/articlesPage">My Space</a></li>
-            <li><a href="/editArticlePage">New Article</a></li>
-            <li><a href="/editProfilePage">Edit Profile</a></li>
-            <li><a href="/signOut">Sign Out</a></li>
+            <li><a href="./articlesPage">My Space</a></li>
+            <li><a href="./editArticlePage">New Article</a></li>
+            <li><a href="./editProfilePage">Edit Profile</a></li>
+            <li><a href="./signOut">Sign Out</a></li>
         </ul>
     </div>
 </div>

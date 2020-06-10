@@ -11,6 +11,12 @@ import java.io.IOException;
 public class SignInPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getAttribute("hasLogInFailed") == null) {
+            req.setAttribute("hasLogInFailed", false);
+        }
+        if (req.getSession() == null || req.getSession().getAttribute("loggedInUserName") == null) {
+            req.setAttribute("isUserLoggedIn", true);
+        }
         req.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp").forward(req, resp);
     }
 

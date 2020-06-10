@@ -52,8 +52,8 @@
         <h4>${article.title}</h4>
         <p>
             <span>${article.time}</span>
-            <a href="/editArticlePage?id=${article.id}">edit</a>
-            <a href="/deleteArticle?id=${article.id}">delete</a>
+            <a href="./editArticlePage?id=${article.id}">edit</a>
+            <a href="./deleteArticle?id=${article.id}">delete</a>
         </p>
     </c:forEach>
 </div>
