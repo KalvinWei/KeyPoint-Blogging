@@ -10,6 +10,9 @@
   articles[]                                          [show all articles of current user]
     article(id,title,time)
 
+  # => userProfileSummary
+  # => articleSummaries
+
   --to ~/editArticlePage
   articleID
 

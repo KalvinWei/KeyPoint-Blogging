@@ -9,6 +9,10 @@
   user(nickname,avatar)                                     [for navbar]
   articleSummaries[]                                        [recent articles list]
     articleSummary(title,content,time,cover,author)
+
+  # => userProfileSummary
+  # => articleSummaries
+
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
