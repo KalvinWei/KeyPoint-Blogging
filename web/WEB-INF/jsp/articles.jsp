@@ -48,7 +48,7 @@
 
 <div id="articleList">
     <h3><span>all articles</span></h3>
-    <c:forEach items="articleSummaries" var="article">
+    <c:forEach items="${articleSummaries}" var="article">
         <h4>${article.title}</h4>
         <p>
             <span>${article.time}</span>
