@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS article;
 DROP TABLE IF EXISTS user;
 
+
 CREATE TABLE user
 (
     id           INT PRIMARY KEY,
