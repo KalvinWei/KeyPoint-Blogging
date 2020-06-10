@@ -15,6 +15,8 @@
 <html>
 <head>
     <title>navbar</title>
+    <link href="/WEB-INF/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/WEB-INF/js/bootstrap.bundle.min.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- left: LOGO-->
