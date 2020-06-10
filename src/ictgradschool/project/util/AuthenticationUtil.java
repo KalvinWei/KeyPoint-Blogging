@@ -45,13 +45,21 @@ public class AuthenticationUtil {
         req.getSession(true).setAttribute("loggedInUserName", userName);
     }
 
-    public static void checkLogInStatus(HttpServletRequest req) {
+    public static String getLoggedInUserName(HttpServletRequest req) {
+        return (String)req.getSession().getAttribute("loggedInUserName");
+    }
+
+    public static boolean checkLogInStatus(HttpServletRequest req) {
+        boolean isUserLoggedIn;
         if (req.getSession() == null || req.getSession().getAttribute("loggedInUserName") == null) {
             req.setAttribute("isUserLoggedIn", false);
+            isUserLoggedIn = false;
         } else {
             req.setAttribute("isUserLoggedIn", true);
+            isUserLoggedIn = true;
             String loggedInUserName = (String)req.getSession().getAttribute("loggedInUserName");
             req.setAttribute("userProfileSummary", UserDAO.getUserProfileSummaryFromUserName(loggedInUserName));
         }
+        return isUserLoggedIn;
     }
 }

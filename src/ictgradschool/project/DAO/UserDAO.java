@@ -57,6 +57,8 @@ public class UserDAO {
         return null;
     }
 
+    public static UserProfile getUserProfileFromUserName(String userName) {return null;}
+
     public static void saveProfile(UserProfile userProfile) {
 
     }
