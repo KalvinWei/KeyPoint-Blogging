@@ -6,13 +6,10 @@
   To change this template use File | Settings | File Templates.
 
   --from indexPage
-  user(nickname,avatar)                                     [for navbar]
   articleSummaries[]                                        [recent articles list]
     articleSummary(title,content,time,cover,author)
 
-  # => userProfileSummary
   # => articleSummaries
-  # => isUserLoggedIn (boolean)
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -22,20 +19,21 @@
 </head>
 <body>
 <%@include file="shared/navbar.jsp"%>
+
 <div id="recentArticles">
     <p><span>RECENTLY ON HIT</span></p>
-    <c:forEach items="recentArticles" var="article">
+    <c:forEach items="articleSummaries" var="article">
         <div class="article">
             <div class="articleHeader">
                 <p>${article.title}</p>
-                <p><span>${article.auther}</span></p>
-                <p><span>${article.datetime}</span></p>
+                <p><span>${article.userNickname}</span></p>
+                <p><span>${article.time}</span></p>
             </div>
             <div class="articleExcerpt">
-                <p>${article.exerpt}</p>
+                <p>${article.contentSummary}</p>
             </div>
             <div class="articleCoverImg">
-                <img src="/images/${article.coverImage}" alt="${article.coverImage}">
+                <img src="./images/cover/${article.cover}" alt="${article.cover}">
             </div>
         </div>
     </c:forEach>

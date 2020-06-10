@@ -15,6 +15,7 @@
     <title>Title</title>
 </head>
 <body>
-
+<%@include file="shared/navbar.jsp"%>
+<p>${errorMsg}</p>
 </body>
 </html>
