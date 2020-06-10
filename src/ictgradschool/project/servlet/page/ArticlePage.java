@@ -16,7 +16,6 @@ public class ArticlePage extends HttpServlet {
         if (req.getSession() == null || req.getSession().getAttribute("loggedInUserName") == null) {
             req.setAttribute("isUserLoggedIn", true);
         }
-        req.setAttribute("articleSummaries", ArticleDAO.getAllArticleSummaries());
         req.getRequestDispatcher("/WEB-INF/jsp/article.jsp").forward(req, resp);
     }
 
