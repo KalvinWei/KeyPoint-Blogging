@@ -2,13 +2,12 @@
 
 This file is to keep record of our plans.
 
-## Today (*10/06/2020*)
+## Today (*11/06/2020*)
 
 - **[Y]** Set up the database account and try deploy
-- ~~**[E]** Create sample data~~
-- ~~**[K]** Complete jsp structures~~
-- ~~**[Y, K, E]** Complete model objects~~
-- ~~**[Y]** Try write log in functionality~~ 
+- **[Y]** Finish action servlets
+- **[K]** Finish DAOs
+- **[E]** Refine jsps
 
 ## Planned Features
 #### Compulsory
