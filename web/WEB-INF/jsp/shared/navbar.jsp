@@ -18,7 +18,7 @@
 </head>
 <body>
 <!-- left: LOGO-->
-<h1 id="home"><a href="/indexPage">KeyPoint</a></h1>
+<h1 id="home"><a href="./indexPage">KeyPoint</a></h1>
 
 <!-- right: nav -->
 <div id="navElements">
