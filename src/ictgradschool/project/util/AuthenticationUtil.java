@@ -22,6 +22,7 @@ public class AuthenticationUtil {
         return new User(
                 null,
                 userName,
+                userName,
                 PasswordUtil.base64Encode(passwordHash),
                 PasswordUtil.base64Encode(salt),
                 iteration
