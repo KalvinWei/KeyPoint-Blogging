@@ -6,13 +6,10 @@
   To change this template use File | Settings | File Templates.
 
   --from indexPage
-  user(nickname,avatar)                                     [for navbar]
   articleSummaries[]                                        [recent articles list]
     articleSummary(title,content,time,cover,author)
 
-  # => userProfileSummary
   # => articleSummaries
-  # => isUserLoggedIn (boolean)
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>

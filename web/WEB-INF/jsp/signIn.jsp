@@ -9,6 +9,9 @@
   lastPage
   # => lastPage (String)
 
+  --from ~/signIn
+  boolean hasLogInFail              [if true, show error msg]
+
   --to ~/signIn
   userName,password
 
