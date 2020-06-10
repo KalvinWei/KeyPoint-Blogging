@@ -5,10 +5,10 @@ This file is to keep record of our plans.
 ## Today (*10/06/2020*)
 
 - **[Y]** Set up the database account and try deploy
-- **[E]** Create sample data
-- **[K]** Complete jsp structures
-- **[Y, K, E]** Complete model objects
-- **[Y]** Try write log in functionality 
+- ~~**[E]** Create sample data~~
+- ~~**[K]** Complete jsp structures~~
+- ~~**[Y, K, E]** Complete model objects~~
+- ~~**[Y]** Try write log in functionality~~ 
 
 ## Planned Features
 #### Compulsory
@@ -18,7 +18,7 @@ This file is to keep record of our plans.
 - [ ] Account management
 - [ ] Login
 - [ ] Logout
-- [ ] Password hash
+- [x] Password hash
 - [ ] Avatars
 - [ ] Browsing all articles without logging in
 - [ ] Create, delete, edit, browse own articles when logged in

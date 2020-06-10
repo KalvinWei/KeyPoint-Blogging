@@ -1,5 +1,8 @@
 package ictgradschool.project.servlet.page;
 
+import ictgradschool.project.DAO.ArticleDAO;
+import ictgradschool.project.util.AuthenticationUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,8 @@ import java.io.IOException;
 public class IndexPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        AuthenticationUtil.checkLogInStatus(req);
+        req.setAttribute("articleSummaries", ArticleDAO.getAllArticleSummaries());
         req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
     }
 

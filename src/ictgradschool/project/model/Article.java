@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class Article implements Serializable {
-    private int id;
+    private Integer id;
     private String title;
     private String content;
     private Timestamp time;
@@ -15,9 +15,9 @@ public class Article implements Serializable {
     private String userAvatar;
     private int likes;
     private List<String> tags;
-    private List<Comment> commentList;
+    private List<Comment> comments;
 
-    public Article(int id, String title, String content, Timestamp time, String cover, int userId, String userNickname, String userAvatar, int likes, List<String> tags, List<Comment> commentList) {
+    public Article(int id, String title, String content, Timestamp time, String cover, int userId, String userNickname, String userAvatar, int likes, List<String> tags, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -28,17 +28,21 @@ public class Article implements Serializable {
         this.userAvatar = userAvatar;
         this.likes = likes;
         this.tags = tags;
-        this.commentList = commentList;
+        this.comments = comments;
     }
 
     public Article() {
     }
 
-    public int getId() {
+    public static Article getBlankArticle(String userName) {
+        return null;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -114,12 +118,12 @@ public class Article implements Serializable {
         this.tags = tags;
     }
 
-    public List<Comment> getCommentList() {
-        return commentList;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override
@@ -135,7 +139,7 @@ public class Article implements Serializable {
                 ", userAvatar='" + userAvatar + '\'' +
                 ", likes=" + likes +
                 ", tags=" + tags +
-                ", commentList=" + commentList +
+                ", commentList=" + comments +
                 '}';
     }
 }
