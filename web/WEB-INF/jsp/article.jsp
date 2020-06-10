@@ -14,10 +14,10 @@
   # => isUserLoggedIn (boolean)
 
   --to ~/postComment
-  cContent,cTime,cParent,cUser,cArticle
+  content,time,parent,user,article
 
   --to ~/deleteComment
-  cID
+  id
 
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
