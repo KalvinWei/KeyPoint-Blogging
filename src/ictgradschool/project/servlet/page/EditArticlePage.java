@@ -1,5 +1,6 @@
 package ictgradschool.project.servlet.page;
 
+import ictgradschool.project.DAO.ArticleDAO;
 import ictgradschool.project.util.AuthenticationUtil;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ public class EditArticlePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
+        int id = Integer.parseInt(req.getParameter("id"));
+        req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
         req.getRequestDispatcher("/WEB-INF/jsp/editArticle.jsp").forward(req, resp);
     }
 
