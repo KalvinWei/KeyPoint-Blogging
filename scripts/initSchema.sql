@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE user
 (
-    id           INT PRIMARY KEY,
+    id           INT PRIMARY KEY AUTO_INCREMENT,
     userName     VARCHAR(128) UNIQUE,
     nickname     VARCHAR(128),
     firstName    VARCHAR(128),
@@ -25,7 +25,7 @@ CREATE TABLE user
 
 CREATE TABLE article
 (
-    id        INT PRIMARY KEY,
+    id        INT PRIMARY KEY AUTO_INCREMENT,
     title     TEXT         NOT NULL,
     content   TEXT,
     time      TIMESTAMP    NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE article
 
 CREATE TABLE comment
 (
-    id        INT PRIMARY KEY,
+    id        INT PRIMARY KEY AUTO_INCREMENT,
     content   TEXT      NOT NULL,
     time      TIMESTAMP NOT NULL,
     parent    INT,
