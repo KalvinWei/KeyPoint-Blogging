@@ -12,6 +12,7 @@
 
   # => userProfileSummary
   # => articleSummaries
+  # => isUserLoggedIn (boolean)
 
   --to ~/editArticlePage
   articleID

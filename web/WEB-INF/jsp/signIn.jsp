@@ -7,6 +7,7 @@
 
   --from MULTIPLE PAGES             [in order to redirect back to the previous page]
   lastPage
+  # => lastPage (String)
 
   --to ~/signIn
   userName,password
