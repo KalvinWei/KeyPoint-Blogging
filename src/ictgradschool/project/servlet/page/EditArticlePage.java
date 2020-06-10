@@ -11,6 +11,9 @@ import java.io.IOException;
 public class EditArticlePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (req.getSession() == null || req.getSession().getAttribute("loggedInUserName") == null) {
+            req.setAttribute("isUserLoggedIn", true);
+        }
         req.getRequestDispatcher("/WEB-INF/jsp/editArticle.jsp").forward(req, resp);
     }
 
