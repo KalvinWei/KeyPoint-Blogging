@@ -82,22 +82,89 @@ This file contains the documentation of page design, database design, etc.
 (password: pgcert)
 
 - Index page (~/, ~/index, ~/indexPage)
-    - contains a list of all article summaries
-    - depending on login status, display user nickname and avatar or sign in link
+    - **consumes**
+        - isUserLoggedIn : Boolean
+        - userProfileSummary : UserProfileSummary?
+        - articleSummaries : List\<ArticleSummaries\>
+    - **sends**
+        - *nothing*
     
 - Sign in page (~/signInPage)
-    - contains two forms, sign in and sign up; front end to toggle among them
-    - when submitted, redirect page
-    
+   - **consumes**
+       - isUserLoggedIn : Boolean
+       - userProfileSummary : UserProfileSummary?
+       - hasLogInFail : Boolean?
+       - lastPage : String?
+       - {"hasBeenTaken" : string} : json 
+   - **sends**
+       - to signIn
+           - userName
+           - password
+       - to signUp
+           - userName
+           - nickname
+           - password
+       - [ajax] to checkUserName
+           - userName
+           
 - Edit profile page (~/editProfilePage)
-    - allows the user to edit his/her profile
+    - **consumes**
+        - isUserLoggedIn : Boolean
+        - userProfileSummary : UserProfileSummary?
+        - userProfile : UserProfile
+    - **sends**
+        - to saveProfile
+            - id
+            - signature
+            - firstName
+            - lastName
+            - nickname
+            - email
+            - password
+            - avatar
+        - to deleteAccount
+            - id
     
 - Edit article page (~/editArticlePage)
-    - allows the user to edit a certain article
+    - **consumes**
+        - isUserLoggedIn : Boolean
+        - userProfileSummary : UserProfileSummary?
+        - article : Article
+    - **sends**
+        - to postArticle
+            - id
+            - title
+            - content
+            - time
+            - cover
+            - user
+        - to deleteArticle
+            - id
     
 - Articles page (~/articlesPage)
-    - displays the user information, followed by all the article summaries by this user
+    - **consumes**
+        - isUserLoggedIn : Boolean
+        - userProfileSummary : UserProfileSummary?
+        - userProfile : UserProfile
+        - articleSummaries : List\<ArticleSummaries\>
+    - **sends**
+        - to editArticlePage
+            - id
+        - to deleteArticle
+            -id
     
 - Article page (~/articlePage)
-    - displays the a certain article
-    - displays all the related comments
+    - **consumes**
+        - isUserLoggedIn : Boolean
+        - userProfileSummary : UserProfileSummary?
+        - userProfile : UserProfile
+        - article : Article
+    - **sends**
+        - to postComment
+            - content
+            - time
+            - parent
+            - user
+            - article
+        - to deleteComment
+            - id
