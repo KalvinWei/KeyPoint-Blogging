@@ -13,10 +13,10 @@
   userName,password
 
   --to ~/checkUserName
-  username
+  userName
 
   --to ~/signUp
-  username,password,nickname
+  userName,password,nickname
 
 
 

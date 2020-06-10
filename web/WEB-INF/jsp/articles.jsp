@@ -6,19 +6,19 @@
   To change this template use File | Settings | File Templates.
 
   --from  ~/articlesPage
-  user (* expect passwordHash,salt,iteration)         [display current user's profile]
+  user (* except passwordHash,salt,iteration)         [display current user's profile]
   articles[]                                          [show all articles of current user]
     article(id,title,time)
 
-  # => userProfileSummary
+  # => userProfile
   # => articleSummaries
   # => isUserLoggedIn (boolean)
 
   --to ~/editArticlePage
-  articleID
+  id
 
   --to ~/deleteArticle
-  articleID
+  id
 
 
 --%>

@@ -8,6 +8,7 @@ public class UserProfileSummary implements Serializable {
     private String email;
     private String signature;
     private String avatar;
+    private String description;
 
 
     public UserProfileSummary(int id, String nickname, String email, String signature, String avatar) {

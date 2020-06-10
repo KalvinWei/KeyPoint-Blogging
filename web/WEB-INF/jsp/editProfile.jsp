@@ -11,11 +11,10 @@
   # => userProfile
 
   --to ~/saveProfile
-  uID,uSignature,uFirstName,uLastName,
-  uNickname,uEmail,uNewPassword,uAvatar
+  id,signature,firstName,lastName,nickname,email,password,avatar
 
   --to ~/deleteAccount
-  userID
+  id
 
 
 
