@@ -4,6 +4,17 @@
   Date: 9/06/20
   Time: 16:52
   To change this template use File | Settings | File Templates.
+
+  --from ~/articlePage
+  user (id,nickname,avatar)                                        [check article belonging]
+  article (id,title,user,time,content,cover,comments[])            [display article, check article belonging]
+
+  --to ~/postComment
+  cContent,cTime,cParent,cUser,cArticle
+
+  --to ~/deleteComment
+  cID
+
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -11,6 +22,6 @@
     <title>Title</title>
 </head>
 <body>
-
+<%@include file="shared/navbar.jsp"%>
 </body>
 </html>

@@ -19,13 +19,13 @@
 <div id="navElements">
     <!--basic: show avatar and nickname -->
     <div id="avatarAndName">
-        <c:if test="${user == null}">
+        <c:if test="${sessionScope.user == null}">
             <span><a>Sign In</a> / <a>Sign Up</a></span>
             <img src="./images/guest.png">
         </c:if>
-        <c:if test="${user != null}">
-            <span><a href="/articles?username=${user.username}">${user.nickname}</a></span>
-            <img src="./images/${user.avatar}.png" onclick="//toggleNavList()">
+        <c:if test="${sessionScope.user != null}">
+            <span><a href="/articles?username=${sessionScope.user.username}">${sessionScope.user.nickname}</a></span>
+            <img src="./images/${sessionScope.user.avatar}.png" onclick="//toggleNavList()">
         </c:if>
     </div>
 
