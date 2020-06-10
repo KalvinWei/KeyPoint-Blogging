@@ -23,7 +23,7 @@ public class SignIn extends HttpServlet {
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
         if (req.getAttribute("lastPage") == null) {
-            req.setAttribute("lastPage", "./indexPage");
+            req.setAttribute("lastPage", "indexPage");
         }
         try {
             if (AuthenticationUtil.authenticate(UserDAO.getUserFromUserName(userName), password)) {
