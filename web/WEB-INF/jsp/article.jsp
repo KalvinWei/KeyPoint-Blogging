@@ -28,11 +28,14 @@
 <body>
 <%@include file="shared/navbar.jsp" %>
 <div id="wrapper">
+    <!--article-->
     <div id="article">
         <h3>${article.title}</h3>
         <p>${article.userNickname} / ${article.time}</p>
         <p>${article.content}</p>
     </div>
+
+    <!--comments-->
     <div id="commentsWrapper">
         <h4>comments</h4>
         <div id="composeComment">
@@ -50,15 +53,60 @@
         </div>
 
         <div id="comments">
+            <!-- top level comment box -->
             <c:forEach var="comment" items="${article.commentList}">
-                <div class="commentBox">
+                <div class="commentBox level-1">
                     <img src="./images/avatar/${comment.userAvatar}">
                     <div>
                         <p>${comment.userNickname} / ${comment.time}</p>
                         <p>${comment.content}</p>
                         <input type="hidden" value="${comment.id}">
-                        <button onclick="//reply()">reply</button>
-                        <button onclick="//delete()">delete</button>
+                        <c:if test="${isUserLoggedIn}">
+                            <button onclick="//reply()">reply</button>
+                            <c:if test="${userProfile.id == article.userId || userProfile.id == comment.userId}">
+                                <button onclick="//delete()">delete</button>
+                            </c:if>
+                        </c:if>
+                        <!-- here js deal with if there exists a textarea -->
+                        <!-- 2nd level comment box -->
+                        <c:forEach var="comment" items="${comment.comments}">
+                            <div class="commentBox level-2">
+                                <img src="./images/avatar/${comment.userAvatar}">
+                                <div>
+                                    <p>${comment.userNickname} / ${comment.time}</p>
+                                    <p>${comment.content}</p>
+                                    <input type="hidden" value="${comment.id}">
+                                    <c:if test="${isUserLoggedIn}">
+                                        <button onclick="//reply()">reply</button>
+                                        <c:if test="${userProfile.id == article.userId || userProfile.id == comment.userId}">
+                                            <button onclick="//delete()">delete</button>
+                                        </c:if>
+                                    </c:if>
+                                    <!-- here js deal with if there exists a textarea -->
+                                    <!-- 3rd level commnet box -->
+                                    <c:forEach var="comment" items="${comment.comments}">
+                                        <div class="commentBox level-3">
+                                            <img src="./images/avatar/${comment.userAvatar}">
+                                            <div>
+                                                <p>${comment.userNickname} / ${comment.time}</p>
+                                                <p>${comment.content}</p>
+                                                <input type="hidden" value="${comment.id}">
+                                                <c:if test="${isUserLoggedIn}">
+                                                    <button onclick="//reply()">reply</button>
+                                                    <c:if test="${userProfile.id == article.userId || userProfile.id == comment.userId}">
+                                                        <button onclick="//delete()">delete</button>
+                                                    </c:if>
+                                                </c:if>
+                                                <!-- here js deal with if there exists a textarea -->
+                                                <c:forEach var="comment" items="${comment.comments}">
+
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </c:forEach>
