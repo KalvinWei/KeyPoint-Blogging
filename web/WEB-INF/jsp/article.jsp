@@ -11,6 +11,7 @@
 
   # => userProfile
   # => article
+  # => isUserLoggedIn (boolean)
 
   --to ~/postComment
   cContent,cTime,cParent,cUser,cArticle
