@@ -18,7 +18,7 @@ This file is to keep record of our plans.
 - [ ] Account management
 - [ ] Login
 - [ ] Logout
-- [ ] Password hash
+- [x] Password hash
 - [ ] Avatars
 - [ ] Browsing all articles without logging in
 - [ ] Create, delete, edit, browse own articles when logged in
