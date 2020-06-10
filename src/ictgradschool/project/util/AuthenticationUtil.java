@@ -1,7 +1,14 @@
 package ictgradschool.project.util;
 
+import ictgradschool.project.DAO.UserDAO;
 import ictgradschool.project.model.User;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.sql.SQLException;
 import java.util.Random;
 
 public class AuthenticationUtil {
