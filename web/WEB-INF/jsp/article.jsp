@@ -26,7 +26,7 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="shared/navbar.jsp"%>
+<%@include file="shared/navbar.jsp" %>
 <div id="wrapper">
     <div id="article">
         <h3>${article.title}</h3>
@@ -38,16 +38,30 @@
         <div id="composeComment">
             <img src="./images/avatar/${userProfile.avatar}">
             <div id="commentBox" class="commentBox">
-                <textarea></textarea>
-                <button>post</button>
+                <c:if test="${isUserLoggedIn}">
+                    <textarea></textarea>
+                    <button onclick="//postComment();">post</button>
+                </c:if>
+                <c:if test="${!isUserLoggedIn}">
+                    <p><a href="/signInPage">sign in to comment on this article</a></p>
+                </c:if>
+
             </div>
         </div>
 
         <div id="comments">
-            <c:forEach var="comment" items="article.commentList"
-            <div class="commentBox">
-                <img src=
-            </div>
+            <c:forEach var="comment" items="article.commentList">
+                <div class="commentBox">
+                    <img src="./images/avatar/${comment.userAvatar}">
+                    <div>
+                        <p>${comment.userNickname} / ${comment.time}</p>
+                        <p>${comment.content}</p>
+                        <input type="hidden" value="${comment.id}">
+                        <button onclick="//reply()">reply</button>
+                        <button onclick="//delete()">delete</button>
+                    </div>
+                </div>
+            </c:forEach>
         </div>
     </div>
 </div>

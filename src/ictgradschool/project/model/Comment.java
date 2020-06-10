@@ -12,10 +12,10 @@ public class Comment implements Serializable {
     private String userNickname;
     private String userAvatar;
     private int likes;
-    private List<Comment> commentList;
+    private List<Comment> comments;
 
 
-    public Comment(int id, String content, Timestamp time, int userId, String userNickname, String userAvatar, int likes, List<Comment> commentList) {
+    public Comment(int id, String content, Timestamp time, int userId, String userNickname, String userAvatar, int likes, List<Comment> comments) {
         this.id = id;
         this.content = content;
         this.time = time;
@@ -23,7 +23,7 @@ public class Comment implements Serializable {
         this.userNickname = userNickname;
         this.userAvatar = userAvatar;
         this.likes = likes;
-        this.commentList = commentList;
+        this.comments = comments;
     }
 
     public Comment() {
@@ -85,12 +85,12 @@ public class Comment implements Serializable {
         this.likes = likes;
     }
 
-    public List<Comment> getCommentList() {
-        return commentList;
+    public List<Comment> getComments() {
+        return comments;
     }
 
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class Comment implements Serializable {
                 ", userNickname='" + userNickname + '\'' +
                 ", userAvatar='" + userAvatar + '\'' +
                 ", likes=" + likes +
-                ", commentList=" + commentList +
+                ", commentList=" + comments +
                 '}';
     }
 }
