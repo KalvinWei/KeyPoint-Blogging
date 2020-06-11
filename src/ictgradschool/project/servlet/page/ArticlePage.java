@@ -17,7 +17,11 @@ public class ArticlePage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
         int id = Integer.parseInt(req.getParameter("id"));
-        req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
+        try {
+            req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         req.getRequestDispatcher("/WEB-INF/jsp/article.jsp").forward(req, resp);
     }
 
