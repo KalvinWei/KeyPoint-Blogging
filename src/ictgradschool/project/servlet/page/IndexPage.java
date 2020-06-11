@@ -21,7 +21,6 @@ public class IndexPage extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //resp.sendRedirect();重定向，浏览器行为，url发生改变
         req.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(req, resp);
     }
 
