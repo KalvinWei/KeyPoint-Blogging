@@ -1,6 +1,5 @@
 package ictgradschool.project.servlet.page;
 
-import ictgradschool.project.DAO.ArticleDAO;
 import ictgradschool.project.util.AuthenticationUtil;
 
 import javax.servlet.ServletException;
@@ -9,20 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
-@WebServlet(name = "ArticlePage", urlPatterns = {"/articlePage"})
-public class ArticlePage extends HttpServlet {
+@WebServlet(name = "SignUpPage", urlPatterns = {"/signUpPage"})
+public class SignUpPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
-        int id = Integer.parseInt(req.getParameter("id"));
-        try {
-            req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        req.getRequestDispatcher("/WEB-INF/jsp/article.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/signUp.jsp").forward(req, resp);
     }
 
     @Override

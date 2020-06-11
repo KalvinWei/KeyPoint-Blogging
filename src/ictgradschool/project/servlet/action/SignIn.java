@@ -28,7 +28,7 @@ public class SignIn extends HttpServlet {
         try {
             if (AuthenticationUtil.authenticate(UserDAO.getUserFromUserName(userName), password)) {
                 AuthenticationUtil.signIn(req, userName);
-                resp.sendRedirect("/indexPage");
+                resp.sendRedirect("./indexPage");
             } else {
                 req.setAttribute("hasLogInFailed", true);
                 req.getRequestDispatcher("/signInPage").forward(req, resp);

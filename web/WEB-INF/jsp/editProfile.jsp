@@ -16,15 +16,11 @@
 
   --to ~/deleteAccount
   id
-
-
-
-
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>editProfile</title>
+    <title>Edit Profile</title>
 </head>
 <body>
 <%@include file="shared/navbar.jsp"%>

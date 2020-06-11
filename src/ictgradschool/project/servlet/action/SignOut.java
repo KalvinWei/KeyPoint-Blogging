@@ -12,7 +12,7 @@ public class SignOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getSession(true).removeAttribute("loggedInUserName");
-        resp.sendRedirect("/indexPage");
+        resp.sendRedirect("./indexPage");
     }
 
     @Override

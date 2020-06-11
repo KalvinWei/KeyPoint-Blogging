@@ -20,7 +20,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>
+        <c:if test="${empty article.title}">
+            Create New Article
+        </c:if>
+        <c:if test="${not empty article.title}">
+            ${userProfile.nickname}: ${article.title}
+        </c:if>
+    </title>
 </head>
 <body>
 <%@include file="shared/navbar.jsp"%>

@@ -51,7 +51,7 @@ public class AuthenticationUtil {
         return (String)req.getSession().getAttribute(logInToken);
     }
 
-    public static boolean checkLogInStatus(HttpServletRequest req) {
+    public static boolean checkLogInStatus(HttpServletRequest req) throws IOException {
         boolean isUserLoggedIn;
         if (req.getSession() == null || req.getSession().getAttribute(logInToken) == null) {
             req.setAttribute("isUserLoggedIn", false);
@@ -60,7 +60,11 @@ public class AuthenticationUtil {
             req.setAttribute("isUserLoggedIn", true);
             isUserLoggedIn = true;
             String loggedInUserName = getLoggedInUserName(req);
-            req.setAttribute("userProfileSummary", UserDAO.getUserProfileSummaryFromUserName(loggedInUserName));
+            try {
+                req.setAttribute("userProfileSummary", UserDAO.getUserProfileSummaryFromUserName(loggedInUserName));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return isUserLoggedIn;
     }

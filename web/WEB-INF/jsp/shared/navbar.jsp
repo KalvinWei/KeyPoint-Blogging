@@ -15,37 +15,53 @@
 <html>
 <head>
     <title>navbar</title>
-    <link href="/WEB-INF/css/bootstrap.min.css" rel="stylesheet">
-    <script src="/WEB-INF/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <%@include file="libraries.jsp"%>
 </head>
 <body>
 <!-- left: LOGO-->
-<h1 id="home"><a href="./indexPage">KeyPoint</a></h1>
+
 
 <!-- right: nav -->
-<div id="navElements">
-    <!--basic: show avatar and nickname -->
-    <div id="avatarAndName">
-        <c:if test="${!isUserLoggedIn}">
-            <span><a>Sign In</a> / <a>Sign Up</a></span>
-            <img src="./images/guest.png">
-        </c:if>
-        <c:if test="${isUserLoggedIn}">
-            <span><a href="./articlesPage?user=${userProfileSummary.userName}">${userProfileSummary.nickname}</a></span>
-            <img src="./images/avatar/${userProfileSummary.avatar}" onclick="//toggleNavList()">
-        </c:if>
-    </div>
+<nav id="navElements" class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="navbar-brand nav-link" href="./indexPage">KeyPoint</a>
+        </li>
+    </ul>
 
-    <!--if signed-in, click avatar, show navlist -->
-    <div id="navList">
-        <ul>
-            <li><a href="./articlesPage">My Space</a></li>
-            <li><a href="./editArticlePage">New Article</a></li>
-            <li><a href="./editProfilePage">Edit Profile</a></li>
-            <li><a href="./signOut">Sign Out</a></li>
-        </ul>
-    </div>
-</div>
+    <ul class="navbar-nav">
+
+        <c:if test="${!isUserLoggedIn}">
+            <li class="nav-item">
+                <a class="nav-link" href="./signInPage">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./signUpPage">Sign Up</a>
+            </li>
+        </c:if>
+
+        <c:if test="${!isUserLoggedIn}">
+            <li class="nav-item">
+                <a class="nav-link" href="./articlesPage?user=${userProfileSummary.userName}">
+                        ${userProfileSummary.nickname}test
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" >
+                    <img src="./images/avatar/${userProfileSummary.avatar}">
+                </a>
+                <div id="navList" class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="./articlesPage">My Space</a>
+                    <a class="dropdown-item" href="./editArticlePage">New Article</a>
+                    <a class="dropdown-item" href="./editProfilePage">Edit Profile</a>
+                    <a class="dropdown-item" href="./signOut">Sign Out</a>
+                </div>
+            </li>
+
+        </c:if>
+
+    </ul>
+</nav>
 
 </body>
 </html>
