@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 
 @WebServlet(name = "PostComment", urlPatterns = {"/postComment"})
@@ -27,7 +28,11 @@ public class PostComment extends HttpServlet {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         Comment comment = new Comment(null, content, time, user, article, parent);
 
-        CommentDAO.insertComment(comment);
+        try {
+            CommentDAO.insertComment(comment);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         resp.sendRedirect("./articlePage?id=" + article);
     }
