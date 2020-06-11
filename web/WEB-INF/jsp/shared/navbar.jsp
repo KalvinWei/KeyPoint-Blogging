@@ -22,40 +22,46 @@
 
 
 <!-- right: nav -->
-<div id="navElements" class="navbar-nav">
-    <a class="navbar-brand" href="./indexPage">KeyPoint</a>
-    <!--basic: show avatar and nickname -->
-    <div id="avatarAndName" class="navbar-nav">
+<nav id="navElements" class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="navbar-brand nav-link" href="./indexPage">KeyPoint</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav">
+
         <c:if test="${!isUserLoggedIn}">
-            <div class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="./signInPage">Sign In</a>
-            </div>
-            <div>
-                <a class="nac-link" href="./signInPage">Sign Up</a>
-            </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./signInPage">Sign Up</a>
+            </li>
         </c:if>
-        <c:if test="${isUserLoggedIn}">
-            <div class="nav-item">
+
+        <c:if test="${!isUserLoggedIn}">
+            <li class="nav-item">
                 <a class="nav-link" href="./articlesPage?user=${userProfileSummary.userName}">
                         ${userProfileSummary.nickname}test
                 </a>
-            </div>
-            <div class="nav-item">
-                <img src="./images/avatar/${userProfileSummary.avatar}" onclick="//toggleNavList()">
-            </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" >
+                    <img src="./images/avatar/${userProfileSummary.avatar}">
+                </a>
+                <div id="navList" class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="./articlesPage">My Space</a>
+                    <a class="dropdown-item" href="./editArticlePage">New Article</a>
+                    <a class="dropdown-item" href="./editProfilePage">Edit Profile</a>
+                    <a class="dropdown-item" href="./signOut">Sign Out</a>
+                </div>
+            </li>
 
-            <!--if signed-in, click avatar, show navlist -->
-            <div id="navList">
-                <ul>
-                    <li><a href="./articlesPage">My Space</a></li>
-                    <li><a href="./editArticlePage">New Article</a></li>
-                    <li><a href="./editProfilePage">Edit Profile</a></li>
-                    <li><a href="./signOut">Sign Out</a></li>
-                </ul>
-            </div>
         </c:if>
-    </div>
-</div>
+
+    </ul>
+</nav>
 
 </body>
 </html>
