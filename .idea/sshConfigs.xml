@@ -6,6 +6,7 @@
       <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="8f0247b0-f6d3-489b-b9d0-1ed6224f56f1" port="22" customName="MyServer" nameFormat="CUSTOM" />
       <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="8e558991-20c4-4071-a875-47e21cdbfddd" port="22" customName="MyServer" nameFormat="CUSTOM" />
       <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="83e65392-3bb9-4ece-aed7-dba2f89d24be" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="4974486d-b9f2-4906-8277-1a6fd3a97524" port="22" customName="MyServer" nameFormat="CUSTOM" />
     </configs>
   </component>
 </project>

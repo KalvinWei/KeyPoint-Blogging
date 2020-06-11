@@ -27,6 +27,20 @@ public class Article implements Serializable {
         this.tags = tags;
     }
 
+    public Article(Integer id, String title, String content, Timestamp time, String cover, int userId, String userNickname, String userAvatar, int likes, List<String> tags, List<Comment> comments) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.time = time;
+        this.cover = cover;
+        this.userId = userId;
+        this.userNickname = userNickname;
+        this.userAvatar = userAvatar;
+        this.likes = likes;
+        this.tags = tags;
+        this.comments = comments;
+    }
+
     public Article() {
     }
 
