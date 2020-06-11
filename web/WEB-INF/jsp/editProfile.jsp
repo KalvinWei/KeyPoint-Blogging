@@ -32,18 +32,17 @@
 <div id="wrapper">
     <h3>${userProfile.nickName}</h3>
 
-    <form action="./editProfile" method="post">
+    <form action="./saveProfile" method="post">
 
     <div id="leftBlock">
-        <input id="signature" type="text" name="signature" placeholder="signature">
-        <input id="firstName" type="text" name="signature" placeholder="first name">
-        <input id="lastName" type="text" name="signature" placeholder="last name">
-        <input id="userName" type="text" name="signature" placeholder="username">
-        <input id="nickname" type="text" name="signature" placeholder="nickname">
-        <input id="email" type="text" name="signature" placeholder="E-mail: anonymous@server.com">
-        <input id="password" type="text" name="signature" placeholder="password">
-        <input id="pswConfirmation" type="text"  placeholder="password confirmation">
-        <textarea name="description" placeholder="description"></textarea>
+        <input id="signature" type="text" name="signature" value="${userProfile.signature}" placeholder="signature">
+        <input id="firstName" type="text" name="firstName" value="${userProfile.firstName}" placeholder="firstName">
+        <input id="lastName" type="text" name="lastName" value="${userProfile.lastName}" placeholder="lastName">
+        <input id="userName" type="text" name="userName" value="${userProfile.userName}" placeholder="userName">
+        <input id="nickname" type="text" name="nickname" value="${userProfile.nickname}" placeholder="nickname">
+        <input id="dateOfBirth" type="text" name="dateOfBirth" value="${userProfile.dateOfBirth}" placeholder="dateOfBirth">
+        <input id="email" type="text" name="email" ${userProfile.email} placeholder="email">
+        <textarea name="description" placeholder="description">${userProfile.description}</textarea>
         <button type="submit">save</button>
         <button formaction="./deleteAccount">delete account</button>
     </div>
@@ -55,7 +54,7 @@
         <c:if test="${not empty userProfile.avatar}">
             <img src="./images/avatar/${userProfile.avatar}">
         </c:if>
-        <input type="hidden" name="avatar">
+        <input type="text" name="avatar" value="${userProfile.avatar}">
         <button onclick="//uploadPhoto();">upload a new photo</button>
         <button onclick="//deletePhoto();">delete current photo</button>
     </div>
