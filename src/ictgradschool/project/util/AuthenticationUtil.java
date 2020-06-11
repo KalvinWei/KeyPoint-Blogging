@@ -13,6 +13,8 @@ import java.util.Random;
 
 public class AuthenticationUtil {
 
+    private static final String logInToken = "loggedInUserName";
+
     public static User createUser(String userName, String password) {
         Random random = new Random();
         int iteration = Math.abs(random.nextInt() % 100_000) + 1;
@@ -42,22 +44,22 @@ public class AuthenticationUtil {
     }
 
     public static void signIn(HttpServletRequest req, String userName) {
-        req.getSession(true).setAttribute("loggedInUserName", userName);
+        req.getSession(true).setAttribute(logInToken, userName);
     }
 
     public static String getLoggedInUserName(HttpServletRequest req) {
-        return (String)req.getSession().getAttribute("loggedInUserName");
+        return (String)req.getSession().getAttribute(logInToken);
     }
 
     public static boolean checkLogInStatus(HttpServletRequest req) {
         boolean isUserLoggedIn;
-        if (req.getSession() == null || req.getSession().getAttribute("loggedInUserName") == null) {
+        if (req.getSession() == null || req.getSession().getAttribute(logInToken) == null) {
             req.setAttribute("isUserLoggedIn", false);
             isUserLoggedIn = false;
         } else {
             req.setAttribute("isUserLoggedIn", true);
             isUserLoggedIn = true;
-            String loggedInUserName = (String)req.getSession().getAttribute("loggedInUserName");
+            String loggedInUserName = getLoggedInUserName(req);
             req.setAttribute("userProfileSummary", UserDAO.getUserProfileSummaryFromUserName(loggedInUserName));
         }
         return isUserLoggedIn;

@@ -50,15 +50,59 @@
         </div>
 
         <div id="comments">
-            <c:forEach var="comment" items="${article.commentList}">
+            <c:forEach var="comment" items="article.commentList">
                 <div class="commentBox">
                     <img src="./images/avatar/${comment.userAvatar}">
                     <div>
                         <p>${comment.userNickname} / ${comment.time}</p>
                         <p>${comment.content}</p>
                         <input type="hidden" value="${comment.id}">
-                        <button onclick="//reply()">reply</button>
-                        <button onclick="//delete()">delete</button>
+                        <c:if test="${isUserLoggedIn}">
+                            <button onclick="//reply()">reply</button>
+                            <c:if test="${userProfileSummary.id == article.userId || userProfileSummary.id == comment.userId}">
+                                <button onclick="//delete()">delete</button>
+                            </c:if>
+                        </c:if>
+                        <!-- here js deal with if there exists a textarea -->
+                        <!-- 2nd level comment box -->
+                        <c:forEach var="comment" items="${comment.comments}">
+                            <div class="commentBox level-2">
+                                <img src="./images/avatar/${comment.userAvatar}">
+                                <div>
+                                    <p>${comment.userNickname} / ${comment.time}</p>
+                                    <p>${comment.content}</p>
+                                    <input type="hidden" value="${comment.id}">
+                                    <c:if test="${isUserLoggedIn}">
+                                        <button onclick="//reply()">reply</button>
+                                        <c:if test="${userProfileSummary.id == article.userId || userProfileSummary.id == comment.userId}">
+                                            <button onclick="//delete()">delete</button>
+                                        </c:if>
+                                    </c:if>
+                                    <!-- here js deal with if there exists a textarea -->
+                                    <!-- 3rd level commnet box -->
+                                    <c:forEach var="comment" items="${comment.comments}">
+                                        <div class="commentBox level-3">
+                                            <img src="./images/avatar/${comment.userAvatar}">
+                                            <div>
+                                                <p>${comment.userNickname} / ${comment.time}</p>
+                                                <p>${comment.content}</p>
+                                                <input type="hidden" value="${comment.id}">
+                                                <c:if test="${isUserLoggedIn}">
+                                                    <button onclick="//reply()">reply</button>
+                                                    <c:if test="${userProfileSummary.id == article.userId || userProfileSummary.id == comment.userId}">
+                                                        <button onclick="//delete()">delete</button>
+                                                    </c:if>
+                                                </c:if>
+                                                <!-- here js deal with if there exists a textarea -->
+                                                <c:forEach var="comment" items="${comment.comments}">
+
+                                                </c:forEach>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </c:forEach>

@@ -54,5 +54,7 @@ public class SaveProfile extends HttpServlet {
         );
 
         UserDAO.saveProfile(userProfile);
+
+        resp.sendRedirect("/articles?id=" + id);
     }
 }
