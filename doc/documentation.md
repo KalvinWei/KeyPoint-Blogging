@@ -97,10 +97,10 @@ This file contains the documentation of page design, database design, etc.
        - lastPage : String?
        - {"hasBeenTaken" : string} : json 
    - **sends**
-       - to signIn
+       - [post] to signIn
            - userName
            - password
-       - to signUp
+       - [post] to signUp
            - userName
            - nickname
            - password
@@ -113,16 +113,18 @@ This file contains the documentation of page design, database design, etc.
         - userProfileSummary : UserProfileSummary?
         - userProfile : UserProfile
     - **sends**
-        - to saveProfile
+        - [post] to saveProfile
             - id
-            - signature
+            - userName
+            - nickname
             - firstName
             - lastName
-            - nickname
             - email
-            - password
+            - signature
+            - description
             - avatar
-        - to deleteAccount
+            - dateOfBirth
+        - [post] to deleteAccount
             - id
     
 - Edit article page (~/editArticlePage)
@@ -131,14 +133,14 @@ This file contains the documentation of page design, database design, etc.
         - userProfileSummary : UserProfileSummary?
         - article : Article
     - **sends**
-        - to postArticle
+        - [post] to postArticle
             - id
             - title
             - content
-            - time
             - cover
             - user
-        - to deleteArticle
+            - tags
+        - [post] to deleteArticle
             - id
     
 - Articles page (~/articlesPage)
@@ -148,9 +150,9 @@ This file contains the documentation of page design, database design, etc.
         - userProfile : UserProfile
         - articleSummaries : List\<ArticleSummaries\>
     - **sends**
-        - to editArticlePage
+        - [get] to editArticlePage
             - id
-        - to deleteArticle
+        - [post] to deleteArticle
             -id
     
 - Article page (~/articlePage)
@@ -159,11 +161,10 @@ This file contains the documentation of page design, database design, etc.
         - userProfileSummary : UserProfileSummary?
         - article : Article
     - **sends**
-        - to postComment
+        - [post] to postComment
             - content
-            - time
             - parent
             - user
             - article
-        - to deleteComment
+        - [post] to deleteComment
             - id
