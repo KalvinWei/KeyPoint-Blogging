@@ -35,6 +35,7 @@ public class AuthenticationUtil {
         if (user == null)
             return false;
 
+
         return PasswordUtil.isExpectedPassword(
                 password.toCharArray(),
                 PasswordUtil.base64Decode(user.getSalt()),
