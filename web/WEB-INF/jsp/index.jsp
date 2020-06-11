@@ -33,7 +33,7 @@
                 <p>${article.contentSummary}</p>
             </div>
             <div class="articleCoverImg">
-                <img width="300" height="200" src="./images/cover/${article.cover}" alt="${article.cover}">
+                <img src="./images/cover/${article.cover}" alt="${article.cover}">
             </div>
         </div>
     </c:forEach>
