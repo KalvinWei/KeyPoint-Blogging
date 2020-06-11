@@ -38,8 +38,7 @@ public class CommentDAO {
                                 rs.getInt("likes"),
                                 //todo here to get the level of this comment
                                 0, //level
-                                getCommentsByParentId(this_id)
-
+                                getCommentsByParentId(this_id, 1)
                         ));
                     }
                     return comments;
@@ -48,7 +47,7 @@ public class CommentDAO {
         }
     }
 
-    private static List<Comment> getCommentsByParentId(int parentId) throws IOException, SQLException {
+    private static List<Comment> getCommentsByParentId(int parentId, int currentLevel) throws IOException, SQLException {
         int level = 0;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
@@ -75,9 +74,8 @@ public class CommentDAO {
                                 rs.getString("avatar"),
                                 rs.getInt("likes"),
                                 //todo here to get the level of this comment
-                                0, //level
-                                getCommentsByParentId(this_id)
-
+                                currentLevel, //level
+                                getCommentsByParentId(this_id, currentLevel + 1)
                         ));
                     }
                     return comments;
