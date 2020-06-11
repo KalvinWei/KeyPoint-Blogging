@@ -30,9 +30,9 @@ CREATE TABLE article
     content   TEXT,
     time      TIMESTAMP    NOT NULL,
     cover     VARCHAR(128) NOT NULL,
-    user      INT          NOT NULL,
+    userName  VARCHAR(128) NOT NULL,
     isDeleted BOOLEAN      NOT NULL,
-    FOREIGN KEY (user) REFERENCES user (id)
+    FOREIGN KEY (userName) REFERENCES user (userName)
 );
 
 CREATE TABLE comment

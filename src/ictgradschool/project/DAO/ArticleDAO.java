@@ -5,10 +5,7 @@ import ictgradschool.project.model.ArticleSummary;
 import ictgradschool.project.util.DBConnectionUtils;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +13,7 @@ public class ArticleDAO {
     public static List<ArticleSummary> getAllArticleSummaries() throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,cover,u.id as userId,nickname,avatar,time,likes\n" +
+                    "select distinct a.id as id,title,content,cover,u.id as userId,userName,nickname,avatar,time,likes\n" +
                             "    from article as a\n" +
                             "    inner join user as u on a.user = u.id\n" +
                             "    left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article")) {
@@ -65,7 +62,7 @@ public class ArticleDAO {
     public static Article getArticleByArticleId(int id) throws IOException, SQLException  {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,time,cover,u.id as userId,nickname,avatar,likes,tag\n" +
+                    "select distinct a.id as id,title,content,time,cover,userName,nickname,avatar,likes,tag\n" +
                             "from article as a\n" +
                             "inner join user as u on a.user = u.id\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
@@ -79,7 +76,7 @@ public class ArticleDAO {
                             rs.getString("content"),
                             rs.getTimestamp("time"),
                             rs.getString("cover"),
-                            rs.getInt("userId"),
+                            rs.getString("userName"),
                             rs.getString("nickname"),
                             rs.getString("avatar"),
                             rs.getInt("likes"),
@@ -121,12 +118,12 @@ public class ArticleDAO {
             //insert article into table `article`
             boolean articleInsert = false;
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT article VALUES (null,?,?,?,?,?,false)")) {
+                    "INSERT article VALUES (null,?,?,?,?,?,false)", Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1,article.getTitle());
                 ps.setString(2,article.getContent());
                 ps.setTimestamp(3,article.getTime());
                 ps.setString(4,article.getCover());
-                ps.setInt(5,article.getUserId());
+                ps.setString(5,article.getUserName());
 
                 int rowAffected = ps.executeUpdate();
                 if(rowAffected != 0) {

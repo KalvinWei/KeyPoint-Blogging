@@ -48,9 +48,10 @@
 
 
     <form action="./postArticle" method="post">
-        <input type="text" name="cover" value="${article.cover}">
-        <input type="text" name="time" value="">
-        <input type="hidden" name="user" value="${article.user}">
+        <input type="hidden" name="id" value="${article.id}">
+        <input type="hidden" name="cover" value="${article.cover}">
+        <input type="hidden" name="userName" value="${article.userName}">
+        <input type="hidden" name="tags" value="tags">
         <input type="text" name="title" value="${article.title}" placeholder="title">
         <textarea name="content">${article.content}</textarea>
         <button type="submit">post</button>
