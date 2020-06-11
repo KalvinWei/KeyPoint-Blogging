@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "DeleteComment", urlPatterns = {"/deleteComment"})
 public class DeleteComment extends HttpServlet {
@@ -19,7 +20,11 @@ public class DeleteComment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        CommentDAO.deleteCommentByCommentId(id);
+        try {
+            CommentDAO.deleteCommentByCommentId(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         resp.sendRedirect("/ArticlePage");
     }
 }

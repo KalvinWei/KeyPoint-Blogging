@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "DeleteAccount", urlPatterns = {"/deleteAccount"})
 public class DeleteAccount extends HttpServlet {
@@ -19,7 +20,11 @@ public class DeleteAccount extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userName");
-        UserDAO.deleteUserByUserName(userName);
+        try {
+            UserDAO.deleteUserByUserName(userName);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         resp.sendRedirect("/signOut");
     }
 }

@@ -15,7 +15,11 @@ import java.sql.SQLException;
 public class ArticlePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        AuthenticationUtil.checkLogInStatus(req);
+        try {
+            AuthenticationUtil.checkLogInStatus(req);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         int id = Integer.parseInt(req.getParameter("id"));
         try {
             req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));

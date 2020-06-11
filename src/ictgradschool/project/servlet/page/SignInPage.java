@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(name = "SignInPage", urlPatterns = {"/signInPage"})
 public class SignInPage extends HttpServlet {
@@ -16,7 +17,11 @@ public class SignInPage extends HttpServlet {
         if (req.getAttribute("hasLogInFailed") == null) {
             req.setAttribute("hasLogInFailed", false);
         }
-        AuthenticationUtil.checkLogInStatus(req);
+        try {
+            AuthenticationUtil.checkLogInStatus(req);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         req.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp").forward(req, resp);
     }
 

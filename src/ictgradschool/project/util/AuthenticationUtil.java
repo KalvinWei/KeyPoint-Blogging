@@ -51,7 +51,7 @@ public class AuthenticationUtil {
         return (String)req.getSession().getAttribute(logInToken);
     }
 
-    public static boolean checkLogInStatus(HttpServletRequest req) {
+    public static boolean checkLogInStatus(HttpServletRequest req) throws IOException, SQLException {
         boolean isUserLoggedIn;
         if (req.getSession() == null || req.getSession().getAttribute(logInToken) == null) {
             req.setAttribute("isUserLoggedIn", false);
