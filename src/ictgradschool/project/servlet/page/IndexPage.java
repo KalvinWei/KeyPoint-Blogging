@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "IndexPage", urlPatterns = {"/indexPage", "/index", "/"})
+@WebServlet(name = "IndexPage", urlPatterns = {"/indexPage", "/index"})
 public class IndexPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

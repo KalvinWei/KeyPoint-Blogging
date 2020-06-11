@@ -49,7 +49,7 @@
 <div id="articleList">
     <h3><span>all articles</span></h3>
     <c:forEach items="${articleSummaries}" var="article">
-        <h4><a href="/articlePage"${article.title}</h4>
+        <h4><a href="./articlePage?id=${article.id}">${article.title}</a></h4>
         <p>
             <span>${article.time}</span>
             <a href="./editArticlePage?id=${article.id}">edit</a>
