@@ -17,10 +17,10 @@ public class ArticlesPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
-        String userName = req.getParameter("id");
+        String id = req.getParameter("id");
         try {
-            req.setAttribute("userProfile", UserDAO.getUserProfileFromUserName(userName));
-            req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByUserName(userName));
+            req.setAttribute("userProfile", UserDAO.getUserProfileFromUserName(id));
+            req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByUserName(id));
         } catch (SQLException e) {
             e.printStackTrace();
         }
