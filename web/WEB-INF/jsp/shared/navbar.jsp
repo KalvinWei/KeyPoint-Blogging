@@ -19,30 +19,41 @@
 </head>
 <body>
 <!-- left: LOGO-->
-<h1 id="home"><a href="./indexPage">KeyPoint</a></h1>
+
 
 <!-- right: nav -->
-<div id="navElements">
+<div id="navElements" class="navbar-nav">
+    <a class="navbar-brand" href="./indexPage">KeyPoint</a>
     <!--basic: show avatar and nickname -->
-    <div id="avatarAndName">
+    <div id="avatarAndName" class="navbar-nav">
         <c:if test="${!isUserLoggedIn}">
-            <span><a>Sign In</a> / <a>Sign Up</a></span>
-            <img src="./images/guest.png">
+            <div class="nav-item">
+                <a class="nav-link" href="./signInPage">Sign In</a>
+            </div>
+            <div>
+                <a class="nac-link" href="./signInPage">Sign Up</a>
+            </div>
         </c:if>
         <c:if test="${isUserLoggedIn}">
-            <span><a href="./articlesPage?user=${userProfileSummary.userName}">${userProfileSummary.nickname}</a></span>
-            <img src="./images/avatar/${userProfileSummary.avatar}" onclick="//toggleNavList()">
-        </c:if>
-    </div>
+            <div class="nav-item">
+                <a class="nav-link" href="./articlesPage?user=${userProfileSummary.userName}">
+                        ${userProfileSummary.nickname}test
+                </a>
+            </div>
+            <div class="nav-item">
+                <img src="./images/avatar/${userProfileSummary.avatar}" onclick="//toggleNavList()">
+            </div>
 
-    <!--if signed-in, click avatar, show navlist -->
-    <div id="navList">
-        <ul>
-            <li><a href="./articlesPage">My Space</a></li>
-            <li><a href="./editArticlePage">New Article</a></li>
-            <li><a href="./editProfilePage">Edit Profile</a></li>
-            <li><a href="./signOut">Sign Out</a></li>
-        </ul>
+            <!--if signed-in, click avatar, show navlist -->
+            <div id="navList">
+                <ul>
+                    <li><a href="./articlesPage">My Space</a></li>
+                    <li><a href="./editArticlePage">New Article</a></li>
+                    <li><a href="./editProfilePage">Edit Profile</a></li>
+                    <li><a href="./signOut">Sign Out</a></li>
+                </ul>
+            </div>
+        </c:if>
     </div>
 </div>
 
