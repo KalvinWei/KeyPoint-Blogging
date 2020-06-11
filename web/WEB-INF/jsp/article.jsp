@@ -50,7 +50,7 @@
         </div>
 
         <div id="comments">
-            <c:forEach var="comment" items="${article.commentList}">
+            <c:forEach var="comment" items="${article.comments}">
                 <div class="commentBox">
                     <img src="./images/avatar/${comment.userAvatar}">
                     <div>

@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user
 (
     id           INT PRIMARY KEY AUTO_INCREMENT,
-    userName     VARCHAR(128) UNIQUE,
+    userName     VARCHAR(128) UNIQUE NOT NULL,
     nickname     VARCHAR(128),
     firstName    VARCHAR(128),
     lastName     VARCHAR(128),
@@ -30,9 +30,9 @@ CREATE TABLE article
     content   TEXT,
     time      TIMESTAMP    NOT NULL,
     cover     VARCHAR(128) NOT NULL,
-    user      INT          NOT NULL,
+    userName  VARCHAR(128) NOT NULL,
     isDeleted BOOLEAN      NOT NULL,
-    FOREIGN KEY (user) REFERENCES user (id)
+    FOREIGN KEY (userName) REFERENCES user (userName)
 );
 
 CREATE TABLE comment

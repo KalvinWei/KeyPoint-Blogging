@@ -20,7 +20,7 @@ public class EditArticlePage extends HttpServlet {
         String idString = req.getParameter("id");
         if (idString == null) {
             String userName = AuthenticationUtil.getLoggedInUserName(req);
-            req.setAttribute("article", Article.getBlankArticle(userName));
+            req.setAttribute("article", new Article(userName));
         } else {
             int id = Integer.parseInt(req.getParameter("id"));
             try {

@@ -62,6 +62,7 @@ public class UserDAO {
                     if (rs.next())
                         return new UserProfileSummary(
                                 rs.getInt("id"),
+                                rs.getString("userName"),
                                 rs.getString("nickname"),
                                 rs.getString("email"),
                                 rs.getString("signature"),

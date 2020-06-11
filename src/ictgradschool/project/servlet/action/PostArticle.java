@@ -33,10 +33,9 @@ public class PostArticle extends HttpServlet {
         String title = req.getParameter("title");
         String content = req.getParameter("content");
         String cover = req.getParameter("cover");
-        int user = Integer.parseInt(req.getParameter("user"));
+        String userName = req.getParameter("userName");
         Timestamp time = new Timestamp(System.currentTimeMillis());
         List<String> tags = List.of(req.getParameter("tags").split("\\s*,\\s*"));
-
 
         Article article = new Article(
                 id,
@@ -44,7 +43,7 @@ public class PostArticle extends HttpServlet {
                 content,
                 time,
                 cover,
-                user,
+                userName,
                 tags
         );
 
