@@ -40,10 +40,10 @@
             </li>
         </c:if>
 
-        <c:if test="${!isUserLoggedIn}">
+        <c:if test="${isUserLoggedIn}">
             <li class="nav-item">
-                <a class="nav-link" href="./articlesPage?user=${userProfileSummary.userName}">
-                        ${userProfileSummary.nickname}test
+                <a class="nav-link" href="./articlesPage?user=${userProfileSummary.nickname}">
+                        ${userProfileSummary.nickname}
                 </a>
             </li>
             <li class="nav-item dropdown">
