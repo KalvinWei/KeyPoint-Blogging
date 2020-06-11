@@ -29,6 +29,6 @@ public class PostComment extends HttpServlet {
 
         CommentDAO.insertComment(comment);
 
-        resp.sendRedirect("/articlePage?id=" + article);
+        resp.sendRedirect("./articlePage?id=" + article);
     }
 }

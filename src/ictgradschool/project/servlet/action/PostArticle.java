@@ -54,6 +54,6 @@ public class PostArticle extends HttpServlet {
             e.printStackTrace();
         }
 
-        resp.sendRedirect("/articlePage?id=" + article.getId());
+        resp.sendRedirect("./articlePage?id=" + article.getId());
     }
 }

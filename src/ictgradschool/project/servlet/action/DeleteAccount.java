@@ -25,6 +25,6 @@ public class DeleteAccount extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("/signOut");
+        resp.sendRedirect("./signOut");
     }
 }

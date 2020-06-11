@@ -28,10 +28,10 @@ public class SignUp extends HttpServlet {
         user.setNickname(nickname == null || nickname.isEmpty() ? userName : nickname);
         try {
             if (UserDAO.getUserFromUserName(userName) != null) {
-                resp.sendRedirect("/signInPage");
+                resp.sendRedirect("./signInPage");
             } else {
                 UserDAO.insertUser(user);
-                resp.sendRedirect("/signInPage");
+                resp.sendRedirect("./signInPage");
             }
         } catch (SQLException e) {
             e.printStackTrace();
