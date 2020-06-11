@@ -33,6 +33,11 @@ This file is used to keep record of what has been done each day
 - Still failing to deploy
 
 ### 11/6, Thu
+- Wrote DAOs
+- Wrote action servlets
+- Refined jsps
+- Add basic styles on some pages
+
 ### 12/6, Fri
 ### 13/6, Sat
 ### 14/6, Sun
