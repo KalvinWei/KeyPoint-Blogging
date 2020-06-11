@@ -15,12 +15,7 @@ import java.sql.SQLException;
 public class EditProfilePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        boolean isUserLoggedIn = false;
-        try {
-            isUserLoggedIn = AuthenticationUtil.checkLogInStatus(req);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        boolean isUserLoggedIn = AuthenticationUtil.checkLogInStatus(req);
         if (!isUserLoggedIn) {
             req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
             return;

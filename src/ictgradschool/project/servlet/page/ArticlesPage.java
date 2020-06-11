@@ -15,11 +15,7 @@ import java.sql.SQLException;
 public class ArticlesPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            AuthenticationUtil.checkLogInStatus(req);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        AuthenticationUtil.checkLogInStatus(req);
         String userName = AuthenticationUtil.getLoggedInUserName(req);
         try {
             req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByUserName(userName));

@@ -17,11 +17,7 @@ public class SignInPage extends HttpServlet {
         if (req.getAttribute("hasLogInFailed") == null) {
             req.setAttribute("hasLogInFailed", false);
         }
-        try {
-            AuthenticationUtil.checkLogInStatus(req);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        AuthenticationUtil.checkLogInStatus(req);
         req.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp").forward(req, resp);
     }
 

@@ -16,11 +16,7 @@ import java.sql.SQLException;
 public class EditArticlePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            AuthenticationUtil.checkLogInStatus(req);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        AuthenticationUtil.checkLogInStatus(req);
         String idString = req.getParameter("id");
         if (idString == null) {
             String userName = AuthenticationUtil.getLoggedInUserName(req);
