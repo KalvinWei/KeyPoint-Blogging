@@ -20,3 +20,13 @@ from article as a
          inner join user as u on a.user = u.id
          left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article
 where id = ?;
+
+-- update tags with article.tags into table `tags`
+create function if not exists updateTags(articleId int, tags varchar(200))
+
+begin
+    create temporary table tagsOfArticle as
+        select tag from tag where article = articleId;
+    delete from tag where article = articleId and tag not in (select  tag from tagsOfArticle);
+    insert into tag (select * from tagsOfArticle intersect select * from tag);
+end;

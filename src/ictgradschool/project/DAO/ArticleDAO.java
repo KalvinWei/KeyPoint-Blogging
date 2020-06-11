@@ -117,14 +117,69 @@ public class ArticleDAO {
     }
 
     private static boolean insertArticle(Article article) throws IOException, SQLException  {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            //insert article into table `article`
+            boolean articleInsert = false;
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "INSERT article VALUES (null,?,?,?,?,?,false)")) {
+                ps.setString(1,article.getTitle());
+                ps.setString(2,article.getContent());
+                ps.setTimestamp(3,article.getTime());
+                ps.setString(4,article.getCover());
+                ps.setInt(5,article.getUserId());
+
+                int rowAffected = ps.executeUpdate();
+                if(rowAffected != 0) {
+                    try(ResultSet rs = ps.getGeneratedKeys()){
+                        rs.next();
+                        article.setId(rs.getInt(1));
+                        articleInsert = true;
+                    }
+                }
+            }
+            //insert tags into table `tag`
+            for (String tag: article.getTags()) {
+                try(PreparedStatement ps = conn.prepareStatement(
+                        "INSERT tag values(?,?)")){
+                    ps.setInt(1,article.getId());
+                    ps.setString(2,tag);
+                    return articleInsert && (ps.executeUpdate() == 1);
+                }
+            }
+        }
         return false;
     }
 
     private static boolean editArticle(Article article) throws IOException, SQLException  {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            //insert article into table `article`
+            boolean articleUpdate = false;
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "UPDATE article set title = ?, content = ?, time = ?, cover = ? WHERE id = ?")) {
+                ps.setString(1,article.getTitle());
+                ps.setString(2,article.getContent());
+                ps.setTimestamp(3,article.getTime());
+                ps.setString(4,article.getCover());
+                ps.setInt(5,article.getUserId());
+
+                articleUpdate = (ps.executeUpdate() == 1);
+
+            }
+            //insert tags into table `tag`
+            for (String tag: article.getTags()) {
+                //todo write later using Stored function in mariaDB
+            }
+        }
         return false;
     }
 
     public static boolean deleteArticleByArticleId(int id) throws IOException, SQLException  {
-        return false;
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "UPDATE article SET isDeleted = true WHERE id = ?")) {
+                ps.setInt(1,id);
+                return ps.executeUpdate() == 1;
+            }
+        }
     }
 }

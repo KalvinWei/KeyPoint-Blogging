@@ -49,6 +49,6 @@ public class PostArticle extends HttpServlet {
 
         ArticleDAO.insertOrEditArticle(article);
 
-        resp.sendRedirect("/articlePage?id=" + id);
+        resp.sendRedirect("/articlePage?id=" +id);
     }
 }
