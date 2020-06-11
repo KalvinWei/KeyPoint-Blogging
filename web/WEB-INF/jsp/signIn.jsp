@@ -53,18 +53,6 @@
         </form>
     </div>
 
-    <div id="signUp">
-        <form style="display: none"  action="./editProfilePage" method="post">
-            <input type="text" name="userName" placeholder="username">
-            <label style="display:none;color:red;">* username has been taken</label>
-            <input type="text" name="nickname" placeholder="nickname">
-            <input type="password" name="password" placeholder="password">
-            <input type="password" placeholder="confirm your password here">
-            <label style="display:none;color:red;">* passwords don't match</label>
-            <input type="submit" value="sign up">
-        </form>
-    </div>
-
 </div>
 
 </body>
