@@ -40,10 +40,10 @@
             </li>
         </c:if>
 
-        <c:if test="${!isUserLoggedIn}">
+        <c:if test="${isUserLoggedIn}">
             <li class="nav-item">
-                <a class="nav-link" href="./articlesPage?user=${userProfileSummary.userName}">
-                        ${userProfileSummary.nickname}test
+                <a class="nav-link" href="./articlesPage?user=${userProfileSummary.nickname}">
+                        ${userProfileSummary.nickname}
                 </a>
             </li>
             <li class="nav-item dropdown">
@@ -51,9 +51,9 @@
                     <img src="./images/avatar/${userProfileSummary.avatar}">
                 </a>
                 <div id="navList" class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="./articlesPage">My Space</a>
+                    <a class="dropdown-item" href="./articlesPage?userName=${userProfileSummary.userName}">My Space</a>
                     <a class="dropdown-item" href="./editArticlePage">New Article</a>
-                    <a class="dropdown-item" href="./editProfilePage">Edit Profile</a>
+                    <a class="dropdown-item" href="./editProfilePage?id=${userProfileSummary.id}">Edit Profile</a>
                     <a class="dropdown-item" href="./signOut">Sign Out</a>
                 </div>
             </li>

@@ -48,7 +48,7 @@
                 <label for="password">Password:</label>
                 <input class="form-control" type="password" name="password" id="password" placeholder="password" required>
                 <div class="invalid-feedback">* Please input your password</div>
-                <c:if test="${hasLogInfail}" >
+                <c:if test="${hasLogInFailed}" >
                     <label class="text-danger">* login failed. wrong username or password.</label>
                 </c:if>
             </div>
