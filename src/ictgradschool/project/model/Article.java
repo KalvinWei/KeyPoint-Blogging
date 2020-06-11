@@ -17,18 +17,14 @@ public class Article implements Serializable {
     private List<String> tags;
     private List<Comment> comments;
 
-    public Article(int id, String title, String content, Timestamp time, String cover, int userId, String userNickname, String userAvatar, int likes, List<String> tags, List<Comment> comments) {
+    public Article(Integer id, String title, String content, Timestamp time, String cover, int userId,  List<String> tags) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.time = time;
         this.cover = cover;
         this.userId = userId;
-        this.userNickname = userNickname;
-        this.userAvatar = userAvatar;
-        this.likes = likes;
         this.tags = tags;
-        this.comments = comments;
     }
 
     public Article() {
