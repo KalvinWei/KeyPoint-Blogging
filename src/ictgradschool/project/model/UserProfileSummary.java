@@ -79,6 +79,7 @@ public class UserProfileSummary implements Serializable {
                 ", email='" + email + '\'' +
                 ", signature='" + signature + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
