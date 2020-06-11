@@ -5,10 +5,7 @@ import ictgradschool.project.model.ArticleSummary;
 import ictgradschool.project.util.DBConnectionUtils;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +13,9 @@ public class ArticleDAO {
     public static List<ArticleSummary> getAllArticleSummaries() throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,cover,u.id as userId,nickname,avatar,time,likes\n" +
+                    "select distinct a.id as id,title,content,cover,u.id as userId,u.userName,nickname,avatar,time,likes\n" +
                             "    from article as a\n" +
-                            "    inner join user as u on a.user = u.id\n" +
+                            "    inner join user as u on a.userName = u.userName\n" +
                             "    left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article")) {
                 return assembleArticleSummaries(ps);
             }
@@ -32,7 +29,7 @@ public class ArticleDAO {
                             "from article as a\n" +
                             "inner join user as u on a.user = u.id\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "where userName = ?")) {
+                            "where userName = ? ")) {
                 ps.setString(1, userName);
                 return assembleArticleSummaries(ps);
             }

@@ -6,34 +6,37 @@ import java.util.List;
 
 public class Article implements Serializable {
     private Integer id;
+    private String userName;
     private String title;
     private String content;
     private Timestamp time;
     private String cover;
-    private int userId;
+    //private int userId;
     private String userNickname;
     private String userAvatar;
     private int likes;
     private List<String> tags;
     private List<Comment> comments;
 
-    public Article(Integer id, String title, String content, Timestamp time, String cover, int userId,  List<String> tags) {
+    public Article(Integer id, String title, String content, Timestamp time, String cover/*, int userId*/, String userName, List<String> tags) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.time = time;
         this.cover = cover;
-        this.userId = userId;
+        //this.userId = userId;
+        this.userName = userName;
         this.tags = tags;
     }
 
-    public Article(Integer id, String title, String content, Timestamp time, String cover, int userId, String userNickname, String userAvatar, int likes, List<String> tags, List<Comment> comments) {
+    public Article(Integer id, String title, String content, Timestamp time, String cover/*, int userId*/, String userName, String userNickname, String userAvatar, int likes, List<String> tags, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.time = time;
         this.cover = cover;
-        this.userId = userId;
+        //this.userId = userId;
+        this.userName = userName;
         this.userNickname = userNickname;
         this.userAvatar = userAvatar;
         this.likes = likes;
@@ -44,8 +47,9 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public static Article getBlankArticle(String userName) {
-        return null;
+    public Article(String userName) {
+        this.userName = userName;
+        this.likes = 0;
     }
 
     public Integer getId() {
@@ -88,13 +92,13 @@ public class Article implements Serializable {
         this.cover = cover;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
+//    public int getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(int userId) {
+//        this.userId = userId;
+//    }
 
     public String getUserNickname() {
         return userNickname;
@@ -102,6 +106,14 @@ public class Article implements Serializable {
 
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserAvatar() {
@@ -144,11 +156,11 @@ public class Article implements Serializable {
                 ", content='" + content + '\'' +
                 ", time=" + time +
                 ", cover='" + cover + '\'' +
-                ", userId=" + userId +
+                //", userId=" + userId +
                 ", userNickname='" + userNickname + '\'' +
                 ", userAvatar='" + userAvatar + '\'' +
                 ", likes=" + likes +
-                ", tags=" + tags +
+                //", tags=" + tags +
                 ", commentList=" + comments +
                 '}';
     }
