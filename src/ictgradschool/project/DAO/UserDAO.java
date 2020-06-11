@@ -53,18 +53,80 @@ public class UserDAO {
         }
     }
 
-    public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) {
-        return null;
+    public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) throws SQLException, IOException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "SELECT * FROM user WHERE username = ?")) {
+                ps.setString(1, userName);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next())
+                        return new UserProfileSummary(
+                                rs.getInt("id"),
+                                rs.getString("nickname"),
+                                rs.getString("email"),
+                                rs.getString("signature"),
+                                rs.getString("avatar"),
+                                rs.getString("description")
+                        );
+                    else return null;
+                }
+            }
+        }
     }
 
-    public static UserProfile getUserProfileFromUserName(String userName) {return null;}
-
-    public static void saveProfile(UserProfile userProfile) {
-
+    public static UserProfile getUserProfileFromUserName(String userName) throws IOException, SQLException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "SELECT * FROM user WHERE username = ?")) {
+                ps.setString(1, userName);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next())
+                        return new UserProfile(
+                                rs.getInt("id"),
+                                rs.getString("userName"),
+                                rs.getString("nickname"),
+                                rs.getString("firstName"),
+                                rs.getString("lastName"),
+                                rs.getDate("dateOfBirth"),
+                                rs.getString("email"),
+                                rs.getString("signature"),
+                                rs.getString("description"),
+                                rs.getString("avatar")
+                        );
+                    else return null;
+                }
+            }
+        }
     }
 
-    public static boolean deleteUserByUserName(String userName) {
-        return false;
+    public static void saveProfile(UserProfile userProfile) throws IOException, SQLException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "UPDATE user SET nickname = ?, firstName = ?, " +
+                            "lastName = ?, email = ?, signature = ? , description = ?, avatar = ? " +
+                            "WHERE id = ? ")) {
+                ps.setString(1,userProfile.getNickname());
+                ps.setString(2,userProfile.getFirstName());
+                ps.setString(3,userProfile.getLastName());
+                ps.setString(4,userProfile.getEmail());
+                ps.setString(5,userProfile.getSignature());
+                ps.setString(6,userProfile.getDescription());
+                ps.setString(7,userProfile.getAvatar());
+                ps.setInt(8,userProfile.getId());
+
+                ps.executeUpdate();
+            }
+        }
+    }
+
+    public static boolean deleteUserByUserName(String userName) throws IOException, SQLException{
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "DELETE FROM user WHERE userName = ?")) {
+                ps.setString(1, userName);
+                return ps.execute();
+            }
+        }
     }
 
 }
