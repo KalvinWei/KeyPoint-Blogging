@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class UserProfileSummary implements Serializable {
     private int id;
+    private String userName;
     private String nickname;
     private String email;
     private String signature;
@@ -11,8 +12,9 @@ public class UserProfileSummary implements Serializable {
     private String description;
 
 
-    public UserProfileSummary(int id, String nickname, String email, String signature, String avatar, String description) {
+    public UserProfileSummary(int id, String userName, String nickname, String email, String signature, String avatar, String description) {
         this.id = id;
+        this.userName = userName;
         this.nickname = nickname;
         this.email = email;
         this.signature = signature;
@@ -37,6 +39,14 @@ public class UserProfileSummary implements Serializable {
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {
