@@ -5,10 +5,12 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public class Comment implements Serializable {
-    private int id;
+    private Integer id;
     private String content;
     private Timestamp time;
-    private int userId;
+    private int user;
+    private int article;
+    private int parent;
     private String userNickname;
     private String userAvatar;
     private int likes;
@@ -16,26 +18,22 @@ public class Comment implements Serializable {
     private List<Comment> comments;
 
 
-    public Comment(int id, String content, Timestamp time, int userId, String userNickname, String userAvatar, int likes, int level, List<Comment> comments) {
+    public Comment(Integer id, String content, Timestamp time, int user, int article, int parent) {
         this.id = id;
         this.content = content;
         this.time = time;
-        this.userId = userId;
-        this.userNickname = userNickname;
-        this.userAvatar = userAvatar;
-        this.likes = likes;
-        this.level = level;
-        this.comments = comments;
+        this.user = user;
+        this.article = article;
     }
 
     public Comment() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -55,13 +53,30 @@ public class Comment implements Serializable {
         this.time = time;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(int userId) {
+        this.user = user;
     }
+
+    public int getArticle() {
+        return article;
+    }
+
+    public void setArticle(int article) {
+        this.article = article;
+    }
+
+    public int getParent() {
+        return parent;
+    }
+
+    public void setParent(int parent) {
+        this.parent = parent;
+    }
+
 
     public String getUserNickname() {
         return userNickname;
@@ -109,7 +124,7 @@ public class Comment implements Serializable {
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", time=" + time +
-                ", userId=" + userId +
+                ", user=" + user +
                 ", userNickname='" + userNickname + '\'' +
                 ", userAvatar='" + userAvatar + '\'' +
                 ", likes=" + likes +

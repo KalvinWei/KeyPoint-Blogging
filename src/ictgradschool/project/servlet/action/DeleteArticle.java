@@ -1,5 +1,7 @@
 package ictgradschool.project.servlet.action;
 
+import ictgradschool.project.DAO.ArticleDAO;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +18,8 @@ public class DeleteArticle extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        int id = Integer.parseInt(req.getParameter("id"));
+        ArticleDAO.deleteArticleByArticleId(id);
+        resp.sendRedirect("/articlesPage");
     }
 }

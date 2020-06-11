@@ -13,7 +13,11 @@ public class CommentDAO {
         return null;
     }
 
-    private static boolean deleteCommentByCommentId(int id) {
+    public static boolean deleteCommentByCommentId(int id) {
+        return false;
+    }
+
+    public static boolean insertComment(Comment comment) {
         return false;
     }
 }
