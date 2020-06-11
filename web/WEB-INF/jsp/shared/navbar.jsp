@@ -36,7 +36,7 @@
                 <a class="nav-link" href="./signInPage">Sign In</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./signInPage">Sign Up</a>
+                <a class="nav-link" href="./signUpPage">Sign Up</a>
             </li>
         </c:if>
 

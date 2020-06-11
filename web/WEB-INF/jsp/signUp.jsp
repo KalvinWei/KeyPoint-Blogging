@@ -6,32 +6,32 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Sign in / Sign up</title>
+    <title>Sign up</title>
+    <%@include file="shared/libraries.jsp"%>
 </head>
 <body>
-<h1>KeyPoint</h1>
-<p>Welcome to visit Key Point blogging network</p>
-<p>already a user? please sign in</p>
-<p>fresh in here? you can sign up for an account right now</p>
-
-<div id="contentBox">
-    <p><a>Sign In</a> / <a>Sign Up</a></p>
-
-    <div id="signUp">
-        <form style="display: none"  action="./editProfilePage" method="post">
-            <input type="text" name="userName" placeholder="username">
-            <label style="display:none;color:red;">* username has been taken</label>
-            <input type="text" name="nickname" placeholder="nickname">
-            <input type="password" name="password" placeholder="password">
-            <input type="password" placeholder="confirm your password here">
-            <label style="display:none;color:red;">* passwords don't match</label>
-            <input type="submit" value="sign up">
-        </form>
-    </div>
-
+<div id="contentBox" class="m-auto container">
+    <h2 class="m-auto text-center">Sign Up</h2>
+    <p class="m-auto text-center">Welcome to KeyPoint, please sign up :)</p>
+    <form action="./signUp" method="post" class="m-auto">
+        <div class="form-group was-validated">
+            <label for="userName">Username:</label>
+            <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required>
+            <div class="invalid-feedback">* Please input your username</div>
+        </div>
+        <div class="form-group was-validated">
+            <label for="password">Password:</label>
+            <input class="form-control" type="password" name="password" id="password" placeholder="password" required>
+            <div class="invalid-feedback">* Please input your password</div>
+        </div>
+        <div class="form-group">
+            <label for="nickname">Nickname:</label>
+            <input class="form-control" type="text" name="nickname" id="nickname" placeholder="nickname">
+        </div>
+        <button type="submit" class="btn btn-dark btn-block">Sign Up</button>
+    </form>
 </div>
 
 </body>
