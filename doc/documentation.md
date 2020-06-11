@@ -100,6 +100,11 @@ This file contains the documentation of page design, database design, etc.
        - [post] to signIn
            - userName
            - password
+           
+- Sign up page (~/signUpPage)
+   - **consumes**
+       - *nothing?*
+   - **sends**
        - [post] to signUp
            - userName
            - nickname
