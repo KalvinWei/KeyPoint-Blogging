@@ -21,6 +21,22 @@
 <html>
 <head>
     <title>Edit Profile</title>
+    <script type="javascript">
+        const avatarInputBox = document.querySelector("input[name='avatar']");
+        const avatarDisplay = document.querySelector("img.avatar");
+
+        async function uploadAvatar(){
+            const response = await fetch("/uploadImage?usage=avatar");
+            const file = await response.json();
+            avatarInputBox.value = file.uuidFilename;
+            avatarDisplay.src = "./images/avatar/" + file.uuidFilename;
+        }
+
+        async function deleteAvatar(){
+            await fetch("/deleteImage?usage=avatar&fileName=" + avatarDisplay.src);
+            avatarDisplay.src = "./images/defaultAvatar1.jpg";
+        }
+    </script>
 </head>
 <body>
 <%@include file="shared/navbar.jsp"%>
@@ -45,14 +61,14 @@
 
     <div id="rightBlock">
         <c:if test="${empty userProfile.avatar}">
-            <img src="./images/guest.png" alt="guest avatar">
+            <img class="avatar" src="./images/guest.png" alt="guest avatar">
         </c:if>
         <c:if test="${not empty userProfile.avatar}">
-            <img src="./images/avatar/${userProfile.avatar}">
+            <img class="avatar" src="./images/avatar/${userProfile.avatar}">
         </c:if>
         <input type="text" name="avatar" value="${userProfile.avatar}">
-        <button onclick="//uploadPhoto();">upload a new photo</button>
-        <button onclick="//deletePhoto();">delete current photo</button>
+        <button onclick="uploadAvatar();">upload a new photo</button>
+        <button onclick="deleteAvatar();">delete current photo</button>
     </div>
 
     </form>
