@@ -20,3 +20,6 @@ from article as a
          inner join user as u on a.user = u.id
          left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article
 where id = ?;
+
+
+

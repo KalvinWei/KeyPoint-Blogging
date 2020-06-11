@@ -50,10 +50,7 @@
         </div>
 
         <div id="comments">
-
-
-
-            <c:forEach var="comment" items="article.commentList">
+            <c:forEach var="comment" items="${article.commentList}">
                 <div class="commentBox">
                     <img src="./images/avatar/${comment.userAvatar}">
                     <div>
@@ -114,28 +111,3 @@
 </div>
 </body>
 </html>
-
-
-
-
-<%--    <form action="./postComment" method="post">--%>
-<%--      <c:if test="${isUserLoggedIn}">--%>
-<%--        <textarea  name="content"></textarea>--%>
-<%--        <button type="submit">post</button>--%>
-<%--     </c:if>--%>
-<%--    </form>--%>
-
-
-
-<%--    <form action="./postComment" method="post">--%>
-<%--        <input type="text" name="cover" value="${comment.userAvatar}">--%>
-<%--        <input type="text" name="content" value="${comment.content}">--%>
-<%--        <input type="text" name="time" value="${comment.time}">--%>
-<%--        <input type="hidden" name="user" value="${comment.user}">--%>
-<%--        <c:if test="${isUserLoggedIn}">--%>
-<%--            <button type="submit">reply</button>--%>
-<%--            <c:if test="${userProfileSummary.id == article.userId || userProfileSummary.id == comment.userId}">--%>
-<%--                <button formaction="./deleteComment">delete</button>--%>
-<%--            </c:if>--%>
-<%--        </c:if>--%>
-<%--    </form>--%>
