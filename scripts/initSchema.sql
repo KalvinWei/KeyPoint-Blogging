@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user
 (
     id           INT PRIMARY KEY AUTO_INCREMENT,
-    userName     VARCHAR(128) UNIQUE,
+    userName     VARCHAR(128) UNIQUE NOT NULL,
     nickname     VARCHAR(128),
     firstName    VARCHAR(128),
     lastName     VARCHAR(128),

@@ -13,9 +13,9 @@ public class ArticleDAO {
     public static List<ArticleSummary> getAllArticleSummaries() throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,cover,u.id as userId,userName,nickname,avatar,time,likes\n" +
+                    "select distinct a.id as id,title,content,cover,u.id as userId,u.userName,nickname,avatar,time,likes\n" +
                             "    from article as a\n" +
-                            "    inner join user as u on a.user = u.id\n" +
+                            "    inner join user as u on a.userName = u.userName\n" +
                             "    left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article")) {
                 return assembleArticleSummaries(ps);
             }
@@ -25,11 +25,11 @@ public class ArticleDAO {
     public static List<ArticleSummary> getArticleSummariesByUserName(String userName)throws IOException, SQLException  {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,cover,u.id as userId,nickname,avatar,time,likes\n" +
+                    "select distinct a.id as id,title,content,cover,u.id as userId,u.userName,nickname,avatar,time,likes\n" +
                             "from article as a\n" +
-                            "inner join user as u on a.user = u.id\n" +
+                            "inner join user as u on a.userName = u.userName\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "where userName = ? ")) {
+                            "where a.userName = ? ")) {
                 ps.setString(1, userName);
                 return assembleArticleSummaries(ps);
             }
@@ -62,12 +62,12 @@ public class ArticleDAO {
     public static Article getArticleByArticleId(int id) throws IOException, SQLException  {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,time,cover,userName,nickname,avatar,likes,tag\n" +
+                    "select distinct a.id as id,title,content,time,cover,u.userName,nickname,avatar,likes,tag\n" +
                             "from article as a\n" +
-                            "inner join user as u on a.user = u.id\n" +
+                            "inner join user as u on a.userName = u.userName\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
                             "left join tag as t on a.id = t.article\n" +
-                            "where id = ?")) {
+                            "where a.id = ?")) {
                 ps.setInt(1,id);
                 try(ResultSet rs = ps.executeQuery()){
                     if(rs.next()) return new Article(
