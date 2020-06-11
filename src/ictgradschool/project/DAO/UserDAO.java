@@ -56,7 +56,7 @@ public class UserDAO {
     public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) throws SQLException, IOException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "SELECT * FROM user WHERE username = ?")) {
+                    "SELECT * FROM user WHERE userName = ?")) {
                 ps.setString(1, userName);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next())
@@ -77,7 +77,7 @@ public class UserDAO {
     public static UserProfile getUserProfileFromUserName(String userName) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "SELECT * FROM user WHERE username = ?")) {
+                    "SELECT * FROM user WHERE userName = ?")) {
                 ps.setString(1, userName);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next())
