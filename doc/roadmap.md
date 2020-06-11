@@ -19,7 +19,7 @@ This file is to keep record of our plans.
 - [x] Logout
 - [x] Password hash
 - [ ] Avatars
-- [ ] Browsing all articles without logging in
+- [x] Browsing all articles without logging in
 - [ ] Create, delete, edit, browse own articles when logged in
 - [ ] Create comments when logged in, delete comments when the article or comment is created by oneself
 - [ ] Display comments
