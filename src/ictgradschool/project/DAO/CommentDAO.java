@@ -36,6 +36,7 @@ public class CommentDAO {
                                 rs.getString("nickname"),
                                 rs.getString("avatar"),
                                 rs.getInt("likes"),
+                                //todo here to get the level of this comment
                                 0, //level
                                 getCommentsByParentId(this_id)
 
@@ -48,6 +49,7 @@ public class CommentDAO {
     }
 
     private static List<Comment> getCommentsByParentId(int parentId) throws IOException, SQLException {
+        int level = 0;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "select distinct c.id as id,content,time,u.id as userId,article,nickname,avatar,likes\n" +
@@ -61,6 +63,7 @@ public class CommentDAO {
                     List<Comment> comments = new ArrayList<>();
                     while(rs.next()){
                         int this_id = rs.getInt("id");
+
                         comments.add(new Comment(
                                 this_id,
                                 rs.getString("content"),
@@ -71,6 +74,7 @@ public class CommentDAO {
                                 rs.getString("nickname"),
                                 rs.getString("avatar"),
                                 rs.getInt("likes"),
+                                //todo here to get the level of this comment
                                 0, //level
                                 getCommentsByParentId(this_id)
 
@@ -82,7 +86,7 @@ public class CommentDAO {
         }
     }
 
-    public static boolean deleteCommentByCommentId(int id)throws IOException, SQLException {
+    public static boolean deleteCommentByCommentId(int id) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "UPDATE comment SET isDeleted = true WHERE article = ?")){
@@ -92,7 +96,26 @@ public class CommentDAO {
         }
     }
 
-    public static boolean insertComment(Comment comment) {
+    public static boolean insertComment(Comment comment) throws IOException, SQLException{
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "INSERT comment VALUES (null,?,?,?,?,?,false)")) {
+                ps.setString(1, comment.getContent());
+                ps.setTimestamp(2, comment.getTime());
+                ps.setInt(3,comment.getParent());
+                ps.setInt(4, comment.getUser());
+                ps.setInt(5,comment.getArticle());
 
+                int rowAffected = ps.executeUpdate();
+                if (rowAffected != 0) {
+                    try (ResultSet rs = ps.getGeneratedKeys()) {
+                        rs.next();
+                        comment.setId(rs.getInt(1));
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
