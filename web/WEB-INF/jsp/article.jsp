@@ -23,7 +23,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>${article.userNickname}: ${article.title}</title>
 </head>
 <body>
 <%@include file="shared/navbar.jsp" %>
