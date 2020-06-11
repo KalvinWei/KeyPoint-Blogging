@@ -11,12 +11,13 @@ public class UserProfileSummary implements Serializable {
     private String description;
 
 
-    public UserProfileSummary(int id, String nickname, String email, String signature, String avatar) {
+    public UserProfileSummary(int id, String nickname, String email, String signature, String avatar, String description) {
         this.id = id;
         this.nickname = nickname;
         this.email = email;
         this.signature = signature;
         this.avatar = avatar;
+        this.description = description;
     }
 
     public UserProfileSummary() {

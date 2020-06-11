@@ -26,6 +26,20 @@ public class Comment implements Serializable {
         this.article = article;
     }
 
+    public Comment(Integer id, String content, Timestamp time, int user, int article, int parent, String userNickname, String userAvatar, int likes, int level, List<Comment> comments) {
+        this.id = id;
+        this.content = content;
+        this.time = time;
+        this.user = user;
+        this.article = article;
+        this.parent = parent;
+        this.userNickname = userNickname;
+        this.userAvatar = userAvatar;
+        this.likes = likes;
+        this.level = level;
+        this.comments = comments;
+    }
+
     public Comment() {
     }
 
