@@ -32,7 +32,7 @@ public class ArticleDAO {
                             "from article as a\n" +
                             "inner join user as u on a.user = u.id\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "where userName = ? ")) {
+                            "where userName = ?")) {
                 ps.setString(1, userName);
                 return assembleArticleSummaries(ps);
             }
