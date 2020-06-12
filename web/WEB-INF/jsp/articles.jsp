@@ -46,23 +46,7 @@
     </div>
 </div>
 
-<div id="articleList">
-    <h3><span>all articles</span></h3>
-    <c:forEach items="${articleSummaries}" var="article">
-        <h4><a href="./articlePage?id=${article.id}">${article.title}</a></h4>
-        <p>
-            <span>${article.time}</span>
-            <c:if test="${isOwner}">
-                <a href="./editArticlePage?id=${article.id}">edit</a>
-                <form action="./deleteArticle?id=${article.id}">
-                    <button type="submit">Delete</button>
-                </form>
-            </c:if>
-        </p>
-        <img src="./images/avatar/${article.userAvatar}">
-
-    </c:forEach>
-</div>
+<%@include file="shared/articleSummaries.jsp"%>
 
 </body>
 </html>
