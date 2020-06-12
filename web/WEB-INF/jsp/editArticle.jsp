@@ -87,9 +87,12 @@
         <button id="resetCover" onclick="resetCover();">reset cover</button>
         <button type="submit" class="form-control btn btn-dark">Post</button>
     </form>
-    <form action=".deleteArticle/${article.id}" method="post" class="form">
-        <button type="submit" class="form-control btn btn-danger">Delete</button>
-    </form>
+    <c:if test="${not empty article.id}">
+        <form action="./deleteArticle" method="post" class="form">
+            <input type="hidden" name="id" value="${article.id}">
+            <button type="submit" class="form-control btn btn-danger">Delete</button>
+        </form>
+    </c:if>
 </div>
 </body>
 </html>
