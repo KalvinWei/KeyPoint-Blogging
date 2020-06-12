@@ -4,7 +4,5 @@
     <file url="file://$PROJECT_DIR$/scripts/initSchema.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/scripts/sampleData.sql" dialect="MariaDB" />
     <file url="file://$PROJECT_DIR$/scripts/util.sql" dialect="MariaDB" />
-    <file url="file://$PROJECT_DIR$/src/ictgradschool/project/DAO/ArticleDAO.java" dialect="MariaDB" />
-    <file url="file://$PROJECT_DIR$/src/ictgradschool/project/DAO/CommentDAO.java" dialect="MariaDB" />
   </component>
 </project>
