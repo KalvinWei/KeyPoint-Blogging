@@ -14,15 +14,15 @@ This file is to keep record of our plans.
 - [x] Account creation
 - [ ] User name validation (ajax)
 - [ ] Front end validation
-- [ ] Account management
+- [x] Account management
 - [x] Login
 - [x] Logout
 - [x] Password hash
 - [ ] Avatars
 - [x] Browsing all articles without logging in
-- [ ] Create, delete, edit, browse own articles when logged in
+- [x] Create, delete, edit, browse own articles when logged in
 - [ ] Create comments when logged in, delete comments when the article or comment is created by oneself
-- [ ] Display comments
+- [x] Display comments
 - [ ] Responsiveness
 - [ ] Deploy
 
