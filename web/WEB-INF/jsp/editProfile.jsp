@@ -36,7 +36,7 @@
         };
 
         function useDefaultAvatar(){
-            avatarDisplay.src = "./images/defaultAvatar1.jpg";
+            avatarDisplay.src = "./images/avatar/guest.jpg";
             avatarInputBox.value = avatarDisplay.src;
         }
     </script>
@@ -44,21 +44,42 @@
 <body>
 <%@include file="shared/navbar.jsp"%>
 
-<div id="wrapper">
+<div id="wrapper" class="container">
     <h3>${userProfile.nickname}</h3>
 
     <form action="./saveProfile" method="post">
 
     <div id="leftBlock">
         <input id="userName" type="hidden" name="userName" value="${userProfile.userName}">
-        <input id="nickname" type="text" name="nickname" value="${userProfile.nickname}" placeholder="nickname">
-        <input id="signature" type="text" name="signature" value="${userProfile.signature}" placeholder="signature">
-        <input id="firstName" type="text" name="firstName" value="${userProfile.firstName}" placeholder="first name">
-        <input id="lastName" type="text" name="lastName" value="${userProfile.lastName}" placeholder="last name">
-        <input id="dateOfBirth" type="date" name="dateOfBirth" value="${userProfile.dateOfBirth}" placeholder="date of birth">
-        <input id="email" type="email" name="email" ${userProfile.email} placeholder="email">
-        <textarea name="description" placeholder="description">${userProfile.description}</textarea>
-        <button type="submit">Save</button>
+        <div class="form-group">
+            <label for="nickname">Nickname:</label>
+            <input id="nickname" type="text" name="nickname" value="${userProfile.nickname}" placeholder="nickname" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="signature">Signature:</label>
+            <input id="signature" type="text" name="signature" value="${userProfile.signature}" placeholder="signature" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="firstName">First name:</label>
+            <input id="firstName" type="text" name="firstName" value="${userProfile.firstName}" placeholder="first name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name:</label>
+            <input id="lastName" type="text" name="lastName" value="${userProfile.lastName}" placeholder="last name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Date of birth:</label>
+            <input id="dateOfBirth" type="date" name="dateOfBirth" value="${userProfile.dateOfBirth}" placeholder="date of birth" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email" ${userProfile.email} placeholder="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" placeholder="description" class="form-control">${userProfile.description}</textarea>
+        </div>
+        <button type="submit" class="btn btn-dark btn-block">Save</button>
     </div>
 
     <div id="rightBlock">
@@ -75,7 +96,7 @@
 
     <form action="./deleteAccount" method="post">
         <input type="hidden" name="userName" value="${userProfile.userName}">
-        <button type="submit">Delete account</button>
+        <button type="submit" class="btn btn-danger form-control">Delete account</button>
     </form>
 </div>
 </body>

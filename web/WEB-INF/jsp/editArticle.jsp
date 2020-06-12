@@ -43,7 +43,7 @@
         };
 
         function resetCover() {
-            coverImg.src = "./images/cover/defaultCover.jpg";
+            coverImg.src = "./images/cover/cover1.jpg";
             fileInput.value = coverImg.src;
         }
     </script>
