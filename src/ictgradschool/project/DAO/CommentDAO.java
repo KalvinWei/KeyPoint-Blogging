@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDAO {
-    public static List<Comment> getCommentsByArticleId(Connection conn, int articleId) throws IOException, SQLException {
+    public static List<Comment> getCommentsByArticleId(Connection conn, int articleId) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
                 "select distinct c.id as id,content,time,parent,article,nickname,avatar,likes\n" +
                         "from comment as c\n" +

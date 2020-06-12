@@ -18,7 +18,7 @@ public class ArticleDAO {
                             "    inner join user as u on a.userName = u.userName\n" +
                             "    left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
                             "    where isDeleted = false")) {
-                return assembleArticleSummaries(ps);
+                return assembleArticleSummaries(conn, ps);
             }
         }
     }
@@ -32,12 +32,12 @@ public class ArticleDAO {
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
                             "where a.userName = ? and isDeleted = false")) {
                 ps.setString(1, userName);
-                return assembleArticleSummaries(ps);
+                return assembleArticleSummaries(conn, ps);
             }
         }
     }
 
-    private static List<ArticleSummary> assembleArticleSummaries(PreparedStatement ps) throws SQLException {
+    private static List<ArticleSummary> assembleArticleSummaries(Connection conn, PreparedStatement ps) throws SQLException, IOException {
         try(ResultSet rs = ps.executeQuery()){
             List<ArticleSummary> articleSummaries = new ArrayList<>();
             while(rs.next()){
@@ -53,7 +53,7 @@ public class ArticleDAO {
                         rs.getString("avatar"),
                         rs.getTimestamp("time"),
                         rs.getInt("likes"),
-                        null
+                        TagDAO.getTagsByArticleId(conn, rs.getInt("id"))
                 );
                 articleSummaries.add(summary);
             }
@@ -81,27 +81,13 @@ public class ArticleDAO {
                             rs.getString("nickname"),
                             rs.getString("avatar"),
                             rs.getInt("likes"),
-                            getTagsByArticleId(conn, id),
+                            TagDAO.getTagsByArticleId(conn, id),
                             CommentDAO.getCommentsByArticleId(conn, id)
                     );
                     else return null;
                 }
             }
         }
-    }
-
-    private static List<String> getTagsByArticleId(Connection conn, int articleId) throws IOException, SQLException{
-            try (PreparedStatement ps = conn.prepareStatement(
-                    "SELECT tag FROM tag WHERE article = ?")) {
-                ps.setInt(1, articleId);
-                try(ResultSet rs = ps.executeQuery()){
-                    List<String> tags = new ArrayList<>();
-                    while(rs.next()){
-                        tags.add(rs.getString("tag"));
-                    }
-                    return tags;
-                }
-            }
     }
 
     public static boolean insertOrEditArticle(Article article) throws IOException, SQLException {

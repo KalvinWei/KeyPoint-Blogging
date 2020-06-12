@@ -5,10 +5,27 @@ import ictgradschool.project.util.DBConnectionUtils;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TagDAO {
+
+    public static List<String> getTagsByArticleId(Connection conn, int articleId) throws IOException, SQLException{
+        try (PreparedStatement ps = conn.prepareStatement(
+                "SELECT tag FROM tag WHERE article = ?")) {
+            ps.setInt(1, articleId);
+            try(ResultSet rs = ps.executeQuery()){
+                List<String> tags = new ArrayList<>();
+                while(rs.next()){
+                    tags.add(rs.getString("tag"));
+                }
+                return tags;
+            }
+        }
+    }
+
     public static boolean insertTags(Connection conn, int article, List<String> tags) throws IOException, SQLException {
         boolean result = false;
         removeAllTagsByArticle(conn, article);
