@@ -125,8 +125,8 @@ public class ArticleDAO {
     }
 
     private static boolean editArticle(Article article) throws IOException, SQLException  {
-        boolean articleUpdate = false;
-        boolean tagUpdate = false;
+        boolean articleUpdate;
+        boolean tagUpdate;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             //insert article into table `article`
             try (PreparedStatement ps = conn.prepareStatement(

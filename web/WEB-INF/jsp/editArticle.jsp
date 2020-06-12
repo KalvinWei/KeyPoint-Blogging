@@ -69,7 +69,7 @@
     <form action="./postArticle" method="post">
         <input type="hidden" name="id" value="${article.id}">
         <input type="hidden" name="userName" value="${article.userName}">
-        <input type="hidden" name="tags" value="tags">
+        <input type="text" name="tags" value="tags" placeholder="tags, separated by ','">
         <input type="text" name="title" value="${article.title}" placeholder="title">
         <textarea name="content">${article.content}</textarea>
         <input id="fileInput" type="file" name="cover" value="./images/cover/${article.cover}">

@@ -30,7 +30,7 @@ public class TagDAO {
         boolean result = false;
         removeAllTagsByArticle(conn, article);
         for (String tag : tags) {
-            result = result || insertTag(conn, article, tag);
+            result = insertTag(conn, article, tag) || result;
         }
         return result;
     }
