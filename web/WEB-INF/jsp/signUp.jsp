@@ -34,6 +34,5 @@
         <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
     </form>
 </div>
-
 </body>
 </html>
