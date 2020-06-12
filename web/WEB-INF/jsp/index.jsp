@@ -27,6 +27,11 @@
             <div class="articleHeader">
                 <h2><a href="articlePage?id=${article.id}">${article.title}</a></h2>
                 <p>
+                    <c:forEach var="tag" items="${article.tags}">
+                        <span>tag </span>
+                    </c:forEach>
+                </p>
+                <p>
                     <a href="./articlesPage?userName=${article.userName}">
                         <img src="./images/avatar/guest.png" style="width: 20px">${article.userNickname}
                     </a>
