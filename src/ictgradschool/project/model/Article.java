@@ -2,6 +2,7 @@ package ictgradschool.project.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Article implements Serializable {
@@ -47,6 +48,7 @@ public class Article implements Serializable {
     public Article(String userName) {
         this.userName = userName;
         this.likes = 0;
+        this.tags = new ArrayList<>();
     }
 
     public Integer getId() {
