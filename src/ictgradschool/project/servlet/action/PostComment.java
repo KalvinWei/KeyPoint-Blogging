@@ -36,7 +36,6 @@ public class PostComment extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         resp.sendRedirect("./articlePage?id=" + article);
     }
 }

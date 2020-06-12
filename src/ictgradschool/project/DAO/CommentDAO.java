@@ -11,7 +11,7 @@ import java.util.List;
 public class CommentDAO {
     public static List<Comment> getCommentsByArticleId(Connection conn, int articleId) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
-                "select distinct c.id as id,content,time,parent,article,nickname,avatar,likes\n" +
+                "select distinct c.id as id,content,time,parent,article,nickname,avatar,u.userName,likes\n" +
                         "from comment as c\n" +
                         "    inner join user as u on c.userName = u.userName\n" +
                         "    left join (select comment,count(*) as likes from likeComment group by comment) as l on c.id = l.comment\n" +
@@ -26,7 +26,7 @@ public class CommentDAO {
                             this_id,
                             rs.getString("content"),
                             rs.getTimestamp("time"),
-                            rs.getString("userName"),
+                            rs.getString("u.userName"),
                             rs.getInt("article"),
                             rs.getInt("parent"), //parentId
                             rs.getString("nickname"),
@@ -43,7 +43,7 @@ public class CommentDAO {
 
     private static List<Comment> getCommentsByParentId(Connection conn, int parentId, int currentLevel) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
-                "select distinct c.id as id,content,time,article,nickname,avatar,likes\n" +
+                "select distinct c.id as id,content,time,article,nickname,avatar,u.userName,likes\n" +
                         "from comment as c\n" +
                         "    inner join user as u on c.userName = u.userName\n" +
                         "    left join (select comment,count(*) as likes from likeComment group by comment) as l on c.id = l.comment\n" +
@@ -59,7 +59,7 @@ public class CommentDAO {
                             this_id,
                             rs.getString("content"),
                             rs.getTimestamp("time"),
-                            rs.getString("userName"),
+                            rs.getString("u.userName"),
                             rs.getInt("article"),
                             parentId, //parentId
                             rs.getString("nickname"),
