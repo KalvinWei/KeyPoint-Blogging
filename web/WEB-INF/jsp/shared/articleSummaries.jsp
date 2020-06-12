@@ -10,10 +10,10 @@
     <c:forEach items="${articleSummaries}" var="article">
         <div>
             <hr />
-            <img src="./images/cover/cover1.jpg" alt="${article.cover}" class="card-img-top">
+            <img src="./images/cover/cover1.jpg" alt="${article.cover}" class="img-thumbnail">
             <div>
                 <h3><a href="articlePage?id=${article.id}">${article.title}</a></h3>
-                <a href="./articlesPage?userName=${article.userName}" class="card-link">
+                <a href="./articlesPage?userName=${article.userName}">
                     <img src="./images/avatar/guest.png" style="width: 20px">
                         ${article.userNickname}
                 </a>
@@ -26,6 +26,12 @@
                 <div>
                     <p>${article.contentSummary}</p>
                 </div>
+                <c:if test="${isUserLoggedIn && article.userName.equals(userProfileSummary.userName)}">
+                    <a href="./editArticlePage?id=${article.id}">edit</a>
+                    <form action="./deleteArticle?id=${article.id}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </c:if>
             </div>
         </div>
     </c:forEach>
