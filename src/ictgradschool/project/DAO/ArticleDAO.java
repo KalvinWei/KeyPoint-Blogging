@@ -47,7 +47,7 @@ public class ArticleDAO {
                         rs.getString("title"),
                         contentSummary,
                         rs.getString("cover"),
-                        rs.getInt("userId"),
+                        rs.getString("u.userName"),
                         rs.getString("nickname"),
                         rs.getString("avatar"),
                         rs.getTimestamp("time"),

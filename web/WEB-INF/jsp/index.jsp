@@ -25,8 +25,8 @@
     <c:forEach items="${articleSummaries}" var="article">
         <div class="article">
             <div class="articleHeader">
-                <p>${article.title}</p>
-                <p><span>${article.userNickname}</span></p>
+                <p><a href="articlePage?id=${article.id}">${article.title}</a></p>
+                <p><a href="./articlesPage?userName=${article.userName}">${article.userNickname}</a></p>
                 <p><span>${article.time}</span></p>
             </div>
             <div class="articleExcerpt">
