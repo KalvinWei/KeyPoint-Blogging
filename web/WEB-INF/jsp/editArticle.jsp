@@ -38,9 +38,9 @@
 
             reader.onload = function (e) {
                 coverImg.src = e.target.result;
-            }
+            };
             reader.readAsDataURL(newCover);
-        }
+        };
 
         function resetCover() {
             coverImg.src = "./images/cover/defaultCover.jpg";
@@ -66,7 +66,7 @@
     </div>
 
 
-    <form action="./postArticle" method="post" enctype="multipart/form-data">
+    <form action="./postArticle" method="post">
         <input type="hidden" name="id" value="${article.id}">
         <input type="hidden" name="userName" value="${article.userName}">
         <input type="hidden" name="tags" value="tags">
@@ -75,8 +75,10 @@
         <input id="fileInput" type="file" name="cover" value="./images/cover/${article.cover}">
         <button id="resetCover" onclick="resetCover();">reset cover</button>
         <button type="submit">post</button>
-        <button formaction="./deleteArticle">delete</button>
+    </form>
 
+    <form action=".deleteArticle" method="post">
+        <button>delete</button>
     </form>
 </div>
 </body>
