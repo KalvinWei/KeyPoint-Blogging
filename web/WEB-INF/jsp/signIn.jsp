@@ -35,7 +35,7 @@
     <%@include file="shared/libraries.jsp"%>
 </head>
 <body>
-<div id="contentBox" class="m-auto container">
+<div id="contentBox" class="container">
     <h2 class="m-auto text-center">Sign In</h2>
     <p class="m-auto text-center">Welcome to KeyPoint, please sign in :)</p>
         <form action="./signIn" method="post" class="m-auto was-validated">

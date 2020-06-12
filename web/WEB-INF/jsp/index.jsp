@@ -21,31 +21,28 @@
 <%@include file="shared/navbar.jsp"%>
 
 <div id="recentArticles">
-    <p><span>RECENTLY ON HIT</span></p>
+    <div class="card-columns">
     <c:forEach items="${articleSummaries}" var="article">
-        <div class="article">
-            <div class="articleHeader">
-                <h2><a href="articlePage?id=${article.id}">${article.title}</a></h2>
-                <p>
+        <div class="card">
+            <img src="./images/cover/cover1.jpg" alt="${article.cover}" class="card-img-top">
+            <div class="card-body">
+                <h3 class="card-title"><a href="articlePage?id=${article.id}">${article.title}</a></h3>
+                <a href="./articlesPage?userName=${article.userName}" class="card-link">
+                    <img src="./images/avatar/guest.png" style="width: 20px">${article.userNickname}
+                </a>
+                <span class="card-text text-info">${article.time}</span>
+                <div>
                     <c:forEach var="tag" items="${article.tags}">
-                        <span>tag </span>
+                        <span class="badge badge-pill badge-light">${tag}</span>
                     </c:forEach>
-                </p>
-                <p>
-                    <a href="./articlesPage?userName=${article.userName}">
-                        <img src="./images/avatar/guest.png" style="width: 20px">${article.userNickname}
-                    </a>
-                </p>
-                <p><span>${article.time}</span></p>
-            </div>
-            <div class="articleExcerpt">
-                <p>${article.contentSummary}</p>
-            </div>
-            <div class="articleCoverImg">
-                <img src="./images/cover/${article.cover}" alt="${article.cover}">
+                </div>
+                <div class="card-text">
+                    <p>${article.contentSummary}</p>
+                </div>
             </div>
         </div>
     </c:forEach>
+    </div>
 </div>
 </body>
 </html>
