@@ -47,7 +47,6 @@ public class CommentDAO {
     }
 
     private static List<Comment> getCommentsByParentId(int parentId, int currentLevel) throws IOException, SQLException {
-        int level = 0;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "select distinct c.id as id,content,time,article,nickname,avatar,likes\n" +
@@ -95,7 +94,7 @@ public class CommentDAO {
     public static boolean insertComment(Comment comment) throws IOException, SQLException{
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT comment VALUES (null,?,?,?,?,?,false)")) {
+                    "INSERT INTO comment VALUES (null,?,?,?,?,?,false)")) {
                 ps.setString(1, comment.getContent());
                 ps.setTimestamp(2, comment.getTime());
                 ps.setInt(3,comment.getParent());
