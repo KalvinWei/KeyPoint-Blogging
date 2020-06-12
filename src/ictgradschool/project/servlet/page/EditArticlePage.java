@@ -16,7 +16,11 @@ import java.sql.SQLException;
 public class EditArticlePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        AuthenticationUtil.checkLogInStatus(req);
+        boolean isUserLoggedIn = AuthenticationUtil.checkLogInStatus(req);
+        if (!isUserLoggedIn) {
+            req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+            return;
+        }
         String idString = req.getParameter("id");
         if (idString == null) {
             String userName = AuthenticationUtil.getLoggedInUserName(req);
@@ -24,6 +28,11 @@ public class EditArticlePage extends HttpServlet {
         } else {
             int id = Integer.parseInt(req.getParameter("id"));
             try {
+                Article article = ArticleDAO.getArticleByArticleId(id);
+                if (article == null || !article.getUserName().equals(AuthenticationUtil.getLoggedInUserName(req))) {
+                    req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+                    return;
+                }
                 req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
             } catch (SQLException e) {
                 e.printStackTrace();
