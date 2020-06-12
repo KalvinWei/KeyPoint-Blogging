@@ -56,11 +56,11 @@
     <div id="coverWrapper">
         <span>click this area to change cover</span>
         <!-- article.title is empty, signifies this page is to create a new article -->
-        <c:if test="${empty article.title}">
+        <c:if test="${article.id == null}">
             <img id="coverImg" src="./images/cover/defaultCover.jpg">
         </c:if>
         <!-- this is to edit an existent article -->
-        <c:if test="${not empty article.title}">
+        <c:if test="${article.id != null}">
             <img id="coverImg" src="./images/cover/${article.cover}">
         </c:if>
     </div>
@@ -87,7 +87,7 @@
         <button id="resetCover" onclick="resetCover();">reset cover</button>
         <button type="submit" class="form-control btn btn-dark">Post</button>
     </form>
-    <c:if test="${not empty article.id}">
+    <c:if test="${article.id != null}">
         <form action="./deleteArticle" method="post" class="form">
             <input type="hidden" name="id" value="${article.id}">
             <button type="submit" class="form-control btn btn-danger">Delete</button>
