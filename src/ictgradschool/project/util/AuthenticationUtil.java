@@ -22,7 +22,6 @@ public class AuthenticationUtil {
         byte[] salt = PasswordUtil.getNextSalt(salt_length);
         byte[] passwordHash = PasswordUtil.hash(password.toCharArray(), salt, iteration);
         return new User(
-                null,
                 userName,
                 userName,
                 PasswordUtil.base64Encode(passwordHash),

@@ -1,10 +1,10 @@
 package ictgradschool.project.model;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
 import java.util.Date;
 
 public class UserProfile implements Serializable {
-    private int id;
     private String userName;
     private String nickname;
     private String firstName;
@@ -15,8 +15,7 @@ public class UserProfile implements Serializable {
     private String description;
     private String avatar;
 
-    public UserProfile(int id, String userName, String nickname, String firstName, String lastName, Date dateOfBirth, String email, String signature, String description, String avatar) {
-        this.id = id;
+    public UserProfile(String userName, String nickname, String firstName, String lastName, Date dateOfBirth, String email, String signature, String description, String avatar) {
         this.userName = userName;
         this.nickname = nickname;
         this.firstName = firstName;
@@ -29,15 +28,6 @@ public class UserProfile implements Serializable {
     }
 
     public UserProfile() {
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUserName() {
@@ -115,7 +105,6 @@ public class UserProfile implements Serializable {
     @Override
     public String toString() {
         return "UserProfile{" +
-                "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", firstName='" + firstName + '\'' +

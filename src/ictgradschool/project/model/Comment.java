@@ -8,7 +8,7 @@ public class Comment implements Serializable {
     private Integer id;
     private String content;
     private Timestamp time;
-    private int user;
+    private String userName;
     private int article;
     private int parent;
     private String userNickname;
@@ -18,19 +18,19 @@ public class Comment implements Serializable {
     private List<Comment> comments;
 
 
-    public Comment(Integer id, String content, Timestamp time, int user, int article, int parent) {
+    public Comment(Integer id, String content, Timestamp time, String userName, int article, int parent) {
         this.id = id;
         this.content = content;
         this.time = time;
-        this.user = user;
+        this.userName = userName;
         this.article = article;
     }
 
-    public Comment(Integer id, String content, Timestamp time, int user, int article, int parent, String userNickname, String userAvatar, int likes, int level, List<Comment> comments) {
+    public Comment(Integer id, String content, Timestamp time, String userName, int article, int parent, String userNickname, String userAvatar, int likes, int level, List<Comment> comments) {
         this.id = id;
         this.content = content;
         this.time = time;
-        this.user = user;
+        this.userName = userName;
         this.article = article;
         this.parent = parent;
         this.userNickname = userNickname;
@@ -67,12 +67,12 @@ public class Comment implements Serializable {
         this.time = time;
     }
 
-    public int getUser() {
-        return user;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUser(int userId) {
-        this.user = user;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getArticle() {
@@ -138,7 +138,7 @@ public class Comment implements Serializable {
                 "id=" + id +
                 ", content='" + content + '\'' +
                 ", time=" + time +
-                ", user=" + user +
+                ", userName=" + userName +
                 ", userNickname='" + userNickname + '\'' +
                 ", userAvatar='" + userAvatar + '\'' +
                 ", likes=" + likes +

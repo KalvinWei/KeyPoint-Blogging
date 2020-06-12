@@ -15,9 +15,9 @@ public class CommentDAO {
     public static List<Comment> getCommentsByArticleId(int articleId)throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct c.id as id,content,time,parent,u.id as userId,article,nickname,avatar,likes\n" +
+                    "select distinct c.id as id,content,time,parent,article,nickname,avatar,likes\n" +
                             "from comment as c\n" +
-                            "    inner join user as u on c.user = u.id\n" +
+                            "    inner join user as u on c.userName = u.userName\n" +
                             "    left join (select comment,count(*) as likes from likeComment group by comment) as l on c.id = l.comment\n" +
                             "    where c.article = ?" +
                             "    order by time desc;")) {
@@ -30,13 +30,12 @@ public class CommentDAO {
                                 this_id,
                                 rs.getString("content"),
                                 rs.getTimestamp("time"),
-                                rs.getInt("userId"),
+                                rs.getString("userName"),
                                 rs.getInt("article"),
                                 rs.getInt("parent"), //parentId
                                 rs.getString("nickname"),
                                 rs.getString("avatar"),
                                 rs.getInt("likes"),
-                                //todo here to get the level of this comment
                                 0, //level
                                 getCommentsByParentId(this_id, 1)
                         ));
@@ -51,9 +50,9 @@ public class CommentDAO {
         int level = 0;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct c.id as id,content,time,u.id as userId,article,nickname,avatar,likes\n" +
+                    "select distinct c.id as id,content,time,article,nickname,avatar,likes\n" +
                             "from comment as c\n" +
-                            "    inner join user as u on c.user = u.id\n" +
+                            "    inner join user as u on c.userName = u.userName\n" +
                             "    left join (select comment,count(*) as likes from likeComment group by comment) as l on c.id = l.comment\n" +
                             "    where c.parent = ?" +
                             "    order by time desc;")) {
@@ -67,13 +66,12 @@ public class CommentDAO {
                                 this_id,
                                 rs.getString("content"),
                                 rs.getTimestamp("time"),
-                                rs.getInt("userId"),
+                                rs.getString("userName"),
                                 rs.getInt("article"),
                                 parentId, //parentId
                                 rs.getString("nickname"),
                                 rs.getString("avatar"),
                                 rs.getInt("likes"),
-                                //todo here to get the level of this comment
                                 currentLevel, //level
                                 getCommentsByParentId(this_id, currentLevel + 1)
                         ));
@@ -101,7 +99,7 @@ public class CommentDAO {
                 ps.setString(1, comment.getContent());
                 ps.setTimestamp(2, comment.getTime());
                 ps.setInt(3,comment.getParent());
-                ps.setInt(4, comment.getUser());
+                ps.setString(4, comment.getUserName());
                 ps.setInt(5,comment.getArticle());
 
                 int rowAffected = ps.executeUpdate();

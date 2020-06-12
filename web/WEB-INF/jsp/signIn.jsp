@@ -53,6 +53,9 @@
                 </c:if>
             </div>
             <button type="submit" class="btn btn-dark btn-block">Sign In</button>
+            <hr />
+            <a class="btn btn-block btn-info" href="./signUpPage">Go to sign up</a>
+            <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
         </form>
 </div>
 

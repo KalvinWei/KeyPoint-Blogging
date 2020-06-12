@@ -8,8 +8,7 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE user
 (
-    id           INT PRIMARY KEY AUTO_INCREMENT,
-    userName     VARCHAR(128) UNIQUE NOT NULL,
+    userName     VARCHAR(128) PRIMARY KEY,
     nickname     VARCHAR(128),
     firstName    VARCHAR(128),
     lastName     VARCHAR(128),
@@ -32,7 +31,7 @@ CREATE TABLE article
     cover     VARCHAR(128) NOT NULL,
     userName  VARCHAR(128) NOT NULL,
     isDeleted BOOLEAN      NOT NULL,
-    FOREIGN KEY (userName) REFERENCES user (userName)
+    FOREIGN KEY (userName) REFERENCES user (userName) ON DELETE CASCADE
 );
 
 CREATE TABLE comment
@@ -41,30 +40,30 @@ CREATE TABLE comment
     content   TEXT      NOT NULL,
     time      TIMESTAMP NOT NULL,
     parent    INT,
-    user      INT       NOT NULL,
+    userName      VARCHAR(128)       NOT NULL,
     article   INT       NOT NULL,
     isDeleted BOOLEAN   NOT NULL,
-    FOREIGN KEY (parent) REFERENCES comment (id),
-    FOREIGN KEY (user) REFERENCES user (id),
-    FOREIGN KEY (article) REFERENCES article (id)
+    FOREIGN KEY (parent) REFERENCES comment (id) ON DELETE CASCADE,
+    FOREIGN KEY (userName) REFERENCES user (userName) ON DELETE CASCADE,
+    FOREIGN KEY (article) REFERENCES article (id) ON DELETE CASCADE
 );
 
 CREATE TABLE likeArticle
 (
-    user    INT NOT NULL,
+    userName    VARCHAR(128) NOT NULL,
     article INT NOT NULL,
-    PRIMARY KEY (user, article),
-    FOREIGN KEY (user) REFERENCES user (id),
-    FOREIGN KEY (article) REFERENCES article (id)
+    PRIMARY KEY (userName, article),
+    FOREIGN KEY (userName) REFERENCES user (userName) ON DELETE CASCADE,
+    FOREIGN KEY (article) REFERENCES article (id) ON DELETE CASCADE
 );
 
 CREATE TABLE likeComment
 (
-    user    INT NOT NULL,
+    userName    VARCHAR(128) NOT NULL,
     comment INT NOT NULL,
-    PRIMARY KEY (user, comment),
-    FOREIGN KEY (user) REFERENCES user (id),
-    FOREIGN KEY (comment) REFERENCES comment (id)
+    PRIMARY KEY (userName, comment),
+    FOREIGN KEY (userName) REFERENCES user (userName) ON DELETE CASCADE,
+    FOREIGN KEY (comment) REFERENCES comment (id) ON DELETE CASCADE
 );
 
 CREATE TABLE tag
@@ -72,5 +71,5 @@ CREATE TABLE tag
     article INT          NOT NULL,
     tag     VARCHAR(128) NOT NULL,
     PRIMARY KEY (article, tag),
-    FOREIGN KEY (article) REFERENCES article (id)
+    FOREIGN KEY (article) REFERENCES article (id) ON DELETE CASCADE
 );

@@ -31,6 +31,9 @@
             <input class="form-control" type="text" name="nickname" id="nickname" placeholder="nickname">
         </div>
         <button type="submit" class="btn btn-dark btn-block">Sign Up</button>
+        <hr />
+        <a class="btn btn-block btn-info" href="./signInPage">Go to sign in</a>
+        <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
     </form>
 </div>
 

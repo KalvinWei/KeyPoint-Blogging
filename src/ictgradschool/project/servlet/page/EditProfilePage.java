@@ -22,7 +22,7 @@ public class EditProfilePage extends HttpServlet {
         }
         String loggedInUserName = AuthenticationUtil.getLoggedInUserName(req);
         try {
-            req.setAttribute("userProfile", UserDAO.getUserProfileSummaryFromUserName(loggedInUserName));
+            req.setAttribute("userProfile", UserDAO.getUserProfileFromUserName(loggedInUserName));
         } catch (SQLException e) {
             e.printStackTrace();
         }

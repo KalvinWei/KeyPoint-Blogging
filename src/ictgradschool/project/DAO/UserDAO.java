@@ -17,7 +17,6 @@ public class UserDAO {
                     if (!resultSet.next())
                         return null;
                     return new User(
-                            resultSet.getInt("id"),
                             resultSet.getString("userName"),
                             resultSet.getString("nickname"),
                             resultSet.getString("passwordHash"),
@@ -33,7 +32,7 @@ public class UserDAO {
         String defaultAvatarPath = "./images/guest.png";
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO user VALUES (NULL, ?, ?, NULL, NULL, NULL, NULL, NULL, NULL, ?, ?, ?, ?);",
+                    "INSERT INTO user VALUES (?, ?, NULL, NULL, NULL, NULL, NULL, NULL, ?, ?, ?, ?);",
                     Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, user.getUserName());
                 ps.setString(2, user.getNickname());
@@ -41,14 +40,7 @@ public class UserDAO {
                 ps.setString(4, user.getPasswordHash());
                 ps.setString(5, user.getSalt());
                 ps.setInt(6, user.getIteration());
-                int rows = ps.executeUpdate();
-                if (rows == 0)
-                    return false;
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    rs.next();
-                    user.setId(rs.getInt(1));
-                    return true;
-                }
+                return ps.executeUpdate() != 0;
             }
         }
     }
@@ -61,7 +53,6 @@ public class UserDAO {
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next())
                         return new UserProfileSummary(
-                                rs.getInt("id"),
                                 rs.getString("userName"),
                                 rs.getString("nickname"),
                                 rs.getString("email"),
@@ -83,7 +74,6 @@ public class UserDAO {
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next())
                         return new UserProfile(
-                                rs.getInt("id"),
                                 rs.getString("userName"),
                                 rs.getString("nickname"),
                                 rs.getString("firstName"),
@@ -105,7 +95,7 @@ public class UserDAO {
             try (PreparedStatement ps = conn.prepareStatement(
                     "UPDATE user SET nickname = ?, firstName = ?, " +
                             "lastName = ?, email = ?, signature = ? , description = ?, avatar = ? " +
-                            "WHERE id = ? ")) {
+                            "WHERE userName = ? ")) {
                 ps.setString(1,userProfile.getNickname());
                 ps.setString(2,userProfile.getFirstName());
                 ps.setString(3,userProfile.getLastName());
@@ -113,7 +103,7 @@ public class UserDAO {
                 ps.setString(5,userProfile.getSignature());
                 ps.setString(6,userProfile.getDescription());
                 ps.setString(7,userProfile.getAvatar());
-                ps.setInt(8,userProfile.getId());
+                ps.setString(8,userProfile.getUserName());
 
                 ps.executeUpdate();
             }

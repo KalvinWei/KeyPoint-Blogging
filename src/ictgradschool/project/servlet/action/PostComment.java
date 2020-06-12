@@ -23,10 +23,10 @@ public class PostComment extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String content = req.getParameter("content");
         int parent = Integer.parseInt(req.getParameter("parent"));
-        int user = Integer.parseInt(req.getParameter("user"));
+        String userName = req.getParameter("userName");
         int article = Integer.parseInt(req.getParameter("article"));
         Timestamp time = new Timestamp(System.currentTimeMillis());
-        Comment comment = new Comment(null, content, time, user, article, parent);
+        Comment comment = new Comment(null, content, time, userName, article, parent);
 
         try {
             CommentDAO.insertComment(comment);
