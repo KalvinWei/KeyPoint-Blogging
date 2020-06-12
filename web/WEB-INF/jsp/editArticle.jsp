@@ -28,9 +28,28 @@
             ${userProfile.nickname}: ${article.title}
         </c:if>
     </title>
+    <script type="text/javascript">
+        const coverImg = document.querySelector("img#coverImg");
+        const fileInput = document.querySelector("input#fileInput");
+
+        fileInput.onchange = function () {
+            const newCover = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                coverImg.src = e.target.result;
+            }
+            reader.readAsDataURL(newCover);
+        }
+
+        function resetCover() {
+            coverImg.src = "./images/cover/defaultCover.jpg";
+            fileInput.value = coverImg.src;
+        }
+    </script>
 </head>
 <body>
-<%@include file="shared/navbar.jsp"%>
+<%@include file="shared/navbar.jsp" %>
 
 <div id="wrapper">
     <!-- click image to upload or change cover image -->
@@ -38,22 +57,23 @@
         <span>click this area to change cover</span>
         <!-- article.title is empty, signifies this page is to create a new article -->
         <c:if test="${empty article.title}">
-            <img src="./images/cover/noCover.jpg">
+            <img id="coverImg" src="./images/cover/defaultCover.jpg">
         </c:if>
         <!-- this is to edit an existent article -->
         <c:if test="${not empty article.title}">
-            <img src="./images/cover/${article.cover}">
+            <img id="coverImg" src="./images/cover/${article.cover}">
         </c:if>
     </div>
 
 
-    <form action="./postArticle" method="post">
+    <form action="./postArticle" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" value="${article.id}">
-        <input type="hidden" name="cover" value="${article.cover}">
         <input type="hidden" name="userName" value="${article.userName}">
         <input type="hidden" name="tags" value="tags">
         <input type="text" name="title" value="${article.title}" placeholder="title">
         <textarea name="content">${article.content}</textarea>
+        <input id="fileInput" type="file" name="cover" value="./images/cover/${article.cover}">
+        <button id="resetCover" onclick="resetCover();">reset cover</button>
         <button type="submit">post</button>
         <button formaction="./deleteArticle">delete</button>
 

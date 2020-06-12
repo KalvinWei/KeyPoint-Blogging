@@ -23,16 +23,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${article.userNickname}: ${article.title}</title>
+    <title>${article.userNickname} - ${article.title}</title>
 </head>
 <body>
 <%@include file="shared/navbar.jsp" %>
 <div id="wrapper">
     <div id="article">
+        <img id="coverImg" src="${article.cover}">
         <h3>${article.title}</h3>
         <p>${article.userNickname} / ${article.time}</p>
         <p>${article.content}</p>
     </div>
+
     <div id="commentsWrapper">
         <h4>comments</h4>
         <div id="composeComment">
