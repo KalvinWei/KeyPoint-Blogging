@@ -3,7 +3,6 @@ package ictgradschool.project.servlet.action;
 import ictgradschool.project.DAO.ArticleDAO;
 import ictgradschool.project.model.Article;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @WebServlet(name = "PostArticle", urlPatterns = {"/postArticle"})
@@ -35,7 +36,8 @@ public class PostArticle extends HttpServlet {
         String cover = req.getParameter("cover");
         String userName = req.getParameter("userName");
         Timestamp time = new Timestamp(System.currentTimeMillis());
-        List<String> tags = List.of(req.getParameter("tags").split("\\s*,\\s*"));
+        List<String> tags = Arrays.asList(req.getParameter("tags").split("\\s*,\\s*"));
+        tags.removeIf(String::isEmpty);
 
         Article article = new Article(
                 id,
