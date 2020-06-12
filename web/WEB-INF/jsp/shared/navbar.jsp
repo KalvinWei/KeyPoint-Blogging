@@ -18,10 +18,6 @@
     <%@include file="libraries.jsp"%>
 </head>
 <body>
-<!-- left: LOGO-->
-
-
-<!-- right: nav -->
 <nav id="navElements" class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -30,7 +26,6 @@
     </ul>
 
     <ul class="navbar-nav">
-
         <c:if test="${!isUserLoggedIn}">
             <li class="nav-item">
                 <a class="nav-link" href="./signInPage">Sign In</a>
@@ -39,7 +34,6 @@
                 <a class="nav-link" href="./signUpPage">Sign Up</a>
             </li>
         </c:if>
-
         <c:if test="${isUserLoggedIn}">
             <li class="nav-item">
                 <a class="nav-link" href="./articlesPage?user=${userProfileSummary.nickname}">
@@ -57,11 +51,8 @@
                     <a class="dropdown-item" href="./signOut">Sign Out</a>
                 </div>
             </li>
-
         </c:if>
-
     </ul>
 </nav>
-
 </body>
 </html>
