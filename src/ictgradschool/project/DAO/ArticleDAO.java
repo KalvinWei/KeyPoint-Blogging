@@ -13,11 +13,12 @@ public class ArticleDAO {
     public static List<ArticleSummary> getAllArticleSummaries() throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,cover, u.userName,nickname,avatar,time,likes\n" +
+                    "select distinct a.id as id,title,content,cover, u.userName,nickname,avatar,time,likes,isDeleted\n" +
                             "    from article as a\n" +
                             "    inner join user as u on a.userName = u.userName\n" +
-                            "    left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article")) {
-                return assembleArticleSummaries(ps);
+                            "    left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
+                            "    where isDeleted = false")) {
+                return assembleArticleSummaries(conn, ps);
             }
         }
     }
@@ -25,18 +26,18 @@ public class ArticleDAO {
     public static List<ArticleSummary> getArticleSummariesByUserName(String userName)throws IOException, SQLException  {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,cover,u.userName,nickname,avatar,time,likes\n" +
+                    "select distinct a.id as id,title,content,cover,u.userName,nickname,avatar,time,likes,isDeleted\n" +
                             "from article as a\n" +
                             "inner join user as u on a.userName = u.userName\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "where a.userName = ? ")) {
+                            "where a.userName = ? and isDeleted = false")) {
                 ps.setString(1, userName);
-                return assembleArticleSummaries(ps);
+                return assembleArticleSummaries(conn, ps);
             }
         }
     }
 
-    private static List<ArticleSummary> assembleArticleSummaries(PreparedStatement ps) throws SQLException {
+    private static List<ArticleSummary> assembleArticleSummaries(Connection conn, PreparedStatement ps) throws SQLException, IOException {
         try(ResultSet rs = ps.executeQuery()){
             List<ArticleSummary> articleSummaries = new ArrayList<>();
             while(rs.next()){
@@ -52,7 +53,7 @@ public class ArticleDAO {
                         rs.getString("avatar"),
                         rs.getTimestamp("time"),
                         rs.getInt("likes"),
-                        null
+                        TagDAO.getTagsByArticleId(conn, rs.getInt("id"))
                 );
                 articleSummaries.add(summary);
             }
@@ -63,12 +64,11 @@ public class ArticleDAO {
     public static Article getArticleByArticleId(int id) throws IOException, SQLException  {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,time,cover,u.userName,nickname,avatar,likes,tag\n" +
+                    "select distinct a.id as id,title,content,time,cover,u.userName,nickname,avatar,likes,isDeleted\n" +
                             "from article as a\n" +
                             "inner join user as u on a.userName = u.userName\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "left join tag as t on a.id = t.article\n" +
-                            "where a.id = ?")) {
+                            "where a.id = ? and isDeleted = false")) {
                 ps.setInt(1,id);
                 try(ResultSet rs = ps.executeQuery()){
                     if(rs.next()) return new Article(
@@ -81,26 +81,10 @@ public class ArticleDAO {
                             rs.getString("nickname"),
                             rs.getString("avatar"),
                             rs.getInt("likes"),
-                            getTagsByArticleId(id),
-                            CommentDAO.getCommentsByArticleId(id)
+                            TagDAO.getTagsByArticleId(conn, id),
+                            CommentDAO.getCommentsByArticleId(conn, id)
                     );
                     else return null;
-                }
-            }
-        }
-    }
-
-    private static List<String> getTagsByArticleId(int articleId) throws IOException, SQLException{
-        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            try (PreparedStatement ps = conn.prepareStatement(
-                    "SELECT tag FROM tag WHERE article = ?")) {
-                ps.setInt(1, articleId);
-                try(ResultSet rs = ps.executeQuery()){
-                    List<String> tags = new ArrayList<>();
-                    while(rs.next()){
-                        tags.add(rs.getString("tag"));
-                    }
-                    return tags;
                 }
             }
         }
@@ -136,22 +120,15 @@ public class ArticleDAO {
                 }
             }
             //insert tags into table `tag`
-            for (String tag: article.getTags()) {
-                try(PreparedStatement ps = conn.prepareStatement(
-                        "INSERT tag values(?,?)")){
-                    ps.setInt(1,article.getId());
-                    ps.setString(2,tag);
-                    return articleInsert && (ps.executeUpdate() == 1);
-                }
-            }
+            return articleInsert && TagDAO.insertTags(conn, article.getId(), article.getTags());
         }
-        return false;
     }
 
     private static boolean editArticle(Article article) throws IOException, SQLException  {
+        boolean articleUpdate = false;
+        boolean tagUpdate = false;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             //insert article into table `article`
-            boolean articleUpdate = false;
             try (PreparedStatement ps = conn.prepareStatement(
                     "UPDATE article set title = ?, content = ?, time = ?, cover = ? WHERE id = ?")) {
                 ps.setString(1,article.getTitle());
@@ -159,10 +136,9 @@ public class ArticleDAO {
                 ps.setTimestamp(3,article.getTime());
                 ps.setString(4,article.getCover());
                 ps.setInt(5,article.getId());
-
                 articleUpdate = (ps.executeUpdate() == 1);
-
             }
+
             //todo： update tags into table `tag`
             //
             /*try(PreparedStatement ps = conn.prepareStatement(
@@ -183,8 +159,10 @@ public class ArticleDAO {
                 ps.setInt(1, article.getId());
                 ps.executeQuery();
             }*/
+            tagUpdate = TagDAO.insertTags(conn, article.getId(), article.getTags());
         }
-        return false;
+
+        return articleUpdate && tagUpdate;
     }
 
     public static boolean deleteArticleByArticleId(int id) throws IOException, SQLException  {
