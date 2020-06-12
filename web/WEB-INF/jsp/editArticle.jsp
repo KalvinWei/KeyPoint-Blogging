@@ -25,7 +25,7 @@
             Create New Article
         </c:if>
         <c:if test="${not empty article.title}">
-            ${userProfile.nickname}: ${article.title}
+            ${article.title} - ${userProfileSummary.nickname}
         </c:if>
     </title>
     <script type="text/javascript">
@@ -78,7 +78,7 @@
         </div>
         <div class="form-group">
             <label for="tags">Tags:</label>
-            <input type="text" id="tags" name="tags" value="${article.tags.join(", ")}" placeholder="tags, separated by ','" class="form-control">
+            <input type="text" id="tags" name="tags" value="${String.join(", ", article.tags)}" placeholder="tags, separated by ','" class="form-control">
         </div>
         <div class="form-group">
             <label for="content">Content</label>
