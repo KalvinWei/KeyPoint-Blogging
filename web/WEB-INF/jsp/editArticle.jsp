@@ -51,7 +51,6 @@
 </head>
 <body>
 <%@include file="shared/_navbar.jsp" %>
-
 <div id="wrapper">
     <!-- click image to upload or change cover image -->
     <div id="coverWrapper">
