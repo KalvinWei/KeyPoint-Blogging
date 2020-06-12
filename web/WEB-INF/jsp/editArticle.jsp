@@ -65,20 +65,30 @@
         </c:if>
     </div>
 
-
-    <form action="./postArticle" method="post">
+    <form action="./postArticle" method="post" class="form">
         <input type="hidden" name="id" value="${article.id}">
         <input type="hidden" name="userName" value="${article.userName}">
-        <input type="text" name="tags" value="tags" placeholder="tags, separated by ','">
-        <input type="text" name="title" value="${article.title}" placeholder="title">
-        <textarea name="content">${article.content}</textarea>
-        <input id="fileInput" type="file" name="cover" value="./images/cover/${article.cover}">
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" value="${article.title}" placeholder="title" class="form-control">
+        </div>
+        <div>
+            <label for="cover">Cover:</label>
+            <input type="file" id="cover" name="cover" value="./images/cover/${article.cover}">
+        </div>
+        <div class="form-group">
+            <label for="tags">Tags:</label>
+            <input type="text" id="tags" name="tags" value="${article.tags.join(", ")}" placeholder="tags, separated by ','" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea id="content" name="content" class="form-control">${article.content}</textarea>
+        </div>
         <button id="resetCover" onclick="resetCover();">reset cover</button>
-        <button type="submit">post</button>
+        <button type="submit" class="form-control btn btn-dark">Post</button>
     </form>
-
-    <form action=".deleteArticle" method="post">
-        <button>delete</button>
+    <form action=".deleteArticle/${article.id}" method="post" class="form">
+        <button type="submit" class="form-control btn btn-danger">Delete</button>
     </form>
 </div>
 </body>

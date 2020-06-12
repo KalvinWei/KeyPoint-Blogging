@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @WebServlet(name = "PostArticle", urlPatterns = {"/postArticle"})
 public class PostArticle extends HttpServlet {
@@ -35,8 +37,10 @@ public class PostArticle extends HttpServlet {
         String cover = req.getParameter("cover");
         String userName = req.getParameter("userName");
         Timestamp time = new Timestamp(System.currentTimeMillis());
-        List<String> tags = Arrays.asList(req.getParameter("tags").split("\\s*,\\s*"));
-        tags.removeIf(String::isEmpty);
+        List<String> tags = Stream.of(req.getParameter("tags").split("\\s*,\\s*"))
+                .distinct()
+                .filter(tag -> !tag.isEmpty())
+                .collect(Collectors.toList());
 
         Article article = new Article(
                 id,

@@ -138,27 +138,6 @@ public class ArticleDAO {
                 ps.setInt(5,article.getId());
                 articleUpdate = (ps.executeUpdate() == 1);
             }
-
-            //todo： update tags into table `tag`
-            //
-            /*try(PreparedStatement ps = conn.prepareStatement(
-                    "create temporary table _tags as select * from tag where article = ?")){
-                ps.setInt(1, article.getId());
-                ps.executeQuery();
-            }
-            for (String tag : article.getTags()) {
-                try(PreparedStatement ps = conn.prepareStatement(
-                        "insert into _tags set tag = ?")){
-                    ps.setString(1, tag);
-                    ps.executeQuery();
-                }
-            }
-            try(PreparedStatement ps = conn.prepareStatement(
-                    "delete from tag where article = ? and tag not in (select  tag from _tags);\n" +
-                            "    insert into tag (select * from _tags intersect select * from tag);")){
-                ps.setInt(1, article.getId());
-                ps.executeQuery();
-            }*/
             tagUpdate = TagDAO.insertTags(conn, article.getId(), article.getTags());
         }
 
