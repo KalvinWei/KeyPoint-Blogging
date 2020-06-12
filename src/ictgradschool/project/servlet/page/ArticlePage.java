@@ -1,6 +1,7 @@
 package ictgradschool.project.servlet.page;
 
 import ictgradschool.project.DAO.ArticleDAO;
+import ictgradschool.project.model.Article;
 import ictgradschool.project.util.AuthenticationUtil;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,13 @@ public class ArticlePage extends HttpServlet {
         AuthenticationUtil.checkLogInStatus(req);
         int id = Integer.parseInt(req.getParameter("id"));
         try {
-            req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
+            Article article = ArticleDAO.getArticleByArticleId(id);
+            if (article == null) {
+                resp.sendRedirect("./indexPage");
+            }
+            req.setAttribute("article", article);
+            req.setAttribute("isOwner", article.getUserName().equals(AuthenticationUtil.getLoggedInUserName(req)));
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

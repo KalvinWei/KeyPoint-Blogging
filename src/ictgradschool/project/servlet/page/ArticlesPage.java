@@ -18,6 +18,7 @@ public class ArticlesPage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
         String userName = req.getParameter("userName");
+        req.setAttribute("isOwner", userName.equals(AuthenticationUtil.getLoggedInUserName(req)));
         try {
             req.setAttribute("userProfile", UserDAO.getUserProfileFromUserName(userName));
             req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByUserName(userName));
