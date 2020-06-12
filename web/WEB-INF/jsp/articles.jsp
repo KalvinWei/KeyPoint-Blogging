@@ -33,11 +33,11 @@
 
 <div id="profile">
     <div id="nameAndSignature">
+        <img src="./images/avatar/${userProfile.avatar}">
         <span id="nickname">${userProfile.nickname}</span>
         <span id="signature">${userProfile.signature}</span>
     </div>
     <div id="otherInfo">
-        <img src="./images/avatar/${userProfile.avatar}">
         <table>
             <tr><td>date of birth:</td><td>${userProfile.dateOfBirth}</td></tr>
             <tr><td>email:</td><td>${userProfile.email}</td></tr>
@@ -52,8 +52,12 @@
         <h4><a href="./articlePage?id=${article.id}">${article.title}</a></h4>
         <p>
             <span>${article.time}</span>
-            <a href="./editArticlePage?id=${article.id}">edit</a>
-            <a href="./deleteArticle?id=${article.id}">delete</a>
+            <c:if test="${isOwner}">
+                <a href="./editArticlePage?id=${article.id}">edit</a>
+                <form action="./deleteArticle?id=${article.id}">
+                    <button type="submit">Delete</button>
+                </form>
+            </c:if>
         </p>
     </c:forEach>
 </div>
