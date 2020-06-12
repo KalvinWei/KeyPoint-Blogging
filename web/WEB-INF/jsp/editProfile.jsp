@@ -31,9 +31,9 @@
 
             reader.onload = function(e) {
                 avatarDisplay.src = e.target.result;
-            }
+            };
             reader.readAsDataURL(imgFile);
-        }
+        };
 
         function useDefaultAvatar(){
             avatarDisplay.src = "./images/defaultAvatar1.jpg";
@@ -45,26 +45,25 @@
 <%@include file="shared/navbar.jsp"%>
 
 <div id="wrapper">
-    <h3>${userProfile.nickName}</h3>
+    <h3>${userProfile.nickname}</h3>
 
-    <form action="./saveProfile" method="post" enctype="multipart/form-data">
+    <form action="./saveProfile" method="post">
 
     <div id="leftBlock">
-        <input id="signature" type="text" name="signature" value="${userProfile.signature}" placeholder="signature">
-        <input id="firstName" type="text" name="firstName" value="${userProfile.firstName}" placeholder="firstName">
-        <input id="lastName" type="text" name="lastName" value="${userProfile.lastName}" placeholder="lastName">
-        <input id="userName" type="text" name="userName" value="${userProfile.userName}" placeholder="userName">
+        <input id="userName" type="hidden" name="userName" value="${userProfile.userName}">
         <input id="nickname" type="text" name="nickname" value="${userProfile.nickname}" placeholder="nickname">
-        <input id="dateOfBirth" type="text" name="dateOfBirth" value="${userProfile.dateOfBirth}" placeholder="dateOfBirth">
-        <input id="email" type="text" name="email" ${userProfile.email} placeholder="email">
+        <input id="signature" type="text" name="signature" value="${userProfile.signature}" placeholder="signature">
+        <input id="firstName" type="text" name="firstName" value="${userProfile.firstName}" placeholder="first name">
+        <input id="lastName" type="text" name="lastName" value="${userProfile.lastName}" placeholder="last name">
+        <input id="dateOfBirth" type="date" name="dateOfBirth" value="${userProfile.dateOfBirth}" placeholder="date of birth">
+        <input id="email" type="email" name="email" ${userProfile.email} placeholder="email">
         <textarea name="description" placeholder="description">${userProfile.description}</textarea>
-        <button type="submit">save</button>
-        <button formaction="./deleteAccount">delete account</button>
+        <button type="submit">Save</button>
     </div>
 
     <div id="rightBlock">
         <c:if test="${empty userProfile.avatar}">
-            <img class="avatar" src="./images/guest.png" alt="guest avatar">
+            <img class="avatar" src="./images/avatar/guest.png" alt="guest avatar">
         </c:if>
         <c:if test="${not empty userProfile.avatar}">
             <img class="avatar" src="./images/avatar/${userProfile.avatar}">
@@ -72,7 +71,11 @@
         <input type="file" name="avatar" value="${userProfile.avatar}" accept="image/jpeg, image/png">
         <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>
+    </form>
 
+    <form action="./deleteAccount" method="post">
+        <input type="hidden" name="userName" value="${userProfile.userName}">
+        <button type="submit">Delete account</button>
     </form>
 </div>
 </body>

@@ -28,7 +28,7 @@
                 <h2><a href="articlePage?id=${article.id}">${article.title}</a></h2>
                 <p>
                     <a href="./articlesPage?userName=${article.userName}">
-                        <img src="./images/guest.png" style="width: 20px">${article.userNickname}
+                        <img src="./images/avatar/guest.png" style="width: 20px">${article.userNickname}
                     </a>
                 </p>
                 <p><span>${article.time}</span></p>

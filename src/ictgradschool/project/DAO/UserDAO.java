@@ -105,7 +105,7 @@ public class UserDAO {
             try (PreparedStatement ps = conn.prepareStatement(
                     "UPDATE user SET nickname = ?, firstName = ?, " +
                             "lastName = ?, email = ?, signature = ? , description = ?, avatar = ? " +
-                            "WHERE id = ? ")) {
+                            "WHERE userName = ? ")) {
                 ps.setString(1,userProfile.getNickname());
                 ps.setString(2,userProfile.getFirstName());
                 ps.setString(3,userProfile.getLastName());
@@ -113,7 +113,7 @@ public class UserDAO {
                 ps.setString(5,userProfile.getSignature());
                 ps.setString(6,userProfile.getDescription());
                 ps.setString(7,userProfile.getAvatar());
-                ps.setInt(8,userProfile.getId());
+                ps.setString(8,userProfile.getUserName());
 
                 ps.executeUpdate();
             }

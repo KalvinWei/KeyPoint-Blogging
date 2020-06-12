@@ -23,7 +23,6 @@ public class SaveProfile extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
         String userName = req.getParameter("userName");
         String nickname = req.getParameter("nickname");
         String firstName = req.getParameter("firstName");
@@ -42,7 +41,7 @@ public class SaveProfile extends HttpServlet {
         }
 
         UserProfile userProfile = new UserProfile(
-                id,
+                null,
                 userName,
                 nickname,
                 firstName,
@@ -60,6 +59,6 @@ public class SaveProfile extends HttpServlet {
             e.printStackTrace();
         }
 
-        resp.sendRedirect("/articles?id=" + id);
+        resp.sendRedirect("./articlesPage?userName=" + userName);
     }
 }
