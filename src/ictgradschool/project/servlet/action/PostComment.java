@@ -22,12 +22,15 @@ public class PostComment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String content = req.getParameter("content");
-        int parent = Integer.parseInt(req.getParameter("parent"));
+        String parentString = req.getParameter("parent");
+        Integer parent = null;
+        if (parentString != null) {
+            parent = Integer.parseInt(parentString);
+        }
         String userName = req.getParameter("userName");
         int article = Integer.parseInt(req.getParameter("article"));
         Timestamp time = new Timestamp(System.currentTimeMillis());
         Comment comment = new Comment(null, content, time, userName, article, parent);
-
         try {
             CommentDAO.insertComment(comment);
         } catch (SQLException e) {

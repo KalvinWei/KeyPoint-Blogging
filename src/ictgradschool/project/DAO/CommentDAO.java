@@ -4,10 +4,7 @@ import ictgradschool.project.model.Comment;
 import ictgradschool.project.util.DBConnectionUtils;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,7 +90,11 @@ public class CommentDAO {
                     "INSERT INTO comment VALUES (null,?,?,?,?,?,false)")) {
                 ps.setString(1, comment.getContent());
                 ps.setTimestamp(2, comment.getTime());
-                ps.setInt(3, comment.getParent());
+                if (comment.getParent() == null) {
+                    ps.setNull(3, Types.INTEGER);
+                } else {
+                    ps.setInt(3, comment.getParent());
+                }
                 ps.setString(4, comment.getUserName());
                 ps.setInt(5, comment.getArticle());
 

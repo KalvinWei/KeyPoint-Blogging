@@ -29,7 +29,7 @@
 <%@include file="shared/navbar.jsp" %>
 <div id="wrapper">
     <div id="article">
-        <img id="coverImg" src="${article.cover}">
+        <img id="coverImg" src="./images/cover/${article.cover}">
         <h3>${article.title}</h3>
         <p>${article.userNickname} / ${article.time}</p>
         <p>${article.content}</p>
@@ -37,19 +37,22 @@
 
     <div id="commentsWrapper">
         <h4>comments</h4>
-        <div id="composeComment">
+        <c:if test="${isUserLoggedIn}">
             <img src="./images/avatar/${userProfileSummary.avatar}">
-            <div id="commentBox" class="commentBox">
-                <c:if test="${isUserLoggedIn}">
-                    <textarea></textarea>
-                    <button onclick="//postComment();">post</button>
-                </c:if>
-                <c:if test="${!isUserLoggedIn}">
-                    <p><a href="./signInPage">sign in to comment on this article</a></p>
-                </c:if>
-
-            </div>
-        </div>
+            <form action="./postComment" method="post" class="form">
+                <input type="hidden" name="article" value="${article.id}">
+                <input type="hidden" name="userName" value="${userProfileSummary.userName}">
+                <div class="form-group">
+                    <label for="content">Please input your comments:</label>
+                    <textarea id="content" name="content" placeholder="Your comments here..."></textarea>
+                </div>
+                <button type="submit">Post</button>
+            </form>
+        </c:if>
+        <c:if test="${!isUserLoggedIn}">
+            <p><a href="./signInPage">sign in to comment on this article</a></p>
+        </c:if>
+    </div>
 
         <div id="comments">
             <c:forEach var="comment" items="${article.comments}">
@@ -109,7 +112,6 @@
                 </div>
             </c:forEach>
         </div>
-    </div>
 </div>
 </body>
 </html>

@@ -10,7 +10,7 @@ public class Comment implements Serializable {
     private Timestamp time;
     private String userName;
     private int article;
-    private int parent;
+    private Integer parent;
     private String userNickname;
     private String userAvatar;
     private int likes;
@@ -18,12 +18,13 @@ public class Comment implements Serializable {
     private List<Comment> comments;
 
 
-    public Comment(Integer id, String content, Timestamp time, String userName, int article, int parent) {
+    public Comment(Integer id, String content, Timestamp time, String userName, int article, Integer parent) {
         this.id = id;
         this.content = content;
         this.time = time;
         this.userName = userName;
         this.article = article;
+        this.parent = parent;
     }
 
     public Comment(Integer id, String content, Timestamp time, String userName, int article, int parent, String userNickname, String userAvatar, int likes, int level, List<Comment> comments) {
@@ -83,11 +84,11 @@ public class Comment implements Serializable {
         this.article = article;
     }
 
-    public int getParent() {
+    public Integer getParent() {
         return parent;
     }
 
-    public void setParent(int parent) {
+    public void setParent(Integer parent) {
         this.parent = parent;
     }
 
