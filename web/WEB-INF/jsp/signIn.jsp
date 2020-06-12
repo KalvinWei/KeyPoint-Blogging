@@ -1,33 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: kalvinwei
-  Date: 9/06/20
-  Time: 16:45
-  To change this template use File | Settings | File Templates.
-
-  --from MULTIPLE PAGES             [in order to redirect back to the previous page]
-  lastPage
-  # => lastPage (String)
-
-  --from ~/signIn
-  boolean hasLogInFail              [if true, show error msg]
-
-  --from ~/checkUserName            [this value would be got through js code]
-  boolean hasBeenTaken
-
-  --to ~/signIn
-  userName,password
-
-  --to ~/checkUserName
-  userName
-
-  --to ~/signUp
-  userName,password,nickname
-
-
-
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>

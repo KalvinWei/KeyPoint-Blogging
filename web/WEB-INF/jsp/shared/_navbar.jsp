@@ -1,16 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: kalvinwei
-  Date: 9/06/20
-  Time: 16:43
-  To change this template use File | Settings | File Templates.
-
-    --from indexPage
-  user(nickname,avatar)                                     [for navbar]
-  # => userProfileSummary
-  # => isUserLoggedIn (boolean)
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav id="navElements" class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
     <ul class="navbar-nav">
