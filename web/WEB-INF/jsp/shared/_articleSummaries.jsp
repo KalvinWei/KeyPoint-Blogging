@@ -13,7 +13,9 @@
             <img src="./images/cover/cover1.jpg" alt="${article.cover}" class="img-thumbnail">
             <div>
                 <h3><a href="articlePage?id=${article.id}">${article.title}</a></h3>
+
                 <%@include file="_userProfileSummary.jsp"%>
+
                 <span>${article.time}</span>
                 <div>
                     <c:forEach var="tag" items="${article.tags}">

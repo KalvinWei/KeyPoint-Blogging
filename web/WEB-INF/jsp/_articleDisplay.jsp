@@ -6,11 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<div>
+    <img id="coverImg" src="./images/cover/${article.cover}">
+    <h3>${article.title}</h3>
+    <%@include file="shared/_userProfileSummary.jsp"%>
+    <p>${article.time}</p>
+    <p>${article.content}</p>
+</div>

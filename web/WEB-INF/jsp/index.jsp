@@ -20,6 +20,8 @@
 </head>
 <body>
 <%@include file="shared/_navbar.jsp"%>
-<%@include file="shared/_articleSummaries.jsp"%>
+<div>
+    <%@include file="shared/_articleSummaries.jsp"%>
+</div>
 </body>
 </html>
