@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Sign up</title>
-    <%@include file="shared/libraries.jsp"%>
+    <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
 <div id="contentBox" class="m-auto container">

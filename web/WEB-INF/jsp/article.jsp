@@ -24,10 +24,10 @@
 <html>
 <head>
     <title>${article.userNickname} - ${article.title}</title>
-    <%@include file="shared/libraries.jsp"%>
+    <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
-<%@include file="shared/navbar.jsp" %>
+<%@include file="shared/_navbar.jsp" %>
 <div id="wrapper">
     <div id="article">
         <img id="coverImg" src="./images/cover/${article.cover}">

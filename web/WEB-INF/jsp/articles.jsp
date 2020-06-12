@@ -27,10 +27,10 @@
 <html>
 <head>
     <title>${userProfile.nickname}'s Blog</title>
-    <%@include file="shared/libraries.jsp"%>
+    <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
-<%@include file="shared/navbar.jsp"%>
+<%@include file="shared/_navbar.jsp"%>
 
 <div id="profile">
     <div id="nameAndSignature">
@@ -47,7 +47,7 @@
     </div>
 </div>
 
-<%@include file="shared/articleSummaries.jsp"%>
+<%@include file="shared/_articleSummaries.jsp"%>
 
 </body>
 </html>

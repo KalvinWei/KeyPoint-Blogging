@@ -21,7 +21,7 @@
 <html>
 <head>
     <title>Edit Profile</title>
-    <%@include file="shared/libraries.jsp"%>
+    <%@include file="shared/_libraries.jsp"%>
     <script type="javascript">
         const avatarInputBox = document.querySelector("input[name='avatar']");
         const avatarDisplay = document.querySelector("img.avatar");
@@ -43,7 +43,7 @@
     </script>
 </head>
 <body>
-<%@include file="shared/navbar.jsp"%>
+<%@include file="shared/_navbar.jsp"%>
 
 <div id="wrapper" class="container">
     <h3>${userProfile.nickname}</h3>

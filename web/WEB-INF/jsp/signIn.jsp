@@ -32,7 +32,7 @@
 <html>
 <head>
     <title>Sign in</title>
-    <%@include file="shared/libraries.jsp"%>
+    <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
 <div id="contentBox" class="container">

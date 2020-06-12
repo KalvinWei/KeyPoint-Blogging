@@ -16,10 +16,10 @@
 <html>
 <head>
     <title>KeyPoint</title>
-    <%@include file="shared/libraries.jsp"%>
+    <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
-<%@include file="shared/navbar.jsp"%>
-<%@include file="shared/articleSummaries.jsp"%>
+<%@include file="shared/_navbar.jsp"%>
+<%@include file="shared/_articleSummaries.jsp"%>
 </body>
 </html>

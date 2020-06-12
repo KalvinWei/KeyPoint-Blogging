@@ -28,7 +28,7 @@
             ${article.title} - ${userProfileSummary.nickname}
         </c:if>
     </title>
-    <%@include file="shared/libraries.jsp"%>
+    <%@include file="shared/_libraries.jsp"%>
     <script type="text/javascript">
         const coverImg = document.querySelector("img#coverImg");
         const fileInput = document.querySelector("input#fileInput");
@@ -50,7 +50,7 @@
     </script>
 </head>
 <body>
-<%@include file="shared/navbar.jsp" %>
+<%@include file="shared/_navbar.jsp" %>
 
 <div id="wrapper">
     <!-- click image to upload or change cover image -->
