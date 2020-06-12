@@ -13,7 +13,7 @@ public class ArticleDAO {
     public static List<ArticleSummary> getAllArticleSummaries() throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,cover,u.id as userId,u.userName,nickname,avatar,time,likes\n" +
+                    "select distinct a.id as id,title,content,cover, u.userName,nickname,avatar,time,likes\n" +
                             "    from article as a\n" +
                             "    inner join user as u on a.userName = u.userName\n" +
                             "    left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article")) {
@@ -25,7 +25,7 @@ public class ArticleDAO {
     public static List<ArticleSummary> getArticleSummariesByUserName(String userName)throws IOException, SQLException  {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,cover,u.id as userId,u.userName,nickname,avatar,time,likes\n" +
+                    "select distinct a.id as id,title,content,cover,u.userName,nickname,avatar,time,likes\n" +
                             "from article as a\n" +
                             "inner join user as u on a.userName = u.userName\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
@@ -51,7 +51,8 @@ public class ArticleDAO {
                         rs.getString("nickname"),
                         rs.getString("avatar"),
                         rs.getTimestamp("time"),
-                        rs.getInt("likes")
+                        rs.getInt("likes"),
+                        null
                 );
                 articleSummaries.add(summary);
             }

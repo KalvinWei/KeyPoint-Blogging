@@ -53,7 +53,7 @@
                 <div id="navList" class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="./articlesPage?userName=${userProfileSummary.userName}">My Space</a>
                     <a class="dropdown-item" href="./editArticlePage?userName=${userProfileSummary.userName}">New Article</a>
-                    <a class="dropdown-item" href="./editProfilePage?id=${userProfileSummary.id}">Edit Profile</a>
+                    <a class="dropdown-item" href="./editProfilePage?userName=${userProfileSummary.userName}">Edit Profile</a>
                     <a class="dropdown-item" href="./signOut">Sign Out</a>
                 </div>
             </li>

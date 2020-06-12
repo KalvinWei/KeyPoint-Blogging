@@ -1,28 +1,18 @@
 package ictgradschool.project.model;
 
 public class User {
-    private Integer id;
     private String userName;
     private String nickname;
     private String passwordHash;
     private String salt;
     private int iteration;
 
-    public User(Integer id, String userName, String nickname, String passwordHash, String salt, int iteration) {
-        this.id = id;
+    public User(String userName, String nickname, String passwordHash, String salt, int iteration) {
         this.userName = userName;
         this.nickname = nickname;
         this.passwordHash = passwordHash;
         this.salt = salt;
         this.iteration = iteration;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getUserName() {

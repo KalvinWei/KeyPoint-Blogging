@@ -36,19 +36,19 @@ This file contains the documentation of page design, database design, etc.
 
 ## Database Schema
 - **user**
-(**id**, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, passwordHash, salt, iteration)
+(**userName**, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, passwordHash, salt, iteration)
 
 - **article**
-(**id**, title, content, time, *user, cover, isDeleted)
+(**id**, title, content, time, *userName, cover, isDeleted)
 
 - **comment**
-(**id**, content, time, *user, *article, parent, isDeleted,)
+(**id**, content, time, *userName, *article, parent, isDeleted,)
 
 - **likeArticle**
-(***user**, ***article**)
+(***userName**, ***article**)
 
 - **likeComment**
-(***user**, ***comment**)
+(***userName**, ***comment**)
 
 - **tag**
 (***article**, **tag**)

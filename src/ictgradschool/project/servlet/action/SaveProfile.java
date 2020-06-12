@@ -41,7 +41,6 @@ public class SaveProfile extends HttpServlet {
         }
 
         UserProfile userProfile = new UserProfile(
-                null,
                 userName,
                 nickname,
                 firstName,

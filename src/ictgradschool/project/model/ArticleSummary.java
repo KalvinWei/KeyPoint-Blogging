@@ -2,6 +2,7 @@ package ictgradschool.project.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class ArticleSummary implements Serializable {
     private int id;
@@ -13,9 +14,9 @@ public class ArticleSummary implements Serializable {
     private String userAvatar;
     private Timestamp time;
     private int likes;
+    private List<String> tags;
 
-
-    public ArticleSummary(int id, String title, String contentSummary, String cover, String userName, String userNickname, String userAvatar, Timestamp time, int likes) {
+    public ArticleSummary(int id, String title, String contentSummary, String cover, String userName, String userNickname, String userAvatar, Timestamp time, int likes, List<String> tags) {
         this.id = id;
         this.title = title;
         this.contentSummary = contentSummary;
@@ -25,6 +26,7 @@ public class ArticleSummary implements Serializable {
         this.userAvatar = userAvatar;
         this.time = time;
         this.likes = likes;
+        this.tags = tags;
     }
 
     public ArticleSummary() {
@@ -102,6 +104,18 @@ public class ArticleSummary implements Serializable {
         this.likes = likes;
     }
 
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
+    }
+
     @Override
     public String toString() {
         return "ArticleSummary{" +
@@ -109,7 +123,6 @@ public class ArticleSummary implements Serializable {
                 ", title='" + title + '\'' +
                 ", contentSummary='" + contentSummary + '\'' +
                 ", cover='" + cover + '\'' +
-                //", userId=" + userId +
                 ", userNickname='" + userNickname + '\'' +
                 ", userAvatar='" + userAvatar + '\'' +
                 ", time=" + time +
