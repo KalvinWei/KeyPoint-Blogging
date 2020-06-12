@@ -27,6 +27,7 @@
 <html>
 <head>
     <title>${userProfile.nickname}'s Blog</title>
+    <%@include file="shared/libraries.jsp"%>
 </head>
 <body>
 <%@include file="shared/navbar.jsp"%>

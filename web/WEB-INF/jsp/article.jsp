@@ -24,6 +24,7 @@
 <html>
 <head>
     <title>${article.userNickname} - ${article.title}</title>
+    <%@include file="shared/libraries.jsp"%>
 </head>
 <body>
 <%@include file="shared/navbar.jsp" %>

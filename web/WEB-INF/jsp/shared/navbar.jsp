@@ -12,12 +12,6 @@
   # => isUserLoggedIn (boolean)
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>navbar</title>
-    <%@include file="libraries.jsp"%>
-</head>
-<body>
 <nav id="navElements" class="navbar navbar-expand-lg bg-dark navbar-dark justify-content-between">
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -54,5 +48,3 @@
         </c:if>
     </ul>
 </nav>
-</body>
-</html>

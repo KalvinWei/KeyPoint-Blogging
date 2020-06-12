@@ -16,6 +16,7 @@
 <html>
 <head>
     <title>KeyPoint</title>
+    <%@include file="shared/libraries.jsp"%>
 </head>
 <body>
 <%@include file="shared/navbar.jsp"%>

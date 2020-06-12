@@ -28,6 +28,7 @@
             ${article.title} - ${userProfileSummary.nickname}
         </c:if>
     </title>
+    <%@include file="shared/libraries.jsp"%>
     <script type="text/javascript">
         const coverImg = document.querySelector("img#coverImg");
         const fileInput = document.querySelector("input#fileInput");

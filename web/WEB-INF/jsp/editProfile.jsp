@@ -21,6 +21,7 @@
 <html>
 <head>
     <title>Edit Profile</title>
+    <%@include file="shared/libraries.jsp"%>
     <script type="javascript">
         const avatarInputBox = document.querySelector("input[name='avatar']");
         const avatarDisplay = document.querySelector("img.avatar");
