@@ -59,6 +59,8 @@
                 </form>
             </c:if>
         </p>
+        <img src="./images/avatar/${article.userAvatar}">
+
     </c:forEach>
 </div>
 
