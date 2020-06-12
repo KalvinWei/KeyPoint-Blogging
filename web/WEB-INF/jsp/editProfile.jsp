@@ -25,16 +25,19 @@
         const avatarInputBox = document.querySelector("input[name='avatar']");
         const avatarDisplay = document.querySelector("img.avatar");
 
-        async function uploadAvatar(){
-            const response = await fetch("/uploadImage?usage=avatar");
-            const file = await response.json();
-            avatarInputBox.value = file.uuidFilename;
-            avatarDisplay.src = "./images/avatar/" + file.uuidFilename;
+        avatarInputBox.onchange = function () {
+            const imgFile = avatarInputBox.file[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                avatarDisplay.src = e.target.result;
+            }
+            reader.readAsDataURL(imgFile);
         }
 
-        async function deleteAvatar(){
-            await fetch("/deleteImage?usage=avatar&fileName=" + avatarDisplay.src);
+        function useDefaultAvatar(){
             avatarDisplay.src = "./images/defaultAvatar1.jpg";
+            avatarInputBox.value = avatarDisplay.src;
         }
     </script>
 </head>
@@ -44,7 +47,7 @@
 <div id="wrapper">
     <h3>${userProfile.nickName}</h3>
 
-    <form action="./saveProfile" method="post">
+    <form action="./saveProfile" method="post" enctype="multipart/form-data">
 
     <div id="leftBlock">
         <input id="signature" type="text" name="signature" value="${userProfile.signature}" placeholder="signature">
@@ -66,9 +69,8 @@
         <c:if test="${not empty userProfile.avatar}">
             <img class="avatar" src="./images/avatar/${userProfile.avatar}">
         </c:if>
-        <input type="text" name="avatar" value="${userProfile.avatar}">
-        <button onclick="uploadAvatar();">upload a new photo</button>
-        <button onclick="deleteAvatar();">delete current photo</button>
+        <input type="file" name="avatar" value="${userProfile.avatar}" accept="image/jpeg, image/png">
+        <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>
 
     </form>
