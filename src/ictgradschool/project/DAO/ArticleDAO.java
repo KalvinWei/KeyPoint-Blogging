@@ -81,8 +81,8 @@ public class ArticleDAO {
                             rs.getString("nickname"),
                             rs.getString("avatar"),
                             rs.getInt("likes"),
-                            getTagsByArticleId(id),
-                            CommentDAO.getCommentsByArticleId(id)
+                            getTagsByArticleId(conn, id),
+                            CommentDAO.getCommentsByArticleId(conn, id)
                     );
                     else return null;
                 }
@@ -90,8 +90,7 @@ public class ArticleDAO {
         }
     }
 
-    private static List<String> getTagsByArticleId(int articleId) throws IOException, SQLException{
-        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+    private static List<String> getTagsByArticleId(Connection conn, int articleId) throws IOException, SQLException{
             try (PreparedStatement ps = conn.prepareStatement(
                     "SELECT tag FROM tag WHERE article = ?")) {
                 ps.setInt(1, articleId);
@@ -103,7 +102,6 @@ public class ArticleDAO {
                     return tags;
                 }
             }
-        }
     }
 
     public static boolean insertOrEditArticle(Article article) throws IOException, SQLException {
@@ -136,12 +134,13 @@ public class ArticleDAO {
                 }
             }
             //insert tags into table `tag`
-            return articleInsert && TagDAO.insertTags(article.getId(), article.getTags());
+            return articleInsert && TagDAO.insertTags(conn, article.getId(), article.getTags());
         }
     }
 
     private static boolean editArticle(Article article) throws IOException, SQLException  {
         boolean articleUpdate = false;
+        boolean tagUpdate = false;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             //insert article into table `article`
             try (PreparedStatement ps = conn.prepareStatement(
@@ -153,6 +152,7 @@ public class ArticleDAO {
                 ps.setInt(5,article.getId());
                 articleUpdate = (ps.executeUpdate() == 1);
             }
+
             //todo： update tags into table `tag`
             //
             /*try(PreparedStatement ps = conn.prepareStatement(
@@ -173,9 +173,10 @@ public class ArticleDAO {
                 ps.setInt(1, article.getId());
                 ps.executeQuery();
             }*/
+            tagUpdate = TagDAO.insertTags(conn, article.getId(), article.getTags());
         }
 
-        return articleUpdate && TagDAO.insertTags(article.getId(), article.getTags());
+        return articleUpdate && tagUpdate;
     }
 
     public static boolean deleteArticleByArticleId(int id) throws IOException, SQLException  {
