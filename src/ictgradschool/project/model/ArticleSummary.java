@@ -19,6 +19,7 @@ public class ArticleSummary implements Serializable {
         this.title = title;
         this.contentSummary = contentSummary;
         this.cover = cover;
+        this.user = user;
         this.time = time;
         this.likes = likes;
         this.tags = tags;

@@ -27,24 +27,6 @@ public class UserDAO {
         }
     }
 
-//    public static UserData getUserDataFromId(int id) throws SQLException, IOException {
-//        try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-//            try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user WHERE id=?;");) {
-//                ps.setInt(1, id);
-//                try (ResultSet resultSet = ps.executeQuery()) {
-//                    if (!resultSet.next())
-//                        return null;
-//                    return new UserData(
-//                            resultSet.getString("userName"),
-//                            resultSet.getString("passwordHash"),
-//                            resultSet.getString("salt"),
-//                            resultSet.getInt("iteration")
-//                    );
-//                }
-//            }
-//        }
-//    }
-
     public static int insertUser(UserData user) throws IOException, SQLException {
         String defaultAvatarName = "default/guest.png";
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
@@ -64,27 +46,6 @@ public class UserDAO {
             }
         }
     }
-
-//    public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) throws SQLException, IOException {
-//        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-//            try (PreparedStatement ps = conn.prepareStatement(
-//                    "SELECT * FROM user WHERE userName = ?")) {
-//                ps.setString(1, userName);
-//                try (ResultSet rs = ps.executeQuery()) {
-//                    if (rs.next())
-//                        return new UserProfileSummary(
-//                                rs.getString("userName"),
-//                                rs.getString("nickname"),
-//                                rs.getString("email"),
-//                                rs.getString("signature"),
-//                                rs.getString("avatar"),
-//                                rs.getString("description")
-//                        );
-//                    else return null;
-//                }
-//            }
-//        }
-//    }
 
     public static User getUserFromId(Connection conn, int id) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
@@ -150,16 +111,6 @@ public class UserDAO {
             }
         }
     }
-
-//    public static boolean deleteUserById(int id) throws SQLException, IOException {
-//        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-//            try (PreparedStatement ps = conn.prepareStatement(
-//                    "DELETE FROM user WHERE id = ?")) {
-//                ps.setInt(1, id);
-//                return ps.execute();
-//            }
-//        }
-//    }
 
     public static boolean deleteUserByUserName(String userName) throws IOException, SQLException{
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
