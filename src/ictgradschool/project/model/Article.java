@@ -14,11 +14,11 @@ public class Article implements Serializable {
     private Timestamp time;
     private String cover = "cover5.jpg";
     private int likes = 0;
-    private UserProfile user;
+    private User user;
     private List<String> tags = new ArrayList<>();
     private List<Comment> comments = new ArrayList<>();
 
-    public Article(Integer id, String title, String content, Timestamp time, String cover, UserProfile user, int likes, List<String> tags, List<Comment> comments) {
+    public Article(Integer id, String title, String content, Timestamp time, String cover, User user, int likes, List<String> tags, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -33,7 +33,7 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(UserProfile user) {
+    public Article(User user) {
         this.user = user;
     }
 
@@ -101,11 +101,11 @@ public class Article implements Serializable {
         this.cover = cover;
     }
 
-    public void setUser(UserProfile user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public UserProfile getUser() {
+    public User getUser() {
         return user;
     }
 

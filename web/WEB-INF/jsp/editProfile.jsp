@@ -28,45 +28,45 @@
 <%@include file="shared/_navbar.jsp"%>
 
 <div id="wrapper" class="container">
-    <h3>${userProfile.nickname}</h3>
+    <h3>${user.nickname}</h3>
 
     <form action="./saveProfile" method="post" enctype="multipart/form-data">
 
     <div id="leftBlock">
-        <input id="userName" type="hidden" name="userName" value="${userProfile.userName}">
+        <input id="userName" type="hidden" name="userName" value="${user.userName}">
         <div class="form-group">
             <label for="nickname">Nickname:</label>
-            <input id="nickname" type="text" name="nickname" value="${userProfile.nickname}" placeholder="nickname" class="form-control">
+            <input id="nickname" type="text" name="nickname" value="${user.nickname}" placeholder="nickname" class="form-control">
         </div>
         <div class="form-group">
             <label for="signature">Signature:</label>
-            <input id="signature" type="text" name="signature" value="${userProfile.signature}" placeholder="signature" class="form-control">
+            <input id="signature" type="text" name="signature" value="${user.signature}" placeholder="signature" class="form-control">
         </div>
         <div class="form-group">
             <label for="firstName">First name:</label>
-            <input id="firstName" type="text" name="firstName" value="${userProfile.firstName}" placeholder="first name" class="form-control">
+            <input id="firstName" type="text" name="firstName" value="${user.firstName}" placeholder="first name" class="form-control">
         </div>
         <div class="form-group">
             <label for="lastName">Last name:</label>
-            <input id="lastName" type="text" name="lastName" value="${userProfile.lastName}" placeholder="last name" class="form-control">
+            <input id="lastName" type="text" name="lastName" value="${user.lastName}" placeholder="last name" class="form-control">
         </div>
         <div class="form-group">
             <label for="dateOfBirth">Date of birth:</label>
-            <input id="dateOfBirth" type="date" name="dateOfBirth" value="${userProfile.dateOfBirth.toString()}" placeholder="date of birth" class="form-control">
+            <input id="dateOfBirth" type="date" name="dateOfBirth" value="${user.dateOfBirth.toString()}" placeholder="date of birth" class="form-control">
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input id="email" type="email" name="email" value="${userProfile.email}" placeholder="email" class="form-control">
+            <input id="email" type="email" name="email" value="${user.email}" placeholder="email" class="form-control">
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea id="description" name="description" placeholder="description" class="form-control">${userProfile.description}</textarea>
+            <textarea id="description" name="description" placeholder="description" class="form-control">${user.description}</textarea>
         </div>
     </div>
 
     <div id="rightBlock">
-        <img class="avatar" src="./images/avatar/${userProfile.avatar}">
-        <input type="hidden" name="originalAvatar" value="${userProfile.avatar}">
+        <img class="avatar" src="./images/avatar/${user.avatar}">
+        <input type="hidden" name="originalAvatar" value="${user.avatar}">
         <input type="file" name="avatar" accept="image/jpeg, image/png">
         <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>
@@ -76,7 +76,7 @@
     </form>
 
     <form action="./deleteAccount" method="post">
-        <input type="hidden" name="userName" value="${userProfile.userName}">
+        <input type="hidden" name="userName" value="${user.userName}">
         <button type="submit" class="btn btn-danger form-control">Delete account</button>
     </form>
 </div>

@@ -1,7 +1,7 @@
 package ictgradschool.project.DAO;
 
+import ictgradschool.project.model.User;
 import ictgradschool.project.model.UserData;
-import ictgradschool.project.model.UserProfile;
 import ictgradschool.project.util.DBConnectionUtils;
 
 import java.io.IOException;
@@ -82,13 +82,13 @@ public class UserDAO {
 //        }
 //    }
 
-    public static UserProfile getUserProfileFromId(Connection conn, int id) throws SQLException {
+    public static User getUserProfileFromId(Connection conn, int id) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
                 "SELECT * FROM user WHERE id = ?")) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next())
-                    return new UserProfile(
+                    return new User(
                             rs.getInt("id"),
                             rs.getString("userName"),
                             rs.getString("nickname"),
@@ -105,20 +105,20 @@ public class UserDAO {
         }
     }
 
-    public static UserProfile getUserProfileFromId(int id) throws IOException, SQLException {
+    public static User getUserProfileFromId(int id) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
            return getUserProfileFromId(conn, id);
         }
     }
 
-    public static UserProfile getUserProfileFromUserName(String userName) throws IOException, SQLException {
+    public static User getUserProfileFromUserName(String userName) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "SELECT * FROM user WHERE userName = ?")) {
                 ps.setString(1, userName);
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next())
-                        return new UserProfile(
+                        return new User(
                                 rs.getInt("id"),
                                 rs.getString("userName"),
                                 rs.getString("nickname"),
@@ -136,22 +136,22 @@ public class UserDAO {
         }
     }
 
-    public static void saveProfile(UserProfile userProfile) throws IOException, SQLException {
+    public static void saveProfile(User user) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "UPDATE user SET userName = ?, nickname = ?, firstName = ?, " +
                             "lastName = ?, email = ?, dateOfBirth = ?, signature = ? , description = ?, avatar = ? " +
                             "WHERE id = ? ")) {
-                ps.setString(1,userProfile.getUserName());
-                ps.setString(2,userProfile.getNickname());
-                ps.setString(3,userProfile.getFirstName());
-                ps.setString(4,userProfile.getLastName());
-                ps.setString(5,userProfile.getEmail());
-                ps.setDate(6, Date.valueOf(userProfile.getDateOfBirth()));
-                ps.setString(7,userProfile.getSignature());
-                ps.setString(8,userProfile.getDescription());
-                ps.setString(9,userProfile.getAvatar());
-                ps.setInt(10,userProfile.getId());
+                ps.setString(1, user.getUserName());
+                ps.setString(2, user.getNickname());
+                ps.setString(3, user.getFirstName());
+                ps.setString(4, user.getLastName());
+                ps.setString(5, user.getEmail());
+                ps.setDate(6, Date.valueOf(user.getDateOfBirth()));
+                ps.setString(7, user.getSignature());
+                ps.setString(8, user.getDescription());
+                ps.setString(9, user.getAvatar());
+                ps.setInt(10, user.getId());
 
                 ps.executeUpdate();
             }

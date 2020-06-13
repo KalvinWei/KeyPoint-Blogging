@@ -9,12 +9,12 @@ public class ArticleSummary implements Serializable {
     private String title;
     private String contentSummary;
     private String cover;
-    private UserProfile user;
+    private User user;
     private Timestamp time;
     private int likes;
     private List<String> tags;
 
-    public ArticleSummary(int id, String title, String contentSummary, String cover, UserProfile user, Timestamp time, int likes, List<String> tags) {
+    public ArticleSummary(int id, String title, String contentSummary, String cover, User user, Timestamp time, int likes, List<String> tags) {
         this.id = id;
         this.title = title;
         this.contentSummary = contentSummary;
@@ -59,11 +59,11 @@ public class ArticleSummary implements Serializable {
         this.cover = cover;
     }
 
-    public void setUser(UserProfile user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
-    public UserProfile getUser() {
+    public User getUser() {
         return user;
     }
 

@@ -117,7 +117,7 @@ This file contains the documentation of page design, database design, etc.
     - **consumes**
         - isUserLoggedIn : Boolean
         - userProfileSummary : UserProfileSummary?
-        - userProfile : UserProfile
+        - user : UserProfile
     - **sends**
         - [post] to saveProfile
             - id
@@ -153,7 +153,7 @@ This file contains the documentation of page design, database design, etc.
     - **consumes**
         - isUserLoggedIn : Boolean
         - userProfileSummary : UserProfileSummary?
-        - userProfile : UserProfile
+        - user : UserProfile
         - articleSummaries : List\<ArticleSummaries\>
     - **sends**
         - [get] to editArticlePage

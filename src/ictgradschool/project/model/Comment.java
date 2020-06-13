@@ -12,11 +12,11 @@ public class Comment implements Serializable {
     private Integer parent;
     private int likes;
     private int level;
-    private UserProfile user;
+    private User user;
     private List<Comment> comments;
 
 
-    public Comment(Integer id, String content, Timestamp time, UserProfile user, int article, Integer parent) {
+    public Comment(Integer id, String content, Timestamp time, User user, int article, Integer parent) {
         this.id = id;
         this.content = content;
         this.time = time;
@@ -25,7 +25,7 @@ public class Comment implements Serializable {
         this.parent = parent;
     }
 
-    public Comment(Integer id, String content, Timestamp time, int article, int parent, int likes, int level, UserProfile user, List<Comment> comments) {
+    public Comment(Integer id, String content, Timestamp time, int article, int parent, int likes, int level, User user, List<Comment> comments) {
         this.id = id;
         this.content = content;
         this.time = time;
@@ -104,11 +104,11 @@ public class Comment implements Serializable {
         this.comments = comments;
     }
 
-    public UserProfile getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserProfile user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

@@ -3,7 +3,7 @@ package ictgradschool.project.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class UserProfile implements Serializable {
+public class User implements Serializable {
     private Integer id;
     private String userName;
     private String nickname;
@@ -15,7 +15,7 @@ public class UserProfile implements Serializable {
     private String description;
     private String avatar = "default/guest.png";
 
-    public UserProfile(Integer id, String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar) {
+    public User(Integer id, String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar) {
         this.id = id;
         this.userName = userName;
         this.nickname = nickname;
@@ -28,7 +28,7 @@ public class UserProfile implements Serializable {
         this.avatar = avatar;
     }
 
-    public UserProfile() {
+    public User() {
     }
 
     public void setField(String fieldName, String fieldValue) {

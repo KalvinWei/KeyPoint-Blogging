@@ -1,8 +1,7 @@
 package ictgradschool.project.servlet.action;
 
 import ictgradschool.project.DAO.UserDAO;
-import ictgradschool.project.model.Article;
-import ictgradschool.project.model.UserProfile;
+import ictgradschool.project.model.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -17,11 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,7 +56,7 @@ public class SaveProfile extends HttpServlet {
         factory.setRepository(tempFolder);
         ServletFileUpload upload = new ServletFileUpload(factory);
 
-        UserProfile userProfile = new UserProfile();
+        User user = new User();
         String userName = "";
         String originalAvatar = "";
 
@@ -80,12 +75,12 @@ public class SaveProfile extends HttpServlet {
                         originalAvatar = fieldValue;
                         continue;
                     }
-                    userProfile.setField(fieldName, fieldValue);
+                    user.setField(fieldName, fieldValue);
                 } else if (!item.isFormField() && acceptableMimeTypes.contains(item.getContentType())) {
                     String fileName = UUID.randomUUID() + "." + FilenameUtils.getExtension(item.getName());
                     file = new File(uploadsFolder, fileName);
                     item.write(file);
-                    userProfile.setField("avatar", fileName);
+                    user.setField("avatar", fileName);
                 }
             }
         } catch (Exception e) {
@@ -93,7 +88,7 @@ public class SaveProfile extends HttpServlet {
         }
 
         try {
-            UserDAO.saveProfile(userProfile);
+            UserDAO.saveProfile(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
