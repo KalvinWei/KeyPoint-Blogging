@@ -2,6 +2,8 @@ package ictgradschool.project.model;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UserProfile implements Serializable {
@@ -28,6 +30,42 @@ public class UserProfile implements Serializable {
     }
 
     public UserProfile() {
+    }
+
+    public void setField(String fieldName, String fieldValue) {
+        switch (fieldValue) {
+            case "userName":
+                setUserName(fieldValue);
+                break;
+            case "nickname":
+                setNickname(fieldValue);
+                break;
+            case "firstName":
+                setFirstName(fieldValue);
+                break;
+            case "lastName":
+                setLastName(fieldValue);
+                break;
+            case "dateOfBirth":
+                try {
+                    setDateOfBirth(new SimpleDateFormat("yyyy-MM-dd").parse(fieldValue));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "email":
+                setEmail(fieldValue);
+                break;
+            case "signature":
+                setSignature(fieldValue);
+                break;
+            case "description":
+                setDescription(fieldValue);
+                break;
+            case "avatar":
+                setAvatar(fieldValue);
+                break;
+        }
     }
 
     public String getUserName() {

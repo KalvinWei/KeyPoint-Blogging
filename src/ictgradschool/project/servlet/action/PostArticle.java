@@ -61,50 +61,23 @@ public class PostArticle extends HttpServlet {
 
         try {
             List<FileItem> fileItems = upload.parseRequest(req);
-            File fullsizeImageFile;
+            File file;
 
-            for (FileItem fileItem : fileItems) {
-                if (fileItem.isFormField()) {
-                    String fieldName = fileItem.getFieldName();
-                    String fieldValue = fileItem.getString();
+            for (FileItem item : fileItems) {
+                if (item.isFormField()) {
+                    String fieldName = item.getFieldName();
+                    String fieldValue = item.getString();
                     article.setField(fieldName, fieldValue);
-                } else if (!fileItem.isFormField() && acceptableMimeTypes.contains(fileItem.getContentType())) {
-                    String fileName = UUID.randomUUID() + "." + FilenameUtils.getExtension(fileItem.getName());
-                    fullsizeImageFile = new File(uploadsFolder, fileName);
-                    fileItem.write(fullsizeImageFile);
+                } else if (!item.isFormField() && acceptableMimeTypes.contains(item.getContentType())) {
+                    String fileName = UUID.randomUUID() + "." + FilenameUtils.getExtension(item.getName());
+                    file = new File(uploadsFolder, fileName);
+                    item.write(file);
                     article.setField("cover", fileName);
                 }
             }
         } catch (Exception e) {
             throw new ServletException(e);
         }
-
-//        String idString = req.getParameter("id");
-//        Integer id;
-//        if (idString == null || idString.isEmpty()) {
-//            id = null;
-//        } else {
-//            id = Integer.parseInt(req.getParameter("id"));
-//        }
-//        String title = req.getParameter("title");
-//        String content = req.getParameter("content");
-//        String cover = req.getParameter("cover");
-//        String userName = req.getParameter("userName");
-//        Timestamp time = new Timestamp(System.currentTimeMillis());
-//        List<String> tags = Stream.of(req.getParameter("tags").split("\\s*,\\s*"))
-//                .distinct()
-//                .filter(tag -> !tag.isEmpty())
-//                .collect(Collectors.toList());
-//
-//        Article article = new Article(
-//                id,
-//                title,
-//                content,
-//                time,
-//                cover,
-//                userName,
-//                tags
-//        );
 
         article.setTime(new Timestamp(System.currentTimeMillis()));
         try {

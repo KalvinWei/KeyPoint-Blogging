@@ -91,6 +91,9 @@ public class ArticleDAO {
     }
 
     public static boolean insertOrEditArticle(Article article) throws IOException, SQLException {
+        if (article.getCover() == null) {
+            article.setCover("cover3.jpg");
+        }
         if (article.getId() == null) {
             return insertArticle(article);
         } else {
