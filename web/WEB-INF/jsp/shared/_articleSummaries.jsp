@@ -11,6 +11,7 @@
                 <%@include file="_userSummary.jsp"%>
 
                 <span>${article.time}</span>
+                <span>Likes: ${article.likes}</span>
                 <div>
                     <c:forEach var="tag" items="${article.tags}">
                         <span class="badge badge-pill badge-light">${tag}</span>
