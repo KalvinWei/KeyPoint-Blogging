@@ -22,14 +22,15 @@ public class ArticleDAO {
         }
     }
 
-    public static List<ArticleSummary> getArticleSummariesByUserId(int id)throws IOException, SQLException  {
+    public static List<ArticleSummary> getArticleSummariesByUserName(String userName)throws IOException, SQLException  {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "select distinct a.id as id,title,content,cover,user,time,likes,isDeleted\n" +
+                    "select distinct a.id as id,title,content,cover,user,userName,time,likes,isDeleted\n" +
                             "from article as a\n" +
+                            "inner join user as u on a.user = u.id\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "where user = ? and isDeleted = false")) {
-                ps.setInt(1, id);
+                            "where userName = ? and isDeleted = false")) {
+                ps.setString(1, userName);
                 return assembleArticleSummaries(conn, ps);
             }
         }

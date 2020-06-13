@@ -15,18 +15,8 @@ public class Article implements Serializable {
     private String cover = "cover5.jpg";
     private int likes = 0;
     private UserProfile user;
-    private List<String> tags;
-    private List<Comment> comments;
-
-    public Article(Integer id, String title, String content, Timestamp time, String cover, UserProfile user, List<String> tags) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.time = time;
-        this.cover = cover;
-        this.user = user;
-        this.tags = tags;
-    }
+    private List<String> tags = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
     public Article(Integer id, String title, String content, Timestamp time, String cover, UserProfile user, int likes, List<String> tags, List<Comment> comments) {
         this.id = id;
@@ -34,6 +24,7 @@ public class Article implements Serializable {
         this.content = content;
         this.time = time;
         this.cover = cover;
+        this.user = user;
         this.likes = likes;
         this.tags = tags;
         this.comments = comments;
@@ -42,8 +33,8 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(String userName) {
-        this.tags = new ArrayList<>();
+    public Article(UserProfile user) {
+        this.user = user;
     }
 
     public void setField(String fieldName, String fieldValue) {

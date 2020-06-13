@@ -45,7 +45,7 @@ public class UserDAO {
 //        }
 //    }
 
-    public static int insertUser(UserData user) throws IOException, SQLException {
+    public static String insertUser(UserData user) throws IOException, SQLException {
         String defaultAvatarName = "default/guest.png";
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
@@ -56,10 +56,7 @@ public class UserDAO {
                 ps.setString(5, user.getSalt());
                 ps.setInt(6, user.getIteration());
 
-                try (ResultSet rs = ps.getGeneratedKeys()) {
-                    rs.next();
-                    return rs.getInt(1);
-                }
+                return user.getUserName();
             }
         }
     }

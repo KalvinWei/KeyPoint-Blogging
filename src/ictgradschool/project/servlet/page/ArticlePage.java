@@ -29,7 +29,6 @@ public class ArticlePage extends HttpServlet {
             }
             article.setComments(flattenCommentList(article.getComments()));
             req.setAttribute("article", article);
-            req.setAttribute("isOwner", article.getUserName().equals(AuthenticationUtil.getLoggedInUserName(req)));
         } catch (SQLException e) {
             e.printStackTrace();
         }

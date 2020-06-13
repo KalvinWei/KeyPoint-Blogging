@@ -28,8 +28,9 @@ public class SignUp extends HttpServlet {
             if (UserDAO.getUserDataFromUserName(userName) != null) {
                 resp.sendRedirect("./signUpPage");
             } else {
-                int id = UserDAO.insertUser(user);
-                resp.sendRedirect("./editProfilePage?id=" + id);
+                UserDAO.insertUser(user);
+                AuthenticationUtil.signIn(req, userName);
+                resp.sendRedirect("./editProfilePage");
             }
         } catch (SQLException e) {
             e.printStackTrace();

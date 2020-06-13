@@ -20,12 +20,6 @@ public class EditProfilePage extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
             return;
         }
-        String loggedInUserName = AuthenticationUtil.getLoggedInUserName(req);
-        try {
-            req.setAttribute("userProfile", UserDAO.getUserProfileFromUserName(loggedInUserName));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         req.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp").forward(req, resp);
     }
 
