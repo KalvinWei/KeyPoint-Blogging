@@ -5,8 +5,10 @@ import ictgradschool.project.model.UserProfile;
 import ictgradschool.project.model.UserProfileSummary;
 import ictgradschool.project.util.DBConnectionUtils;
 
+import javax.ejb.Local;
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
 
 public class UserDAO {
     public static User getUserFromUserName(String userName) throws SQLException, IOException {
@@ -77,7 +79,7 @@ public class UserDAO {
                                 rs.getString("nickname"),
                                 rs.getString("firstName"),
                                 rs.getString("lastName"),
-                                rs.getDate("dateOfBirth"),
+                                rs.getObject("dateOfBirth", LocalDate.class),
                                 rs.getString("email"),
                                 rs.getString("signature"),
                                 rs.getString("description"),
@@ -99,7 +101,7 @@ public class UserDAO {
                 ps.setString(2,userProfile.getFirstName());
                 ps.setString(3,userProfile.getLastName());
                 ps.setString(4,userProfile.getEmail());
-                ps.setNull(5, Types.DATE);
+                ps.setDate(5, Date.valueOf(userProfile.getDateOfBirth()));
                 ps.setString(6,userProfile.getSignature());
                 ps.setString(7,userProfile.getDescription());
                 ps.setString(8,userProfile.getAvatar());

@@ -52,7 +52,7 @@
         </div>
         <div class="form-group">
             <label for="dateOfBirth">Date of birth:</label>
-            <input id="dateOfBirth" type="date" name="dateOfBirth" value="${userProfile.dateOfBirth}" placeholder="date of birth" class="form-control">
+            <input id="dateOfBirth" type="date" name="dateOfBirth" value="${userProfile.dateOfBirth.toString()}" placeholder="date of birth" class="form-control">
         </div>
         <div class="form-group">
             <label for="email">Email:</label>

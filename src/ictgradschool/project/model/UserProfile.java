@@ -1,23 +1,20 @@
 package ictgradschool.project.model;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class UserProfile implements Serializable {
     private String userName;
     private String nickname;
     private String firstName;
     private String lastName;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private String email;
     private String signature;
     private String description;
     private String avatar = "default/guest.png";
 
-    public UserProfile(String userName, String nickname, String firstName, String lastName, Date dateOfBirth, String email, String signature, String description, String avatar) {
+    public UserProfile(String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar) {
         this.userName = userName;
         this.nickname = nickname;
         this.firstName = firstName;
@@ -47,11 +44,7 @@ public class UserProfile implements Serializable {
                 setLastName(fieldValue);
                 break;
             case "dateOfBirth":
-                try {
-                    setDateOfBirth(new SimpleDateFormat("yyyy-MM-dd").parse(fieldValue));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                setDateOfBirth(LocalDate.parse(fieldValue));
                 break;
             case "email":
                 setEmail(fieldValue);
@@ -100,11 +93,11 @@ public class UserProfile implements Serializable {
         this.lastName = lastName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

@@ -7,7 +7,7 @@
     </div>
     <div id="otherInfo">
         <table>
-            <tr><td>date of birth:</td><td>${userProfile.dateOfBirth}</td></tr>
+            <tr><td>date of birth:</td><td>${userProfile.dateOfBirth.toString()}</td></tr>
             <tr><td>email:</td><td>${userProfile.email}</td></tr>
             <tr><td>description:</td><td>${userProfile.description}</td></tr>
         </table>
