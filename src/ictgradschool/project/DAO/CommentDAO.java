@@ -11,9 +11,8 @@ import java.util.List;
 public class CommentDAO {
     public static List<Comment> getCommentsByArticleId(Connection conn, int articleId) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
-                "select distinct c.id as id,content,time,parent,article,nickname,avatar,u.userName,likes,c.isDeleted\n" +
+                "select distinct c.id as id,content,time,parent,article,user,likes,c.isDeleted\n" +
                         "from comment as c\n" +
-                        "    inner join user as u on c.userName = u.userName\n" +
                         "    left join (select comment,count(*) as likes from likeComment group by comment) as l on c.id = l.comment\n" +
                         "    where c.article = ? and c.isDeleted = false" +
                         "    order by time desc;")) {
@@ -26,13 +25,11 @@ public class CommentDAO {
                             this_id,
                             rs.getString("content"),
                             rs.getTimestamp("time"),
-                            rs.getString("u.userName"),
                             rs.getInt("article"),
                             rs.getInt("parent"), //parentId
-                            rs.getString("nickname"),
-                            rs.getString("avatar"),
                             rs.getInt("likes"),
                             0, //level
+                            UserDAO.getUserProfileFromId(conn, rs.getInt("user")),
                             getCommentsByParentId(conn, this_id, 1)
                     ));
                 }
@@ -43,9 +40,8 @@ public class CommentDAO {
 
     private static List<Comment> getCommentsByParentId(Connection conn, int parentId, int currentLevel) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
-                "select distinct c.id as id,content,time,article,nickname,avatar,u.userName,likes,c.isDeleted\n" +
+                "select distinct c.id as id,content,time,article,user,likes,c.isDeleted\n" +
                         "from comment as c\n" +
-                        "    inner join user as u on c.userName = u.userName\n" +
                         "    left join (select comment,count(*) as likes from likeComment group by comment) as l on c.id = l.comment\n" +
                         "    where c.parent = ? and c.isDeleted = false" +
                         "    order by time desc;")) {
@@ -54,18 +50,15 @@ public class CommentDAO {
                 List<Comment> comments = new ArrayList<>();
                 while (rs.next()) {
                     int this_id = rs.getInt("id");
-
                     comments.add(new Comment(
                             this_id,
                             rs.getString("content"),
                             rs.getTimestamp("time"),
-                            rs.getString("u.userName"),
                             rs.getInt("article"),
                             parentId, //parentId
-                            rs.getString("nickname"),
-                            rs.getString("avatar"),
                             rs.getInt("likes"),
                             currentLevel, //level
+                            UserDAO.getUserProfileFromId(conn, rs.getInt("user")),
                             getCommentsByParentId(conn, this_id, currentLevel + 1)
                     ));
                 }
@@ -95,7 +88,7 @@ public class CommentDAO {
                 } else {
                     ps.setInt(3, comment.getParent());
                 }
-                ps.setString(4, comment.getUserName());
+                ps.setInt(4, comment.getUser().getId());
                 ps.setInt(5, comment.getArticle());
 
                 int rowAffected = ps.executeUpdate();

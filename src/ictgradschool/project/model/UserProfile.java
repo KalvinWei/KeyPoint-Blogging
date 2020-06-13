@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class UserProfile implements Serializable {
+    private Integer id;
     private String userName;
     private String nickname;
     private String firstName;
@@ -14,7 +15,8 @@ public class UserProfile implements Serializable {
     private String description;
     private String avatar = "default/guest.png";
 
-    public UserProfile(String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar) {
+    public UserProfile(Integer id, String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar) {
+        this.id = id;
         this.userName = userName;
         this.nickname = nickname;
         this.firstName = firstName;
@@ -133,18 +135,11 @@ public class UserProfile implements Serializable {
         this.avatar = avatar;
     }
 
-    @Override
-    public String toString() {
-        return "UserProfile{" +
-                ", userName='" + userName + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", email='" + email + '\'' +
-                ", signature='" + signature + '\'' +
-                ", description='" + description + '\'' +
-                ", avatar='" + avatar + '\'' +
-                '}';
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

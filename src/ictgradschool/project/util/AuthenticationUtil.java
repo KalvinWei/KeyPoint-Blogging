@@ -20,7 +20,6 @@ public class AuthenticationUtil {
         byte[] passwordHash = PasswordUtil.hash(password.toCharArray(), salt, iteration);
         return new UserData(
                 userName,
-                userName,
                 PasswordUtil.base64Encode(passwordHash),
                 PasswordUtil.base64Encode(salt),
                 iteration
@@ -57,7 +56,7 @@ public class AuthenticationUtil {
             isUserLoggedIn = true;
             String loggedInUserName = getLoggedInUserName(req);
             try {
-                req.setAttribute("userProfileSummary", UserDAO.getUserProfileSummaryFromUserName(loggedInUserName));
+                req.setAttribute("user", UserDAO.getUserProfileFromUserName(loggedInUserName));
             } catch (SQLException e) {
                 e.printStackTrace();
             }

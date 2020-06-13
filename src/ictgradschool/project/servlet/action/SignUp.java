@@ -22,16 +22,14 @@ public class SignUp extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userName");
-        String nickname = req.getParameter("nickname");
         String password = req.getParameter("password");
         UserData user = AuthenticationUtil.createUser(userName, password);
-        user.setNickname(nickname == null || nickname.isEmpty() ? userName : nickname);
         try {
-            if (UserDAO.getUserFromUserName(userName) != null) {
-                resp.sendRedirect("./signInPage");
+            if (UserDAO.getUserDataFromUserName(userName) != null) {
+                resp.sendRedirect("./signUpPage");
             } else {
-                UserDAO.insertUser(user);
-                resp.sendRedirect("./signInPage");
+                int id = UserDAO.insertUser(user);
+                resp.sendRedirect("./editProfilePage?id=" + id);
             }
         } catch (SQLException e) {
             e.printStackTrace();

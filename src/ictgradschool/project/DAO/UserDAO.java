@@ -10,7 +10,7 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class UserDAO {
-    public static UserData getUserFromUserName(String userName) throws SQLException, IOException {
+    public static UserData getUserDataFromUserName(String userName) throws IOException, SQLException {
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user WHERE userName=?;");) {
                 ps.setString(1, userName);
@@ -19,7 +19,6 @@ public class UserDAO {
                         return null;
                     return new UserData(
                             resultSet.getString("userName"),
-                            resultSet.getString("nickname"),
                             resultSet.getString("passwordHash"),
                             resultSet.getString("salt"),
                             resultSet.getInt("iteration")
@@ -29,40 +28,90 @@ public class UserDAO {
         }
     }
 
-    public static boolean insertUser(UserData user) throws IOException, SQLException {
-        String defaultAvatarName = "default/guest.png";
-        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO user VALUES (?, ?, NULL, NULL, NULL, NULL, NULL, NULL, ?, ?, ?, ?);")) {
-                ps.setString(1, user.getUserName());
-                ps.setString(2, user.getNickname());
-                ps.setString(3, defaultAvatarName);
-                ps.setString(4, user.getPasswordHash());
-                ps.setString(5, user.getSalt());
-                ps.setInt(6, user.getIteration());
-                return ps.executeUpdate() != 0;
+    public static UserData getUserDataFromId(int id) throws SQLException, IOException {
+        try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user WHERE id=?;");) {
+                ps.setInt(1, id);
+                try (ResultSet resultSet = ps.executeQuery()) {
+                    if (!resultSet.next())
+                        return null;
+                    return new UserData(
+                            resultSet.getString("userName"),
+                            resultSet.getString("passwordHash"),
+                            resultSet.getString("salt"),
+                            resultSet.getInt("iteration")
+                    );
+                }
             }
         }
     }
 
-    public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) throws SQLException, IOException {
+    public static int insertUser(UserData user) throws IOException, SQLException {
+        String defaultAvatarName = "default/guest.png";
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "SELECT * FROM user WHERE userName = ?")) {
-                ps.setString(1, userName);
-                try (ResultSet rs = ps.executeQuery()) {
-                    if (rs.next())
-                        return new UserProfileSummary(
-                                rs.getString("userName"),
-                                rs.getString("nickname"),
-                                rs.getString("email"),
-                                rs.getString("signature"),
-                                rs.getString("avatar"),
-                                rs.getString("description")
-                        );
-                    else return null;
+                    "INSERT INTO user VALUES (NULL, ?, ?, NULL, NULL, NULL, NULL, NULL, NULL, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, user.getUserName());
+                ps.setString(3, defaultAvatarName);
+                ps.setString(4, user.getPasswordHash());
+                ps.setString(5, user.getSalt());
+                ps.setInt(6, user.getIteration());
+
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    rs.next();
+                    return rs.getInt(1);
                 }
             }
+        }
+    }
+
+//    public static UserProfileSummary getUserProfileSummaryFromUserName(String userName) throws SQLException, IOException {
+//        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+//            try (PreparedStatement ps = conn.prepareStatement(
+//                    "SELECT * FROM user WHERE userName = ?")) {
+//                ps.setString(1, userName);
+//                try (ResultSet rs = ps.executeQuery()) {
+//                    if (rs.next())
+//                        return new UserProfileSummary(
+//                                rs.getString("userName"),
+//                                rs.getString("nickname"),
+//                                rs.getString("email"),
+//                                rs.getString("signature"),
+//                                rs.getString("avatar"),
+//                                rs.getString("description")
+//                        );
+//                    else return null;
+//                }
+//            }
+//        }
+//    }
+
+    public static UserProfile getUserProfileFromId(Connection conn, int id) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement(
+                "SELECT * FROM user WHERE id = ?")) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next())
+                    return new UserProfile(
+                            rs.getInt("id"),
+                            rs.getString("userName"),
+                            rs.getString("nickname"),
+                            rs.getString("firstName"),
+                            rs.getString("lastName"),
+                            rs.getObject("dateOfBirth", LocalDate.class),
+                            rs.getString("email"),
+                            rs.getString("signature"),
+                            rs.getString("description"),
+                            rs.getString("avatar")
+                    );
+                else return null;
+            }
+        }
+    }
+
+    public static UserProfile getUserProfileFromId(int id) throws IOException, SQLException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+           return getUserProfileFromId(conn, id);
         }
     }
 
@@ -74,6 +123,7 @@ public class UserDAO {
                 try (ResultSet rs = ps.executeQuery()) {
                     if (rs.next())
                         return new UserProfile(
+                                rs.getInt("id"),
                                 rs.getString("userName"),
                                 rs.getString("nickname"),
                                 rs.getString("firstName"),
@@ -93,20 +143,31 @@ public class UserDAO {
     public static void saveProfile(UserProfile userProfile) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "UPDATE user SET nickname = ?, firstName = ?, " +
+                    "UPDATE user SET userName = ?, nickname = ?, firstName = ?, " +
                             "lastName = ?, email = ?, dateOfBirth = ?, signature = ? , description = ?, avatar = ? " +
-                            "WHERE userName = ? ")) {
-                ps.setString(1,userProfile.getNickname());
-                ps.setString(2,userProfile.getFirstName());
-                ps.setString(3,userProfile.getLastName());
-                ps.setString(4,userProfile.getEmail());
-                ps.setDate(5, Date.valueOf(userProfile.getDateOfBirth()));
-                ps.setString(6,userProfile.getSignature());
-                ps.setString(7,userProfile.getDescription());
-                ps.setString(8,userProfile.getAvatar());
-                ps.setString(9,userProfile.getUserName());
+                            "WHERE id = ? ")) {
+                ps.setString(1,userProfile.getUserName());
+                ps.setString(2,userProfile.getNickname());
+                ps.setString(3,userProfile.getFirstName());
+                ps.setString(4,userProfile.getLastName());
+                ps.setString(5,userProfile.getEmail());
+                ps.setDate(6, Date.valueOf(userProfile.getDateOfBirth()));
+                ps.setString(7,userProfile.getSignature());
+                ps.setString(8,userProfile.getDescription());
+                ps.setString(9,userProfile.getAvatar());
+                ps.setInt(10,userProfile.getId());
 
                 ps.executeUpdate();
+            }
+        }
+    }
+
+    public static boolean deleteUserById(int id) throws SQLException, IOException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "DELETE FROM user WHERE id = ?")) {
+                ps.setInt(1, id);
+                return ps.execute();
             }
         }
     }

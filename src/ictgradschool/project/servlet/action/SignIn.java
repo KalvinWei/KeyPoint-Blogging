@@ -26,7 +26,7 @@ public class SignIn extends HttpServlet {
             req.setAttribute("lastPage", "indexPage");
         }
         try {
-            if (AuthenticationUtil.authenticate(UserDAO.getUserFromUserName(userName), password)) {
+            if (AuthenticationUtil.authenticate(UserDAO.getUserDataFromId(userName), password)) {
                 AuthenticationUtil.signIn(req, userName);
                 resp.sendRedirect("./indexPage");
             } else {
