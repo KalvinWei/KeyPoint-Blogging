@@ -3,7 +3,8 @@
 <div>
     <c:forEach var="comment" items="${article.comments}">
         <div>
-            <%@include file="shared/_userProfileSummary.jsp"%>
+            <c:set var="userSummary" value="${comment.user}"/>
+            <%@include file="shared/_userSummary.jsp"%>
             <p>${comment.content}</p>
             <%@include file="_commentCommentBox.jsp"%>
             <c:if test="${isUserLoggedIn && (user.userName.equals(article.user.userName) || user.userName.equals(comment.user.userName))}">

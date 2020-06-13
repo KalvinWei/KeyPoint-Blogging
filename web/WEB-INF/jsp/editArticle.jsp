@@ -3,11 +3,11 @@
 <html>
 <head>
     <title>
-        <c:if test="${empty article.title}">
+        <c:if test="${article.id == null}">
             Create New Article
         </c:if>
-        <c:if test="${not empty article.title}">
-            ${article.title} - ${userProfileSummary.nickname}
+        <c:if test="${article.id != null}">
+            ${article.title} - ${user.nickname}
         </c:if>
     </title>
     <%@include file="shared/_libraries.jsp"%>

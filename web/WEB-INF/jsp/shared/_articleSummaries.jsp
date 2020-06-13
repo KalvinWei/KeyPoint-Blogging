@@ -7,7 +7,7 @@
             <div>
                 <h3><a href="articlePage?id=${article.id}">${article.title}</a></h3>
 
-                <%@include file="_userProfileSummary.jsp"%>
+                <%@include file="_userSummary.jsp"%>
 
                 <span>${article.time}</span>
                 <div>
