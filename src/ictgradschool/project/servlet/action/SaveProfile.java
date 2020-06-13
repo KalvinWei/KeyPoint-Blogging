@@ -2,6 +2,7 @@ package ictgradschool.project.servlet.action;
 
 import ictgradschool.project.DAO.UserDAO;
 import ictgradschool.project.model.User;
+import ictgradschool.project.servlet.FileUploadBase;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -16,31 +17,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 @MultipartConfig
 @WebServlet(name = "SaveProfile", urlPatterns = {"/saveProfile"})
-public class SaveProfile extends HttpServlet {
-    private File uploadsFolder;
-    private File tempFolder;
-    private final String imagesRelativePath = "/images/avatar";
-    private final List<String> acceptableMimeTypes = Arrays.asList("image/png", "image/jpeg");
+public class SaveProfile extends FileUploadBase {
 
     @Override
-    public void init() throws ServletException {
-        super.init();
-
-        this.uploadsFolder = new File(getServletContext().getRealPath(imagesRelativePath));
-        if (!uploadsFolder.exists()) {
-            uploadsFolder.mkdirs();
-        }
-
-        this.tempFolder = new File(getServletContext().getRealPath("/WEB-INF/temp"));
-        if (!tempFolder.exists()) {
-            tempFolder.mkdirs();
-        }
+    protected String getRelativePath() {
+        return "/images/avatar";
     }
 
     @Override

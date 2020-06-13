@@ -2,6 +2,7 @@ package ictgradschool.project.servlet.action;
 
 import ictgradschool.project.DAO.ArticleDAO;
 import ictgradschool.project.model.Article;
+import ictgradschool.project.servlet.FileUploadBase;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -10,38 +11,22 @@ import org.apache.commons.io.FilenameUtils;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 @MultipartConfig
 @WebServlet(name = "PostArticle", urlPatterns = {"/postArticle"})
-public class PostArticle extends HttpServlet {
-    private File uploadsFolder;
-    private File tempFolder;
-    private final String imagesRelativePath = "/images/cover";
-    private final List<String> acceptableMimeTypes = Arrays.asList("image/png", "image/jpeg");
+public class PostArticle extends FileUploadBase {
 
     @Override
-    public void init() throws ServletException {
-        super.init();
-
-        this.uploadsFolder = new File(getServletContext().getRealPath(imagesRelativePath));
-        if (!uploadsFolder.exists()) {
-            uploadsFolder.mkdirs();
-        }
-
-        this.tempFolder = new File(getServletContext().getRealPath("/WEB-INF/temp"));
-        if (!tempFolder.exists()) {
-            tempFolder.mkdirs();
-        }
+    protected String getRelativePath() {
+        return "/images/cover";
     }
 
     @Override
