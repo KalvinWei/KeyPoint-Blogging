@@ -66,6 +66,7 @@
 
     <div id="rightBlock">
         <img class="avatar" src="./images/avatar/${userProfile.avatar}">
+        <input type="hidden" name="originalAvatar" value="${userProfile.avatar}">
         <input type="file" name="avatar" accept="image/jpeg, image/png">
         <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>

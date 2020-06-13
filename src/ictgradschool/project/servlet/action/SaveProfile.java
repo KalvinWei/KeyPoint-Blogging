@@ -63,6 +63,7 @@ public class SaveProfile extends HttpServlet {
 
         UserProfile userProfile = new UserProfile();
         String userName = "";
+        String originalAvatar = "";
 
         try {
             List<FileItem> fileItems = upload.parseRequest(req);
@@ -75,6 +76,10 @@ public class SaveProfile extends HttpServlet {
                     if (fieldName.equals("userName")) {
                         userName = fieldValue;
                     }
+                    if (fieldName.equals("originalAvatar")) {
+                        originalAvatar = fieldValue;
+                        continue;
+                    }
                     userProfile.setField(fieldName, fieldValue);
                 } else if (!item.isFormField() && acceptableMimeTypes.contains(item.getContentType())) {
                     String fileName = UUID.randomUUID() + "." + FilenameUtils.getExtension(item.getName());
@@ -86,6 +91,7 @@ public class SaveProfile extends HttpServlet {
         } catch (Exception e) {
             throw new ServletException(e);
         }
+
         try {
             UserDAO.saveProfile(userProfile);
         } catch (SQLException e) {
