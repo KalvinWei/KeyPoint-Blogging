@@ -8,7 +8,7 @@
 <%@include file="shared/_navbar.jsp" %>
 <div>
     <%@include file="_articleDisplay.jsp"%>
-    <%@include file="_articleCommentBox.jsp"%>
+    <%@include file="shared/_commentBox.jsp"%>
     <%@include file="_comments.jsp"%>
 </div>
 </body>

@@ -25,7 +25,7 @@ public class PostComment extends HttpServlet {
         String content = req.getParameter("content");
         String parentString = req.getParameter("parent");
         Integer parent = null;
-        if (parentString != null) {
+        if (parentString != null && !parentString.isEmpty()) {
             parent = Integer.parseInt(parentString);
         }
         String userName = req.getParameter("userName");
