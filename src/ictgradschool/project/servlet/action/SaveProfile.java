@@ -4,6 +4,7 @@ import ictgradschool.project.DAO.UserDAO;
 import ictgradschool.project.model.UserProfile;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@MultipartConfig
 @WebServlet(name = "SaveProfile", urlPatterns = {"/saveProfile"})
 public class SaveProfile extends HttpServlet {
     @Override

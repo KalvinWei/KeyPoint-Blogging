@@ -47,7 +47,7 @@
         </c:if>
     </div>
 
-    <form action="./postArticle" method="post" class="form">
+    <form action="./postArticle" method="post" enctype="multipart/form-data" class="form">
         <input type="hidden" name="id" value="${article.id}">
         <input type="hidden" name="userName" value="${article.userName}">
         <div class="form-group">

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Article implements Serializable {
     private Integer id;
@@ -49,6 +51,33 @@ public class Article implements Serializable {
         this.userName = userName;
         this.likes = 0;
         this.tags = new ArrayList<>();
+    }
+
+    public void setField(String fieldName, String fieldValue) {
+        switch (fieldName) {
+            case "id":
+                setId(fieldValue.isEmpty() ? null : Integer.parseInt(fieldValue));
+                break;
+            case "title":
+                setTitle(fieldValue);
+                break;
+            case "content":
+                setContent(fieldValue);
+                break;
+            case "userName":
+                setUserName(fieldValue);
+                break;
+            case "cover":
+                setCover(fieldValue);
+                break;
+            case "tags":
+                List<String> tags = Stream.of(fieldValue.split("\\s*,\\s*"))
+                        .distinct()
+                        .filter(tag -> !tag.isEmpty())
+                        .collect(Collectors.toList());
+                setTags(tags);
+                break;
+        }
     }
 
     public Integer getId() {

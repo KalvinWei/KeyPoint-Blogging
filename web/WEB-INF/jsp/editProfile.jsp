@@ -30,7 +30,7 @@
 <div id="wrapper" class="container">
     <h3>${userProfile.nickname}</h3>
 
-    <form action="./saveProfile" method="post">
+    <form action="./saveProfile" method="post" enctype="multipart/form-data">
 
     <div id="leftBlock">
         <input id="userName" type="hidden" name="userName" value="${userProfile.userName}">

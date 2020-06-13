@@ -1,6 +1,7 @@
 package ictgradschool.project.util;
 
 import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
@@ -12,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-public class ImageUtil {
+public class FileUploadUtil {
     private static final int IMAGE_SIZE_THRESHOLD = 10 * 1024; //10MB
     private static final String TEMP_FOLDER_NAME = "/WEB-INF/temp";
 
@@ -24,7 +25,7 @@ public class ImageUtil {
      * @return uuid filename WITH extension, WITHOUT path.
      * @throws ServletException
      */
-    public static String UploadImage(HttpServletRequest req, File targetDirectory) throws ServletException {
+    public static String UploadImage(HttpServletRequest req, File targetDirectory) throws Exception {
         final List<String> acceptableMimeTypes = Arrays.asList("image/png", "image/jpeg");
         // Create the temporary folder that the file-upload mechanism needs.
         File tempFolder = new File(TEMP_FOLDER_NAME);
@@ -44,7 +45,7 @@ public class ImageUtil {
 
         String uuidFilename = "";
 
-        try {
+
             //parseRequest(): get uploaded files from http request
             for (FileItem fileItem : upload.parseRequest(req)) {
                 if (!fileItem.isFormField() && acceptableMimeTypes.contains(fileItem.getContentType())) {
@@ -53,9 +54,6 @@ public class ImageUtil {
                     fileItem.write(new File(targetDirectory, uuidFilename));
                 }
             }
-        } catch (Exception e) {
-            throw new ServletException(e);
-        }
 
         return uuidFilename;
     }
