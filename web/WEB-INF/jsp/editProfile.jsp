@@ -72,6 +72,16 @@
         <img class="avatar" src="./images/avatar/${user.avatar}">
         <input type="hidden" name="originalAvatar" value="${user.avatar}">
         <input type="file" name="avatar" accept="image/jpeg, image/png">
+        <c:forEach var="avatar" items="${defaultAvatars}" varStatus="loop">
+            <label for="defaultAvatar${loop.count}">
+                <img src="./images/avatar/${avatar}">
+            </label>
+            <input type="radio" id="defaultAvatar${loop.count}" name="defaultAvatar" value="${avatar}">
+        </c:forEach>
+        <label for="defaultAvatarCustomer">
+            <img src="./images/avatar/default/guest.png">
+        </label>
+        <input type="radio" id="defaultAvatarCustomer" name="defaultAvatar" value="0">
         <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>
 

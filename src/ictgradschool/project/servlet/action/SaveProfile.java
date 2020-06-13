@@ -45,6 +45,8 @@ public class SaveProfile extends FileUploadBase {
         User user = new User();
         String userName = "";
         String originalAvatar = "";
+        String defaultAvatar = "";
+        boolean avatarFileUploaded = false;
 
         try {
             List<FileItem> fileItems = upload.parseRequest(req);
@@ -56,9 +58,11 @@ public class SaveProfile extends FileUploadBase {
                     String fieldValue = item.getString();
                     if (fieldName.equals("userName")) {
                         userName = fieldValue;
-                    }
-                    if (fieldName.equals("originalAvatar")) {
+                    } else if (fieldName.equals("originalAvatar")) {
                         originalAvatar = fieldValue;
+                        continue;
+                    } else if (fieldName.equals("defaultAvatar")) {
+                        defaultAvatar = fieldValue;
                         continue;
                     }
                     user.setField(fieldName, fieldValue);
@@ -67,10 +71,17 @@ public class SaveProfile extends FileUploadBase {
                     file = new File(uploadsFolder, fileName);
                     item.write(file);
                     user.setField("avatar", fileName);
+                    avatarFileUploaded = true;
                 }
             }
         } catch (Exception e) {
             throw new ServletException(e);
+        }
+
+        if (defaultAvatar.equals("0") && !avatarFileUploaded) {
+            user.setAvatar(originalAvatar);
+        } else if (!defaultAvatar.equals("0")) {
+            user.setAvatar(defaultAvatar);
         }
 
         try {

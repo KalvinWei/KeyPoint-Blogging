@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "EditProfilePage", urlPatterns = {"/editProfilePage"})
 public class EditProfilePage extends HttpServlet {
@@ -19,6 +21,14 @@ public class EditProfilePage extends HttpServlet {
             req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
             return;
         }
+
+        int numberOfDefaultAvatars = 10;
+        List<String> defaultAvatars = new ArrayList<>();
+        for (int i = 1; i <= numberOfDefaultAvatars; i++) {
+            defaultAvatars.add("default/" + i + ".png");
+        }
+        req.setAttribute("defaultAvatars", defaultAvatars);
+
         req.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp").forward(req, resp);
     }
 
