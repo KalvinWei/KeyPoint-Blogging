@@ -1,6 +1,10 @@
 package ictgradschool.project.model;
 
+import ictgradschool.project.DAO.UserDAO;
+
+import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +41,7 @@ public class Article implements Serializable {
         this.user = user;
     }
 
-    public void setField(String fieldName, String fieldValue) {
+    public void setField(String fieldName, String fieldValue) throws IOException, SQLException {
         switch (fieldName) {
             case "id":
                 setId(fieldValue.isEmpty() ? null : Integer.parseInt(fieldValue));
@@ -50,6 +54,9 @@ public class Article implements Serializable {
                 break;
             case "cover":
                 setCover(fieldValue);
+                break;
+            case "userName":
+                setUser(UserDAO.getUserFromUserName(fieldValue));
                 break;
             case "tags":
                 List<String> tags = Stream.of(fieldValue.split("\\s*,\\s*"))

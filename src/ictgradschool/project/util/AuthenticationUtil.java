@@ -12,7 +12,7 @@ public class AuthenticationUtil {
 
     private static final String logInToken = "loggedInUserName";
 
-    public static UserData createUser(String userName, String password) {
+    public static UserData createUserData(String userName, String password) {
         Random random = new Random();
         int iteration = Math.abs(random.nextInt() % 100_000) + 1;
         int salt_length = Math.abs(random.nextInt() % 100) + 1;

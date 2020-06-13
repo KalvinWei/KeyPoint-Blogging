@@ -33,6 +33,9 @@ public class User implements Serializable {
 
     public void setField(String fieldName, String fieldValue) {
         switch (fieldName) {
+            case "id":
+                setId(Integer.parseInt(fieldValue));
+                break;
             case "userName":
                 setUserName(fieldValue);
                 break;

@@ -23,7 +23,7 @@ public class SignUp extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
-        UserData user = AuthenticationUtil.createUser(userName, password);
+        UserData user = AuthenticationUtil.createUserData(userName, password);
         try {
             if (UserDAO.getUserDataFromUserName(userName) != null) {
                 resp.sendRedirect("./signUpPage");

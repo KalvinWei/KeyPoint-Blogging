@@ -45,18 +45,22 @@ public class UserDAO {
 //        }
 //    }
 
-    public static String insertUser(UserData user) throws IOException, SQLException {
+    public static int insertUser(UserData user) throws IOException, SQLException {
         String defaultAvatarName = "default/guest.png";
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO user VALUES (NULL, ?, ?, NULL, NULL, NULL, NULL, NULL, NULL, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+                    "INSERT INTO user VALUES (NULL, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, user.getUserName());
-                ps.setString(3, defaultAvatarName);
-                ps.setString(4, user.getPasswordHash());
-                ps.setString(5, user.getSalt());
-                ps.setInt(6, user.getIteration());
+                ps.setString(2, defaultAvatarName);
+                ps.setString(3, user.getPasswordHash());
+                ps.setString(4, user.getSalt());
+                ps.setInt(5, user.getIteration());
 
-                return user.getUserName();
+                ps.executeUpdate();
+                try (ResultSet rs = ps.getGeneratedKeys()) {
+                    rs.next();
+                    return rs.getInt(1);
+                }
             }
         }
     }
