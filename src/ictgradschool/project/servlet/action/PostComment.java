@@ -1,6 +1,7 @@
 package ictgradschool.project.servlet.action;
 
 import ictgradschool.project.DAO.CommentDAO;
+import ictgradschool.project.DAO.UserDAO;
 import ictgradschool.project.model.Comment;
 
 import javax.servlet.ServletException;
@@ -30,8 +31,9 @@ public class PostComment extends HttpServlet {
         String userName = req.getParameter("userName");
         int article = Integer.parseInt(req.getParameter("article"));
         Timestamp time = new Timestamp(System.currentTimeMillis());
-        Comment comment = new Comment(null, content, time, userName, article, parent);
+        Comment comment;
         try {
+            comment = new Comment(null, content, time, UserDAO.getUserProfileFromUserName(userName), article, parent);
             CommentDAO.insertComment(comment);
         } catch (SQLException e) {
             e.printStackTrace();
