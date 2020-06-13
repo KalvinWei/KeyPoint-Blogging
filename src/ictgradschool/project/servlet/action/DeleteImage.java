@@ -1,6 +1,6 @@
 package ictgradschool.project.servlet.action;
 
-import ictgradschool.project.util.JSONResponse;
+import ictgradschool.project.util.JSONUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +22,7 @@ public class DeleteImage extends HttpServlet {
         if(usage.equals("avatar") && filename.contains("default")) avatarFile.delete();
         else if(usage.equals("cover") && filename.contains("default")) coverFile.delete();
 
-        JSONResponse.send(resp,new Object(){
+        JSONUtil.send(resp,new Object(){
             private boolean status = true;
         });
     }
