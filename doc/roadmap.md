@@ -21,19 +21,19 @@ This file is to keep record of our plans.
 - [ ] Avatars
 - [x] Browsing all articles without logging in
 - [x] Create, delete, edit, browse own articles when logged in
-- [ ] Create comments when logged in, delete comments when the article or comment is created by oneself
+- [x] Create comments when logged in, delete comments when the article or comment is created by oneself
 - [x] Display comments
 - [ ] Responsiveness
 - [ ] Deploy
 
 #### Extra
-- [ ] Nested comments
+- [x] Nested comments
 - [ ] WYSIWYG editor
 - [ ] ~~Search and sort~~
 
 #### Other
 - [ ] Likes
-- [ ] Tags on articles
+- [x] Tags on articles
 
 ## Time Schedule
 - 8/6 ~ 14/6: basic backend
