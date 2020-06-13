@@ -24,7 +24,7 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" >
-                    <img src="./images/avatar/${userProfileSummary.avatar}">
+                    <img src="./images/avatar/${userProfileSummary.avatar}" style="width: 20px">
                 </a>
                 <div id="navList" class="dropdown-menu dropdown-menu-right">
                     <a class="dropdown-item" href="./articlesPage?userName=${userProfileSummary.userName}">My Space</a>
