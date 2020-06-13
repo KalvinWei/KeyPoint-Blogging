@@ -3,7 +3,7 @@
     <c:forEach items="${articleSummaries}" var="article">
         <div>
             <hr />
-            <img src="./images/cover/cover1.jpg" alt="${article.cover}" class="img-thumbnail">
+            <img src="./images/cover/${article.cover}" alt="${article.cover}" class="img-thumbnail">
             <div>
                 <h3><a href="articlePage?id=${article.id}">${article.title}</a></h3>
 

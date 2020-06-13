@@ -58,6 +58,7 @@ public class PostArticle extends HttpServlet {
         ServletFileUpload upload = new ServletFileUpload(factory);
 
         Article article = new Article();
+        String originalCover = article.getCover();
 
         try {
             List<FileItem> fileItems = upload.parseRequest(req);
@@ -67,6 +68,10 @@ public class PostArticle extends HttpServlet {
                 if (item.isFormField()) {
                     String fieldName = item.getFieldName();
                     String fieldValue = item.getString();
+                    if (fieldName.equals("originalCover") && !fieldValue.isEmpty()) {
+                        originalCover = fieldValue;
+                        continue;
+                    }
                     article.setField(fieldName, fieldValue);
                 } else if (!item.isFormField() && acceptableMimeTypes.contains(item.getContentType())) {
                     String fileName = UUID.randomUUID() + "." + FilenameUtils.getExtension(item.getName());
@@ -80,6 +85,9 @@ public class PostArticle extends HttpServlet {
         }
 
         article.setTime(new Timestamp(System.currentTimeMillis()));
+        if (article.getCover() == null || article.getCover().isEmpty()) {
+            article.setCover(originalCover);
+        }
         try {
             ArticleDAO.insertOrEditArticle(article);
         } catch (SQLException e) {

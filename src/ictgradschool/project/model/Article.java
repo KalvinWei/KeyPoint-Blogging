@@ -13,10 +13,10 @@ public class Article implements Serializable {
     private String title;
     private String content;
     private Timestamp time;
-    private String cover;
+    private String cover = "cover5.jpg";
     private String userNickname;
     private String userAvatar;
-    private int likes;
+    private int likes = 0;
     private List<String> tags;
     private List<Comment> comments;
 
@@ -49,7 +49,6 @@ public class Article implements Serializable {
 
     public Article(String userName) {
         this.userName = userName;
-        this.likes = 0;
         this.tags = new ArrayList<>();
     }
 

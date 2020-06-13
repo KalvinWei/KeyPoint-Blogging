@@ -33,7 +33,7 @@ public class EditArticlePage extends HttpServlet {
                     req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
                     return;
                 }
-                req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
+                req.setAttribute("article", article);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
