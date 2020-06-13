@@ -6,7 +6,7 @@
             <%@include file="shared/_userProfileSummary.jsp"%>
             <p>${comment.content}</p>
             <%@include file="_commentCommentBox.jsp"%>
-            <c:if test="${isUserLoggedIn && (userProfileSummary.userName == article.userName || userProfileSummary.userName == comment.userName)}">
+            <c:if test="${isUserLoggedIn && (user.userName.equals(article.user.userName) || user.userName.equals(comment.user.userName))}">
                 <form action="./deleteComment" method="post">
                     <input type="hidden" name="id" value="${comment.id}">
                     <input type="hidden" name="articleId" value="${article.id}">

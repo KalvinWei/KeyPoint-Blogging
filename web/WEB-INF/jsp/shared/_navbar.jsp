@@ -18,18 +18,18 @@
         </c:if>
         <c:if test="${isUserLoggedIn}">
             <li class="nav-item">
-                <a class="nav-link" href="./articlesPage?user=${userProfileSummary.nickname}">
-                        ${userProfileSummary.nickname}
+                <a class="nav-link" href="./articlesPage?user=${user.nickname}">
+                        ${user.nickname}
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" >
-                    <img src="./images/avatar/${userProfileSummary.avatar}" style="width: 20px">
+                    <img src="./images/avatar/${user.avatar}" style="width: 20px">
                 </a>
                 <div id="navList" class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="./articlesPage?userName=${userProfileSummary.userName}">My Space</a>
-                    <a class="dropdown-item" href="./editArticlePage?userName=${userProfileSummary.userName}">New Article</a>
-                    <a class="dropdown-item" href="./editProfilePage?userName=${userProfileSummary.userName}">Edit Profile</a>
+                    <a class="dropdown-item" href="./articlesPage?userName=${user.userName}">My Blog</a>
+                    <a class="dropdown-item" href="./editArticlePage?userName=${user.userName}">New Post</a>
+                    <a class="dropdown-item" href="./editProfilePage?userName=${user.userName}">Edit Profile</a>
                     <a class="dropdown-item" href="./signOut">Sign Out</a>
                 </div>
             </li>

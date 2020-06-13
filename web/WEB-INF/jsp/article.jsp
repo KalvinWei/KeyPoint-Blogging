@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${article.userNickname} - ${article.title}</title>
+    <title>${article.user.nickname} - ${article.title}</title>
     <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
