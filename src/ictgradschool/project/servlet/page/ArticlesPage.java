@@ -19,7 +19,7 @@ public class ArticlesPage extends HttpServlet {
         AuthenticationUtil.checkLogInStatus(req);
         String userName = req.getParameter("userName");
         try {
-            req.setAttribute("userProfile", UserDAO.getUserProfileFromUserName(userName));
+            req.setAttribute("userProfile", UserDAO.getUserFromUserName(userName));
             req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByUserName(userName));
         } catch (SQLException e) {
             e.printStackTrace();

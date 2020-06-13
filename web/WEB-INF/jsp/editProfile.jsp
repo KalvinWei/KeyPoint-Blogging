@@ -33,7 +33,11 @@
     <form action="./saveProfile" method="post" enctype="multipart/form-data">
 
     <div id="leftBlock">
-        <input id="userName" type="hidden" name="userName" value="${user.userName}">
+        <input id="id" type="hidden" name="id" value="${user.id}">
+        <div class="form-group">
+            <label for="userName">Nickname:</label>
+            <input id="userName" type="text" name="userName" value="${user.userName}" placeholder="user name" class="form-control">
+        </div>
         <div class="form-group">
             <label for="nickname">Nickname:</label>
             <input id="nickname" type="text" name="nickname" value="${user.nickname}" placeholder="nickname" class="form-control">

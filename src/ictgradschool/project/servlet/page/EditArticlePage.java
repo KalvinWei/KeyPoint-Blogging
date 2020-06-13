@@ -26,7 +26,7 @@ public class EditArticlePage extends HttpServlet {
         if (idString == null) {
             String userName = AuthenticationUtil.getLoggedInUserName(req);
             try {
-                req.setAttribute("article", new Article(UserDAO.getUserProfileFromUserName(userName)));
+                req.setAttribute("article", new Article(UserDAO.getUserFromUserName(userName)));
             } catch (SQLException e) {
                 e.printStackTrace();
             }

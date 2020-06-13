@@ -33,7 +33,7 @@ public class PostComment extends HttpServlet {
         Timestamp time = new Timestamp(System.currentTimeMillis());
         Comment comment;
         try {
-            comment = new Comment(null, content, time, UserDAO.getUserProfileFromUserName(userName), article, parent);
+            comment = new Comment(null, content, time, UserDAO.getUserFromUserName(userName), article, parent);
             CommentDAO.insertComment(comment);
         } catch (SQLException e) {
             e.printStackTrace();

@@ -82,56 +82,45 @@ public class UserDAO {
 //        }
 //    }
 
-    public static User getUserProfileFromId(Connection conn, int id) throws SQLException {
+    public static User getUserFromId(Connection conn, int id) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
                 "SELECT * FROM user WHERE id = ?")) {
             ps.setInt(1, id);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next())
-                    return new User(
-                            rs.getInt("id"),
-                            rs.getString("userName"),
-                            rs.getString("nickname"),
-                            rs.getString("firstName"),
-                            rs.getString("lastName"),
-                            rs.getObject("dateOfBirth", LocalDate.class),
-                            rs.getString("email"),
-                            rs.getString("signature"),
-                            rs.getString("description"),
-                            rs.getString("avatar")
-                    );
-                else return null;
-            }
+            return assembleUser(ps);
         }
     }
 
-    public static User getUserProfileFromId(int id) throws IOException, SQLException {
+    private static User assembleUser(PreparedStatement ps) throws SQLException {
+        try (ResultSet rs = ps.executeQuery()) {
+            if (rs.next())
+                return new User(
+                        rs.getInt("id"),
+                        rs.getString("userName"),
+                        rs.getString("nickname"),
+                        rs.getString("firstName"),
+                        rs.getString("lastName"),
+                        rs.getObject("dateOfBirth", LocalDate.class),
+                        rs.getString("email"),
+                        rs.getString("signature"),
+                        rs.getString("description"),
+                        rs.getString("avatar")
+                );
+            else return null;
+        }
+    }
+
+    public static User getUserFromId(int id) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-           return getUserProfileFromId(conn, id);
+           return getUserFromId(conn, id);
         }
     }
 
-    public static User getUserProfileFromUserName(String userName) throws IOException, SQLException {
+    public static User getUserFromUserName(String userName) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "SELECT * FROM user WHERE userName = ?")) {
                 ps.setString(1, userName);
-                try (ResultSet rs = ps.executeQuery()) {
-                    if (rs.next())
-                        return new User(
-                                rs.getInt("id"),
-                                rs.getString("userName"),
-                                rs.getString("nickname"),
-                                rs.getString("firstName"),
-                                rs.getString("lastName"),
-                                rs.getObject("dateOfBirth", LocalDate.class),
-                                rs.getString("email"),
-                                rs.getString("signature"),
-                                rs.getString("description"),
-                                rs.getString("avatar")
-                        );
-                    else return null;
-                }
+                return assembleUser(ps);
             }
         }
     }
@@ -158,15 +147,15 @@ public class UserDAO {
         }
     }
 
-    public static boolean deleteUserById(int id) throws SQLException, IOException {
-        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            try (PreparedStatement ps = conn.prepareStatement(
-                    "DELETE FROM user WHERE id = ?")) {
-                ps.setInt(1, id);
-                return ps.execute();
-            }
-        }
-    }
+//    public static boolean deleteUserById(int id) throws SQLException, IOException {
+//        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+//            try (PreparedStatement ps = conn.prepareStatement(
+//                    "DELETE FROM user WHERE id = ?")) {
+//                ps.setInt(1, id);
+//                return ps.execute();
+//            }
+//        }
+//    }
 
     public static boolean deleteUserByUserName(String userName) throws IOException, SQLException{
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {

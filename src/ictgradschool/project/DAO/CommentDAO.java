@@ -29,7 +29,7 @@ public class CommentDAO {
                             rs.getInt("parent"), //parentId
                             rs.getInt("likes"),
                             0, //level
-                            UserDAO.getUserProfileFromId(conn, rs.getInt("user")),
+                            UserDAO.getUserFromId(conn, rs.getInt("user")),
                             getCommentsByParentId(conn, this_id, 1)
                     ));
                 }
@@ -58,7 +58,7 @@ public class CommentDAO {
                             parentId, //parentId
                             rs.getInt("likes"),
                             currentLevel, //level
-                            UserDAO.getUserProfileFromId(conn, rs.getInt("user")),
+                            UserDAO.getUserFromId(conn, rs.getInt("user")),
                             getCommentsByParentId(conn, this_id, currentLevel + 1)
                     ));
                 }

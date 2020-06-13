@@ -47,7 +47,7 @@ public class ArticleDAO {
                         rs.getString("title"),
                         contentSummary,
                         rs.getString("cover"),
-                        UserDAO.getUserProfileFromId(conn, rs.getInt("user")),
+                        UserDAO.getUserFromId(conn, rs.getInt("user")),
                         rs.getTimestamp("time"),
                         rs.getInt("likes"),
                         TagDAO.getTagsByArticleId(conn, rs.getInt("id"))
@@ -73,7 +73,7 @@ public class ArticleDAO {
                             rs.getString("content"),
                             rs.getTimestamp("time"),
                             rs.getString("cover"),
-                            UserDAO.getUserProfileFromId(rs.getInt("user")),
+                            UserDAO.getUserFromId(rs.getInt("user")),
                             rs.getInt("likes"),
                             TagDAO.getTagsByArticleId(conn, id),
                             CommentDAO.getCommentsByArticleId(conn, id)

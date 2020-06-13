@@ -24,10 +24,6 @@
             <input class="form-control" type="password" name="password" id="repeatPassword" placeholder="password" required>
             <div class="invalid-feedback">* Please repeat your password</div>
         </div>
-        <div class="form-group">
-            <label for="nickname">Nickname:</label>
-            <input class="form-control" type="text" name="nickname" id="nickname" placeholder="nickname">
-        </div>
         <button type="submit" class="btn btn-dark btn-block">Sign Up</button>
         <hr />
         <a class="btn btn-block btn-info" href="./signInPage">Go to sign in</a>

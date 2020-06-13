@@ -56,7 +56,7 @@ public class AuthenticationUtil {
             isUserLoggedIn = true;
             String loggedInUserName = getLoggedInUserName(req);
             try {
-                req.setAttribute("user", UserDAO.getUserProfileFromUserName(loggedInUserName));
+                req.setAttribute("user", UserDAO.getUserFromUserName(loggedInUserName));
             } catch (SQLException e) {
                 e.printStackTrace();
             }
