@@ -8,36 +8,32 @@ public class Comment implements Serializable {
     private Integer id;
     private String content;
     private Timestamp time;
-    private String userName;
     private int article;
     private Integer parent;
-    private String userNickname;
-    private String userAvatar;
     private int likes;
     private int level;
+    private UserProfile user;
     private List<Comment> comments;
 
 
-    public Comment(Integer id, String content, Timestamp time, String userName, int article, Integer parent) {
+    public Comment(Integer id, String content, Timestamp time, UserProfile user, int article, Integer parent) {
         this.id = id;
         this.content = content;
         this.time = time;
-        this.userName = userName;
+        this.user = user;
         this.article = article;
         this.parent = parent;
     }
 
-    public Comment(Integer id, String content, Timestamp time, String userName, int article, int parent, String userNickname, String userAvatar, int likes, int level, List<Comment> comments) {
+    public Comment(Integer id, String content, Timestamp time, UserProfile user, int article, int parent, String userNickname, String userAvatar, int likes, int level, List<Comment> comments) {
         this.id = id;
         this.content = content;
         this.time = time;
-        this.userName = userName;
         this.article = article;
         this.parent = parent;
-        this.userNickname = userNickname;
-        this.userAvatar = userAvatar;
         this.likes = likes;
         this.level = level;
+        this.user = user;
         this.comments = comments;
     }
 
@@ -68,14 +64,6 @@ public class Comment implements Serializable {
         this.time = time;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public int getArticle() {
         return article;
     }
@@ -90,23 +78,6 @@ public class Comment implements Serializable {
 
     public void setParent(Integer parent) {
         this.parent = parent;
-    }
-
-
-    public String getUserNickname() {
-        return userNickname;
-    }
-
-    public void setUserNickname(String userNickname) {
-        this.userNickname = userNickname;
-    }
-
-    public String getUserAvatar() {
-        return userAvatar;
-    }
-
-    public void setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar;
     }
 
     public int getLikes() {
@@ -133,17 +104,11 @@ public class Comment implements Serializable {
         this.comments = comments;
     }
 
-    @Override
-    public String toString() {
-        return "Comment{" +
-                "id=" + id +
-                ", content='" + content + '\'' +
-                ", time=" + time +
-                ", userName=" + userName +
-                ", userNickname='" + userNickname + '\'' +
-                ", userAvatar='" + userAvatar + '\'' +
-                ", likes=" + likes +
-                ", commentList=" + comments +
-                '}';
+    public UserProfile getUser() {
+        return user;
+    }
+
+    public void setUser(UserProfile user) {
+        this.user = user;
     }
 }

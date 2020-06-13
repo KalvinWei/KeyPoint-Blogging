@@ -1,7 +1,7 @@
 package ictgradschool.project.servlet.action;
 
 import ictgradschool.project.DAO.UserDAO;
-import ictgradschool.project.model.User;
+import ictgradschool.project.model.UserData;
 import ictgradschool.project.util.AuthenticationUtil;
 
 import javax.servlet.ServletException;
@@ -24,7 +24,7 @@ public class SignUp extends HttpServlet {
         String userName = req.getParameter("userName");
         String nickname = req.getParameter("nickname");
         String password = req.getParameter("password");
-        User user = AuthenticationUtil.createUser(userName, password);
+        UserData user = AuthenticationUtil.createUser(userName, password);
         user.setNickname(nickname == null || nickname.isEmpty() ? userName : nickname);
         try {
             if (UserDAO.getUserFromUserName(userName) != null) {

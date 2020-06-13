@@ -1,24 +1,23 @@
 package ictgradschool.project.DAO;
 
-import ictgradschool.project.model.User;
+import ictgradschool.project.model.UserData;
 import ictgradschool.project.model.UserProfile;
 import ictgradschool.project.model.UserProfileSummary;
 import ictgradschool.project.util.DBConnectionUtils;
 
-import javax.ejb.Local;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 
 public class UserDAO {
-    public static User getUserFromUserName(String userName) throws SQLException, IOException {
+    public static UserData getUserFromUserName(String userName) throws SQLException, IOException {
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user WHERE userName=?;");) {
                 ps.setString(1, userName);
                 try (ResultSet resultSet = ps.executeQuery()) {
                     if (!resultSet.next())
                         return null;
-                    return new User(
+                    return new UserData(
                             resultSet.getString("userName"),
                             resultSet.getString("nickname"),
                             resultSet.getString("passwordHash"),
@@ -30,7 +29,7 @@ public class UserDAO {
         }
     }
 
-    public static boolean insertUser(User user) throws IOException, SQLException {
+    public static boolean insertUser(UserData user) throws IOException, SQLException {
         String defaultAvatarName = "default/guest.png";
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(

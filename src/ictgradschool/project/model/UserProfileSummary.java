@@ -3,6 +3,7 @@ package ictgradschool.project.model;
 import java.io.Serializable;
 
 public class UserProfileSummary implements Serializable {
+    private Integer id;
     private String userName;
     private String nickname;
     private String email;
@@ -10,8 +11,8 @@ public class UserProfileSummary implements Serializable {
     private String avatar;
     private String description;
 
-
-    public UserProfileSummary(String userName, String nickname, String email, String signature, String avatar, String description) {
+    public UserProfileSummary(Integer id, String userName, String nickname, String email, String signature, String avatar, String description) {
+        this.id = id;
         this.userName = userName;
         this.nickname = nickname;
         this.email = email;
@@ -23,6 +24,13 @@ public class UserProfileSummary implements Serializable {
     public UserProfileSummary() {
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getNickname() {
         return nickname;
     }
@@ -69,16 +77,5 @@ public class UserProfileSummary implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "UserProfileSummary{" +
-                ", nickname='" + nickname + '\'' +
-                ", email='" + email + '\'' +
-                ", signature='" + signature + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", description='" + description + '\'' +
-                '}';
     }
 }
