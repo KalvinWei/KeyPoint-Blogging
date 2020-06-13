@@ -7,7 +7,7 @@
             <input type="hidden" name="article" value="${article.id}">
             <input type="hidden" name="userName" value="${user.userName}">
             <div class="form-group">
-                <label for="content">Please input your comments:</label>
+                <label for="content">Share your thoughts:</label>
                 <textarea id="content" name="content" placeholder="Your comments here..."></textarea>
             </div>
             <button type="submit">Post</button>
