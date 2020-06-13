@@ -29,11 +29,10 @@ public class UserDAO {
     }
 
     public static boolean insertUser(User user) throws IOException, SQLException {
-        String defaultAvatarName = "guest.png";
+        String defaultAvatarName = "default/guest.png";
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO user VALUES (?, ?, NULL, NULL, NULL, NULL, NULL, NULL, ?, ?, ?, ?);",
-                    Statement.RETURN_GENERATED_KEYS)) {
+                    "INSERT INTO user VALUES (?, ?, NULL, NULL, NULL, NULL, NULL, NULL, ?, ?, ?, ?);")) {
                 ps.setString(1, user.getUserName());
                 ps.setString(2, user.getNickname());
                 ps.setString(3, defaultAvatarName);

@@ -56,25 +56,22 @@
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input id="email" type="email" name="email" ${userProfile.email} placeholder="email" class="form-control">
+            <input id="email" type="email" name="email" value="${userProfile.email}" placeholder="email" class="form-control">
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
             <textarea id="description" name="description" placeholder="description" class="form-control">${userProfile.description}</textarea>
         </div>
-        <button type="submit" class="btn btn-dark btn-block">Save</button>
     </div>
 
     <div id="rightBlock">
-        <c:if test="${empty userProfile.avatar}">
-            <img class="avatar" src="./images/avatar/guest.png" alt="guest avatar">
-        </c:if>
-        <c:if test="${not empty userProfile.avatar}">
-            <img class="avatar" src="./images/avatar/${userProfile.avatar}">
-        </c:if>
-        <input type="file" name="avatar" value="${userProfile.avatar}" accept="image/jpeg, image/png">
+        <img class="avatar" src="./images/avatar/${userProfile.avatar}">
+        <input type="file" name="avatar" accept="image/jpeg, image/png">
         <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>
+
+    <button type="submit" class="btn btn-dark btn-block">Save</button>
+
     </form>
 
     <form action="./deleteAccount" method="post">

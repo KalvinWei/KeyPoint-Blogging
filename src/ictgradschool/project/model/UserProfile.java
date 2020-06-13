@@ -15,7 +15,7 @@ public class UserProfile implements Serializable {
     private String email;
     private String signature;
     private String description;
-    private String avatar;
+    private String avatar = "default/guest.png";
 
     public UserProfile(String userName, String nickname, String firstName, String lastName, Date dateOfBirth, String email, String signature, String description, String avatar) {
         this.userName = userName;
@@ -33,7 +33,7 @@ public class UserProfile implements Serializable {
     }
 
     public void setField(String fieldName, String fieldValue) {
-        switch (fieldValue) {
+        switch (fieldName) {
             case "userName":
                 setUserName(fieldValue);
                 break;
