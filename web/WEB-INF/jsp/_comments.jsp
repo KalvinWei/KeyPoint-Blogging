@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div>
     <c:forEach var="comment" items="${article.comments}">
-        <div>
+        <div style="margin-left: ${comment.level}00px">
             <c:set var="userSummary" value="${comment.user}"/>
             <%@include file="shared/_userSummary.jsp"%>
             <p>${comment.content}</p>

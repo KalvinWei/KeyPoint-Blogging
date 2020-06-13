@@ -12,4 +12,5 @@
             <tr><td>description:</td><td>${user.description}</td></tr>
         </table>
     </div>
+    <a href="./editProfilePage?userName=${user.userName}">Edit Profile</a>
 </div>

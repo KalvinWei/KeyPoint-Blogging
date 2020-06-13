@@ -7,6 +7,7 @@
             <div>
                 <h3><a href="articlePage?id=${article.id}">${article.title}</a></h3>
 
+                <c:set var="userSummary" value="${article.user}"/>
                 <%@include file="_userSummary.jsp"%>
 
                 <span>${article.time}</span>
