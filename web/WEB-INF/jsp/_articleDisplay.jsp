@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div>
-    <img id="coverImg" src="./images/cover/${article.cover}">
+    <img src="./images/cover/${article.cover}">
     <h3>${article.title}</h3>
     <%@include file="shared/_userProfileSummary.jsp"%>
     <p>${article.time}</p>

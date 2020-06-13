@@ -20,11 +20,12 @@ public class DeleteComment extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
+        int articleId = Integer.parseInt(req.getParameter("articleId"));
         try {
             CommentDAO.deleteCommentByCommentId(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("./ArticlePage");
+        resp.sendRedirect("./articlePage?id=" + articleId);
     }
 }

@@ -5,6 +5,7 @@
         <img src="./images/avatar/${userProfileSummary.avatar}">
         <form action="./postComment" method="post" class="form">
             <input type="hidden" name="article" value="${article.id}">
+            <input type="hidden" name="parent" value="${comment.id}">
             <input type="hidden" name="userName" value="${userProfileSummary.userName}">
             <div class="form-group">
                 <label for="content">Please input your comments:</label>
