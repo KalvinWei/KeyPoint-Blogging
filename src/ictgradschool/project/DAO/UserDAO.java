@@ -55,6 +55,15 @@ public class UserDAO {
         }
     }
 
+    public static User getUserFromCommentId(Connection conn, int id) throws SQLException {
+        try (PreparedStatement ps = conn.prepareStatement(
+                "SELECT u.id as id, c.id as commentId, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, passwordHash, salt, iteration \n" +
+                        " FROM user u join comment c on u.id = c.user WHERE c.id = ?")) {
+            ps.setInt(1, id);
+            return assembleUser(ps);
+        }
+    }
+
     private static User assembleUser(PreparedStatement ps) throws SQLException {
         try (ResultSet rs = ps.executeQuery()) {
             if (rs.next())
