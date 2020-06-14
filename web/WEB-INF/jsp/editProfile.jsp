@@ -79,10 +79,10 @@
             </label>
             <input type="radio" id="defaultAvatar${loop.count}" name="defaultAvatar" value="${avatar}">
         </c:forEach>
+        <input type="radio" id="defaultAvatarCustomer" name="defaultAvatar" value="0">
         <label for="defaultAvatarCustomer">
             <img src="./images/avatar/default/guest.png">
         </label>
-        <input type="radio" id="defaultAvatarCustomer" name="defaultAvatar" value="0">
         <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>
 
