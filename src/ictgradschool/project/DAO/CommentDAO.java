@@ -91,7 +91,11 @@ public class CommentDAO {
                     ps.setInt(3, comment.getParent());
                 }
                 ps.setInt(4, comment.getUser().getId());
-                ps.setInt(5, comment.getArticle());
+                if (comment.getArticle() == null) {
+                    ps.setNull(5, Types.INTEGER);
+                } else {
+                    ps.setInt(5, comment.getArticle());
+                }
 
                 int rowAffected = ps.executeUpdate();
                 if (rowAffected != 0) {

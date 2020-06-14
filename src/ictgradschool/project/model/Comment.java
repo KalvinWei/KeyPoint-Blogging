@@ -8,7 +8,7 @@ public class Comment implements Serializable {
     private Integer id;
     private String content;
     private Timestamp time;
-    private int article = 0;
+    private Integer article;
     private Integer parent;
     private User parentUser;
     private int likes = 0;
@@ -17,7 +17,7 @@ public class Comment implements Serializable {
     private List<Comment> comments;
 
 
-    public Comment(Integer id, String content, Timestamp time, User user, int article, Integer parent) {
+    public Comment(Integer id, String content, Timestamp time, User user, Integer article, Integer parent) {
         this.id = id;
         this.content = content;
         this.time = time;
@@ -26,7 +26,7 @@ public class Comment implements Serializable {
         this.parent = parent;
     }
 
-    public Comment(Integer id, String content, Timestamp time, int article, int parent, User parentUser, int likes, int level, User user, List<Comment> comments) {
+    public Comment(Integer id, String content, Timestamp time, Integer article, int parent, User parentUser, int likes, int level, User user, List<Comment> comments) {
         this.id = id;
         this.content = content;
         this.time = time;
@@ -66,11 +66,11 @@ public class Comment implements Serializable {
         this.time = time;
     }
 
-    public int getArticle() {
+    public Integer getArticle() {
         return article;
     }
 
-    public void setArticle(int article) {
+    public void setArticle(Integer article) {
         this.article = article;
     }
 

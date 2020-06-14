@@ -25,11 +25,14 @@ public class PostComment extends HttpServlet {
         String content = req.getParameter("content");
         String parentString = req.getParameter("parent");
         Integer parent = null;
+        String articleString = req.getParameter("article");
+        Integer article = null;
         if (parentString != null && !parentString.isEmpty()) {
             parent = Integer.parseInt(parentString);
+        } else {
+            article = Integer.parseInt(articleString);
         }
         String userName = req.getParameter("userName");
-        int article = Integer.parseInt(req.getParameter("article"));
         Timestamp time = new Timestamp(System.currentTimeMillis());
         Comment comment;
         try {
@@ -38,6 +41,6 @@ public class PostComment extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("./articlePage?id=" + article);
+        resp.sendRedirect("./articlePage?id=" + articleString);
     }
 }

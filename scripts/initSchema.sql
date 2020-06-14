@@ -42,7 +42,7 @@ CREATE TABLE comment
     time      TIMESTAMP NOT NULL,
     parent    INT,
     user      INT       NOT NULL,
-    article   INT       NOT NULL,
+    article   INT,
     isDeleted BOOLEAN   NOT NULL,
     FOREIGN KEY (parent) REFERENCES comment (id) ON DELETE CASCADE,
     FOREIGN KEY (user) REFERENCES user (id) ON DELETE CASCADE,
