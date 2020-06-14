@@ -12,7 +12,7 @@ This file is to keep record of our plans.
 ## Planned Features
 #### Compulsory
 - [x] Account creation
-- [ ] User name validation (ajax)
+- [x] User name validation (ajax)
 - [ ] Front end validation
 - [x] Account management
 - [x] Login
