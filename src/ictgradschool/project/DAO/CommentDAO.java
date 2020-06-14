@@ -27,6 +27,7 @@ public class CommentDAO {
                             rs.getTimestamp("time"),
                             rs.getInt("article"),
                             rs.getInt("parent"),
+                            UserDAO.getUserFromId(conn, rs.getInt("parent")),
                             rs.getInt("likes"),
                             0, //level
                             UserDAO.getUserFromId(conn, rs.getInt("user")),
@@ -56,6 +57,7 @@ public class CommentDAO {
                             rs.getTimestamp("time"),
                             rs.getInt("article"),
                             parentId,
+                            UserDAO.getUserFromId(conn, parentId),
                             rs.getInt("likes"),
                             currentLevel,
                             UserDAO.getUserFromId(conn, rs.getInt("user")),
