@@ -4,21 +4,17 @@ import ictgradschool.project.model.Comment;
 import ictgradschool.project.util.DBConnectionUtils;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CommentDAO {
     public static List<Comment> getCommentsByArticleId(Connection conn, int articleId) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
-                "select distinct c.id as id,content,time,parent,article,nickname,avatar,likes\n" +
+                "select distinct c.id as id,content,time,parent,article,user,likes,c.isDeleted\n" +
                         "from comment as c\n" +
-                        "    inner join user as u on c.userName = u.userName\n" +
                         "    left join (select comment,count(*) as likes from likeComment group by comment) as l on c.id = l.comment\n" +
-                        "    where c.article = ?" +
+                        "    where c.article = ? and c.isDeleted = false" +
                         "    order by time desc;")) {
             ps.setInt(1, articleId);
             try (ResultSet rs = ps.executeQuery()) {
@@ -29,13 +25,12 @@ public class CommentDAO {
                             this_id,
                             rs.getString("content"),
                             rs.getTimestamp("time"),
-                            rs.getString("userName"),
                             rs.getInt("article"),
-                            rs.getInt("parent"), //parentId
-                            rs.getString("nickname"),
-                            rs.getString("avatar"),
+                            rs.getInt("parent"),
+                            UserDAO.getUserFromCommentId(conn, rs.getInt("parent")),
                             rs.getInt("likes"),
                             0, //level
+                            UserDAO.getUserFromId(conn, rs.getInt("user")),
                             getCommentsByParentId(conn, this_id, 1)
                     ));
                 }
@@ -46,29 +41,26 @@ public class CommentDAO {
 
     private static List<Comment> getCommentsByParentId(Connection conn, int parentId, int currentLevel) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
-                "select distinct c.id as id,content,time,article,nickname,avatar,likes\n" +
+                "select distinct c.id as id,content,time,article,user,likes,c.isDeleted\n" +
                         "from comment as c\n" +
-                        "    inner join user as u on c.userName = u.userName\n" +
                         "    left join (select comment,count(*) as likes from likeComment group by comment) as l on c.id = l.comment\n" +
-                        "    where c.parent = ?" +
+                        "    where c.parent = ? and c.isDeleted = false" +
                         "    order by time desc;")) {
             ps.setInt(1, parentId);
             try (ResultSet rs = ps.executeQuery()) {
                 List<Comment> comments = new ArrayList<>();
                 while (rs.next()) {
                     int this_id = rs.getInt("id");
-
                     comments.add(new Comment(
                             this_id,
                             rs.getString("content"),
                             rs.getTimestamp("time"),
-                            rs.getString("userName"),
                             rs.getInt("article"),
-                            parentId, //parentId
-                            rs.getString("nickname"),
-                            rs.getString("avatar"),
+                            parentId,
+                            UserDAO.getUserFromCommentId(conn, parentId),
                             rs.getInt("likes"),
-                            currentLevel, //level
+                            currentLevel,
+                            UserDAO.getUserFromId(conn, rs.getInt("user")),
                             getCommentsByParentId(conn, this_id, currentLevel + 1)
                     ));
                 }
@@ -80,7 +72,7 @@ public class CommentDAO {
     public static boolean deleteCommentByCommentId(int id) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "UPDATE comment SET isDeleted = true WHERE article = ?")) {
+                    "UPDATE comment SET isDeleted = true WHERE id = ?")) {
                 ps.setInt(1, id);
                 return ps.executeUpdate() == 1;
             }
@@ -90,12 +82,20 @@ public class CommentDAO {
     public static boolean insertComment(Comment comment) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO comment VALUES (null,?,?,?,?,?,false)")) {
+                    "INSERT INTO comment VALUES (null,?,?,?,?,?,false)", Statement.RETURN_GENERATED_KEYS)) {
                 ps.setString(1, comment.getContent());
                 ps.setTimestamp(2, comment.getTime());
-                ps.setInt(3, comment.getParent());
-                ps.setString(4, comment.getUserName());
-                ps.setInt(5, comment.getArticle());
+                if (comment.getParent() == null) {
+                    ps.setNull(3, Types.INTEGER);
+                } else {
+                    ps.setInt(3, comment.getParent());
+                }
+                ps.setInt(4, comment.getUser().getId());
+                if (comment.getArticle() == null) {
+                    ps.setNull(5, Types.INTEGER);
+                } else {
+                    ps.setInt(5, comment.getArticle());
+                }
 
                 int rowAffected = ps.executeUpdate();
                 if (rowAffected != 0) {

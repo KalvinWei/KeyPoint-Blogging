@@ -1,7 +1,7 @@
 package ictgradschool.project.servlet.action;
 
 import ictgradschool.project.DAO.UserDAO;
-import ictgradschool.project.model.User;
+import ictgradschool.project.model.UserData;
 import ictgradschool.project.util.AuthenticationUtil;
 
 import javax.servlet.ServletException;
@@ -21,17 +21,18 @@ public class SignUp extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        AuthenticationUtil.signOut(req);
+
         String userName = req.getParameter("userName");
-        String nickname = req.getParameter("nickname");
         String password = req.getParameter("password");
-        User user = AuthenticationUtil.createUser(userName, password);
-        user.setNickname(nickname == null || nickname.isEmpty() ? userName : nickname);
+        UserData user = AuthenticationUtil.createUserData(userName, password);
         try {
-            if (UserDAO.getUserFromUserName(userName) != null) {
-                resp.sendRedirect("./signInPage");
+            if (UserDAO.getUserDataFromUserName(userName) != null) {
+                resp.sendRedirect("./signUpPage");
             } else {
                 UserDAO.insertUser(user);
-                resp.sendRedirect("./signInPage");
+                AuthenticationUtil.signIn(req, userName);
+                resp.sendRedirect("./editProfilePage");
             }
         } catch (SQLException e) {
             e.printStackTrace();

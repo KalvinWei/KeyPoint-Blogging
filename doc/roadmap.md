@@ -12,28 +12,28 @@ This file is to keep record of our plans.
 ## Planned Features
 #### Compulsory
 - [x] Account creation
-- [ ] User name validation (ajax)
+- [x] User name validation (ajax)
 - [ ] Front end validation
-- [ ] Account management
+- [x] Account management
 - [x] Login
 - [x] Logout
 - [x] Password hash
-- [ ] Avatars
+- [x] Avatars
 - [x] Browsing all articles without logging in
-- [ ] Create, delete, edit, browse own articles when logged in
-- [ ] Create comments when logged in, delete comments when the article or comment is created by oneself
-- [ ] Display comments
+- [x] Create, delete, edit, browse own articles when logged in
+- [x] Create comments when logged in, delete comments when the article or comment is created by oneself
+- [x] Display comments
 - [ ] Responsiveness
 - [ ] Deploy
 
 #### Extra
-- [ ] Nested comments
+- [x] Nested comments
 - [ ] WYSIWYG editor
 - [ ] ~~Search and sort~~
 
 #### Other
-- [ ] Likes
-- [ ] Tags on articles
+- [ ] ~~Likes~~
+- [x] Tags on articles
 
 ## Time Schedule
 - 8/6 ~ 14/6: basic backend

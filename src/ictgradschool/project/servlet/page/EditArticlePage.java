@@ -1,6 +1,7 @@
 package ictgradschool.project.servlet.page;
 
 import ictgradschool.project.DAO.ArticleDAO;
+import ictgradschool.project.DAO.UserDAO;
 import ictgradschool.project.model.Article;
 import ictgradschool.project.util.AuthenticationUtil;
 
@@ -16,15 +17,28 @@ import java.sql.SQLException;
 public class EditArticlePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        AuthenticationUtil.checkLogInStatus(req);
+        boolean isUserLoggedIn = AuthenticationUtil.checkLogInStatus(req);
+        if (!isUserLoggedIn) {
+            req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+            return;
+        }
         String idString = req.getParameter("id");
         if (idString == null) {
             String userName = AuthenticationUtil.getLoggedInUserName(req);
-            req.setAttribute("article", new Article(userName));
+            try {
+                req.setAttribute("article", new Article(UserDAO.getUserFromUserName(userName)));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } else {
             int id = Integer.parseInt(req.getParameter("id"));
             try {
-                req.setAttribute("article", ArticleDAO.getArticleByArticleId(id));
+                Article article = ArticleDAO.getArticleByArticleId(id);
+                if (article == null || !article.getUser().getUserName().equals(AuthenticationUtil.getLoggedInUserName(req))) {
+                    req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+                    return;
+                }
+                req.setAttribute("article", article);
             } catch (SQLException e) {
                 e.printStackTrace();
             }

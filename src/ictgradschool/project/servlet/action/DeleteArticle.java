@@ -1,6 +1,7 @@
 package ictgradschool.project.servlet.action;
 
 import ictgradschool.project.DAO.ArticleDAO;
+import ictgradschool.project.util.AuthenticationUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,6 +26,6 @@ public class DeleteArticle extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("./articlesPage");
+        resp.sendRedirect("./articlesPage?userName=" + AuthenticationUtil.getLoggedInUserName(req));
     }
 }

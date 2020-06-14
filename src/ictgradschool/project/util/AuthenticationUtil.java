@@ -1,13 +1,11 @@
 package ictgradschool.project.util;
 
 import ictgradschool.project.DAO.UserDAO;
-import ictgradschool.project.model.User;
+import ictgradschool.project.model.UserData;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.sql.SQLException;
 import java.util.Random;
 
@@ -15,14 +13,13 @@ public class AuthenticationUtil {
 
     private static final String logInToken = "loggedInUserName";
 
-    public static User createUser(String userName, String password) {
+    public static UserData createUserData(String userName, String password) {
         Random random = new Random();
         int iteration = Math.abs(random.nextInt() % 100_000) + 1;
         int salt_length = Math.abs(random.nextInt() % 100) + 1;
         byte[] salt = PasswordUtil.getNextSalt(salt_length);
         byte[] passwordHash = PasswordUtil.hash(password.toCharArray(), salt, iteration);
-        return new User(
-                userName,
+        return new UserData(
                 userName,
                 PasswordUtil.base64Encode(passwordHash),
                 PasswordUtil.base64Encode(salt),
@@ -30,7 +27,7 @@ public class AuthenticationUtil {
         );
     }
 
-    public static boolean authenticate(User user, String password) {
+    public static boolean authenticate(UserData user, String password) {
         if (user == null)
             return false;
 
@@ -44,6 +41,13 @@ public class AuthenticationUtil {
 
     public static void signIn(HttpServletRequest req, String userName) {
         req.getSession(true).setAttribute(logInToken, userName);
+    }
+
+    public static void signOut(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            session.removeAttribute(logInToken);
+        }
     }
 
     public static String getLoggedInUserName(HttpServletRequest req) {
@@ -60,7 +64,7 @@ public class AuthenticationUtil {
             isUserLoggedIn = true;
             String loggedInUserName = getLoggedInUserName(req);
             try {
-                req.setAttribute("userProfileSummary", UserDAO.getUserProfileSummaryFromUserName(loggedInUserName));
+                req.setAttribute("user", UserDAO.getUserFromUserName(loggedInUserName));
             } catch (SQLException e) {
                 e.printStackTrace();
             }

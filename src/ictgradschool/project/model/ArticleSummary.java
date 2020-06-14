@@ -9,21 +9,17 @@ public class ArticleSummary implements Serializable {
     private String title;
     private String contentSummary;
     private String cover;
-    private String userName;
-    private String userNickname;
-    private String userAvatar;
+    private User user;
     private Timestamp time;
     private int likes;
     private List<String> tags;
 
-    public ArticleSummary(int id, String title, String contentSummary, String cover, String userName, String userNickname, String userAvatar, Timestamp time, int likes, List<String> tags) {
+    public ArticleSummary(int id, String title, String contentSummary, String cover, User user, Timestamp time, int likes, List<String> tags) {
         this.id = id;
         this.title = title;
         this.contentSummary = contentSummary;
         this.cover = cover;
-        this.userName = userName;
-        this.userNickname = userNickname;
-        this.userAvatar = userAvatar;
+        this.user = user;
         this.time = time;
         this.likes = likes;
         this.tags = tags;
@@ -64,28 +60,12 @@ public class ArticleSummary implements Serializable {
         this.cover = cover;
     }
 
-    public String getUserName() {
-        return userName;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setUserId(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserNickname() {
-        return userNickname;
-    }
-
-    public void setUserNickname(String userNickname) {
-        this.userNickname = userNickname;
-    }
-
-    public String getUserAvatar() {
-        return userAvatar;
-    }
-
-    public void setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar;
+    public User getUser() {
+        return user;
     }
 
     public Timestamp getTime() {
@@ -104,29 +84,11 @@ public class ArticleSummary implements Serializable {
         this.likes = likes;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public List<String> getTags() {
         return tags;
     }
 
     public void setTags(List<String> tags) {
         this.tags = tags;
-    }
-
-    @Override
-    public String toString() {
-        return "ArticleSummary{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", contentSummary='" + contentSummary + '\'' +
-                ", cover='" + cover + '\'' +
-                ", userNickname='" + userNickname + '\'' +
-                ", userAvatar='" + userAvatar + '\'' +
-                ", time=" + time +
-                ", likes=" + likes +
-                '}';
     }
 }

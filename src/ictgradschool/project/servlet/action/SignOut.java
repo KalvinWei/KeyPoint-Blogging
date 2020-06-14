@@ -1,5 +1,7 @@
 package ictgradschool.project.servlet.action;
 
+import ictgradschool.project.util.AuthenticationUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +13,7 @@ import java.io.IOException;
 public class SignOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession(true).removeAttribute("loggedInUserName");
+        AuthenticationUtil.signOut(req);
         resp.sendRedirect("./indexPage");
     }
 

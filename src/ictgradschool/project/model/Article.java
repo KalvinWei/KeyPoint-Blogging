@@ -1,41 +1,34 @@
 package ictgradschool.project.model;
 
+import ictgradschool.project.DAO.UserDAO;
+
+import java.io.IOException;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Article implements Serializable {
     private Integer id;
-    private String userName;
     private String title;
     private String content;
     private Timestamp time;
-    private String cover;
-    private String userNickname;
-    private String userAvatar;
-    private int likes;
-    private List<String> tags;
-    private List<Comment> comments;
+    private String cover = "cover5.jpg";
+    private int likes = 0;
+    private User user;
+    private List<String> tags = new ArrayList<>();
+    private List<Comment> comments = new ArrayList<>();
 
-    public Article(Integer id, String title, String content, Timestamp time, String cover, String userName, List<String> tags) {
+    public Article(Integer id, String title, String content, Timestamp time, String cover, User user, int likes, List<String> tags, List<Comment> comments) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.time = time;
         this.cover = cover;
-        this.userName = userName;
-        this.tags = tags;
-    }
-
-    public Article(Integer id, String title, String content, Timestamp time, String cover, String userName, String userNickname, String userAvatar, int likes, List<String> tags, List<Comment> comments) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.time = time;
-        this.cover = cover;
-        this.userName = userName;
-        this.userNickname = userNickname;
-        this.userAvatar = userAvatar;
+        this.user = user;
         this.likes = likes;
         this.tags = tags;
         this.comments = comments;
@@ -44,9 +37,35 @@ public class Article implements Serializable {
     public Article() {
     }
 
-    public Article(String userName) {
-        this.userName = userName;
-        this.likes = 0;
+    public Article(User user) {
+        this.user = user;
+    }
+
+    public void setField(String fieldName, String fieldValue) throws IOException, SQLException {
+        switch (fieldName) {
+            case "id":
+                setId(fieldValue.isEmpty() ? null : Integer.parseInt(fieldValue));
+                break;
+            case "title":
+                setTitle(fieldValue);
+                break;
+            case "content":
+                setContent(fieldValue);
+                break;
+            case "cover":
+                setCover(fieldValue);
+                break;
+            case "userName":
+                setUser(UserDAO.getUserFromUserName(fieldValue));
+                break;
+            case "tags":
+                List<String> tags = Stream.of(fieldValue.split("\\s*,\\s*"))
+                        .distinct()
+                        .filter(tag -> !tag.isEmpty())
+                        .collect(Collectors.toList());
+                setTags(tags);
+                break;
+        }
     }
 
     public Integer getId() {
@@ -89,28 +108,12 @@ public class Article implements Serializable {
         this.cover = cover;
     }
 
-    public String getUserNickname() {
-        return userNickname;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setUserNickname(String userNickname) {
-        this.userNickname = userNickname;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserAvatar() {
-        return userAvatar;
-    }
-
-    public void setUserAvatar(String userAvatar) {
-        this.userAvatar = userAvatar;
+    public User getUser() {
+        return user;
     }
 
     public int getLikes() {
@@ -135,20 +138,5 @@ public class Article implements Serializable {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-    @Override
-    public String toString() {
-        return "Article{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", time=" + time +
-                ", cover='" + cover + '\'' +
-                ", userNickname='" + userNickname + '\'' +
-                ", userAvatar='" + userAvatar + '\'' +
-                ", likes=" + likes +
-                ", commentList=" + comments +
-                '}';
     }
 }

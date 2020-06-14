@@ -1,26 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: kalvinwei
-  Date: 9/06/20
-  Time: 16:46
-  To change this template use File | Settings | File Templates.
-
-  --from ~/editProfilePage                          [to edit, to create]
-  user(* except passwordHash,salt,interation)
-
-  # => userProfile
-
-  --to ~/saveProfile
-  id,signature,firstName,lastName,nickname,email,password,avatar
-
-  --to ~/deleteAccount
-  id
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Edit Profile</title>
+    <%@include file="shared/_libraries.jsp"%>
+    <script src="./assets/js/validateUserName.js"></script>
     <script type="javascript">
         const avatarInputBox = document.querySelector("input[name='avatar']");
         const avatarDisplay = document.querySelector("img.avatar");
@@ -36,47 +20,90 @@
         };
 
         function useDefaultAvatar(){
-            avatarDisplay.src = "./images/defaultAvatar1.jpg";
+            avatarDisplay.src = "./images/avatar/guest.jpg";
             avatarInputBox.value = avatarDisplay.src;
         }
     </script>
 </head>
 <body>
-<%@include file="shared/navbar.jsp"%>
+<%@include file="shared/_navbar.jsp"%>
 
-<div id="wrapper">
-    <h3>${userProfile.nickname}</h3>
+<div id="wrapper" class="container">
+    <h3>${user.nickname}</h3>
 
-    <form action="./saveProfile" method="post">
+    <form action="./saveProfile" method="post" enctype="multipart/form-data">
 
     <div id="leftBlock">
-        <input id="userName" type="hidden" name="userName" value="${userProfile.userName}">
-        <input id="nickname" type="text" name="nickname" value="${userProfile.nickname}" placeholder="nickname">
-        <input id="signature" type="text" name="signature" value="${userProfile.signature}" placeholder="signature">
-        <input id="firstName" type="text" name="firstName" value="${userProfile.firstName}" placeholder="first name">
-        <input id="lastName" type="text" name="lastName" value="${userProfile.lastName}" placeholder="last name">
-        <input id="dateOfBirth" type="date" name="dateOfBirth" value="${userProfile.dateOfBirth}" placeholder="date of birth">
-        <input id="email" type="email" name="email" ${userProfile.email} placeholder="email">
-        <textarea name="description" placeholder="description">${userProfile.description}</textarea>
-        <button type="submit">Save</button>
+        <input id="id" type="hidden" name="id" value="${user.id}">
+        <div class="form-group">
+            <label for="userName">Username:</label>
+            <input id="userName" type="text" name="userName" value="${user.userName}" placeholder="user name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="nickname">Nickname:</label>
+            <input id="nickname" type="text" name="nickname" value="${user.nickname}" placeholder="nickname" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="signature">Signature:</label>
+            <input id="signature" type="text" name="signature" value="${user.signature}" placeholder="signature" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="firstName">First name:</label>
+            <input id="firstName" type="text" name="firstName" value="${user.firstName}" placeholder="first name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last name:</label>
+            <input id="lastName" type="text" name="lastName" value="${user.lastName}" placeholder="last name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="dateOfBirth">Date of birth:</label>
+            <input id="dateOfBirth" type="date" name="dateOfBirth" value="${user.dateOfBirth.toString()}" placeholder="date of birth" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" type="email" name="email" value="${user.email}" placeholder="email" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" placeholder="description" class="form-control">${user.description}</textarea>
+        </div>
     </div>
 
     <div id="rightBlock">
-        <c:if test="${empty userProfile.avatar}">
-            <img class="avatar" src="./images/avatar/guest.png" alt="guest avatar">
-        </c:if>
-        <c:if test="${not empty userProfile.avatar}">
-            <img class="avatar" src="./images/avatar/${userProfile.avatar}">
-        </c:if>
-        <input type="file" name="avatar" value="${userProfile.avatar}" accept="image/jpeg, image/png">
+        <img class="avatar" src="./images/avatar/${user.avatar}">
+        <input type="hidden" name="originalAvatar" value="${user.avatar}">
+        <input type="file" name="avatar" accept="image/jpeg, image/png">
+        <c:forEach var="avatar" items="${defaultAvatars}" varStatus="loop">
+            <label for="defaultAvatar${loop.count}">
+                <img src="./images/avatar/${avatar}">
+            </label>
+            <input type="radio" id="defaultAvatar${loop.count}" name="defaultAvatar" value="${avatar}">
+        </c:forEach>
+        <input type="radio" id="defaultAvatarCustomer" name="defaultAvatar" value="0">
+        <label for="defaultAvatarCustomer">
+            <img src="./images/avatar/default/guest.png">
+        </label>
         <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>
+
+    <button type="submit" class="btn btn-dark btn-block">Save</button>
+
     </form>
 
     <form action="./deleteAccount" method="post">
-        <input type="hidden" name="userName" value="${userProfile.userName}">
-        <button type="submit">Delete account</button>
+        <input type="hidden" name="userName" value="${user.userName}">
+        <button type="submit" class="btn btn-danger form-control">Delete account</button>
     </form>
 </div>
+<script>
+    const originalUserName = document.getElementById("userName").value;
+    document.getElementById("userName").addEventListener("input", async () => {
+        const userName = document.getElementById("userName").value;
+        const result = await validateUserName(userName, originalUserName);
+        if (!result) {
+            console.log("This username is already taken!");
+        }
+    });
+</script>
 </body>
 </html>

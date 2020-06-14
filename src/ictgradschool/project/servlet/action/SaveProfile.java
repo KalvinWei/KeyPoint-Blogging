@@ -1,21 +1,34 @@
 package ictgradschool.project.servlet.action;
 
 import ictgradschool.project.DAO.UserDAO;
-import ictgradschool.project.model.UserProfile;
+import ictgradschool.project.model.User;
+import ictgradschool.project.servlet.FileUploadBase;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
+@MultipartConfig
 @WebServlet(name = "SaveProfile", urlPatterns = {"/saveProfile"})
-public class SaveProfile extends HttpServlet {
+public class SaveProfile extends FileUploadBase {
+
+    @Override
+    protected String getRelativePath() {
+        return "/images/avatar";
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp); // do not support
@@ -23,37 +36,56 @@ public class SaveProfile extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userName = req.getParameter("userName");
-        String nickname = req.getParameter("nickname");
-        String firstName = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
-        String email = req.getParameter("email");
-        String signature = req.getParameter("signature");
-        String description = req.getParameter("description");
-        String avatar = req.getParameter("avatar");
-        String dateOfBirthString = req.getParameter("dateOfBirth");
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        Date dateOfBirth = null;
+
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        factory.setSizeThreshold(4 * 1024);
+        factory.setRepository(tempFolder);
+        ServletFileUpload upload = new ServletFileUpload(factory);
+
+        User user = new User();
+        String userName = "";
+        String originalAvatar = "";
+        String defaultAvatar = "";
+        boolean avatarFileUploaded = false;
+
         try {
-            dateOfBirth = simpleDateFormat.parse(dateOfBirthString);
-        } catch (ParseException e) {
-            e.printStackTrace();
+            List<FileItem> fileItems = upload.parseRequest(req);
+            File file;
+
+            for (FileItem item : fileItems) {
+                if (item.isFormField()) {
+                    String fieldName = item.getFieldName();
+                    String fieldValue = item.getString();
+                    if (fieldName.equals("userName")) {
+                        userName = fieldValue;
+                    } else if (fieldName.equals("originalAvatar")) {
+                        originalAvatar = fieldValue;
+                        continue;
+                    } else if (fieldName.equals("defaultAvatar")) {
+                        defaultAvatar = fieldValue;
+                        continue;
+                    }
+                    user.setField(fieldName, fieldValue);
+                } else if (!item.isFormField() && acceptableMimeTypes.contains(item.getContentType())) {
+                    String fileName = UUID.randomUUID() + "." + FilenameUtils.getExtension(item.getName());
+                    file = new File(uploadsFolder, fileName);
+                    item.write(file);
+                    user.setField("avatar", fileName);
+                    avatarFileUploaded = true;
+                }
+            }
+        } catch (Exception e) {
+            throw new ServletException(e);
         }
 
-        UserProfile userProfile = new UserProfile(
-                userName,
-                nickname,
-                firstName,
-                lastName,
-                dateOfBirth,
-                email,
-                signature,
-                description,
-                avatar
-        );
+        if (defaultAvatar.equals("0") && !avatarFileUploaded) {
+            user.setAvatar(originalAvatar);
+        } else if (!defaultAvatar.equals("0")) {
+            user.setAvatar(defaultAvatar);
+        }
 
         try {
-            UserDAO.saveProfile(userProfile);
+            UserDAO.saveProfile(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }

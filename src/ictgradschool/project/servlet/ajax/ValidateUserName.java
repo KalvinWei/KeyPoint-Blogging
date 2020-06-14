@@ -1,8 +1,8 @@
-package ictgradschool.project.servlet.page;
+package ictgradschool.project.servlet.ajax;
 
-import ictgradschool.project.DAO.ArticleDAO;
 import ictgradschool.project.DAO.UserDAO;
-import ictgradschool.project.util.AuthenticationUtil;
+import ictgradschool.project.JSON.ValidateUserNameResult;
+import ictgradschool.project.util.JSONUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,19 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ArticlesPage", urlPatterns = {"/articlesPage"})
-public class ArticlesPage extends HttpServlet {
+@WebServlet(name = "ValidateUserName", urlPatterns = {"/validateUserName"})
+public class ValidateUserName extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        AuthenticationUtil.checkLogInStatus(req);
         String userName = req.getParameter("userName");
         try {
-            req.setAttribute("author", UserDAO.getUserFromUserName(userName));
-            req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByUserName(userName));
+            if (UserDAO.getUserFromUserName(userName) == null) {
+                JSONUtil.send(resp, new ValidateUserNameResult("success"));
+            } else {
+                JSONUtil.send(resp, new ValidateUserNameResult("failure"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        req.getRequestDispatcher("/WEB-INF/jsp/articles.jsp").forward(req, resp);
     }
 
     @Override
