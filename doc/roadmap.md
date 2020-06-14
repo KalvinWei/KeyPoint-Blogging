@@ -32,7 +32,7 @@ This file is to keep record of our plans.
 - [ ] ~~Search and sort~~
 
 #### Other
-- [ ] Likes
+- [ ] ~~Likes~~
 - [x] Tags on articles
 
 ## Time Schedule
