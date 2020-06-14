@@ -18,7 +18,7 @@
         </c:if>
         <c:if test="${isUserLoggedIn}">
             <li class="nav-item">
-                <a class="nav-link" href="./articlesPage?user=${user.nickname}">
+                <a class="nav-link" href="./articlesPage?userName=${user.userName}" data-toggle="tooltip" title="${user.signature}">
                         ${user.nickname}
                 </a>
             </li>
