@@ -5,6 +5,11 @@
         <div style="margin-left: ${comment.level}00px">
             <c:set var="userSummary" value="${comment.user}"/>
             <%@include file="shared/_userSummary.jsp"%>
+            <c:if test="${comment.parentUser != null}">
+                <span>replied</span>
+                <c:set var="userSummary" value="${comment.parentUser}"/>
+                <%@include file="shared/_userSummary.jsp"%>
+            </c:if>
             <p>${comment.content}</p>
             <span>${comment.time}</span>
             <c:if test="${isUserLoggedIn && (user.userName.equals(article.user.userName) || user.userName.equals(comment.user.userName))}">
