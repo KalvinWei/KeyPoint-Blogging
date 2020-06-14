@@ -14,6 +14,10 @@
             <label for="userName">Username:</label>
             <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required>
             <div class="invalid-feedback">* Please input your username</div>
+            <!-- TODO:
+                add a div showing a message of username already used, give this div an id
+                give it a class "d-none", this is a bootstrap class which hide an element
+            -->
         </div>
         <div class="form-group was-validated">
             <label for="password">Password:</label>
@@ -36,7 +40,14 @@
         const userName = document.getElementById("userName").value;
         const result = await validateUserName(userName, null);
         if (!result) {
+            // TODO: delete this line, change it to code that
+            // 1) remove the d-none class from the div you added
+            // 2) set the submit button to be disabled
             console.log("This username is already taken!");
+        } else {
+            // TODO: do the opposite:
+            // 1) add d-none
+            // 2) set the submit button's disable to be false
         }
     });
 </script>
