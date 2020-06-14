@@ -2,12 +2,11 @@
 
 This file is to keep record of our plans.
 
-## Today (*11/06/2020*)
+## Today (*15/06/2020*)
 
-- **[Y]** Set up the database account and try deploy
-- ~~**[Y]** Finish action servlets~~
-- ~~**[K]** Finish DAOs~~
-- ~~**[E]** Refine jsps~~
+- **[E]** Add required front end functionality
+- **[K]** Add bootstrap classes to pages
+- **[Y]** Fix bugs, add error handling
 
 ## Planned Features
 #### Compulsory
@@ -34,7 +33,8 @@ This file is to keep record of our plans.
 #### Other
 - [ ] ~~Likes~~
 - [x] Tags on articles
+- [x] Authors page
 
 ## Time Schedule
-- 8/6 ~ 14/6: basic backend
+- ~~8/6 ~ 14/6: basic backend~~
 - 15/6 ~ 18/6: frontend and additional features
