@@ -18,8 +18,8 @@ CREATE TABLE user
     signature    TEXT,
     description  TEXT,
     avatar       VARCHAR(128) NOT NULL,
-    passwordHash VARCHAR(600) NOT NULL,
-    salt         VARCHAR(128) NOT NULL,
+    passwordHash VARCHAR(1024) NOT NULL,
+    salt         VARCHAR(1024) NOT NULL,
     iteration    INT          NOT NULL
 );
 

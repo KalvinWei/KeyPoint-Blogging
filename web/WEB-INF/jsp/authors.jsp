@@ -8,7 +8,6 @@
 <%@include file="shared/_navbar.jsp" %>
 <div>
     <c:forEach var="author" items="${authors}">
-        <c:set var="user" value="${author}"/>
         <%@include file="shared/_userProfile.jsp"%>
     </c:forEach>
 </div>
