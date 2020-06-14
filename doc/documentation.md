@@ -21,12 +21,19 @@ This file contains the documentation of page design, database design, etc.
 |       |   |- action       [servlets which respond to a form action]
 |       |   `- ajax         [servlets which respond to ajax]
 |       |- DAO              [DAOs]
+|       |- JSON             [Objects to be mapped to JSONs]
 |       |- model            [java beans to be passed to jsps]  
 |       `- util             [utility static classes]
 `- web
+    |- assets               [for assets that are accessible by users]
+    |    |- html            [static pages, mainly for errors]
+    |    |- css             [css]
+    |    `- js              [js]
     |- images
-    |   |- avatars          [default avatars]
-    |   `- covers           [default covers]
+    |   |- avatars          [avatars]
+    |   |    `- default     [default avatars]
+    |   `- covers           [covers]
+    |        `- default     [default covers]
     `- WEB-INF
         |- lib
         |- res
