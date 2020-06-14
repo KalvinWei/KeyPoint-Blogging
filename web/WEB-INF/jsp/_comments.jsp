@@ -7,7 +7,6 @@
             <%@include file="shared/_userSummary.jsp"%>
             <p>${comment.content}</p>
             <span>${comment.time}</span>
-            <span>Likes: ${comment.likes}</span>
             <c:if test="${isUserLoggedIn && (user.userName.equals(article.user.userName) || user.userName.equals(comment.user.userName))}">
                 <form action="./deleteComment" method="post">
                     <input type="hidden" name="id" value="${comment.id}">
