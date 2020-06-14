@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div>
+<button data-toggle="collapse" data-target="#comment_box_${parent.id}">
+    Comment
+</button>
+<div id="comment_box_${parent.id}" class="collapse">
     <c:if test="${isUserLoggedIn}">
         <img src="./images/avatar/${user.avatar}" style="width: 20px">
         <form action="./postComment" method="post" class="form">
