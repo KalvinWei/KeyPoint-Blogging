@@ -5,6 +5,12 @@
         <li class="nav-item">
             <a class="navbar-brand nav-link" href="./indexPage">KeyPoint</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./indexPage">Articles</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="./authorsPage">Authors</a>
+        </li>
     </ul>
 
     <ul class="navbar-nav">

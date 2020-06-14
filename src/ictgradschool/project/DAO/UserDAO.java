@@ -7,6 +7,8 @@ import ictgradschool.project.util.DBConnectionUtils;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
     public static UserData getUserDataFromUserName(String userName) throws IOException, SQLException {
@@ -45,6 +47,31 @@ public class UserDAO {
                 }
             }
         }
+    }
+
+    public static List<User> getAllUsers() throws IOException, SQLException {
+        List<User> users = new ArrayList<>();
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (Statement statement = conn.createStatement()) {
+                try (ResultSet rs = statement.executeQuery("SELECT * FROM user")) {
+                    while (rs.next()) {
+                        users.add(new User(
+                                rs.getInt("id"),
+                                rs.getString("userName"),
+                                rs.getString("nickname"),
+                                rs.getString("firstName"),
+                                rs.getString("lastName"),
+                                rs.getObject("dateOfBirth", LocalDate.class),
+                                rs.getString("email"),
+                                rs.getString("signature"),
+                                rs.getString("description"),
+                                rs.getString("avatar")
+                        ));
+                    }
+                }
+            }
+        }
+        return users;
     }
 
     public static User getUserFromId(Connection conn, int id) throws SQLException {

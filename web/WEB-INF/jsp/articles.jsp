@@ -8,7 +8,7 @@
 <body>
 <%@include file="shared/_navbar.jsp"%>
 <div>
-    <%@include file="_userProfile.jsp"%>
+    <%@include file="shared/_userProfile.jsp"%>
     <%@include file="shared/_articleSummaries.jsp"%>
 </div>
 
