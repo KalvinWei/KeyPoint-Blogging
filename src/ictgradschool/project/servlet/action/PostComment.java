@@ -34,13 +34,13 @@ public class PostComment extends HttpServlet {
         }
         String userName = req.getParameter("userName");
         Timestamp time = new Timestamp(System.currentTimeMillis());
-        Comment comment;
+        Comment comment = new Comment();
         try {
             comment = new Comment(null, content, time, UserDAO.getUserFromUserName(userName), article, parent);
             CommentDAO.insertComment(comment);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("./articlePage?id=" + articleString);
+        resp.sendRedirect("./articlePage?id=" + articleString + "#comment_" + comment.getId());
     }
 }
