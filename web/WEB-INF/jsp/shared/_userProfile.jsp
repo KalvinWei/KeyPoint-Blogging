@@ -2,7 +2,9 @@
 <div id="profile">
     <div id="nameAndSignature">
         <img src="./images/avatar/${author.avatar}" style="width: 20px">
-        <span id="nickname">${author.nickname}</span>
+        <a href="./articlesPage?userName=${author.userName}" data-toggle="tooltip" title="${author.signature}">
+            <span id="nickname">${author.nickname}</span>
+        </a>
         <span id="signature">${author.signature}</span>
     </div>
     <div id="otherInfo">

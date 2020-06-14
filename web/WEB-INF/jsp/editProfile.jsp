@@ -81,7 +81,7 @@
         </c:forEach>
         <input type="radio" id="defaultAvatarCustomer" name="defaultAvatar" value="0">
         <label for="defaultAvatarCustomer">
-            <img src="./images/avatar/default/guest.png">
+            <img src="./images/avatar/default/1.png">
         </label>
         <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>
