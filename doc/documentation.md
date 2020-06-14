@@ -8,48 +8,48 @@ This file contains the documentation of page design, database design, etc.
 |- lib
 |- out
 |- doc
-|   |- documentation.md     [this file]
-|   |- journal.md           [diary]
-|   `- roadmap.md           [plans]
+|   |- documentation.md          [this file]
+|   |- journal.md                [diary]
+|   `- roadmap.md                [plans]
 |- scripts
-|   |- initSchema.sql       [create tables]
-|   `- sampleData.sql       [generate sample data for testing]
+|   |- initSchema.sql            [create tables]
+|   `- sampleData.sql            [generate sample data for testing]
 |- src
 |   `- ictgradschool.project
 |       |- servlet
-|       |   |- page         [servlets which directly dispatch to jsps]
-|       |   |- action       [servlets which respond to a form action]
-|       |   `- ajax         [servlets which respond to ajax]
-|       |- DAO              [DAOs]
-|       |- JSON             [Objects to be mapped to JSONs]
-|       |- model            [java beans to be passed to jsps]  
-|       `- util             [utility static classes]
+|       |   |- page              [servlets which directly dispatch to jsps]
+|       |   |- action            [servlets which respond to a form action]
+|       |   `- ajax              [servlets which respond to ajax]
+|       |- DAO                   [DAOs]
+|       |- JSON                  [Objects to be mapped to JSONs]
+|       |- model                 [java beans to be passed to jsps]  
+|       `- util                  [utility static classes]
 `- web
-    |- assets               [for assets that are accessible by users]
-    |    |- html            [static pages, mainly for errors]
-    |    |- css             [css]
-    |    `- js              [js]
+    |- assets                    [for assets that are accessible by users]
+    |    |- html                 [static pages, mainly for errors]
+    |    |- css                  [css]
+    |    `- js                   [js]
     |- images
-    |   |- avatars          [avatars]
-    |   |    `- default     [default avatars]
-    |   `- covers           [covers]
-    |        `- default     [default covers]
+    |   |- avatars               [avatars]
+    |   |    `- default          [default avatars]
+    |   `- covers                [covers]
+    |        `- default          [default covers]
     `- WEB-INF
         |- lib
         |- res
-        `- jsp              [jsp files]
-            `- shared       [shared jsp components]
+        `- jsp                   [jsp files]
+            `- shared            [shared jsp components]
 ```
 
 ## Database Schema
 - **user**
-(**userName**, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, passwordHash, salt, iteration)
+(**id**, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, passwordHash, salt, iteration)
 
 - **article**
 (**id**, title, content, time, *userName, cover, isDeleted)
 
 - **comment**
-(**id**, content, time, *userName, *article, parent, isDeleted,)
+(**id**, content, time, *userName, *article, *parent, isDeleted,)
 
 - **likeArticle**
 (***userName**, ***article**)
@@ -81,7 +81,7 @@ This file contains the documentation of page design, database design, etc.
 | ~/deleteArticle |action| submit article deletion form, redirect to all articles page|
 | ~/postComment |action| submit comment creating form, returns a json response? |
 | ~/deleteComment |action| submit comment deleting form, returns a json response? |
-| ~/checkUserName |json| test whether the user name is available, returns a json response |
+| ~/validateUserName |json| test whether the user name is available, returns a json response |
 
 ## Page Design
 
@@ -92,18 +92,14 @@ This file contains the documentation of page design, database design, etc.
 - Index page (~/, ~/index, ~/indexPage)
     - **consumes**
         - isUserLoggedIn : Boolean
-        - userProfileSummary : UserProfileSummary?
+        - user : User?
         - articleSummaries : List\<ArticleSummaries\>
-    - **sends**
-        - *nothing*
     
 - Sign in page (~/signInPage)
    - **consumes**
        - isUserLoggedIn : Boolean
-       - userProfileSummary : UserProfileSummary?
+       - user : User?
        - hasLogInFail : Boolean?
-       - lastPage : String?
-       - {"hasBeenTaken" : string} : json 
    - **sends**
        - [post] to signIn
            - userName
@@ -111,20 +107,18 @@ This file contains the documentation of page design, database design, etc.
            
 - Sign up page (~/signUpPage)
    - **consumes**
-       - *nothing?*
+       - [ajax] ValidateUserNameResult : JSON {"validateStatus" : "success|failure"}
    - **sends**
        - [post] to signUp
            - userName
-           - nickname
            - password
-       - [ajax] to checkUserName
+       - [ajax] to validateUserName
            - userName
            
 - Edit profile page (~/editProfilePage)
     - **consumes**
         - isUserLoggedIn : Boolean
-        - userProfileSummary : UserProfileSummary?
-        - user : UserProfile
+        - user : User?
     - **sends**
         - [post] to saveProfile
             - id
@@ -137,13 +131,15 @@ This file contains the documentation of page design, database design, etc.
             - description
             - avatar
             - dateOfBirth
+            - originalAvatar
+            - defaultAvatar
         - [post] to deleteAccount
             - id
     
 - Edit article page (~/editArticlePage)
     - **consumes**
         - isUserLoggedIn : Boolean
-        - userProfileSummary : UserProfileSummary?
+        - user : User?
         - article : Article
     - **sends**
         - [post] to postArticle
@@ -153,14 +149,14 @@ This file contains the documentation of page design, database design, etc.
             - cover
             - user
             - tags
+            - originalCover
         - [post] to deleteArticle
             - id
     
 - Articles page (~/articlesPage)
     - **consumes**
         - isUserLoggedIn : Boolean
-        - userProfileSummary : UserProfileSummary?
-        - user : UserProfile
+        - user : User?
         - articleSummaries : List\<ArticleSummaries\>
     - **sends**
         - [get] to editArticlePage
@@ -171,13 +167,20 @@ This file contains the documentation of page design, database design, etc.
 - Article page (~/articlePage)
     - **consumes**
         - isUserLoggedIn : Boolean
-        - userProfileSummary : UserProfileSummary?
+        - user : User?
         - article : Article
     - **sends**
-        - [post] to postComment
-            - content
-            - parent
-            - user
-            - article
         - [post] to deleteComment
             - id
+            - articleId
+        - [post] to postComment
+            - article
+            - parent
+            - userName
+            - content
+
+- Authors page (~/authorsPage)
+    - **consumes**
+        - isUserLoggedIn: Boolean
+        - user : User?
+        - authors : List<Authors>
