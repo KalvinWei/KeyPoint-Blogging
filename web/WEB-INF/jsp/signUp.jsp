@@ -3,6 +3,7 @@
 <head>
     <title>Sign up</title>
     <%@include file="shared/_libraries.jsp"%>
+    <script src="./assets/js/validateUserName.js"></script>
 </head>
 <body>
 <div id="contentBox" class="m-auto container">
@@ -30,5 +31,14 @@
         <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
     </form>
 </div>
+<script>
+    document.getElementById("userName").addEventListener("input", async () => {
+        const userName = document.getElementById("userName").value;
+        const result = await validateUserName(userName, null);
+        if (!result) {
+            console.log("This username is already taken!");
+        }
+    });
+</script>
 </body>
 </html>

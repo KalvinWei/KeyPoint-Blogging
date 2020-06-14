@@ -4,6 +4,7 @@
 <head>
     <title>Edit Profile</title>
     <%@include file="shared/_libraries.jsp"%>
+    <script src="./assets/js/validateUserName.js"></script>
     <script type="javascript">
         const avatarInputBox = document.querySelector("input[name='avatar']");
         const avatarDisplay = document.querySelector("img.avatar");
@@ -94,5 +95,15 @@
         <button type="submit" class="btn btn-danger form-control">Delete account</button>
     </form>
 </div>
+<script>
+    const originalUserName = document.getElementById("userName").value;
+    document.getElementById("userName").addEventListener("input", async () => {
+        const userName = document.getElementById("userName").value;
+        const result = await validateUserName(userName, originalUserName);
+        if (!result) {
+            console.log("This username is already taken!");
+        }
+    });
+</script>
 </body>
 </html>
