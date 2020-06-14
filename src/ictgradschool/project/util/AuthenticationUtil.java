@@ -4,6 +4,7 @@ import ictgradschool.project.DAO.UserDAO;
 import ictgradschool.project.model.UserData;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Random;
@@ -40,6 +41,13 @@ public class AuthenticationUtil {
 
     public static void signIn(HttpServletRequest req, String userName) {
         req.getSession(true).setAttribute(logInToken, userName);
+    }
+
+    public static void signOut(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            session.removeAttribute(logInToken);
+        }
     }
 
     public static String getLoggedInUserName(HttpServletRequest req) {

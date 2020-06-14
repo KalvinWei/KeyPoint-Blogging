@@ -21,6 +21,8 @@ public class SignUp extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        AuthenticationUtil.signOut(req);
+
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
         UserData user = AuthenticationUtil.createUserData(userName, password);
