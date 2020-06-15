@@ -7,6 +7,7 @@ function enableFollow(id) {
             success: function() {
                 $(`#followForm_${id}`).toggleClass("d-none");
                 $(`#unfollowForm_${id}`).toggleClass("d-none");
+                $(`#followers_${id}`).text(+$(`#followers_${id}`).text() + 1);
             }
         });
         return false;
@@ -22,6 +23,7 @@ function enableUnfollow(id) {
             success: function() {
                 $(`#followForm_${id}`).toggleClass("d-none");
                 $(`#unfollowForm_${id}`).toggleClass("d-none");
+                $(`#followers_${id}`).text(+$(`#followers_${id}`).text() - 1);
             }
         });
         return false;

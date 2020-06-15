@@ -13,6 +13,8 @@
 
         <div id="otherInfo" class="col-sm-7">
             <dl class="row">
+                    <dt class="col-md-3">Followers:</dt>
+                    <dd class="col-md-9" id="followers_${author.id}">${author.followers}</dd>
                     <dt class="col-md-3">date of birth:</dt>
                     <dd class="col-md-9">${author.dateOfBirth.toString()}</dd>
                     <dt class="col-md-3">email:</dt>

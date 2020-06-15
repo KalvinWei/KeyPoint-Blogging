@@ -13,6 +13,7 @@
                         <p class="my-1 font-italic"><small><c:set var="userSummary" value="${article.user}"/>
                             <%@include file="_userSummary.jsp" %>
                             / <span>${article.time}</span></small></p>
+                        <span>${article.likes} likes</span>
                         <p class="my-2">
                             <c:forEach var="tag" items="${article.tags}">
                                 <a href="./articlesByTagPage?tag=${tag}" class="badge badge-secondary px-1">${tag}</a>
