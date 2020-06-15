@@ -30,7 +30,7 @@ public class UserDAO {
     }
 
     public static int insertUser(UserData user) throws IOException, SQLException {
-        String defaultAvatarName = "default/guest.png";
+        String defaultAvatarName = "default/1.png";
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "INSERT INTO user VALUES (NULL, ?, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
