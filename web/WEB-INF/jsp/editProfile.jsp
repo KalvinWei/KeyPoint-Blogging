@@ -77,25 +77,6 @@
     </form>
 </div>
 <script>
-    const avatarInputBox = document.querySelector("input[name='avatar']");
-    const avatarDisplay = document.querySelector("img.avatar");
-
-    avatarInputBox.onchange = function () {
-        const imgFile = avatarInputBox.file[0];
-        const reader = new FileReader();
-
-        reader.onload = function(e) {
-            avatarDisplay.src = e.target.result;
-        };
-        reader.readAsDataURL(imgFile);
-    };
-
-    function useDefaultAvatar(){
-        avatarDisplay.src = "./images/avatar/guest.jpg";
-        avatarInputBox.value = avatarDisplay.src;
-    }
-
-
     const originalUserName = document.getElementById("userName").value;
     document.getElementById("userName").addEventListener("input", async () => {
         const userName = document.getElementById("userName").value;

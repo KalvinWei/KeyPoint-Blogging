@@ -35,7 +35,7 @@ INSERT INTO user (id, userName, nickname, firstName,lastName, dateOfBirth,email,
 
 
 
-INSERT INTO article (id, title, content, time, cover, userName,isDeleted) VALUES
+INSERT INTO article (id, title, content, time, cover, user, isDeleted) VALUES
  (223,'Portobel turns food producers into direct-to-consumer businesses',
     'Kumaran told me that he and his co-founders Ted Everson and Itai Maron started out with the goal of improving the delivery process by using low-cost, internet-connected devices to track each order. As they began testing this out — primarily with dairy companies and other producers of perishable goods — customers started to ask them, “Hey, you can monitor these things, can you actually deliver these things, too?”
 
@@ -59,18 +59,18 @@ Rajneesh Kumar, chief corporate affairs officer at Flipkart, told TechCrunch tha
 
 “At Flipkart, we believe that a technology and innovation-driven marketplace can add significant value to our country’s farmers and food processing sector by bringing value-chain efficiency and transparency. This will further aid boosting farmers’ income and transform Indian agriculture,” he added.',
  '2020-06-07T08:08:14',
- 'cover4.jpg','user3',0),
+ 'cover4.jpg',123,0),
 (226,'IBM Cloud suffers prolonged outage',
  'The IBM Cloud is currently suffering a major outage, and with that, multiple services that are hosted on the platform are also down, including everybody’s favorite tech news aggregator, Techmeme.
 It looks like the problems started around 2:30pm PT and spread from there. Best we can tell, this is a worldwide problem and involves a networking issue, but IBM’s  own status page isn’t actually loading anymore and returns an internal server error, so we don’t quite know the extent of the outage or what triggered it. IBM Cloud’s Twitter account has also remained silent, though we found a status page for IBM Aspera hosted on a third-party server, which seems to confirm that this is likely a worldwide networking issue.',
  '2020-06-09T09:09:14',
- 'cover3.jpg','user4',0),
+ 'cover3.jpg',124,0),
 (227,'Preventing food waste nets Apeel $250 million from Singapore’s government, Oprah and Katy Perry',
   'Food waste and the pressures on the global food supply chain wrought by the COVID-19 pandemic have captured headlines around the world, and one small startup based in the coastal California city of Santa Barbara has just announced $250 million in financing to provide a solution.
 
 The company is called Apeel Sciences, and over the past eight years it has grown from a humble startup launched with a $100,000 grant from the Gates Foundation to a giant, globe-spanning company worth more than $1 billion and attracting celebrity backers like Oprah Winfrey and Katy Perry, as well as large multi-national investors like Singapore’s sovereign wealth fund.',
   '2020-05-27  01:09:14',
-  'cover5.jpg','user4',0),
+  'cover5.jpg',124,0),
 (228,'Cloud canteen startup Feedr has been acquired by Compass Group for ~$24M',
   'Feedr, the food tech startup that delivers personalised meals to office workers as an alternative to companies setting up their own canteens, has been acquired by Compass Group, the publicly-listed foodservice company.
 
@@ -80,19 +80,19 @@ Compass Group says the purchase of Feedr  will help accelerate its digital trans
 
 “Feedr’s mobile ordering and pre-pay technology will enable Compass to transform the way people interact with on-site restaurants, so employees can browse menus, pay and collect more flexibly, enhancing their food at work experience,” explains Compass Group UK and Ireland.',
   '2020-05-26  11:15:14',
-  'cover6.jpg','user4',0),
+  'cover6.jpg',124,0),
  (229,'Amazon gives away a free year of live and on-demand cooking classes on Food Network Kitchen app',
   'Amazon  is bringing a year’s worth of free, live and on-demand cooking classes to tens of millions of Amazon  Fire TV and Fire tablet owners across the U.S., thanks to an expanded collaboration with Discovery’s Food Network Kitchen. The subscription service launched last fall as a flagship app for Amazon’s Alexa-powered Echo Show, bringing daily live classes, step-by-step cooking videos, on-demand video, home delivery of ingredients, and more to Echo devices owners.
 
 While the Echo Show was the first smart-speaker-with-screen to gain access to Food Network  Kitchen, the app is also available across devices, including Amazon’s Fire TV, Fire tablets, as well as iOS and Android phones and tablets.The subscription offering combines episodes of popular Food Network  Shows like “30 Minute Meals,” “Barefoot Contessa,” and “Brunch @ Bobby’s” with both live and on-demand cooking classes from culinary experts and top chefs, including Bobby Flay, Rachael Ray, Giada De Laurentiis, Guy Fieri, Martha Stewart, Alton Brown, Ina Garten, Andrew Zimmern, Ree Drummond, Daniel Boulud, Valerie Bertinelli, Sunny Anderson, Jonathan Waxman, Molly Yeh, Nancy Silverton, JJ Johnson and others.',
   '2020-04-28  14:36:14',
-  'cover7.jpg','user4',0),
+  'cover7.jpg',124,0),
  (230,'Tech for good during COVID-19: Therapy for nurses, baby food, and an online diary ',
   'Amazon  is bringing a year’s worth of free, live and on-demand cooking classes to tens of millions of Amazon  Fire TV and Fire tablet owners across the U.S., thanks to an expanded collaboration with Discovery’s Food Network Kitchen. The subscription service launched last fall as a flagship app for Amazon’s Alexa-powered Echo Show, bringing daily live classes, step-by-step cooking videos, on-demand video, home delivery of ingredients, and more to Echo devices owners.
 
 While the Echo Show was the first smart-speaker-with-screen to gain access to Food Network  Kitchen, the app is also available across devices, including Amazon’s Fire TV, Fire tablets, as well as iOS and Android phones and tablets.The subscription offering combines episodes of popular Food Network  Shows like “30 Minute Meals,” “Barefoot Contessa,” and “Brunch @ Bobby’s” with both live and on-demand cooking classes from culinary experts and top chefs, including Bobby Flay, Rachael Ray, Giada De Laurentiis, Guy Fieri, Martha Stewart, Alton Brown, Ina Garten, Andrew Zimmern, Ree Drummond, Daniel Boulud, Valerie Bertinelli, Sunny Anderson, Jonathan Waxman, Molly Yeh, Nancy Silverton, JJ Johnson and others.',
   '2020-04-27  18:30:14',
-  'cover8.jpg','user4',0);
+  'cover8.jpg',124,0);
 
 
 
