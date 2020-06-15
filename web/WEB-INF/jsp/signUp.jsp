@@ -26,6 +26,8 @@
             <label for="repeatPassword">Repeat password:</label>
             <input class="form-control" type="password" name="password" id="repeatPassword" placeholder="password" required>
             <div class="invalid-feedback">* Please repeat your password</div>
+            <div  id="notMatch" class="d-none">Please make sure your passwords match.</div>
+
         </div>
         <button type="submit" class="btn btn-dark btn-block">Sign Up</button>
         <hr />
@@ -47,6 +49,19 @@
         }
     });
 </script>
+<script>
+    const password = document.getElementById("password").value;
+    document.getElementById("repeatPassword").addEventListener("input", async () => {
+        const repeatPassword = document.getElementById("repeatPassword").value;
+        if (repeatPassword!==repeatPassword) {
+            document.getElementById("notMatch").classList.remove("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="true";
+        } else {
+            document.getElementById("notMatch").classList.add("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="false";
 
+        }
+    });
+</script>
 </body>
 </html>
