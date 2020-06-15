@@ -109,9 +109,10 @@ public class UserDAO {
     public static List<User> getUsersByFollowee(int followeeId) throws IOException, SQLException{
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "SELECT id, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, count\n" +
+                    "SELECT id, userName, nickname, firstName, lastName, follow.followee dateOfBirth, email, signature, description, avatar, count\n" +
                             "FROM user AS u LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON id = followee\n" +
-                            "WHERE id = ?"
+                            "INNER JOIN follow ON u.id = follow.followee\n" +
+                            "WHERE follow.followee = ?"
             )) {
                 ps.setInt(1, followeeId);
                 return assembleUsers(ps);
@@ -122,9 +123,10 @@ public class UserDAO {
     public static List<User> getUsersByFollower(int followerId) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "SELECT id, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, count\n" +
+                    "SELECT id, userName, nickname, firstName, lastName, follow.follower, dateOfBirth, email, signature, description, avatar, count\n" +
                             "FROM user AS u LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON id = followee\n" +
-                            "WHERE id = ?"
+                            "INNER JOIN follow ON u.id = follow.follower\n" +
+                            "WHERE follow.follower = ?"
             )) {
                 ps.setInt(1, followerId);
                 return assembleUsers(ps);

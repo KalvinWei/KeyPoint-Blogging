@@ -23,5 +23,5 @@ html, body {
 .avatar-sm {
     width: 20px;
     border-radius: 50%;
-    border: #f36300 2px solid;
+    border: rgba(255, 255, 255, 0.5) 2px solid;
 }
