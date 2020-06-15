@@ -1,6 +1,6 @@
 package ictgradschool.project.servlet.ajax;
 
-import ictgradschool.project.DAO.UserDAO;
+import ictgradschool.project.DAO.FollowDAO;
 import ictgradschool.project.JSON.ValidationResult;
 import ictgradschool.project.util.JSONUtil;
 
@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ValidateUserName", urlPatterns = {"/validateUserName"})
-public class ValidateUserName extends HttpServlet {
+@WebServlet(name = "CheckFollowStatus", urlPatterns = {"/checkFollowStatus"})
+public class CheckFollowStatus extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userName = req.getParameter("userName");
+        int followee = Integer.parseInt(req.getParameter("followee"));
+        int follower = Integer.parseInt(req.getParameter("follower"));
+
         try {
-            if (UserDAO.getUserFromUserName(userName) == null) {
+            if (FollowDAO.checkFollowStatus(followee, follower)) {
                 JSONUtil.send(resp, new ValidationResult("success"));
             } else {
                 JSONUtil.send(resp, new ValidationResult("failure"));

@@ -16,7 +16,7 @@ public class Article implements Serializable {
     private String title;
     private String content;
     private Timestamp time;
-    private String cover = "cover5.jpg";
+    private String cover = "default/1.jpg";
     private int likes = 0;
     private User user;
     private List<String> tags = new ArrayList<>();

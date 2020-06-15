@@ -36,6 +36,35 @@ public class ArticleDAO {
         }
     }
 
+    public static List<ArticleSummary> getArticleSummariesByUserLike(String userName) throws IOException, SQLException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "select distinct a.id as id,title,content,cover,a.user as user, userName, time,likes,isDeleted\n" +
+                            "from article as a\n" +
+                            "inner join likeArticle as la on a.id = la.article\n" +
+                            "inner join user as u on la.user = u.id\n" +
+                            "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
+                            "where userName = ? and isDeleted = false")) {
+                ps.setString(1, userName);
+                return assembleArticleSummaries(conn, ps);
+            }
+        }
+    }
+
+    public static List<ArticleSummary> getArticleSummariesByTag(String tag) throws IOException, SQLException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "select distinct a.id as id,title,content,cover,user,time,likes,isDeleted\n" +
+                            "from article as a\n" +
+                            "inner join tag as t on a.id = t.article\n" +
+                            "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
+                            "where tag = ? and isDeleted = false")) {
+                ps.setString(1, tag);
+                return assembleArticleSummaries(conn, ps);
+            }
+        }
+    }
+
     private static List<ArticleSummary> assembleArticleSummaries(Connection conn, PreparedStatement ps) throws SQLException, IOException {
         try(ResultSet rs = ps.executeQuery()){
             List<ArticleSummary> articleSummaries = new ArrayList<>();
@@ -124,12 +153,11 @@ public class ArticleDAO {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             //insert article into table `article`
             try (PreparedStatement ps = conn.prepareStatement(
-                    "UPDATE article set title = ?, content = ?, time = ?, cover = ? WHERE id = ?")) {
+                    "UPDATE article set title = ?, content = ?, cover = ? WHERE id = ?")) {
                 ps.setString(1,article.getTitle());
                 ps.setString(2,article.getContent());
-                ps.setTimestamp(3,article.getTime());
-                ps.setString(4,article.getCover());
-                ps.setInt(5,article.getId());
+                ps.setString(3,article.getCover());
+                ps.setInt(4,article.getId());
                 articleUpdate = (ps.executeUpdate() == 1);
             }
             tagUpdate = TagDAO.insertTags(conn, article.getId(), article.getTags());

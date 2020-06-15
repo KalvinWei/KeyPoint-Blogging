@@ -1,8 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav id="navElements" class="navbar navbar-expand-sm bg-primary navbar-dark justify-content-between"
-     style="background-color: #007bff">
-    <a class="navbar-brand" href="./indexPage"><h3>KeyPoint Blogging</h3></a>
+<nav id="navbar" class="navbar navbar-expand-sm navbar-dark justify-content-between">
+    <a class="navbar-brand" href="./indexPage">· KeyPoint -></a>
     <!-- show when viewpoint is small, to toggle list items -->
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -10,22 +9,28 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="./indexPage">Articles</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./authorsPage">Authors</a>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" href="#">Team KEY</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Documentation</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav float-right">
             <c:if test="${!isUserLoggedIn}">
                 <li class="nav-item">
                     <a class="nav-link" href="./signInPage">Sign In</a>
                 </li>
                 <li clas="nav-item">
-                    <a class="nav-link" href="./signUpPage">Sign
-                    Up</a>
+                    <a class="nav-link" href="./signUpPage">Sign Up</a>
                 </li>
             </c:if>
             <c:if test="${isUserLoggedIn}">
@@ -33,11 +38,14 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                        href="#" role="button" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
                         <span>${user.nickname}</span>
-                        <img src="./images/avatar/${user.avatar}" style="width: 20px; border-radius: 50%;">
+                        <img src="./images/avatar/${user.avatar}" class="avatar-sm">
                     </a>
                     <div id="navList" class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="./articlesPage?userName=${user.userName}">My Blog</a>
                         <a class="dropdown-item" href="./editArticlePage?userName=${user.userName}">New Post</a>
+                        <a class="dropdown-item" href="./articlesByUserLikePage?userName=${user.userName}">I Liked</a>
+                        <a class="dropdown-item" href="./followersPage?follower=${user.id}">I Followed</a>
+                        <a class="dropdown-item" href="./followeesPage?followee=${user.id}">My Followers</a>
                         <a class="dropdown-item" href="./editProfilePage?userName=${user.userName}">Edit Profile</a>
                         <a class="dropdown-item" href="./signOut">Sign Out</a>
                     </div>

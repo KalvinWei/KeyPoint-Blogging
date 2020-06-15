@@ -13,9 +13,10 @@ public class User implements Serializable {
     private String email;
     private String signature;
     private String description;
-    private String avatar = "default/guest.png";
+    private String avatar = "default/1.png";
+    private int followers = 0;
 
-    public User(Integer id, String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar) {
+    public User(Integer id, String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar, int followers) {
         this.id = id;
         this.userName = userName;
         this.nickname = nickname;
@@ -26,6 +27,7 @@ public class User implements Serializable {
         this.signature = signature;
         this.description = description;
         this.avatar = avatar;
+        this.followers = followers;
     }
 
     public User() {
@@ -49,7 +51,11 @@ public class User implements Serializable {
                 setLastName(fieldValue);
                 break;
             case "dateOfBirth":
-                setDateOfBirth(LocalDate.parse(fieldValue));
+                if (fieldValue == null || fieldValue.isEmpty()) {
+                    setDateOfBirth(LocalDate.of(1970,1,1));
+                } else {
+                    setDateOfBirth(LocalDate.parse(fieldValue));
+                }
                 break;
             case "email":
                 setEmail(fieldValue);
@@ -62,6 +68,9 @@ public class User implements Serializable {
                 break;
             case "avatar":
                 setAvatar(fieldValue);
+                break;
+            case "followers":
+                setFollowers(Integer.parseInt(fieldValue));
                 break;
         }
     }
@@ -144,5 +153,13 @@ public class User implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(int followers) {
+        this.followers = followers;
     }
 }

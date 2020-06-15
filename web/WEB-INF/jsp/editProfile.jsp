@@ -5,25 +5,6 @@
     <title>Edit Profile</title>
     <%@include file="shared/_libraries.jsp"%>
     <script src="./assets/js/validateUserName.js"></script>
-    <script type="javascript">
-        const avatarInputBox = document.querySelector("input[name='avatar']");
-        const avatarDisplay = document.querySelector("img.avatar");
-
-        avatarInputBox.onchange = function () {
-            const imgFile = avatarInputBox.file[0];
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                avatarDisplay.src = e.target.result;
-            };
-            reader.readAsDataURL(imgFile);
-        };
-
-        function useDefaultAvatar(){
-            avatarDisplay.src = "./images/avatar/guest.jpg";
-            avatarInputBox.value = avatarDisplay.src;
-        }
-    </script>
 </head>
 <body>
 <%@include file="shared/_navbar.jsp"%>
@@ -35,10 +16,11 @@
 
     <div id="leftBlock">
         <input id="id" type="hidden" name="id" value="${user.id}">
+        <input id="followers" type="hidden" name="id" value="${user.followers}">
         <div class="form-group">
             <label for="userName">Username:</label>
             <input id="userName" type="text" name="userName" value="${user.userName}" placeholder="user name" class="form-control">
-            <div  id="takenName" class="d-none">This username is already taken!</div>
+            <div id="takenName" class="d-none text-danger">* This username is already taken</div>
         </div>
         <div class="form-group">
             <label for="nickname">Nickname:</label>
@@ -86,7 +68,7 @@
         <button onclick="useDefaultAvatar()">delete avatar</button>
     </div>
 
-    <button type="submit" class="btn btn-dark btn-block">Save</button>
+    <button type="submit" class="btn btn-dark btn-block" id="save">Save</button>
 
     </form>
 
@@ -101,16 +83,11 @@
         const userName = document.getElementById("userName").value;
         const result = await validateUserName(userName, originalUserName);
         if (!result) {
-
-            document.getElementById("taken").classList.remove("d-none");
-            document.getElementsByClassName("btn btn-dark btn-block").disabled="true";
-
-
+            document.getElementById("takenName").classList.remove("d-none");
+            document.getElementById("save").disabled = true;
         } else {
-
-            document.getElementById("taken").classList.add("d-none");
-            document.getElementsByClassName("btn btn-dark btn-block").disabled="false";
-
+            document.getElementById("takenName").classList.add("d-none");
+            document.getElementById("save").disabled=false;
         }
     });
 </script>

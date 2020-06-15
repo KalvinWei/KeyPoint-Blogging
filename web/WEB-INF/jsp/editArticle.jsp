@@ -26,7 +26,7 @@
         };
 
         function resetCover() {
-            coverImg.src = "./images/cover/cover1.jpg";
+            coverImg.src = "./images/cover/1.jpg";
             fileInput.value = coverImg.src;
         }
     </script>
@@ -41,7 +41,7 @@
             <input type="file" id="cover" name="cover">
         </div>
         <input type="hidden" name="id" value="${article.id}">
-        <input type="hidden" name="userName" value="${article.user.userName}">
+        <input type="hidden" name="userName" value="${article.user.userName}"
         <input type="hidden" name="originalCover" value="${article.cover}">
         <div class="form-group">
             <label for="title">Title:</label>

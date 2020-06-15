@@ -1,0 +1,27 @@
+* {
+    transition: all 0.1s;
+}
+
+html, body {
+    background-color: #eeeeee;
+}
+
+#navbar {
+    background: linear-gradient(166deg, #ff9016, #f36300, #e54c1d);
+}
+
+.navbar-brand {
+    font-weight: bolder;
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.nav-link {
+    font-weight: normal;
+}
+
+.avatar-sm {
+    width: 20px;
+    border-radius: 50%;
+    border: rgba(255, 255, 255, 0.5) 2px solid;
+}

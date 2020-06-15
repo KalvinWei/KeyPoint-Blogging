@@ -1,8 +1,7 @@
-package ictgradschool.project.servlet.ajax;
+package ictgradschool.project.servlet.page;
 
-import ictgradschool.project.DAO.UserDAO;
-import ictgradschool.project.JSON.ValidationResult;
-import ictgradschool.project.util.JSONUtil;
+import ictgradschool.project.DAO.ArticleDAO;
+import ictgradschool.project.util.AuthenticationUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,20 +11,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ValidateUserName", urlPatterns = {"/validateUserName"})
-public class ValidateUserName extends HttpServlet {
+@WebServlet(name = "ArticlesByUserLikePage", urlPatterns = {"/articlesByUserLikePage"})
+public class ArticlesByUserLikePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        AuthenticationUtil.checkLogInStatus(req);
         String userName = req.getParameter("userName");
         try {
-            if (UserDAO.getUserFromUserName(userName) == null) {
-                JSONUtil.send(resp, new ValidationResult("success"));
-            } else {
-                JSONUtil.send(resp, new ValidationResult("failure"));
-            }
+            req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByUserLike(userName));
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        req.getRequestDispatcher("/WEB-INF/jsp/articlesByUserLike.jsp").forward(req, resp);
     }
 
     @Override

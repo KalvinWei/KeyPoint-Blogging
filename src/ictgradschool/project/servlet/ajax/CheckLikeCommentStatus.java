@@ -1,6 +1,6 @@
 package ictgradschool.project.servlet.ajax;
 
-import ictgradschool.project.DAO.UserDAO;
+import ictgradschool.project.DAO.LikeDAO;
 import ictgradschool.project.JSON.ValidationResult;
 import ictgradschool.project.util.JSONUtil;
 
@@ -12,13 +12,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "ValidateUserName", urlPatterns = {"/validateUserName"})
-public class ValidateUserName extends HttpServlet {
+@WebServlet(name = "CheckLikeCommentStatus", urlPatterns = {"/checkLikeCommentStatus"})
+public class CheckLikeCommentStatus extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String userName = req.getParameter("userName");
+        int user = Integer.parseInt(req.getParameter("user"));
+        int comment = Integer.parseInt(req.getParameter("comment"));
+
         try {
-            if (UserDAO.getUserFromUserName(userName) == null) {
+            if (LikeDAO.checkLikeCommentStatus(user, comment)) {
                 JSONUtil.send(resp, new ValidationResult("success"));
             } else {
                 JSONUtil.send(resp, new ValidationResult("failure"));
