@@ -3,6 +3,7 @@
 *.iml
 
 connection.properties
+KeyPoint.rp
 
 # User-specific stuff:
 .idea/**/workspace.xml

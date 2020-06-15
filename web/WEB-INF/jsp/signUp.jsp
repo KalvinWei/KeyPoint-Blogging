@@ -7,9 +7,9 @@
 
 </head>
 <body>
-<div id="contentBox" class="m-auto container">
-    <h2 class="m-auto text-center">Sign Up</h2>
-    <p class="m-auto text-center">Welcome to KeyPoint, please sign up :)</p>
+<div id="contentBox" class="container-sm mt-5" style="max-width: 540px">
+    <h2 class="m-auto text-center mb-2">Sign Up</h2>
+    <p class="m-auto text-center mb-2">Welcome to KeyPoint, please sign up :)</p>
     <form action="./signUp" method="post" class="m-auto">
         <div class="form-group was-validated">
             <label for="userName">Username:</label>
