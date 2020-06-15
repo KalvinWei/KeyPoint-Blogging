@@ -14,6 +14,10 @@ public class FollowDAO {
         return false;
     }
 
+    public static boolean unfollow(int followeeId, int followerId) {
+        return false;
+    }
+
     public static List<User> getUsersByFollowee(Connection conn, int followeeId) {
         return null;
     }

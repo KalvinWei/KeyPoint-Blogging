@@ -20,4 +20,12 @@ public class LikeDAO {
     public static boolean likeCommentId(int userId, int commentId) {
         return false;
     }
+
+    public static boolean unlikeArticle(int userId, int articleId) {
+        return false;
+    }
+
+    public static boolean unlikeComment(int userId, int commentId) {
+        return false;
+    }
 }
