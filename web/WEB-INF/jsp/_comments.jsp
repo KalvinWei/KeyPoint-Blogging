@@ -14,6 +14,17 @@
                 </c:if>
             </small>
             <p class="my-0 ml-4">${comment.content}</p>
+            <p class="text-justify">${article.content}</p>
+            <form id="likeCommentForm_${comment.id}" action="./likeComment" method="post">
+                <input type="hidden" name="user" value="${comment.user.id}">
+                <input type="hidden" name="comment" value="${comment.id}">
+                <button id="likeCommentButton_${comment.id}}" type="submit">Like</button>
+            </form>
+            <form id="unlikeCommentForm_${comment.id}" action="./unlikeComment" method="post">
+                <input type="hidden" name="user" value="${comment.user.id}">
+                <input type="hidden" name="comment" value="${comment.id}">
+                <button id="unlikeCommentButton_${comment.id}" type="submit">Unlike</button>
+            </form>
             <c:if test="${isUserLoggedIn && (user.userName.equals(article.user.userName) || user.userName.equals(comment.user.userName))}">
                 <form action="./deleteComment" method="post">
                     <input type="hidden" name="id" value="${comment.id}">
