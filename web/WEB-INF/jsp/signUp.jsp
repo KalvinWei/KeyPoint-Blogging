@@ -4,6 +4,7 @@
     <title>Sign up</title>
     <%@include file="shared/_libraries.jsp"%>
     <script src="./assets/js/validateUserName.js"></script>
+
 </head>
 <body>
 <div id="contentBox" class="m-auto container">
@@ -14,10 +15,7 @@
             <label for="userName">Username:</label>
             <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required>
             <div class="invalid-feedback">* Please input your username</div>
-            <!-- TODO:
-                add a div showing a message of username already used, give this div an id
-                give it a class "d-none", this is a bootstrap class which hide an element
-            -->
+            <div  id="takenName" class="d-none">This username is already taken!</div>
         </div>
         <div class="form-group was-validated">
             <label for="password">Password:</label>
@@ -35,21 +33,20 @@
         <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
     </form>
 </div>
-<script>
+<script type="javascript">
     document.getElementById("userName").addEventListener("input", async () => {
         const userName = document.getElementById("userName").value;
         const result = await validateUserName(userName, null);
         if (!result) {
-            // TODO: delete this line, change it to code that
-            // 1) remove the d-none class from the div you added
-            // 2) set the submit button to be disabled
-            console.log("This username is already taken!");
+            document.getElementById("takenName").classList.remove("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="true";
         } else {
-            // TODO: do the opposite:
-            // 1) add d-none
-            // 2) set the submit button's disable to be false
+            document.getElementById("takenName").classList.add("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="false";
+
         }
     });
 </script>
+
 </body>
 </html>
