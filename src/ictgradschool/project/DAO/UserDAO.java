@@ -126,6 +126,14 @@ public class UserDAO {
         }
     }
 
+    public static List<User> getUsersByFollowee(int followeeId) {
+        return null;
+    }
+
+    public static List<User> getUsersByFollower(int followerId) {
+        return null;
+    }
+
     public static void saveProfile(User user) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
