@@ -51,7 +51,11 @@ public class User implements Serializable {
                 setLastName(fieldValue);
                 break;
             case "dateOfBirth":
-                setDateOfBirth(LocalDate.parse(fieldValue));
+                if (fieldValue == null || fieldValue.isEmpty()) {
+                    setDateOfBirth(LocalDate.of(1970,1,1));
+                } else {
+                    setDateOfBirth(LocalDate.parse(fieldValue));
+                }
                 break;
             case "email":
                 setEmail(fieldValue);
@@ -64,6 +68,9 @@ public class User implements Serializable {
                 break;
             case "avatar":
                 setAvatar(fieldValue);
+                break;
+            case "followers":
+                setFollowers(Integer.parseInt(fieldValue));
                 break;
         }
     }
