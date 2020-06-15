@@ -20,7 +20,7 @@ public class CheckLikeCommentStatus extends HttpServlet {
         int comment = Integer.parseInt(req.getParameter("comment"));
 
         try {
-            if (LikeDAO.checkLikeArticleStatus(user, comment)) {
+            if (LikeDAO.checkLikeCommentStatus(user, comment)) {
                 JSONUtil.send(resp, new ValidationResult("success"));
             } else {
                 JSONUtil.send(resp, new ValidationResult("failure"));

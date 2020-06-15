@@ -42,7 +42,7 @@ public class ArticleDAO {
                     "select distinct a.id as id,title,content,cover,a.user as user, userName, time,likes,isDeleted\n" +
                             "from article as a\n" +
                             "inner join likeArticle as la on a.id = la.article\n" +
-                            "inner join user as u on a.user = u.id\n" +
+                            "inner join user as u on la.user = u.id\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
                             "where userName = ? and isDeleted = false")) {
                 ps.setString(1, userName);

@@ -28,6 +28,8 @@ public class FollowDAO {
     }
 
     public static boolean follow(int followeeId, int followerId) throws IOException, SQLException {
+        if (checkFollowStatus(followeeId, followerId))
+            return false;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "INSERT INTO follow VALUES (?, ?)"

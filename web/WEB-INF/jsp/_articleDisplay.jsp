@@ -15,12 +15,12 @@
         <p class="text-justify">${article.content}</p>
         <c:if test="${isUserLoggedIn}">
             <form id="likeArticleForm_${article.id}" action="./likeArticle" method="post" class="d-none">
-                <input type="hidden" name="user" value="${article.user.id}">
+                <input type="hidden" name="user" value="${user.id}">
                 <input type="hidden" name="article" value="${article.id}">
                 <button id="likeArticleButton_${article.id}" type="submit">Like</button>
             </form>
             <form id="unlikeArticleForm_${article.id}" action="./unlikeArticle" method="post" class="d-none">
-                <input type="hidden" name="user" value="${article.user.id}">
+                <input type="hidden" name="user" value="${user.id}">
                 <input type="hidden" name="article" value="${article.id}">
                 <button id="unlikeArticleButton_${article.id}" type="submit">Unlike</button>
             </form>

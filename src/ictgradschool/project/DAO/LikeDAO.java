@@ -44,6 +44,8 @@ public class LikeDAO {
     }
 
     public static boolean likeArticle(int userId, int articleId) throws IOException, SQLException {
+        if (checkLikeArticleStatus(userId, articleId))
+            return false;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "INSERT INTO likeArticle VALUES (?, ?)"
@@ -56,6 +58,8 @@ public class LikeDAO {
     }
 
     public static boolean likeComment(int userId, int commentId) throws IOException, SQLException {
+        if (checkLikeCommentStatus(userId, commentId))
+            return false;
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "INSERT INTO likeComment VALUES (?, ?)"

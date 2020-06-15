@@ -29,17 +29,13 @@ function enableArticleUnlike(id) {
 }
 
 function checkArticleLike(user, article) {
-    $.ajax({
-       type: "GET",
-       url: `./checkLikeArticleStatus?user=${user}&&article=${article}`,
-        success: (res) => {
-            if (res.status === "success") {
-                $(`#unlikeArticleForm_${article}`).toggleClass("d-none");
-            } else {
-                $(`#likeArticleForm_${article}`).toggleClass("d-none");
-            }
+    $.getJSON(`./checkLikeArticleStatus?user=${user}&&article=${article}`, (res) => {
+        if (res.status === "success") {
+            $(`#unlikeArticleForm_${article}`).toggleClass("d-none");
+        } else {
+            $(`#likeArticleForm_${article}`).toggleClass("d-none");
         }
-    });
+    })
 }
 
 
