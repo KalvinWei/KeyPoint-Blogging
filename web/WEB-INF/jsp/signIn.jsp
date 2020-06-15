@@ -6,9 +6,9 @@
     <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
-<div id="contentBox" class="container">
-    <h2 class="m-auto text-center">Sign In</h2>
-    <p class="m-auto text-center">Welcome to KeyPoint, please sign in :)</p>
+<div id="contentBox" class="container-sm mt-5" style="max-width: 540px">
+    <h2 class="m-auto text-center mb-2">Sign In</h2>
+    <p class="m-auto text-center mb-2">Welcome to KeyPoint, please sign in :)</p>
         <form action="./signIn" method="post" class="m-auto was-validated">
             <div class="form-group">
                 <label for="userName">Username:</label>

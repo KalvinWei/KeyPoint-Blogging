@@ -1,20 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div>
-    <img src="./images/cover/${article.cover}">
-    <h3>${article.title}</h3>
-    <c:set var="userSummary" value="${article.user}"/>
-    <%@include file="shared/_userSummary.jsp"%>
-    <p>${article.time}</p>
-    <div>
-        <c:forEach var="tag" items="${article.tags}">
-            <span class="badge badge-pill badge-light">${tag}</span>
-        </c:forEach>
+<div class="card border-0 mt-2">
+    <img src="./images/cover/${article.cover}" class="card-img-top" style="max-height: 200px; object-fit: cover">
+    <div class="card-body mx-lg-4">
+        <h2 class="font-weight-bolder text-left">${article.title}</h2>
+        <p class="my-1 font-italic"><small><c:set var="userSummary" value="${article.user}"/>
+            <%@include file="shared/_userSummary.jsp" %>
+            / <span>${article.time}</span></small></p>
+        <p class="my-2">
+            <c:forEach var="tag" items="${article.tags}">
+                <span class="badge badge-secondary px-1">${tag}</span>
+            </c:forEach>
+        </p>
+        <p class="text-justify">${article.content}</p>
+        <c:if test="${isUserLoggedIn && article.user.userName.equals(user.userName)}">
+            <a href="./editArticlePage?id=${article.id}">edit</a>
+            <form action="./deleteArticle?id=${article.id}" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </c:if>
     </div>
-    <c:if test="${isUserLoggedIn && article.user.userName.equals(user.userName)}">
-        <a href="./editArticlePage?id=${article.id}">edit</a>
-        <form action="./deleteArticle?id=${article.id}" method="post">
-            <button type="submit">Delete</button>
-        </form>
-    </c:if>
-    <p>${article.content}</p>
 </div>

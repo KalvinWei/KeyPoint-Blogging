@@ -7,8 +7,9 @@
 </head>
 <body>
 <%@include file="shared/_navbar.jsp"%>
-<div>
+<div class="container-lg">
     <%@include file="shared/_userProfile.jsp"%>
+    <h4 class="text-black-50 mt-2">Articles</h4>
     <%@include file="shared/_articleSummaries.jsp"%>
 </div>
 

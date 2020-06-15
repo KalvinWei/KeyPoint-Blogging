@@ -1,17 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div>
+<di>
     <c:forEach var="comment" items="${article.comments}">
-        <div id="comment_${comment.id}" style="margin-left: ${comment.level}00px">
-            <c:set var="userSummary" value="${comment.user}"/>
-            <%@include file="shared/_userSummary.jsp"%>
-            <c:if test="${comment.parentUser != null}">
-                <span>replied</span>
-                <c:set var="userSummary" value="${comment.parentUser}"/>
-                <%@include file="shared/_userSummary.jsp"%>
-            </c:if>
-            <p>${comment.content}</p>
-            <span>${comment.time}</span>
+        <div class="my-2" id="comment_${comment.id}" style="margin-left: ${comment.level}00px">
+            <small class="font-italic ">
+                <c:set var="userSummary" value="${comment.user}"/>
+                <%@include file="shared/_userSummary.jsp" %>
+                <c:if test="${comment.parentUser != null}">
+                    <span>&nbsp;&nbsp;replied&nbsp;&nbsp; </span>
+                    <c:set var="userSummary" value="${comment.parentUser}"/>
+                    <%@include file="shared/_userSummary.jsp" %>
+                    <span class="text-black-50 ml-1">/ ${comment.time}</span>
+                </c:if>
+            </small>
+            <p class="my-0 ml-4">${comment.content}</p>
             <c:if test="${isUserLoggedIn && (user.userName.equals(article.user.userName) || user.userName.equals(comment.user.userName))}">
                 <form action="./deleteComment" method="post">
                     <input type="hidden" name="id" value="${comment.id}">
@@ -20,7 +22,7 @@
                 </form>
             </c:if>
             <c:set var="parent" value="${comment}"/>
-            <%@include file="shared/_commentBox.jsp"%>
+            <%@include file="shared/_commentBox.jsp" %>
         </div>
     </c:forEach>
-</div>
+</di>

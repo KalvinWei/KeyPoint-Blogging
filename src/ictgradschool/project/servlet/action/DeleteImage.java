@@ -23,7 +23,7 @@ public class DeleteImage extends HttpServlet {
         else if(usage.equals("cover") && filename.contains("default")) coverFile.delete();
 
         JSONUtil.send(resp,new Object(){
-            private boolean status = true;
+            public final boolean status = true;
         });
     }
 }
