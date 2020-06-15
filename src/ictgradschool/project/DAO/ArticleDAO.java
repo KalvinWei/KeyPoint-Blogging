@@ -36,8 +36,18 @@ public class ArticleDAO {
         }
     }
 
-    public static List<ArticleSummary> getArticleSummariesByTag(String tag) {
-        return null;
+    public static List<ArticleSummary> getArticleSummariesByTag(String tag) throws IOException, SQLException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "select distinct a.id as id,title,content,cover,user,time,likes,isDeleted\n" +
+                            "from article as a\n" +
+                            "inner join tag as t on a.id = t.article\n" +
+                            "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
+                            "where tag = ? and isDeleted = false")) {
+                ps.setString(1, tag);
+                return assembleArticleSummaries(conn, ps);
+            }
+        }
     }
 
     private static List<ArticleSummary> assembleArticleSummaries(Connection conn, PreparedStatement ps) throws SQLException, IOException {
