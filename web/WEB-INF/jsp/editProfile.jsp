@@ -100,6 +100,7 @@
         const userName = document.getElementById("userName").value;
         const result = await validateUserName(userName, originalUserName);
         if (!result) {
+
             console.log("This username is already taken!");
         }
     });

@@ -20,7 +20,7 @@
                 add a div showing a message of username already used, give this div an id
                 give it a class "d-none", this is a bootstrap class which hide an element
             -->
-            <div class="d-none" id="taken">This username is already taken!</div>
+            <div  id="taken" class="d-none">This username is already taken!</div>
         </div>
         <div class="form-group was-validated">
             <label for="password">Password:</label>
@@ -46,9 +46,12 @@
             // TODO: delete this line, change it to code that
             // 1) remove the d-none class from the div you added
             // 2) set the submit button to be disabled
-           document.getElementById("taken").removeAttribute("d-none");
-           document.getElementsByClassName("btn btn-dark btn-block").setAttribute('disabled', true);
-           console.log("This username is already taken!");
+
+            document.getElementById("taken").removeClass("d-none");
+            document.getElementById("taken").removeAttribute("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="true";
+
+            console.log("This username is already taken!");
         } else {
             // TODO: do the opposite:
             // 1) add d-none
