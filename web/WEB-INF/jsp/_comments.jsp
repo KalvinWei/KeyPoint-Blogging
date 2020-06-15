@@ -15,40 +15,21 @@
             </small>
             <p class="my-0 ml-4">${comment.content}</p>
             <p class="text-justify">${article.content}</p>
-            <form id="likeCommentForm_${comment.id}" action="./likeComment" method="post">
-                <input type="hidden" name="user" value="${comment.user.id}">
-                <input type="hidden" name="comment" value="${comment.id}">
-                <button id="likeCommentButton_${comment.id}}" type="submit">Like</button>
-            </form>
             <c:if test="${isUserLoggedIn}">
-                <script>
-                    $("#likeCommentButton_${comment.id}").click(function() {
-                        $.ajax({
-                            type: "POST",
-                            url: "./likeComment",
-                            data: $("#likeCommentForm_${comment.id}").serialize(),
-                            success: function() {
-                            }
-                        });
-                        return false;
-                    });
-                </script>
-                <form id="unlikeCommentForm_${comment.id}" action="./unlikeComment" method="post">
+                <form id="likeCommentForm_${comment.id}" action="./likeComment" method="post" class="d-none">
+                    <input type="hidden" name="user" value="${comment.user.id}">
+                    <input type="hidden" name="comment" value="${comment.id}">
+                    <button id="likeCommentButton_${comment.id}}" type="submit">Like</button>
+                </form>
+                <form id="unlikeCommentForm_${comment.id}" action="./unlikeComment" method="post" class="d-none">
                     <input type="hidden" name="user" value="${comment.user.id}">
                     <input type="hidden" name="comment" value="${comment.id}">
                     <button id="unlikeCommentButton_${comment.id}" type="submit">Unlike</button>
                 </form>
                 <script>
-                    $("#unlikeCommentButton_${comment.id}").click(function() {
-                        $.ajax({
-                            type: "POST",
-                            url: "./unlikeComment",
-                            data: $("#unlikeCommentForm_${comment.id}").serialize(),
-                            success: function() {
-                            }
-                        });
-                        return false;
-                    });
+                    enableCommentLike(${comment.id});
+                    enableCommentUnlike(${comment.id});
+                    checkCommentLike(${user.id}, ${comment.id});
                 </script>
             </c:if>
             <c:if test="${isUserLoggedIn && (user.userName.equals(article.user.userName) || user.userName.equals(comment.user.userName))}">

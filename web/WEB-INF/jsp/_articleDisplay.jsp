@@ -14,39 +14,20 @@
         </p>
         <p class="text-justify">${article.content}</p>
         <c:if test="${isUserLoggedIn}">
-            <form id="likeArticleForm_${article.id}" action="./likeArticle" method="post">
+            <form id="likeArticleForm_${article.id}" action="./likeArticle" method="post" class="d-none">
                 <input type="hidden" name="user" value="${article.user.id}">
                 <input type="hidden" name="article" value="${article.id}">
                 <button id="likeArticleButton_${article.id}" type="submit">Like</button>
             </form>
-            <script>
-                $("#likeArticleButton_${article.id}").click(function() {
-                    $.ajax({
-                        type: "POST",
-                        url: "./likeArticle",
-                        data: $("#likeArticleForm_${article.id}").serialize(),
-                        success: function() {
-                        }
-                    });
-                    return false;
-                });
-            </script>
-            <form id="unlikeArticleForm_${article.id}" action="./unlikeArticle" method="post">
+            <form id="unlikeArticleForm_${article.id}" action="./unlikeArticle" method="post" class="d-none">
                 <input type="hidden" name="user" value="${article.user.id}">
                 <input type="hidden" name="article" value="${article.id}">
                 <button id="unlikeArticleButton_${article.id}" type="submit">Unlike</button>
             </form>
             <script>
-                $("#unlikeArticleButton_${article.id}").click(function() {
-                    $.ajax({
-                        type: "POST",
-                        url: "./unlikeArticle",
-                        data: $("#unlikeArticleForm_${article.id}").serialize(),
-                        success: function() {
-                        }
-                    });
-                    return false;
-                });
+                enableArticleLike(${article.id});
+                enableArticleUnlike(${article.id});
+                checkArticleLike(${user.id}, ${article.id});
             </script>
         </c:if>
 

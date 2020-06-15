@@ -8,4 +8,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
 <script src="./assets/js/enableToolTip.js"></script>
-
+<script src="./assets/js/enableArticleLikes.js"></script>
+<script src="./assets/js/enableCommentLikes.js"></script>
+<script src="./assets/js/enableFollow.js"></script>
