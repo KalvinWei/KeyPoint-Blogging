@@ -36,6 +36,10 @@ public class ArticleDAO {
         }
     }
 
+    public static List<ArticleSummary> getArticleSummariesByTag(String tag) {
+        return null;
+    }
+
     private static List<ArticleSummary> assembleArticleSummaries(Connection conn, PreparedStatement ps) throws SQLException, IOException {
         try(ResultSet rs = ps.executeQuery()){
             List<ArticleSummary> articleSummaries = new ArrayList<>();
