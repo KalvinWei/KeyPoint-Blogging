@@ -183,7 +183,7 @@ public class UserDAO {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
                     "UPDATE user SET userName = ?, nickname = ?, firstName = ?, " +
-                            "lastName = ?, email = ?, dateOfBirth = ?, signature = ? , description = ?, avatar = ? " +
+                            "lastName = ?, email = ?, dateOfBirth = ?, signature = ? , description = ?, avatar = ?" +
                             "WHERE id = ? "
             )) {
                 ps.setString(1, user.getUserName());
