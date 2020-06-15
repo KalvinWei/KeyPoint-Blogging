@@ -1,5 +1,9 @@
 package ictgradschool.project.DAO;
 
+import ictgradschool.project.model.User;
+
+import java.util.List;
+
 public class LikeDAO {
     public static boolean checkLikeArticleStatus(int userId, int articleId) {
         return false;
