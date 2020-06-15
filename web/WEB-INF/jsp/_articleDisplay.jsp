@@ -13,6 +13,7 @@
             </c:forEach>
         </p>
         <p class="text-justify">${article.content}</p>
+        <span id="articleLikes_${article.id}">${article.likes}</span>
         <c:if test="${isUserLoggedIn}">
             <form id="likeArticleForm_${article.id}" action="./likeArticle" method="post" class="d-none">
                 <input type="hidden" name="user" value="${user.id}">

@@ -15,6 +15,7 @@
             </small>
             <p class="my-0 ml-4">${comment.content}</p>
             <p class="text-justify">${article.content}</p>
+            <span id="commentLikes_${comment.id}">${comment.likes}</span>
             <c:if test="${isUserLoggedIn}">
                 <form id="likeCommentForm_${comment.id}" action="./likeComment" method="post" class="d-none">
                     <input type="hidden" name="user" value="${user.id}">

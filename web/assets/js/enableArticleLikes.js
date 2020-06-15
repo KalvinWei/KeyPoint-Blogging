@@ -7,6 +7,7 @@ function enableArticleLike(id) {
             success: function() {
                 $(`#likeArticleForm_${id}`).toggleClass("d-none");
                 $(`#unlikeArticleForm_${id}`).toggleClass("d-none");
+                $(`#articleLikes_${id}`).text(+$(`#articleLikes_${id}`).text() + 1);
             }
         });
         return false;
@@ -22,6 +23,7 @@ function enableArticleUnlike(id) {
             success: function() {
                 $(`#likeArticleForm_${id}`).toggleClass("d-none");
                 $(`#unlikeArticleForm_${id}`).toggleClass("d-none");
+                $(`#articleLikes_${id}`).text(+$(`#articleLikes_${id}`).text() - 1);
             }
         });
         return false;
