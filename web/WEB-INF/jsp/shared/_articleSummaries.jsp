@@ -15,7 +15,7 @@
                             / <span>${article.time}</span></small></p>
                         <p class="my-2">
                             <c:forEach var="tag" items="${article.tags}">
-                                <span class="badge badge-secondary px-1">${tag}</span>
+                                <a href="./articlesByTagPage?tag=${tag}" class="badge badge-secondary px-1">${tag}</a>
                             </c:forEach>
                         </p>
                         <p class="text-justify text-secondary font-weight-light my-0">${article.contentSummary}</p>
