@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS tag;
 DROP TABLE IF EXISTS likeArticle;
 DROP TABLE IF EXISTS likeComment;
+DROP TABLE IF EXISTS follow;
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS article;
 DROP TABLE IF EXISTS user;
@@ -73,4 +74,13 @@ CREATE TABLE tag
     tag     VARCHAR(128) NOT NULL,
     PRIMARY KEY (article, tag),
     FOREIGN KEY (article) REFERENCES article (id) ON DELETE CASCADE
+);
+
+CREATE TABLE follow
+(
+    followee INT NOT NULL,
+    follower INT NOT NULL,
+    PRIMARY KEY (followee, follower),
+    FOREIGN KEY (followee) REFERENCES user (id) ON DELETE CASCADE,
+    FOREIGN KEY (follower) REFERENCES user (id) ON DELETE CASCADE
 );
