@@ -13,7 +13,7 @@ public class User implements Serializable {
     private String email;
     private String signature;
     private String description;
-    private String avatar = "default/guest.png";
+    private String avatar = "default/1.png";
 
     public User(Integer id, String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar) {
         this.id = id;
