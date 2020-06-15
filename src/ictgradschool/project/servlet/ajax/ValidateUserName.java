@@ -1,7 +1,7 @@
 package ictgradschool.project.servlet.ajax;
 
 import ictgradschool.project.DAO.UserDAO;
-import ictgradschool.project.JSON.ValidateUserNameResult;
+import ictgradschool.project.JSON.ValidationResult;
 import ictgradschool.project.util.JSONUtil;
 
 import javax.servlet.ServletException;
@@ -19,9 +19,9 @@ public class ValidateUserName extends HttpServlet {
         String userName = req.getParameter("userName");
         try {
             if (UserDAO.getUserFromUserName(userName) == null) {
-                JSONUtil.send(resp, new ValidateUserNameResult("success"));
+                JSONUtil.send(resp, new ValidationResult("success"));
             } else {
-                JSONUtil.send(resp, new ValidateUserNameResult("failure"));
+                JSONUtil.send(resp, new ValidationResult("failure"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
