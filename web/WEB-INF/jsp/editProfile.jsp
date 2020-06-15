@@ -38,6 +38,7 @@
         <div class="form-group">
             <label for="userName">Username:</label>
             <input id="userName" type="text" name="userName" value="${user.userName}" placeholder="user name" class="form-control">
+            <div  id="takenName" class="d-none">This username is already taken!</div>
         </div>
         <div class="form-group">
             <label for="nickname">Nickname:</label>
@@ -101,7 +102,15 @@
         const result = await validateUserName(userName, originalUserName);
         if (!result) {
 
-            console.log("This username is already taken!");
+            document.getElementById("taken").classList.remove("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="true";
+
+
+        } else {
+
+            document.getElementById("taken").classList.add("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="false";
+
         }
     });
 </script>
