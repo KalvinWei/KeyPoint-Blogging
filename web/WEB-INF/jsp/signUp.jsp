@@ -4,6 +4,7 @@
     <title>Sign up</title>
     <%@include file="shared/_libraries.jsp"%>
     <script src="./assets/js/validateUserName.js"></script>
+
 </head>
 <body>
 <div id="contentBox" class="container-sm mt-5" style="max-width: 540px">
@@ -14,6 +15,7 @@
             <label for="userName">Username:</label>
             <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required>
             <div class="invalid-feedback">* Please input your username</div>
+            <div  id="takenName" class="d-none">This username is already taken!</div>
         </div>
         <div class="form-group was-validated">
             <label for="password">Password:</label>
@@ -24,6 +26,8 @@
             <label for="repeatPassword">Repeat password:</label>
             <input class="form-control" type="password" name="password" id="repeatPassword" placeholder="password" required>
             <div class="invalid-feedback">* Please repeat your password</div>
+            <div  id="notMatch" class="d-none">Please make sure your passwords match.</div>
+
         </div>
         <button type="submit" class="btn btn-dark btn-block">Sign Up</button>
         <hr />
@@ -31,12 +35,31 @@
         <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
     </form>
 </div>
-<script>
+<script type="javascript">
     document.getElementById("userName").addEventListener("input", async () => {
         const userName = document.getElementById("userName").value;
         const result = await validateUserName(userName, null);
         if (!result) {
-            console.log("This username is already taken!");
+            document.getElementById("takenName").classList.remove("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="true";
+        } else {
+            document.getElementById("takenName").classList.add("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="false";
+
+        }
+    });
+</script>
+<script>
+    const password = document.getElementById("password").value;
+    document.getElementById("repeatPassword").addEventListener("input", async () => {
+        const repeatPassword = document.getElementById("repeatPassword").value;
+        if (repeatPassword!==repeatPassword) {
+            document.getElementById("notMatch").classList.remove("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="true";
+        } else {
+            document.getElementById("notMatch").classList.add("d-none");
+            document.getElementsByClassName("btn btn-dark btn-block").disabled="false";
+
         }
     });
 </script>
