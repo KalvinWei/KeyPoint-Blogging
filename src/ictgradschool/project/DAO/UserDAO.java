@@ -126,11 +126,11 @@ public class UserDAO {
         }
     }
 
-    public static List<User> getUsersByFollowee(int followeeId) {
+    public static List<User> getUsersByFollowee(int followeeId) throws IOException, SQLException{
         return null;
     }
 
-    public static List<User> getUsersByFollower(int followerId) {
+    public static List<User> getUsersByFollower(int followerId) throws IOException, SQLException {
         return null;
     }
 
