@@ -153,12 +153,11 @@ public class ArticleDAO {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             //insert article into table `article`
             try (PreparedStatement ps = conn.prepareStatement(
-                    "UPDATE article set title = ?, content = ?, time = ?, cover = ? WHERE id = ?")) {
+                    "UPDATE article set title = ?, content = ?, cover = ? WHERE id = ?")) {
                 ps.setString(1,article.getTitle());
                 ps.setString(2,article.getContent());
-                ps.setTimestamp(3,article.getTime());
-                ps.setString(4,article.getCover());
-                ps.setInt(5,article.getId());
+                ps.setString(3,article.getCover());
+                ps.setInt(4,article.getId());
                 articleUpdate = (ps.executeUpdate() == 1);
             }
             tagUpdate = TagDAO.insertTags(conn, article.getId(), article.getTags());
