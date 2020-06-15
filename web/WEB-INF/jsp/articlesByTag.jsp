@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${author.nickname}'s Blog</title>
+    <title>Articles</title>
     <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
