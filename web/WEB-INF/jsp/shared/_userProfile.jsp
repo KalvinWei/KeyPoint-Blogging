@@ -24,6 +24,42 @@
             <c:if test="${author.userName.equals(user.userName)}">
                 <a href="./editProfilePage?userName=${author.userName}" role="button">Edit</a>
             </c:if></p>
+            <c:if test="${isUserLoggedIn && !author.userName.equals(user.userName)}">
+                <form id="followForm_${author.id}" action="./follow" method="post">
+                    <input type="hidden" name="followee" value="${author.id}">
+                    <input type="hidden" name="follower" value="${user.id}">
+                    <button id="followButton_${author.id}" type="submit">Follow</button>
+                </form>
+                <script>
+                    $("#followButton_${author.id}").click(function() {
+                        $.ajax({
+                            type: "POST",
+                            url: "./follow",
+                            data: $("#followForm_${author.id}").serialize(),
+                            success: function() {
+                            }
+                        });
+                        return false;
+                    });
+                </script>
+                <form id="unfollowForm_${author.id}" action="./unfollow" method="post">
+                    <input type="hidden" name="followee" value="${author.id}">
+                    <input type="hidden" name="follower" value="${user.id}">
+                    <button id="unfollowButton_${author.id}" type="submit">Unfollow</button>
+                </form>
+                <script>
+                    $("#unfollowButton_${author.id}").click(function() {
+                        $.ajax({
+                            type: "POST",
+                            url: "./unfollow",
+                            data: $("#unfollowForm_${author.id}").serialize(),
+                            success: function() {
+                            }
+                        });
+                        return false;
+                    });
+                </script>
+            </c:if>
         </div>
     </div>
 </div>

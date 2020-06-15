@@ -30,14 +30,10 @@ public class FollowDAO {
     public static boolean follow(int followeeId, int followerId) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO follow\n" +
-                            "SELECT ?, ?\n" +
-                            "WHERE NOT EXISTS(SELECT * FROM follow WHERE followee = ? AND follower = ?)"
+                    "INSERT INTO follow VALUES (?, ?)"
             )) {
                 ps.setInt(1, followeeId);
                 ps.setInt(2, followerId);
-                ps.setInt(3, followeeId);
-                ps.setInt(4, followerId);
                 return ps.executeUpdate() != 0;
             }
         }

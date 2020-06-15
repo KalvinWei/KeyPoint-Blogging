@@ -20,11 +20,37 @@
                 <input type="hidden" name="comment" value="${comment.id}">
                 <button id="likeCommentButton_${comment.id}}" type="submit">Like</button>
             </form>
-            <form id="unlikeCommentForm_${comment.id}" action="./unlikeComment" method="post">
-                <input type="hidden" name="user" value="${comment.user.id}">
-                <input type="hidden" name="comment" value="${comment.id}">
-                <button id="unlikeCommentButton_${comment.id}" type="submit">Unlike</button>
-            </form>
+            <c:if test="${isUserLoggedIn}">
+                <script>
+                    $("#likeCommentButton_${comment.id}").click(function() {
+                        $.ajax({
+                            type: "POST",
+                            url: "./likeComment",
+                            data: $("#likeCommentForm_${comment.id}").serialize(),
+                            success: function() {
+                            }
+                        });
+                        return false;
+                    });
+                </script>
+                <form id="unlikeCommentForm_${comment.id}" action="./unlikeComment" method="post">
+                    <input type="hidden" name="user" value="${comment.user.id}">
+                    <input type="hidden" name="comment" value="${comment.id}">
+                    <button id="unlikeCommentButton_${comment.id}" type="submit">Unlike</button>
+                </form>
+                <script>
+                    $("#unlikeCommentButton_${comment.id}").click(function() {
+                        $.ajax({
+                            type: "POST",
+                            url: "./unlikeComment",
+                            data: $("#unlikeCommentForm_${comment.id}").serialize(),
+                            success: function() {
+                            }
+                        });
+                        return false;
+                    });
+                </script>
+            </c:if>
             <c:if test="${isUserLoggedIn && (user.userName.equals(article.user.userName) || user.userName.equals(comment.user.userName))}">
                 <form action="./deleteComment" method="post">
                     <input type="hidden" name="id" value="${comment.id}">

@@ -22,7 +22,7 @@ public class FolloweesPage extends HttpServlet {
         List<User> users = new ArrayList<>();
         int followee = Integer.parseInt(req.getParameter("followee"));
         try {
-            users = UserDAO.getUsersByFollowee(followee);
+            users = UserDAO.getFollowersByFollowee(followee);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -46,14 +46,10 @@ public class LikeDAO {
     public static boolean likeArticle(int userId, int articleId) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO likeArticle\n" +
-                            "SELECT ?, ?\n" +
-                            "WHERE NOT EXISTS(SELECT * FROM likeArticle WHERE user = ? AND article = ?)"
+                    "INSERT INTO likeArticle VALUES (?, ?)"
             )) {
                 ps.setInt(1, userId);
                 ps.setInt(2, articleId);
-                ps.setInt(3, userId);
-                ps.setInt(4, articleId);
                 return ps.executeUpdate() != 0;
             }
         }
@@ -62,14 +58,10 @@ public class LikeDAO {
     public static boolean likeComment(int userId, int commentId) throws IOException, SQLException {
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "INSERT INTO likeComment\n" +
-                            "SELECT ?, ?\n" +
-                            "WHERE NOT EXISTS(SELECT * FROM likeComment WHERE user = ? AND comment = ?)"
+                    "INSERT INTO likeComment VALUES (?, ?)"
             )) {
                 ps.setInt(1, userId);
                 ps.setInt(2, commentId);
-                ps.setInt(3, userId);
-                ps.setInt(4, commentId);
                 return ps.executeUpdate() != 0;
             }
         }
