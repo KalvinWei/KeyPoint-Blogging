@@ -53,30 +53,29 @@ public class UserDAO {
         List<User> users = new ArrayList<>();
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (Statement statement = conn.createStatement()) {
-                try (ResultSet rs = statement.executeQuery("SELECT * FROM user")) {
-                    while (rs.next()) {
-                        users.add(new User(
-                                rs.getInt("id"),
-                                rs.getString("userName"),
-                                rs.getString("nickname"),
-                                rs.getString("firstName"),
-                                rs.getString("lastName"),
-                                rs.getObject("dateOfBirth", LocalDate.class),
-                                rs.getString("email"),
-                                rs.getString("signature"),
-                                rs.getString("description"),
-                                rs.getString("avatar")
-                        ));
-                    }
+                try (ResultSet rs = statement.executeQuery(
+                        "SELECT id, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, count\n" +
+                                "FROM user AS u LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON u.id = followee"
+                )) {
+                    assembleUsers(users, rs);
                 }
             }
         }
         return users;
     }
 
+    public static User getUserFromId(int id) throws IOException, SQLException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            return getUserFromId(conn, id);
+        }
+    }
+
     public static User getUserFromId(Connection conn, int id) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
-                "SELECT * FROM user WHERE id = ?")) {
+                "SELECT id, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, count\n" +
+                        "FROM user AS u LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON id = followee\n" +
+                        "WHERE id = ?"
+        )) {
             ps.setInt(1, id);
             return assembleUser(ps);
         }
@@ -84,10 +83,52 @@ public class UserDAO {
 
     public static User getUserFromCommentId(Connection conn, int id) throws SQLException {
         try (PreparedStatement ps = conn.prepareStatement(
-                "SELECT u.id as id, c.id as commentId, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, passwordHash, salt, iteration \n" +
-                        " FROM user u join comment c on u.id = c.user WHERE c.id = ?")) {
+                "SELECT u.id as id, c.id as commentId, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, count\n" +
+                        "FROM user u join comment c on u.id = c.user\n" +
+                        "LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON u.id = followee\n" +
+                        "WHERE c.id = ?"
+        )) {
             ps.setInt(1, id);
             return assembleUser(ps);
+        }
+    }
+
+    public static User getUserFromUserName(String userName) throws IOException, SQLException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "SELECT id, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, count\n" +
+                            "FROM user AS u LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON id = followee\n" +
+                            "WHERE userName = ?"
+            )) {
+                ps.setString(1, userName);
+                return assembleUser(ps);
+            }
+        }
+    }
+
+    public static List<User> getUsersByFollowee(int followeeId) throws IOException, SQLException{
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "SELECT id, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, count\n" +
+                            "FROM user AS u LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON id = followee\n" +
+                            "WHERE id = ?"
+            )) {
+                ps.setInt(1, followeeId);
+                return assembleUsers(ps);
+            }
+        }
+    }
+
+    public static List<User> getUsersByFollower(int followerId) throws IOException, SQLException {
+        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
+            try (PreparedStatement ps = conn.prepareStatement(
+                    "SELECT id, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, count\n" +
+                            "FROM user AS u LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON id = followee\n" +
+                            "WHERE id = ?"
+            )) {
+                ps.setInt(1, followerId);
+                return assembleUsers(ps);
+            }
         }
     }
 
@@ -104,34 +145,36 @@ public class UserDAO {
                         rs.getString("email"),
                         rs.getString("signature"),
                         rs.getString("description"),
-                        rs.getString("avatar")
+                        rs.getString("avatar"),
+                        rs.getInt("count")
                 );
             else return null;
         }
     }
 
-    public static User getUserFromId(int id) throws IOException, SQLException {
-        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-           return getUserFromId(conn, id);
+    private static List<User> assembleUsers(PreparedStatement ps) throws SQLException {
+        List<User> users = new ArrayList<>();
+        try (ResultSet rs = ps.executeQuery()) {
+            assembleUsers(users, rs);
+            return users;
         }
     }
 
-    public static User getUserFromUserName(String userName) throws IOException, SQLException {
-        try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            try (PreparedStatement ps = conn.prepareStatement(
-                    "SELECT * FROM user WHERE userName = ?")) {
-                ps.setString(1, userName);
-                return assembleUser(ps);
-            }
-        }
-    }
-
-    public static List<User> getUsersByFollowee(int followeeId) throws IOException, SQLException{
-        return null;
-    }
-
-    public static List<User> getUsersByFollower(int followerId) throws IOException, SQLException {
-        return null;
+    private static void assembleUsers(List<User> users, ResultSet rs) throws SQLException {
+        while (rs.next())
+            users.add(new User(
+                    rs.getInt("id"),
+                    rs.getString("userName"),
+                    rs.getString("nickname"),
+                    rs.getString("firstName"),
+                    rs.getString("lastName"),
+                    rs.getObject("dateOfBirth", LocalDate.class),
+                    rs.getString("email"),
+                    rs.getString("signature"),
+                    rs.getString("description"),
+                    rs.getString("avatar"),
+                    rs.getInt("count")
+            ));
     }
 
     public static void saveProfile(User user) throws IOException, SQLException {
@@ -139,7 +182,8 @@ public class UserDAO {
             try (PreparedStatement ps = conn.prepareStatement(
                     "UPDATE user SET userName = ?, nickname = ?, firstName = ?, " +
                             "lastName = ?, email = ?, dateOfBirth = ?, signature = ? , description = ?, avatar = ? " +
-                            "WHERE id = ? ")) {
+                            "WHERE id = ? "
+            )) {
                 ps.setString(1, user.getUserName());
                 ps.setString(2, user.getNickname());
                 ps.setString(3, user.getFirstName());
@@ -159,7 +203,8 @@ public class UserDAO {
     public static boolean deleteUserByUserName(String userName) throws IOException, SQLException{
         try (Connection conn = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
             try (PreparedStatement ps = conn.prepareStatement(
-                    "DELETE FROM user WHERE userName = ?")) {
+                    "DELETE FROM user WHERE userName = ?"
+            )) {
                 ps.setString(1, userName);
                 return ps.execute();
             }

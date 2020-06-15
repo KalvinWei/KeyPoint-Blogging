@@ -43,7 +43,7 @@ INSERT INTO article (id, title, content, time, cover, userName,isDeleted) VALUES
 
    He also emphasized that the company is taking safety precautions during the pandemic, ensuring that all of its warehouse workers and drivers have masks and other protective equipment, and that the drivers use hand sanitizer between deliveries.',
     '2018-06-05T18:52:09',
-    'cover1.jpg','user1' ,0),
+    '1.jpg','user1' ,0),
 (224,'Uber could lose its Grubhub deal to Just Eat or Delivery Hero',
     'According to CNBC there are two suitors rivaling Uber for purchase of U.S. food delivery company Grubhub: Just Eat Takeaway (the union of Just Eat and Takeaway) and Delivery Hero.
 Both are European companies perhaps looking for a major entry to the United States market. Just Eat Takeaway is based in the U.K. and Holland, while Delivery Hero  is based in Germany. They are both lavishly funded, with Just Eat Takeaway having raised around $1 billion (a combined tally for both companies that now make up the conjoined entity), according to Crunchbase data, and Delivery Hero flush with billions in historical capital from a number of sources.What price they might pay wasn’t clear on this Friday afternoon, but public market investors are optimistic on what the companies might pay. Shares of Grubhub  shot higher on news that other suitors were in the mix; its shares are currently trading up around 7% on the day.

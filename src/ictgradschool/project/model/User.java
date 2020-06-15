@@ -14,8 +14,9 @@ public class User implements Serializable {
     private String signature;
     private String description;
     private String avatar = "default/1.png";
+    private int followers = 0;
 
-    public User(Integer id, String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar) {
+    public User(Integer id, String userName, String nickname, String firstName, String lastName, LocalDate dateOfBirth, String email, String signature, String description, String avatar, int followers) {
         this.id = id;
         this.userName = userName;
         this.nickname = nickname;
@@ -26,6 +27,7 @@ public class User implements Serializable {
         this.signature = signature;
         this.description = description;
         this.avatar = avatar;
+        this.followers = followers;
     }
 
     public User() {
@@ -144,5 +146,13 @@ public class User implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(int followers) {
+        this.followers = followers;
     }
 }
