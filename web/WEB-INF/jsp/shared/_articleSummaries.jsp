@@ -9,23 +9,27 @@
                 </div>
                 <div class="col-sm-9">
                     <div class="card-body">
-                        <h5 class="text-dark"><a href="articlePage?id=${article.id}">${article.title}</a></h5>
-                        <p class="my-1 font-italic"><small><c:set var="userSummary" value="${article.user}"/>
+                        <h5 class="text-dark">
+                            <a href="articlePage?id=${article.id}" class="summary-title">${article.title}</a>
+                            <span class="article-summary-likes">&nbsp;·&nbsp;${article.likes} like${article.likes == 1 ? "" : "s"}</span>
+                        </h5>
+                        <p class="my-1 summary-info">
+                            <c:set var="userSummary" value="${article.user}"/>
                             <%@include file="_userSummary.jsp" %>
-                            / <span>${article.time}</span></small></p>
-                        <span>${article.likes} likes</span>
+                            <span class="time">&nbsp;${article.time}&nbsp;</span>
+                        </p>
                         <p class="my-2">
                             <c:forEach var="tag" items="${article.tags}">
-                                <a href="./articlesByTagPage?tag=${tag}" class="badge badge-secondary px-1">${tag}</a>
+                                <a href="./articlesByTagPage?tag=${tag}" class="badge badge-pill badge-light">${tag}</a>
                             </c:forEach>
                         </p>
-                        <p class="text-justify text-secondary font-weight-light my-0">${article.contentSummary}</p>
                         <c:if test="${isUserLoggedIn && article.user.userName.equals(user.userName)}">
-                            <a href="./editArticlePage?id=${article.id}">edit</a>
-                            <form action="./deleteArticle?id=${article.id}" method="post">
-                                <button type="submit">Delete</button>
+                            <a href="./editArticlePage?id=${article.id}" class="btn btn-sm btn-info">edit</a>
+                            <form action="./deleteArticle?id=${article.id}" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-sm btn-info">Delete</button>
                             </form>
                         </c:if>
+                        <p class="text-justify text-secondary font-weight-light my-0 content-summary">${article.contentSummary}</p>
                     </div>
                 </div>
             </div>

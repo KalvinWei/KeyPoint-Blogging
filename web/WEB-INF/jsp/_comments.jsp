@@ -14,18 +14,17 @@
                 </c:if>
             </small>
             <p class="my-0 ml-4">${comment.content}</p>
-            <p class="text-justify">${article.content}</p>
             <span id="commentLikes_${comment.id}">${comment.likes}</span>
             <c:if test="${isUserLoggedIn}">
                 <form id="likeCommentForm_${comment.id}" action="./likeComment" method="post" class="d-none">
                     <input type="hidden" name="user" value="${user.id}">
                     <input type="hidden" name="comment" value="${comment.id}">
-                    <button id="likeCommentButton_${comment.id}" type="submit">Like</button>
+                    <button id="likeCommentButton_${comment.id}" type="submit" class="btn btn-sm btn-info">Like</button>
                 </form>
                 <form id="unlikeCommentForm_${comment.id}" action="./unlikeComment" method="post" class="d-none">
                     <input type="hidden" name="user" value="${user.id}">
                     <input type="hidden" name="comment" value="${comment.id}">
-                    <button id="unlikeCommentButton_${comment.id}" type="submit">Unlike</button>
+                    <button id="unlikeCommentButton_${comment.id}" type="submit" class="btn btn-sm btn-info">Unlike</button>
                 </form>
                 <script>
                     enableCommentLike(${comment.id});

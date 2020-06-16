@@ -24,18 +24,18 @@
             </dl>
             <p class="text-right">
             <c:if test="${author.userName.equals(user.userName)}">
-                <a href="./editProfilePage?userName=${author.userName}" role="button">Edit</a>
+                <a href="./editProfilePage?userName=${author.userName}" role="button" class="btn btn-sm btn-info">Edit</a>
             </c:if></p>
             <c:if test="${isUserLoggedIn && !author.userName.equals(user.userName)}">
                 <form id="followForm_${author.id}" action="./follow" method="post" class="d-none">
                     <input type="hidden" name="followee" value="${author.id}">
                     <input type="hidden" name="follower" value="${user.id}">
-                    <button id="followButton_${author.id}" type="submit">Follow</button>
+                    <button id="followButton_${author.id}" type="submit" class="btn btn-sm btn-info">Follow</button>
                 </form>
                 <form id="unfollowForm_${author.id}" action="./unfollow" method="post" class="d-none">
                     <input type="hidden" name="followee" value="${author.id}">
                     <input type="hidden" name="follower" value="${user.id}">
-                    <button id="unfollowButton_${author.id}" type="submit">Unfollow</button>
+                    <button id="unfollowButton_${author.id}" type="submit" class="btn btn-sm btn-info">Unfollow</button>
                 </form>
                 <script>
                     enableFollow(${author.id});

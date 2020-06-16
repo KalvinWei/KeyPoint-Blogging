@@ -30,7 +30,6 @@ html, body {
 
 .nav-link {
     font-weight: normal;
-
 }
 
 .avatar-sm {
@@ -44,7 +43,7 @@ html, body {
 }
 
 .title {
-    margin: 3.5rem auto;
+    margin: 4rem auto 5rem;
     font-size: 3.5rem;
     text-align: center;
     color: #f36300;
@@ -72,4 +71,49 @@ html, body {
     text-align: center;
     color: #cccccc;
     font-weight: 100;
+}
+
+.card, .card-img {
+    border-radius: 0;
+    border: none;
+}
+
+.summary-info, .article-summary-likes {
+    font-size: 0.8rem;
+}
+
+.article-summary-likes, .time, .separator {
+    color: #cccccc;
+}
+
+.badge-light {
+    background-color: #eeeeee;
+}
+
+.user-summary a {
+    color: #f36300;
+}
+
+.summary-title {
+    color: #333333;
+    font-weight: normal;
+    font-size: 1.5rem;
+    padding-top: 1rem;
+}
+
+.summary-title:hover {
+    color: #f36300;
+    text-decoration: none;
+}
+
+.content-summary {
+    padding-top: 1rem;
+}
+
+.card {
+    box-shadow: 0 0 1rem #dddddd;
+}
+
+.card:hover {
+    box-shadow: 0 0 1rem #aaaaaa;
 }
