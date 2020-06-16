@@ -93,7 +93,6 @@
         <input type="file" id="coverInput" name="cover" style="display: none">
         <input type="hidden" name="id" value="${article.id}">
         <input type="hidden" name="userName" value="${article.user.userName}">
-        <input type="hidden" name="originalCover" value="${article.cover}">
         <div class="form-group my-2">
             <label for="title" class="text-muted">Title:</label>
             <input type="text" id="title" name="title" value="${article.title}" placeholder="title"
@@ -112,10 +111,10 @@
 
 
     <form action="./deleteArticle" method="post" class="form align-content-center">
-        <button type="submit" form="articleForm" class="btn btn-dark mx-2 px-2">Post</button>
+        <button type="submit" form="articleForm" class="btn btn-dark btn-sm mx-2 px-4">Post</button>
         <c:if test="${article.id != null}">
             <input type="hidden" name="id" value="${article.id}">
-            <button type="submit" class="btn btn-danger  mx-2 px-2">Delete</button>
+            <button type="submit" class="btn btn-danger btn-sm mx-2 px-4">Delete</button>
         </c:if>
     </form>
 </div>
