@@ -22,7 +22,7 @@ public class ArticlesByUserLikePage extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        req.getRequestDispatcher("/WEB-INF/jsp/articlesByUserLike.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/articles.jsp").forward(req, resp);
     }
 
     @Override

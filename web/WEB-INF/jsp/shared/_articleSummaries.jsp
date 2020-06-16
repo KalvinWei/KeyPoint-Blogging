@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div content="" class="list-unstyled border border-light">
+<div content="" class="list-unstyled container">
     <c:forEach items="${articleSummaries}" var="article">
         <div class="card my-2" >
             <div class="row no-gutters">
