@@ -7,7 +7,7 @@
 </head>
 <body>
 <%@include file="shared/_navbar.jsp"%>
-<div  class="container-lg">
+<div class="container-lg">
     <c:if test="${articlesSummaries.size() == 0}">
         <h4 class="text-black-50 mt-2">No articles yet...</h4>
     </c:if>
