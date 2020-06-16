@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<di>
+<button data-toggle="collapse" data-target="#comments" class="btn btn-primary my-5">See comments :</button>
+<div class="collapse" id="comments">
     <c:forEach var="comment" items="${article.comments}">
         <div class="comment" id="comment_${comment.id}"
              style="margin-left: ${comment.level >= 2 ? 4 : comment.level * 2}rem">
@@ -45,4 +46,4 @@
             <%@include file="shared/_commentBox.jsp" %>
         </div>
     </c:forEach>
-</di>
+</div>
