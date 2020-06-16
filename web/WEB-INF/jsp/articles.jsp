@@ -8,10 +8,11 @@
 <body>
 <%@include file="shared/_navbar.jsp"%>
 <div class="container-lg">
-    <c:if test="${articlesSummaries.size() == 0}">
+    <h4 class="title">Articles</h4>
+    <c:if test="${articleSummaries.size() == 0}">
         <h4 class="sub-title">No articles yet...</h4>
     </c:if>
-    <c:if test="${articlesSummaries.size() != 0}">
+    <c:if test="${articleSummaries.size() != 0}">
         <%@include file="shared/_articleSummaries.jsp"%>
     </c:if>
 </div>

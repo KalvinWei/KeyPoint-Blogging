@@ -156,3 +156,10 @@ form {
 .btn-unlike, .btn-like:hover, .btn-unlike:hover {
     color: #e5466a;
 }
+
+.profile-avatar {
+    max-width: 150px;
+    object-fit:cover;
+    border-radius: 50%;
+    border: 5px #e5466a;
+}
