@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/assets/css"/>/simditor.css"/>
     <style type="text/css" rel="stylesheet">
 
-        #imageWrapper > img{
+        #imageWrapper > img {
             height: 200px;
             object-fit: cover;
         }
@@ -27,8 +27,28 @@
         window.onload = function () {
             //init multimedia editor
             let editor = new Simditor({
-                textarea: $('#content')
+                textarea: $('#content'),
                 //optional options
+                toobar: [
+                    'title',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'strikethrough',
+                    'fontScale',
+                    'color',
+                    'ol',
+                    'ul',
+                    'blockquote',
+                    'code',
+                    'table',
+                    'link',
+                    'hr',
+                    'indent',
+                    'outdent',
+                    'alignment',
+                ],
+                i18n:'en-US',
             });
 
 
@@ -68,7 +88,7 @@
 <%@include file="shared/_navbar.jsp" %>
 <div id="wrapper" class="container-lg" style="max-width: 680px">
     <div id="imageWrapper" class="card bg-dark text-white border-0 rounded-0 mt-2">
-        <img id="coverImg" class="card-img" src="<c:url value="/images/cover/${article.cover}"/>">
+        <img id="coverImg" class="card-img border-0" src="<c:url value="/images/cover/${article.cover}"/>">
         <div class="card-img-overlay">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <button id="newCover" type="button" class="btn btn-dark">
@@ -105,7 +125,7 @@
         </div>
         <div class="form-group my-2">
             <label for="content" class="text-muted">Content</label>
-            <textarea id="content" name="content" class="form-control">${article.content}</textarea>
+            <textarea id="content" name="content" >${article.content}</textarea>
         </div>
     </form>
 
