@@ -48,6 +48,6 @@
                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
             </form>
         </c:if>
-        <p class="text-justify">${article.content}</p>
+        <p class="text-justify article-content">${article.content}</p>
     </div>
 </div>

@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h5 class="text-dark">
                             <a href="articlePage?id=${article.id}" class="summary-title">${article.title}</a>
-                            <span class="article-summary-likes">&nbsp;·&nbsp;${article.likes} like${article.likes == 1 ? "" : "s"}</span>
+                            <span class="summary-likes">&nbsp;·&nbsp;${article.likes} like${article.likes == 1 ? "" : "s"}</span>
                         </h5>
                         <p class="my-1 summary-info">
                             <c:set var="userSummary" value="${article.user}"/>

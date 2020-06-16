@@ -78,11 +78,11 @@ html, body {
     border: none;
 }
 
-.summary-info, .article-summary-likes {
+.summary-info, .summary-likes {
     font-size: 0.8rem;
 }
 
-.article-summary-likes, .time, .separator {
+.summary-likes, .time, .separator {
     color: #cccccc;
 }
 
@@ -106,7 +106,7 @@ html, body {
     text-decoration: none;
 }
 
-.content-summary {
+.content-summary, .article-content {
     padding-top: 1rem;
 }
 
@@ -136,4 +136,11 @@ form {
 .btn-sm {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
+}
+
+.comment {
+    border-left: #eaeaea 6px solid;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    background-color: #ffffff;
 }

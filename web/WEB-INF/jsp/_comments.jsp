@@ -2,19 +2,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <di>
     <c:forEach var="comment" items="${article.comments}">
-        <div class="my-2" id="comment_${comment.id}" style="margin-left: ${comment.level}00px">
-            <small class="font-italic ">
+        <div class="comment" id="comment_${comment.id}"
+             style="margin-left: ${comment.level >= 2 ? 4 : comment.level * 2}rem">
+            <div class="summary-info">
                 <c:set var="userSummary" value="${comment.user}"/>
                 <%@include file="shared/_userSummary.jsp" %>
                 <c:if test="${comment.parentUser != null}">
-                    <span>&nbsp;&nbsp;replied&nbsp;&nbsp; </span>
+                    <span class="separator">&nbsp;&nbsp;replied&nbsp;&nbsp; </span>
                     <c:set var="userSummary" value="${comment.parentUser}"/>
                     <%@include file="shared/_userSummary.jsp" %>
-                    <span class="text-black-50 ml-1">/ ${comment.time}</span>
+                    <span class="time">&nbsp;${comment.time}&nbsp;</span>
                 </c:if>
-            </small>
-            <p class="my-0 ml-4">${comment.content}</p>
-            <span id="commentLikes_${comment.id}">${comment.likes}</span>
+            </div>
+            <p class="my-0">${comment.content}</p>
+            <span id="commentLikes_${comment.id}" class="summary-likes">${comment.likes}</span>
+            <span class="summary-likes">&nbsp;like${comment.likes == 1 ? "" : "s"}</span>
             <c:if test="${isUserLoggedIn}">
                 <form id="likeCommentForm_${comment.id}" action="./likeComment" method="post" class="d-none">
                     <input type="hidden" name="user" value="${user.id}">
@@ -33,10 +35,10 @@
                 </script>
             </c:if>
             <c:if test="${isUserLoggedIn && (user.userName.equals(article.user.userName) || user.userName.equals(comment.user.userName))}">
-                <form action="./deleteComment" method="post">
+                <form action="./deleteComment" method="post" class="d-inline">
                     <input type="hidden" name="id" value="${comment.id}">
                     <input type="hidden" name="articleId" value="${article.id}">
-                    <button type="submit">Delete</button>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                 </form>
             </c:if>
             <c:set var="parent" value="${comment}"/>
