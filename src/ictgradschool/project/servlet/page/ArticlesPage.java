@@ -24,7 +24,7 @@ public class ArticlesPage extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        req.getRequestDispatcher("/WEB-INF/jsp/articles.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/jsp/blog.jsp").forward(req, resp);
     }
 
     @Override

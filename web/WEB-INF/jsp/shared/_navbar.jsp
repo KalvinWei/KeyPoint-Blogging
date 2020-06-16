@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav id="navbar" class="navbar navbar-expand-sm navbar-dark justify-content-between">
-    <a class="navbar-brand" href="./indexPage">· KeyPoint -></a>
+<nav id="navbar" class="navbar navbar-expand-sm sticky-top navbar-dark justify-content-between">
+    <a class="navbar-brand" href="./indexPage">
+        · KeyPoint<span class="logo-space-left">&nbsp;</span>-><span class="logo-space-right">&nbsp;</span>
+    </a>
     <!-- show when viewpoint is small, to toggle list items -->
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -29,7 +31,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./signInPage">Sign In</a>
                 </li>
-                <li clas="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="./signUpPage">Sign Up</a>
                 </li>
             </c:if>
@@ -37,12 +39,15 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                        href="#" role="button" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>${user.nickname}</span>
+                        <span data-toggle="tooltip"
+                        title="${user.userName}: ${user.signature}">
+                                ${user.nickname}
+                        </span>
                         <img src="./images/avatar/${user.avatar}" class="avatar-sm">
                     </a>
                     <div id="navList" class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="./articlesPage?userName=${user.userName}">My Blog</a>
-                        <a class="dropdown-item" href="./editArticlePage?userName=${user.userName}">New Post</a>
+                        <a class="dropdown-item" href="./editArticlePage?userName=${user.userName}">New Article</a>
                         <a class="dropdown-item" href="./articlesByUserLikePage?userName=${user.userName}">I Liked</a>
                         <a class="dropdown-item" href="./followersPage?follower=${user.id}">I Followed</a>
                         <a class="dropdown-item" href="./followeesPage?followee=${user.id}">My Followers</a>
