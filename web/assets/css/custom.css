@@ -161,9 +161,10 @@ form {
     max-width: 150px;
     object-fit:cover;
     border-radius: 50%;
-    border: 5px #e5466a;
+    border: 5px #eeeeee solid;
 }
 
 .profile-info {
-    margin-left: 3rem;
+    margin-left: 10rem;
+    border: 3px
 }

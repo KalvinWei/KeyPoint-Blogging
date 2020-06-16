@@ -2,24 +2,46 @@
 <div class="my-3 border-0 p-5 media profile">
     <img src="./images/avatar/${author.avatar}" class="profile-avatar">
     <div class="col-sm-7 media-body profile-info">
-        <p class="text-center my-0" style="font-size: small">
-            <a href="./articlesPage?userName=${author.userName}" data-toggle="tooltip" title="${author.signature}">
-                <span class="font-weight-light">${author.nickname}</span>
-            </a>
-        </p>
-        <p class="text-center my-0" style="font-size: small">
-            <span class="font-weight-light">${author.signature}</span>
-        </p>
-        <dl class="row">
-            <dt class="col-md-3">Followers:</dt>
-            <dd class="col-md-9" id="followers_${author.id}">${author.followers}</dd>
-            <dt class="col-md-3">date of birth:</dt>
-            <dd class="col-md-9">${author.dateOfBirth.toString()}</dd>
-            <dt class="col-md-3">email:</dt>
-            <dd class="col-md-9">${author.email == null || author.email.isEmpty() ? "secret" : author.email}</dd>
-            <dt class="col-md-3">description:</dt>
-            <dd class="col-md-9">${author.description == null || author.description.isEmpty() ? "secret" : author.description}</dd>
-        </dl>
+        <table class="profile-table table">
+            <tr>
+                <th>Nickname:</th>
+                <td>
+                    <a href="./articlesPage?userName=${author.userName}" data-toggle="tooltip" title="${author.signature}">
+                        <span class="font-weight-light">${author.nickname}</span>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <th>Signature:</th>
+                <td>
+                    ${author.signature}
+                </td>
+            </tr>
+            <tr>
+                <th>Followers:</th>
+                <td id="followers_${author.id}">
+                    ${author.followers}
+                </td>
+            </tr>
+            <tr>
+                <th>Date of birth:</th>
+                <td>
+                    ${author.dateOfBirth.toString()}
+                </td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td>
+                    ${author.email == null || author.email.isEmpty() ? "secret" : author.email}
+                </td>
+            </tr>
+            <tr>
+                <th>Description:</th>
+                <td>
+                    ${author.description == null || author.description.isEmpty() ? "secret" : author.description}
+                </td>
+            </tr>
+        </table>
         <c:if test="${isUserLoggedIn && author.userName.equals(user.userName)}">
             <a href="./editProfilePage?userName=${author.userName}" role="button"
                class="btn btn-sm btn-info">Edit</a>

@@ -2,10 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <button data-toggle="collapse" data-target="#comments" class="btn btn-primary my-5">See comments :</button>
 <div class="collapse" id="comments">
-    <c:if test="${article.comment.size() == 0}">
+    <c:if test="${article.comments.size() == 0}">
         <h4 class="sub-title">No comments yet...</h4>
     </c:if>
-    <c:if test="${article.comment.size() != 0}">
+    <c:if test="${article.comments.size() != 0}">
         <c:forEach var="comment" items="${article.comments}">
             <div class="comment" id="comment_${comment.id}"
                  style="margin-left: ${comment.level >= 2 ? 4 : comment.level * 2}rem">
