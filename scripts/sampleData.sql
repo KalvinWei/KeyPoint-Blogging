@@ -43,13 +43,13 @@ INSERT INTO article (id, title, content, time, cover, user, isDeleted) VALUES
 
    He also emphasized that the company is taking safety precautions during the pandemic, ensuring that all of its warehouse workers and drivers have masks and other protective equipment, and that the drivers use hand sanitizer between deliveries.',
     '2018-06-05T18:52:09',
-    '1.jpg','user1' ,0),
+    '1.jpg',123,0),
 (224,'Uber could lose its Grubhub deal to Just Eat or Delivery Hero',
     'According to CNBC there are two suitors rivaling Uber for purchase of U.S. food delivery company Grubhub: Just Eat Takeaway (the union of Just Eat and Takeaway) and Delivery Hero.
 Both are European companies perhaps looking for a major entry to the United States market. Just Eat Takeaway is based in the U.K. and Holland, while Delivery Hero  is based in Germany. They are both lavishly funded, with Just Eat Takeaway having raised around $1 billion (a combined tally for both companies that now make up the conjoined entity), according to Crunchbase data, and Delivery Hero flush with billions in historical capital from a number of sources.What price they might pay wasn’t clear on this Friday afternoon, but public market investors are optimistic on what the companies might pay. Shares of Grubhub  shot higher on news that other suitors were in the mix; its shares are currently trading up around 7% on the day.
 A bidding war could help Grubhub drive a higher price for itself. According to various reports, Uber and Grubhub are struggling to find the right price for the smaller company’s assets. Uber  Eats is a domestic competitor to Grubhub, making the tie-up attractive to the larger company from a competitive perspective; if Uber can eliminate one of its chief rivals while absorbing its market share, then perhaps the company best known for its ride-hailing business would be able to extract more cash from food delivery, lessening its regular losses from the activity.',
     '2020-06-06T07:07:14',
-    'cover2.jpg','user2',0),
+    'cover2.jpg',123,0),
 (225,'India rejects Walmart-owned Flipkart proposed foray into food retail business',
  'The Indian government has rejected Flipkart’s  proposal to enter the food retail business in a setback for Walmart, which owns a majority of the Indian e-commerce firm and which recently counted its business in Asia’s third-largest economy as one of the worst impacted by the global coronavirus pandemic.
 
