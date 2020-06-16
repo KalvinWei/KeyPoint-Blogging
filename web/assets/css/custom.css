@@ -144,3 +144,15 @@ form {
     margin-top: 1rem;
     background-color: #ffffff;
 }
+
+.btn-link {
+    text-decoration: none;
+}
+
+.btn-like {
+    color: #cccccc;
+}
+
+.btn-unlike, .btn-like:hover, .btn-unlike:hover {
+    color: #e5466a;
+}

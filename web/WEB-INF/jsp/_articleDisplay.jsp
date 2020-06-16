@@ -17,12 +17,16 @@
                     <form id="likeArticleForm_${article.id}" action="./likeArticle" method="post" class="d-none">
                         <input type="hidden" name="user" value="${user.id}">
                         <input type="hidden" name="article" value="${article.id}">
-                        <button id="likeArticleButton_${article.id}" type="submit" class="btn btn-sm btn-info">Like</button>
+                        <button id="likeArticleButton_${article.id}" type="submit" class="btn btn-link btn-like">
+                            <i class="fa fa-heart" aria-hidden="true" data-toggle="tooltip" title="Like this article"></i>
+                        </button>
                     </form>
                     <form id="unlikeArticleForm_${article.id}" action="./unlikeArticle" method="post" class="d-none">
                         <input type="hidden" name="user" value="${user.id}">
                         <input type="hidden" name="article" value="${article.id}">
-                        <button id="unlikeArticleButton_${article.id}" type="submit" class="btn btn-sm btn-info">Unlike</button>
+                        <button id="unlikeArticleButton_${article.id}" type="submit" class="btn btn-link btn-unlike">
+                            <i class="fa fa-heart" aria-hidden="true" data-toggle="tooltip" title="Like this article"></i>
+                        </button>
                     </form>
                     <script>
                         enableArticleLike(${article.id});

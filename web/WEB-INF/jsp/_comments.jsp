@@ -22,12 +22,16 @@
                 <form id="likeCommentForm_${comment.id}" action="./likeComment" method="post" class="d-none">
                     <input type="hidden" name="user" value="${user.id}">
                     <input type="hidden" name="comment" value="${comment.id}">
-                    <button id="likeCommentButton_${comment.id}" type="submit" class="btn btn-sm btn-info">Like</button>
+                    <button id="likeCommentButton_${comment.id}" type="submit" class="btn btn-link btn-like">
+                        <i class="fa fa-heart" aria-hidden="true" data-toggle="tooltip" title="Like this comment"></i>
+                    </button>
                 </form>
                 <form id="unlikeCommentForm_${comment.id}" action="./unlikeComment" method="post" class="d-none">
                     <input type="hidden" name="user" value="${user.id}">
                     <input type="hidden" name="comment" value="${comment.id}">
-                    <button id="unlikeCommentButton_${comment.id}" type="submit" class="btn btn-sm btn-info">Unlike</button>
+                    <button id="unlikeCommentButton_${article.id}" type="submit" class="btn btn-link btn-unlike">
+                        <i class="fa fa-heart" aria-hidden="true" data-toggle="tooltip" title="Like this comment"></i>
+                    </button>
                 </form>
                 <script>
                     enableCommentLike(${comment.id});
