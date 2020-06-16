@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div content="" class="list-unstyled container">
+<div class="list-unstyled">
     <c:forEach items="${articleSummaries}" var="article">
         <div class="card my-2" >
             <div class="row no-gutters">
                 <div class="col-sm-3">
                     <img src="./images/cover/${article.cover}" alt="${article.cover}"
-                         class="card-img" style="object-fit: cover;" >
+                         class="card-img cover-summary" >
                 </div>
                 <div class="col-sm-9">
                     <div class="card-body">

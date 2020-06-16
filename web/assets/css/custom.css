@@ -3,11 +3,19 @@
 }
 
 html, body {
-    background-color: #eeeeee;
+    background-image: radial-gradient(#eeeeee, #ffffff);
 }
 
 #navbar {
-    background: linear-gradient(166deg, #ff9016, #f36300, #e54c1d);
+    background: linear-gradient(166deg, #ff9016, #f36300, #f36300, #e5466a);
+}
+
+.logo-space-left, .navbar-brand:hover .logo-space-right {
+    padding-left: 0;
+}
+
+.navbar-brand:hover .logo-space-left, .logo-space-right {
+    padding-left: 5px;
 }
 
 .navbar-brand {
@@ -16,12 +24,38 @@ html, body {
     font-style: italic;
 }
 
+.nav-item:hover {
+    transform: scale(1.05);
+}
+
 .nav-link {
     font-weight: normal;
+
 }
 
 .avatar-sm {
     width: 20px;
     border-radius: 50%;
     border: rgba(255, 255, 255, 0.5) 2px solid;
+}
+
+.cover-summary {
+    object-fit: cover;
+}
+
+.title {
+    margin: 3.5rem auto;
+    font-size: 3.5rem;
+    text-align: center;
+    color: #f36300;
+    font-weight: 100;
+    text-shadow: #000000 0 0 5rem;
+}
+
+.sub-title {
+    margin: 3rem auto;
+    font-size: 3rem;
+    text-align: center;
+    color: #cccccc;
+    font-weight: 100;
 }

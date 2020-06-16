@@ -1,7 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav id="navbar" class="navbar navbar-expand-sm sticky-top navbar-dark justify-content-between">
-    <a class="navbar-brand" href="./indexPage">· KeyPoint -></a>
+    <a class="navbar-brand" href="./indexPage">
+        · KeyPoint<span class="logo-space-left">&nbsp;</span>-><span class="logo-space-right">&nbsp;</span>
+    </a>
     <!-- show when viewpoint is small, to toggle list items -->
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -29,7 +31,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="./signInPage">Sign In</a>
                 </li>
-                <li clas="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="./signUpPage">Sign Up</a>
                 </li>
             </c:if>
