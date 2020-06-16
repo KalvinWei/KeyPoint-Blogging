@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav id="navbar" class="navbar navbar-expand-sm navbar-dark justify-content-between">
+<nav id="navbar" class="navbar navbar-expand-sm sticky-top navbar-dark justify-content-between">
     <a class="navbar-brand" href="./indexPage">· KeyPoint -></a>
     <!-- show when viewpoint is small, to toggle list items -->
     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -37,12 +37,15 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                        href="#" role="button" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>${user.nickname}</span>
+                        <span data-toggle="tooltip"
+                        title="${user.userName}: ${user.signature}">
+                                ${user.nickname}
+                        </span>
                         <img src="./images/avatar/${user.avatar}" class="avatar-sm">
                     </a>
                     <div id="navList" class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="./articlesPage?userName=${user.userName}">My Blog</a>
-                        <a class="dropdown-item" href="./editArticlePage?userName=${user.userName}">New Post</a>
+                        <a class="dropdown-item" href="./editArticlePage?userName=${user.userName}">New Article</a>
                         <a class="dropdown-item" href="./articlesByUserLikePage?userName=${user.userName}">I Liked</a>
                         <a class="dropdown-item" href="./followersPage?follower=${user.id}">I Followed</a>
                         <a class="dropdown-item" href="./followeesPage?followee=${user.id}">My Followers</a>
