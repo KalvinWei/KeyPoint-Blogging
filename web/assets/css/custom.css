@@ -49,7 +49,21 @@ html, body {
     text-align: center;
     color: #f36300;
     font-weight: 100;
-    text-shadow: #000000 0 0 5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.title:before, .title:after{
+    content: "";
+    flex: 1 1;
+    border-bottom: 2px solid #eeeeee;
+    margin: auto;
+}
+.title:before {
+    margin-right: 1rem;
+}
+.title:after {
+    margin-left: 1rem;
 }
 
 .sub-title {

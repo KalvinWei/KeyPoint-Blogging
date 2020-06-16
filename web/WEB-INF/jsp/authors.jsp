@@ -7,6 +7,7 @@
 <body>
 <%@include file="shared/_navbar.jsp" %>
 <div class="container-lg">
+    <h4 class="title">Authors</h4>
     <c:if test="${authors.size() == 0}">
         <h4 class="text-black-50 mt-2">No authors yet...</h4>
     </c:if>
