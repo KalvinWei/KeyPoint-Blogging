@@ -117,3 +117,23 @@ html, body {
 .card:hover {
     box-shadow: 0 0 1rem #aaaaaa;
 }
+
+.article-cover {
+    max-height: 300px;
+    object-fit: cover
+}
+
+form {
+    display: inline !important;
+}
+
+.article-likes {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #cccccc;
+}
+
+.btn-sm {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}

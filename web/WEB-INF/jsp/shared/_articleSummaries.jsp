@@ -26,7 +26,7 @@
                         <c:if test="${isUserLoggedIn && article.user.userName.equals(user.userName)}">
                             <a href="./editArticlePage?id=${article.id}" class="btn btn-sm btn-info">edit</a>
                             <form action="./deleteArticle?id=${article.id}" method="post" class="d-inline">
-                                <button type="submit" class="btn btn-sm btn-info">Delete</button>
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
                         </c:if>
                         <p class="text-justify text-secondary font-weight-light my-0 content-summary">${article.contentSummary}</p>
