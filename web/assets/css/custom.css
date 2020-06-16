@@ -110,11 +110,11 @@ html, body {
     padding-top: 1rem;
 }
 
-.card {
+.card, .profile {
     box-shadow: 0 0 1rem #dddddd;
 }
 
-.card:hover {
+.card:hover, .profile:hover {
     box-shadow: 0 0 1rem #aaaaaa;
 }
 
@@ -162,4 +162,8 @@ form {
     object-fit:cover;
     border-radius: 50%;
     border: 5px #e5466a;
+}
+
+.profile-info {
+    margin-left: 3rem;
 }

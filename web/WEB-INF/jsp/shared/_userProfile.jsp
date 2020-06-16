@@ -1,15 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="card my-3 border-0 p-5">
-    <div id="nameAndSignature" class="col-sm-5">
-        <p class="text-center"><img src="./images/avatar/${author.avatar}" class="profile-avatar"></p>
-        <p class="text-center my-0" style="font-size: small"><a href="./articlesPage?userName=${author.userName}" data-toggle="tooltip" title="${author.signature}">
-            <span id="nickname" class="font-weight-light">${author.nickname}</span>
-        </a></p>
+<div class="my-3 border-0 p-5 media profile">
+    <img src="./images/avatar/${author.avatar}" class="profile-avatar">
+    <div class="col-sm-7 media-body profile-info">
         <p class="text-center my-0" style="font-size: small">
-            <span id="signature" class="font-weight-light">${author.signature}</span>
+            <a href="./articlesPage?userName=${author.userName}" data-toggle="tooltip" title="${author.signature}">
+                <span class="font-weight-light">${author.nickname}</span>
+            </a>
         </p>
-    </div>
-    <div id="otherInfo" class="col-sm-7">
+        <p class="text-center my-0" style="font-size: small">
+            <span class="font-weight-light">${author.signature}</span>
+        </p>
         <dl class="row">
             <dt class="col-md-3">Followers:</dt>
             <dd class="col-md-9" id="followers_${author.id}">${author.followers}</dd>
@@ -28,7 +28,7 @@
             <form id="followForm_${author.id}" action="./follow" method="post" class="d-none">
                 <input type="hidden" name="followee" value="${author.id}">
                 <input type="hidden" name="follower" value="${user.id}">
-                <button id="followButton_${author.id}" type="submit" class="btn btn-sm btn-info">Follow</button>
+                <button id="followButton_${author.id}" type="submit" class="btn btn-sm btn-outline-info">Follow</button>
             </form>
             <form id="unfollowForm_${author.id}" action="./unfollow" method="post" class="d-none">
                 <input type="hidden" name="followee" value="${author.id}">
