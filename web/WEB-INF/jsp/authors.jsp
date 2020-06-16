@@ -6,10 +6,16 @@
 </head>
 <body>
 <%@include file="shared/_navbar.jsp" %>
-<div>
-    <c:forEach var="author" items="${authors}">
-        <%@include file="shared/_userProfile.jsp"%>
-    </c:forEach>
+<div class="container-lg">
+    <h4 class="title">Authors</h4>
+    <c:if test="${authors.size() == 0}">
+        <h4 class="text-black-50 mt-2">No authors yet...</h4>
+    </c:if>
+    <c:if test="${authors.size() != 0}">
+        <c:forEach var="author" items="${authors}">
+            <%@include file="shared/_userProfile.jsp"%>
+        </c:forEach>
+    </c:if>
 </div>
 </body>
 </html>

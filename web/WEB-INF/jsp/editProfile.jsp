@@ -16,7 +16,6 @@
 
     <div id="leftBlock">
         <input id="id" type="hidden" name="id" value="${user.id}">
-        <input id="followers" type="hidden" name="id" value="${user.followers}">
         <div class="form-group">
             <label for="userName">Username:</label>
             <input id="userName" type="text" name="userName" value="${user.userName}" placeholder="user name" class="form-control">

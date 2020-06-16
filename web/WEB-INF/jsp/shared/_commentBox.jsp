@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<button class="btn btn-link btn-sm ml-3 text-black-50" style="font-size: small" data-toggle="collapse" data-target="#comment_box_${parent.id}">
+<button class="btn btn-info btn-sm ml-3" data-toggle="collapse" data-target="#comment_box_${parent.id}">
     Comment
 </button>
 <div id="comment_box_${parent.id}" class="media collapse">
@@ -13,7 +13,7 @@
                 <input type="hidden" name="parent" value="${parent.id}">
                 <input type="hidden" name="userName" value="${user.userName}">
                 <textarea class="form-control" id="content" name="content" placeholder="Share your thoughts"></textarea>
-                <button class="btn btn-sm btn-link" type="submit">Post</button>
+                <button class="btn btn-sm btn-info" type="submit">Post</button>
             </form>
         </div>
     </c:if>

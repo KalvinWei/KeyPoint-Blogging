@@ -2,15 +2,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${author.nickname}'s Blog</title>
+    <title>Articles</title>
     <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
 <%@include file="shared/_navbar.jsp"%>
 <div class="container-lg">
-    <%@include file="shared/_userProfile.jsp"%>
-    <h4 class="text-black-50 mt-2">Articles</h4>
-    <%@include file="shared/_articleSummaries.jsp"%>
+    <c:if test="${articlesSummaries.size() == 0}">
+        <h4 class="sub-title">No articles yet...</h4>
+    </c:if>
+    <c:if test="${articlesSummaries.size() != 0}">
+        <%@include file="shared/_articleSummaries.jsp"%>
+    </c:if>
 </div>
 
 </body>
