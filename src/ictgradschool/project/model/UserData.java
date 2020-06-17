@@ -1,5 +1,7 @@
 package ictgradschool.project.model;
 
+import ictgradschool.project.util.SanitizationUtil;
+
 public class UserData {
     private String userName;
     private String passwordHash;
@@ -18,7 +20,7 @@ public class UserData {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.userName = SanitizationUtil.sanitizeAndShorten(userName, 64);
     }
 
     public String getPasswordHash() {

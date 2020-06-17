@@ -13,7 +13,7 @@ import java.util.List;
 public class UserDAO {
     public static UserData getUserDataFromUserName(String userName) throws IOException, SQLException {
         try (Connection connection = DBConnectionUtils.getConnectionFromClasspath("connection.properties")) {
-            try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user WHERE userName=?;");) {
+            try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM user WHERE userName=? ORDER BY id");) {
                 ps.setString(1, userName);
                 try (ResultSet resultSet = ps.executeQuery()) {
                     if (!resultSet.next())
@@ -55,7 +55,7 @@ public class UserDAO {
             try (Statement statement = conn.createStatement()) {
                 try (ResultSet rs = statement.executeQuery(
                         "SELECT id, userName, nickname, firstName, lastName, dateOfBirth, email, signature, description, avatar, count\n" +
-                                "FROM user AS u LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON u.id = followee"
+                                "FROM user AS u LEFT JOIN (SELECT followee, COUNT(*) AS count FROM follow GROUP BY followee) AS f ON u.id = followee ORDER BY id"
                 )) {
                     assembleUsers(users, rs);
                 }

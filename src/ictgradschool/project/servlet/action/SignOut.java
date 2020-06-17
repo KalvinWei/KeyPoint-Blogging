@@ -14,7 +14,7 @@ public class SignOut extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.signOut(req);
-        resp.sendRedirect("./indexPage");
+        resp.sendRedirect("./signInPage");
     }
 
     @Override

@@ -20,10 +20,12 @@
                 <a class="nav-link" href="./authorsPage">Authors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Team KEY</a>
+                <a class="nav-link" href="./teamPage">Team KEY</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Documentation</a>
+                <a class="nav-link"
+                   href="https://gitlab.com/auckland-ict-grad-school/final-project-groups-2020-s1/group-1/pgcit-project-fulltime-starter"
+                   target="_blank">Source code</a>
             </li>
         </ul>
         <ul class="navbar-nav float-right">
@@ -40,18 +42,21 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                        href="#" role="button" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
                         <span data-toggle="tooltip"
-                        title="${user.userName}: ${user.signature}">
+                              title="${user.userName}: ${user.signature}">
                                 ${user.nickname}
                         </span>
                         <img src="./images/avatar/${user.avatar}" class="avatar-sm">
                     </a>
                     <div id="navList" class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="./articlesPage?userName=${user.userName}">My Blog</a>
                         <a class="dropdown-item" href="./editArticlePage?userName=${user.userName}">New Article</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="./articlesPage?userName=${user.userName}">My Blog</a>
                         <a class="dropdown-item" href="./articlesByUserLikePage?userName=${user.userName}">I Liked</a>
                         <a class="dropdown-item" href="./followersPage?follower=${user.id}">I Followed</a>
                         <a class="dropdown-item" href="./followeesPage?followee=${user.id}">My Followers</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="./editProfilePage?userName=${user.userName}">Edit Profile</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="./signOut">Sign Out</a>
                     </div>
                 </li>

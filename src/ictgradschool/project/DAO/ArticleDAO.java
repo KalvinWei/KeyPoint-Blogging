@@ -16,7 +16,7 @@ public class ArticleDAO {
                     "select distinct a.id as id,title,content,cover,user,time,likes,isDeleted\n" +
                             "    from article as a\n" +
                             "    left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "    where isDeleted = false")) {
+                            "    where isDeleted = false order by time desc")) {
                 return assembleArticleSummaries(conn, ps);
             }
         }
@@ -29,7 +29,7 @@ public class ArticleDAO {
                             "from article as a\n" +
                             "inner join user as u on a.user = u.id\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "where userName = ? and isDeleted = false")) {
+                            "where userName = ? and isDeleted = false order by time desc")) {
                 ps.setString(1, userName);
                 return assembleArticleSummaries(conn, ps);
             }
@@ -44,7 +44,7 @@ public class ArticleDAO {
                             "inner join likeArticle as la on a.id = la.article\n" +
                             "inner join user as u on la.user = u.id\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "where userName = ? and isDeleted = false")) {
+                            "where userName = ? and isDeleted = false order by time desc")) {
                 ps.setString(1, userName);
                 return assembleArticleSummaries(conn, ps);
             }
@@ -58,7 +58,7 @@ public class ArticleDAO {
                             "from article as a\n" +
                             "inner join tag as t on a.id = t.article\n" +
                             "left join (select article, count(*) as likes from likeArticle group by article) as l on a.id = l.article\n" +
-                            "where tag = ? and isDeleted = false")) {
+                            "where tag = ? and isDeleted = false order by time desc")) {
                 ps.setString(1, tag);
                 return assembleArticleSummaries(conn, ps);
             }

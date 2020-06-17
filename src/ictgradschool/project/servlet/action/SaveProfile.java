@@ -84,6 +84,10 @@ public class SaveProfile extends FileUploadBase {
             user.setAvatar(defaultAvatar);
         }
 
+        if (user.getNickname() == null || user.getNickname().isEmpty()) {
+            user.setNickname(user.getUserName());
+        }
+
         try {
             UserDAO.saveProfile(user);
         } catch (SQLException e) {

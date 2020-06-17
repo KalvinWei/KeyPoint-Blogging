@@ -22,13 +22,10 @@ public class SignIn extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
-        if (req.getAttribute("lastPage") == null) {
-            req.setAttribute("lastPage", "indexPage");
-        }
         try {
             if (AuthenticationUtil.authenticate(UserDAO.getUserDataFromUserName(userName), password)) {
                 AuthenticationUtil.signIn(req, userName);
-                resp.sendRedirect("./articlesPage?userName=" + userName);
+                resp.sendRedirect("./indexPage");
             } else {
                 req.setAttribute("hasLogInFailed", true);
                 req.getRequestDispatcher("/signInPage").forward(req, resp);

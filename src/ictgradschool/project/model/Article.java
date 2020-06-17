@@ -1,6 +1,7 @@
 package ictgradschool.project.model;
 
 import ictgradschool.project.DAO.UserDAO;
+import ictgradschool.project.util.SanitizationUtil;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -62,6 +63,7 @@ public class Article implements Serializable {
                 List<String> tags = Stream.of(fieldValue.split("\\s*,\\s*"))
                         .distinct()
                         .filter(tag -> !tag.isEmpty())
+                        .map(tag -> SanitizationUtil.sanitizeAndShorten(tag, 16))
                         .collect(Collectors.toList());
                 setTags(tags);
                 break;
@@ -81,7 +83,7 @@ public class Article implements Serializable {
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.title = SanitizationUtil.sanitize(title);
     }
 
     public String getContent() {
