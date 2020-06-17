@@ -20,7 +20,12 @@ public class FolloweesPage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
         List<User> users = new ArrayList<>();
-        int followee = Integer.parseInt(req.getParameter("followee"));
+        int followee = 0;
+        try {
+            followee = Integer.parseInt(req.getParameter("followee"));
+        } catch (Exception e) {
+            resp.sendRedirect("./indexPage");
+        }
         try {
             users = UserDAO.getFollowersByFollowee(followee);
         } catch (SQLException e) {
