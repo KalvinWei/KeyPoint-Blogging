@@ -29,7 +29,7 @@
                                 <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                             </form>
                         </c:if>
-                        <p class="text-justify text-secondary font-weight-light my-0 content-summary">${article.contentSummary}</p>
+                        <p class="text-justify text-secondary font-weight-light content-summary">${article.contentSummary}</p>
                     </div>
                 </div>
             </div>
