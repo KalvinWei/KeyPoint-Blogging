@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class FileUploadBase extends HttpServlet {
     protected File uploadsFolder;
     protected File tempFolder;
-    protected final List<String> acceptableMimeTypes = Arrays.asList("image/png", "image/jpeg");
+    protected final List<String> acceptableMimeTypes = Arrays.asList("image/png", "image/jpeg", "image/jpg", "image/gif");
     protected abstract String getRelativePath();
 
     @Override

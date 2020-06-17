@@ -69,6 +69,9 @@ public class PostArticle extends FileUploadBase {
             throw new ServletException(e);
         }
 
+//        if (article.getTime() == null) {
+//            article.setTime(new Timestamp(System.currentTimeMillis()));
+//        }
         article.setTime(new Timestamp(System.currentTimeMillis()));
         if (article.getCover() == null || article.getCover().isEmpty()) {
             article.setCover(originalCover);

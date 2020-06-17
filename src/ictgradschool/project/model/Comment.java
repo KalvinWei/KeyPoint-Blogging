@@ -1,5 +1,7 @@
 package ictgradschool.project.model;
 
+import ictgradschool.project.util.SanitizationUtil;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
@@ -55,7 +57,7 @@ public class Comment implements Serializable {
     }
 
     public void setContent(String content) {
-        this.content = content;
+        this.content = SanitizationUtil.sanitize(content);
     }
 
     public Timestamp getTime() {
