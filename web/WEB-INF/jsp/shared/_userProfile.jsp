@@ -18,13 +18,13 @@
                 <tr>
                     <th>Followers:</th>
                     <td id="followers_${author.id}">
-                        <a href="">${author.followers}</a>
+                        <a href="./followeesPage?followee=${author.id}">${author.followers}</a>
                     </td>
                 </tr>
                 <tr>
                     <th>Date of birth:</th>
                     <td>
-                        ${author.dateOfBirth.toString()}
+                        ${author.dateOfBirth == null ? "secret" : author.dateOfBirth.toString()}
                     </td>
                 </tr>
                 <tr>
