@@ -17,6 +17,9 @@ public class ArticlesByUserLikePage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
         String userName = req.getParameter("userName");
+        if (userName == null) {
+            resp.sendRedirect("./indexPage");
+        }
         try {
             req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByUserLike(userName));
         } catch (SQLException e) {

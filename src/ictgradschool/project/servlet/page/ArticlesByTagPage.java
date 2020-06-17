@@ -19,7 +19,11 @@ public class ArticlesByTagPage extends HttpServlet {
         AuthenticationUtil.checkLogInStatus(req);
         String tag = req.getParameter("tag");
         try {
-            req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByTag(tag));
+            if (tag == null) {
+                req.setAttribute("articleSummaries", null);
+            } else {
+                req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByTag(tag));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

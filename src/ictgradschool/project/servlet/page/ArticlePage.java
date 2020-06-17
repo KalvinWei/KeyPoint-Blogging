@@ -20,7 +20,12 @@ public class ArticlePage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
-        int id = Integer.parseInt(req.getParameter("id"));
+        int id = 0;
+        try {
+            id = Integer.parseInt(req.getParameter("id"));
+        } catch (Exception e) {
+            resp.sendRedirect("./indexPage");
+        }
         try {
             Article article = ArticleDAO.getArticleByArticleId(id);
             if (article == null) {

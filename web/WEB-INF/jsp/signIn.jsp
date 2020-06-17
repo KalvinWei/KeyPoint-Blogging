@@ -6,28 +6,28 @@
     <%@include file="shared/_libraries.jsp"%>
 </head>
 <body>
-<div id="contentBox" class="container-sm mt-5" style="max-width: 540px">
-    <h2 class="m-auto text-center mb-2">Sign In</h2>
-    <p class="m-auto text-center mb-2">Welcome to KeyPoint, please sign in :)</p>
+<div class="container-lg">
+    <h2 class="title">Sign In</h2>
+    <div id="contentBox" class="container-sm my-5 card py-5" style="max-width: 400px">
         <form action="./signIn" method="post" class="m-auto was-validated">
             <div class="form-group">
-                <label for="userName">Username:</label>
                 <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required>
                 <div class="invalid-feedback">* Please input your username</div>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
                 <input class="form-control" type="password" name="password" id="password" placeholder="password" required>
                 <div class="invalid-feedback">* Please input your password</div>
                 <c:if test="${hasLogInFailed}" >
-                    <label class="text-danger">* login failed. wrong username or password.</label>
+                    <label class="text-danger validation-info">* Login failed. Wrong username or password.</label>
                 </c:if>
             </div>
-            <button type="submit" class="btn btn-dark btn-block">Sign In</button>
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
             <hr />
             <a class="btn btn-block btn-info" href="./signUpPage">Go to sign up</a>
             <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
         </form>
+    </div>
 </div>
+
 </body>
 </html>

@@ -14,20 +14,25 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "FolloweesPage", urlPatterns = {"/followeesPage"})
-public class FolloweesPage extends HttpServlet {
+@WebServlet(name = "TeamPage", urlPatterns = {"/teamPage"})
+public class TeamPage extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
         List<User> users = new ArrayList<>();
-        int followee = 0;
         try {
-            followee = Integer.parseInt(req.getParameter("followee"));
-        } catch (Exception e) {
-            resp.sendRedirect("./indexPage");
-        }
-        try {
-            users = UserDAO.getFollowersByFollowee(followee);
+            User yihao = UserDAO.getUserFromUserName("Yihao");
+            User kalvin = UserDAO.getUserFromUserName("Kalvin");
+            User esther = UserDAO.getUserFromUserName("Esther");
+            if (yihao != null) {
+                users.add(yihao);
+            }
+            if (kalvin != null) {
+                users.add(kalvin);
+            }
+            if (esther != null) {
+                users.add(esther);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

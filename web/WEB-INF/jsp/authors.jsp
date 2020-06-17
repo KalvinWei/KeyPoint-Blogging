@@ -9,7 +9,7 @@
 <div class="container-lg">
     <h4 class="title">Authors</h4>
     <c:if test="${authors.size() == 0}">
-        <h4 class="text-black-50 mt-2">No authors yet...</h4>
+        <h4 class="sub-title">No authors yet...</h4>
     </c:if>
     <c:if test="${authors.size() != 0}">
         <c:forEach var="author" items="${authors}">

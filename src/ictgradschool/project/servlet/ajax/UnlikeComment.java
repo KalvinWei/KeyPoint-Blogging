@@ -1,4 +1,4 @@
-package ictgradschool.project.servlet.action;
+package ictgradschool.project.servlet.ajax;
 
 import ictgradschool.project.DAO.LikeDAO;
 

@@ -2,6 +2,7 @@ package ictgradschool.project.servlet.page;
 
 import ictgradschool.project.DAO.ArticleDAO;
 import ictgradschool.project.DAO.UserDAO;
+import ictgradschool.project.model.User;
 import ictgradschool.project.util.AuthenticationUtil;
 
 import javax.servlet.ServletException;
@@ -18,8 +19,18 @@ public class ArticlesPage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         AuthenticationUtil.checkLogInStatus(req);
         String userName = req.getParameter("userName");
+        if (userName == null) {
+            resp.sendRedirect("./indexPage");
+            return;
+        }
         try {
-            req.setAttribute("author", UserDAO.getUserFromUserName(userName));
+            User author = UserDAO.getUserFromUserName(userName);
+            if (author == null) {
+                resp.sendRedirect("./indexPage");
+                return;
+            } else {
+                req.setAttribute("author", author);
+            }
             req.setAttribute("articleSummaries", ArticleDAO.getArticleSummariesByUserName(userName));
         } catch (SQLException e) {
             e.printStackTrace();

@@ -1,36 +1,54 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div id="profile" class="card my-3 border-0">
+<div class="my-3 border-0 p-5 profile container-fluid">
     <div class="row">
-        <div id="nameAndSignature" class="col-sm-5">
-            <p class="text-center"><img src="./images/avatar/${author.avatar}" style="max-width: 150px; object-fit:cover; border-radius: 50%"></p>
-            <p class="text-center my-0" style="font-size: small"><a href="./articlesPage?userName=${author.userName}" data-toggle="tooltip" title="${author.signature}">
-                <span id="nickname" class="font-weight-light">${author.nickname}</span>
-            </a></p>
-            <p class="text-center my-0" style="font-size: small">
-                <span id="signature"  class="font-weight-light">${author.signature}</span>
-            </p>
+        <div class="col-sm-5 justify-content-center">
+            <a href="./articlesPage?userName=${author.userName}" data-toggle="tooltip" title="${author.signature}" class="profile-userName">
+                <p class="my-2">${author.nickname}</p>
+                <img src="./images/avatar/${author.avatar}" class="profile-avatar d-block m-auto">
+            </a>
         </div>
-
-        <div id="otherInfo" class="col-sm-7">
-            <dl class="row">
-                    <dt class="col-md-3">Followers:</dt>
-                    <dd class="col-md-9" id="followers_${author.id}">${author.followers}</dd>
-                    <dt class="col-md-3">date of birth:</dt>
-                    <dd class="col-md-9">${author.dateOfBirth.toString()}</dd>
-                    <dt class="col-md-3">email:</dt>
-                    <dd class="col-md-9">${author.email}</dd>
-                    <dt class="col-md-3">description:</dt>
-                    <dd class="col-md-9">${author.description}</dd>
-            </dl>
-            <p class="text-right">
-            <c:if test="${author.userName.equals(user.userName)}">
-                <a href="./editProfilePage?userName=${author.userName}" role="button" class="btn btn-sm btn-info">Edit</a>
-            </c:if></p>
+        <div class="profile-info col-sm-7">
+            <table class="profile-table table table-hover">
+                <tr>
+                    <th>Signature:</th>
+                    <td>
+                        ${author.signature}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Followers:</th>
+                    <td id="followers_${author.id}">
+                        <a href="./followeesPage?followee=${author.id}">${author.followers}</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Date of birth:</th>
+                    <td>
+                        ${author.dateOfBirth == null ? "secret" : author.dateOfBirth.toString()}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Email:</th>
+                    <td>
+                        ${author.email == null || author.email.isEmpty() ? "secret" : author.email}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Description:</th>
+                    <td>
+                        ${author.description == null || author.description.isEmpty() ? "secret" : author.description}
+                    </td>
+                </tr>
+            </table>
+            <c:if test="${isUserLoggedIn && author.userName.equals(user.userName)}">
+                <a href="./editProfilePage?userName=${author.userName}" role="button"
+                   class="btn btn-sm btn-info">Edit</a>
+            </c:if>
             <c:if test="${isUserLoggedIn && !author.userName.equals(user.userName)}">
                 <form id="followForm_${author.id}" action="./follow" method="post" class="d-none">
                     <input type="hidden" name="followee" value="${author.id}">
                     <input type="hidden" name="follower" value="${user.id}">
-                    <button id="followButton_${author.id}" type="submit" class="btn btn-sm btn-info">Follow</button>
+                    <button id="followButton_${author.id}" type="submit" class="btn btn-sm btn-outline-info">Follow</button>
                 </form>
                 <form id="unfollowForm_${author.id}" action="./unfollow" method="post" class="d-none">
                     <input type="hidden" name="followee" value="${author.id}">
@@ -45,4 +63,5 @@
             </c:if>
         </div>
     </div>
+
 </div>

@@ -10,6 +10,10 @@ html, body {
     background: linear-gradient(166deg, #ff9016, #f36300, #f36300, #e5466a);
 }
 
+.dropdown-menu {
+    border-radius: 0;
+}
+
 .logo-space-left, .navbar-brand:hover .logo-space-right {
     padding-left: 0;
 }
@@ -24,22 +28,19 @@ html, body {
     font-style: italic;
 }
 
-.nav-item:hover {
-    transform: scale(1.05);
-}
-
 .nav-link {
     font-weight: normal;
 }
 
 .avatar-sm {
-    width: 20px;
+    width: 22px;
     border-radius: 50%;
     border: rgba(255, 255, 255, 0.5) 2px solid;
 }
 
 .cover-summary {
     object-fit: cover;
+    width: 100%;
 }
 
 .title {
@@ -110,11 +111,11 @@ html, body {
     padding-top: 1rem;
 }
 
-.card {
+.card, .profile {
     box-shadow: 0 0 1rem #dddddd;
 }
 
-.card:hover {
+.card:hover, .profile:hover {
     box-shadow: 0 0 1rem #aaaaaa;
 }
 
@@ -155,4 +156,44 @@ form {
 
 .btn-unlike, .btn-like:hover, .btn-unlike:hover {
     color: #e5466a;
+}
+
+.profile-avatar {
+    object-fit:cover;
+    border-radius: 50%;
+    border: 5px #eeeeee solid;
+    max-width: 50%;
+}
+
+.profile-userName:hover .profile-avatar {
+    box-shadow: #cccccc 0 0 2rem;
+}
+
+.profile-userName {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #f36300;
+}
+
+.profile-userName:hover {
+    text-decoration: none;
+    color: #f36300;
+}
+
+.btn-primary {
+    background: linear-gradient(166deg, #ff9016, #f36300, #f36300, #e5466a);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(166deg, #cd6b16, #c15400, #c14e00, #b33854);
+}
+
+.btn-primary:focus, .btn-primary:active {
+    outline: none !important;
+    box-shadow: #ff9016 0 0 5px !important;
+}
+
+.validation-info {
+    font-size: 0.8rem;
 }
