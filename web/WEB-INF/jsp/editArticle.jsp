@@ -72,7 +72,7 @@
 
             newCoverBtn.onclick = function () {
                 coverInput.click();
-            }
+            };
 
             deleteCoverBtn.onclick = function () {
                 coverImg.src = "<c:url value="/images/cover/default/1.jpg"/>";

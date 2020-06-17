@@ -20,10 +20,10 @@
                 <a class="nav-link" href="./authorsPage">Authors</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Team KEY</a>
+                <a class="nav-link" href="./teamPage">Team KEY</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Documentation</a>
+                <a class="nav-link" href="https://gitlab.com/auckland-ict-grad-school/final-project-groups-2020-s1/group-1/pgcit-project-fulltime-starter" target="_blank">Source code</a>
             </li>
         </ul>
         <ul class="navbar-nav float-right">
