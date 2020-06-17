@@ -189,6 +189,11 @@ form {
     background: linear-gradient(166deg, #cd6b16, #c15400, #c14e00, #b33854);
 }
 
+.btn-primary:focus, .btn-primary:active {
+    outline: none !important;
+    box-shadow: #ff9016 0 0 5px !important;
+}
+
 .validation-info {
     font-size: 0.8rem;
 }
