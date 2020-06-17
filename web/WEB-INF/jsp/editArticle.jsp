@@ -15,7 +15,7 @@
     <style type="text/css" rel="stylesheet">
 
         #imageWrapper > img {
-            height: 200px;
+            height: 260px;
             object-fit: cover;
         }
 
@@ -91,14 +91,14 @@
         <img id="coverImg" class="card-img border-0" src="<c:url value="/images/cover/${article.cover}"/>">
         <div class="card-img-overlay">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button id="newCover" type="button" class="btn btn-dark">
+                <button id="newCover" type="button" class="btn btn-primary">
                     <svg class="bi bi-image-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="white"
                          xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                               d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V13a1 1 0 0 1-1 1h-12a1 1 0 0 1-1-1v-1zm5-6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
                     </svg>
                 </button>
-                <button id="deleteCover" type="button" class="btn btn-dark">
+                <button id="deleteCover" type="button" class="btn btn-primary">
                     <svg class="bi bi-trash-fill" width="1.2em" height="1.2em" viewBox="0 0 16 16" fill="white"
                          xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -128,7 +128,7 @@
 
 
     <form action="./deleteArticle" method="post" class="form align-content-center">
-        <button type="submit" form="articleForm" class="btn btn-dark btn-sm mx-2 px-4">Post</button>
+        <button type="submit" form="articleForm" class="btn btn-primary btn-sm mx-2 px-4">Post</button>
         <c:if test="${article.id != null}">
             <input type="hidden" name="id" value="${article.id}">
             <button type="submit" class="btn btn-danger btn-sm mx-2 px-4">Delete</button>
