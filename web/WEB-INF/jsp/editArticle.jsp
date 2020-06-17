@@ -114,17 +114,14 @@
         <input type="hidden" name="id" value="${article.id}">
         <input type="hidden" name="userName" value="${article.user.userName}">
         <div class="form-group my-2">
-            <label for="title" class="text-muted">Title:</label>
             <input type="text" id="title" name="title" value="${article.title}" placeholder="title"
                    class="form-control">
         </div>
         <div class="form-group my-2">
-            <label for="tags" class="text-muted">Tags:</label>
             <input type="text" id="tags" name="tags" value="${String.join(", ", article.tags)}"
                    placeholder="tags, separated by ','" class="form-control">
         </div>
         <div class="form-group my-2">
-            <label for="content" class="text-muted">Content</label>
             <textarea id="content" name="content" >${article.content}</textarea>
         </div>
     </form>

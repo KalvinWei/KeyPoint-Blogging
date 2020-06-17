@@ -78,9 +78,12 @@ public class SaveProfile extends FileUploadBase {
             throw new ServletException(e);
         }
 
+        //if defaultAvatar is "0" and didn't upload an avatar file
         if (defaultAvatar.equals("0") && !avatarFileUploaded) {
+            //should use the original avatar
             user.setAvatar(originalAvatar);
-        } else if (!defaultAvatar.equals("0")) {
+        } else if (!defaultAvatar.equals("0") && !avatarFileUploaded) {
+            //use a default avatar
             user.setAvatar(defaultAvatar);
         }
 
