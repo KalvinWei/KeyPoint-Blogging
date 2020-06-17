@@ -23,7 +23,9 @@
                 <a class="nav-link" href="./teamPage">Team KEY</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="https://gitlab.com/auckland-ict-grad-school/final-project-groups-2020-s1/group-1/pgcit-project-fulltime-starter" target="_blank">Source code</a>
+                <a class="nav-link"
+                   href="https://gitlab.com/auckland-ict-grad-school/final-project-groups-2020-s1/group-1/pgcit-project-fulltime-starter"
+                   target="_blank">Source code</a>
             </li>
         </ul>
         <ul class="navbar-nav float-right">
@@ -40,7 +42,7 @@
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown"
                        href="#" role="button" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
                         <span data-toggle="tooltip"
-                        title="${user.userName}: ${user.signature}">
+                              title="${user.userName}: ${user.signature}">
                                 ${user.nickname}
                         </span>
                         <img src="./images/avatar/${user.avatar}" class="avatar-sm">

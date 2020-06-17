@@ -19,7 +19,7 @@ public class EditArticlePage extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         boolean isUserLoggedIn = AuthenticationUtil.checkLogInStatus(req);
         if (!isUserLoggedIn) {
-            req.getRequestDispatcher("/WEB-INF/jsp/error.jsp").forward(req, resp);
+            resp.sendRedirect("./signInPage");
             return;
         }
         String idString = req.getParameter("id");
