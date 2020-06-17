@@ -75,7 +75,7 @@
             }
 
             deleteCoverBtn.onclick = function () {
-                coverImg.src = "<c:url value="/images/cover/default/1.jpg"/>";
+                coverImg.src = "<c:url value="/images/cover/default/noCover.jpg"/>";
                 let newCoverInput = coverInput.cloneNode(true);
                 articleForm.removeChild(coverInput);
                 articleForm.appendChild(newCoverInput);
