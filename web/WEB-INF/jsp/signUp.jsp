@@ -15,7 +15,7 @@
             <label for="userName">Username:</label>
             <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required>
             <div class="invalid-feedback">* Please input your username</div>
-            <div id="takenName" class="d-none text-danger">This username is already taken</div>
+            <div id="takenName" class="d-none text-danger">* This username is already taken</div>
         </div>
         <div class="form-group was-validated">
             <label for="password">Password:</label>
