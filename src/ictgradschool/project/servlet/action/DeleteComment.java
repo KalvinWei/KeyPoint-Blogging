@@ -26,6 +26,6 @@ public class DeleteComment extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("./articlePage?id=" + articleId);
+        resp.sendRedirect("./articlePage?id=" + articleId +"#comments");
     }
 }
