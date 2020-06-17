@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Sign up</title>
-    <%@include file="shared/_libraries.jsp"%>
+    <%@include file="shared/_libraries.jsp" %>
     <script src="./assets/js/validateUserName.js"></script>
 
 </head>
@@ -24,12 +24,13 @@
         </div>
         <div class="form-group was-validated">
             <label for="repeatPassword">Repeat password:</label>
-            <input class="form-control" type="password" name="password" id="repeatPassword" placeholder="password" required>
+            <input class="form-control" type="password" name="password" id="repeatPassword" placeholder="password"
+                   required>
             <div class="invalid-feedback">* Please repeat your password</div>
             <div id="notMatch" class="d-none text-danger">* The repeat password does not match</div>
         </div>
         <button type="submit" class="btn btn-dark btn-block" id="signUp">Sign Up</button>
-        <hr />
+        <hr/>
         <a class="btn btn-block btn-info" href="./signInPage">Go to sign in</a>
         <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
     </form>
@@ -42,23 +43,25 @@
         if (!result) {
             console.log("already taken");
             document.getElementById("takenName").classList.remove("d-none");
-            document.getElementById("signUp").disabled=true;
+            document.getElementById("signUp").disabled = true;
         } else {
             document.getElementById("takenName").classList.add("d-none");
-            document.getElementById("signUp").disabled=false;
+            document.getElementById("signUp").disabled = false;
         }
     });
-    document.getElementById("repeatPassword").addEventListener("input", () => {
+    const repeatPasswordValidator = () => {
         const password = document.getElementById("password").value;
         const repeatPassword = document.getElementById("repeatPassword").value;
         if (password !== repeatPassword) {
             document.getElementById("notMatch").classList.remove("d-none");
-            document.getElementById("signUp").disabled=true;
+            document.getElementById("signUp").disabled = true;
         } else {
             document.getElementById("notMatch").classList.add("d-none");
-            document.getElementById("signUp").disabled=false;
+            document.getElementById("signUp").disabled = false;
         }
-    });
+    };
+    document.getElementById("repeatPassword").addEventListener("input", repeatPasswordValidator);
+    document.getElementById("password").addEventListener("input", repeatPasswordValidator);
 </script>
 </body>
 </html>
