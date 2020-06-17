@@ -15,3 +15,4 @@
 <script src="./assets/js/enableArticleLikes.js"></script>
 <script src="./assets/js/enableCommentLikes.js"></script>
 <script src="./assets/js/enableFollow.js"></script>
+<script src="./assets/js/collapseComments.js"></script>

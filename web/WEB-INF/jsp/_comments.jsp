@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<button data-toggle="collapse" data-target="#comments" class="btn btn-primary my-5">Hide comments</button>
+<button data-toggle="collapse" data-target="#comments" class="btn btn-primary my-5" id="collapseCommentsButton">Hide comments</button>
 <div class="collapse show" id="comments">
     <c:if test="${article.comments.size() == 0}">
         <h4 class="sub-title">No comments yet...</h4>
