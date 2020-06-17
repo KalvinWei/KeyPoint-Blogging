@@ -3,10 +3,8 @@
     <c:forEach items="${articleSummaries}" var="article">
         <div class="card my-2" >
             <div class="row no-gutters">
-                <div class="col-sm-3">
-                    <img src="./images/cover/${article.cover}" alt="${article.cover}"
-                         class="card-img cover-summary" >
-                </div>
+                <img src="./images/cover/${article.cover}" alt="cover"
+                         class="card-img col-sm-3 cover-summary" >
                 <div class="col-sm-9">
                     <div class="card-body">
                         <h5 class="text-dark">
