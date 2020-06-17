@@ -1,6 +1,6 @@
-package ictgradschool.project.servlet.action;
+package ictgradschool.project.servlet.ajax;
 
-import ictgradschool.project.DAO.FollowDAO;
+import ictgradschool.project.DAO.LikeDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "Unfollow", urlPatterns = {"/unfollow"})
-public class Unfollow extends HttpServlet {
+@WebServlet(name = "LikeComment", urlPatterns = {"/likeComment"})
+public class LikeComment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doGet(req, resp); // do not support
@@ -19,13 +19,12 @@ public class Unfollow extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int followee = Integer.parseInt(req.getParameter("followee"));
-        int follower = Integer.parseInt(req.getParameter("follower"));
+        int user = Integer.parseInt(req.getParameter("user"));
+        int comment = Integer.parseInt(req.getParameter("comment"));
         try {
-            FollowDAO.unfollow(followee, follower);
+            LikeDAO.likeComment(user, comment);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 }
-
