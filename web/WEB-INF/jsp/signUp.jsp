@@ -12,13 +12,13 @@
         <div id="contentBox" class="container-sm my-5 card py-5" style="max-width: 400px">
         <form action="./signUp" method="post" class="m-auto">
             <div class="form-group was-validated">
-                <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required>
+                <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required maxlength="16" minlength="1">
                 <div class="invalid-feedback">* Please input your username</div>
                 <div id="takenName" class="d-none text-danger validation-info">* This username is already taken</div>
             </div>
             <div class="form-group was-validated">
-                <input class="form-control" type="password" name="password" id="password" placeholder="password" required>
-                <div class="invalid-feedback">* Please input your password</div>
+                <input class="form-control" type="password" name="password" id="password" placeholder="password" required maxlength="16" minlength="8">
+                <div class="invalid-feedback">* Your password is too short</div>
             </div>
             <div class="form-group was-validated">
                 <input class="form-control" type="password" name="password" id="repeatPassword" placeholder="repeat password"
