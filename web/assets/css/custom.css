@@ -10,6 +10,10 @@ html, body {
     background: linear-gradient(166deg, #ff9016, #f36300, #f36300, #e5466a);
 }
 
+.dropdown-menu {
+    border-radius: 0;
+}
+
 .logo-space-left, .navbar-brand:hover .logo-space-right {
     padding-left: 0;
 }
@@ -22,10 +26,6 @@ html, body {
     font-weight: bolder;
     font-size: 1.5rem;
     font-style: italic;
-}
-
-.nav-item:hover {
-    transform: scale(1.05);
 }
 
 .nav-link {
@@ -178,4 +178,17 @@ form {
 .profile-userName:hover {
     text-decoration: none;
     color: #f36300;
+}
+
+.btn-primary {
+    background: linear-gradient(166deg, #ff9016, #f36300, #f36300, #e5466a);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(166deg, #cd6b16, #c15400, #c14e00, #b33854);
+}
+
+.validation-info {
+    font-size: 0.8rem;
 }

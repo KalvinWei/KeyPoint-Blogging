@@ -4,38 +4,35 @@
     <title>Sign up</title>
     <%@include file="shared/_libraries.jsp" %>
     <script src="./assets/js/validateUserName.js"></script>
-
 </head>
 <body>
-<div id="contentBox" class="container-sm mt-5" style="max-width: 540px">
-    <h2 class="m-auto text-center mb-2">Sign Up</h2>
-    <p class="m-auto text-center mb-2">Welcome to KeyPoint, please sign up :)</p>
-    <form action="./signUp" method="post" class="m-auto">
-        <div class="form-group was-validated">
-            <label for="userName">Username:</label>
-            <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required>
-            <div class="invalid-feedback">* Please input your username</div>
-            <div id="takenName" class="d-none text-danger">* This username is already taken</div>
-        </div>
-        <div class="form-group was-validated">
-            <label for="password">Password:</label>
-            <input class="form-control" type="password" name="password" id="password" placeholder="password" required>
-            <div class="invalid-feedback">* Please input your password</div>
-        </div>
-        <div class="form-group was-validated">
-            <label for="repeatPassword">Repeat password:</label>
-            <input class="form-control" type="password" name="password" id="repeatPassword" placeholder="password"
-                   required>
-            <div class="invalid-feedback">* Please repeat your password</div>
-            <div id="notMatch" class="d-none text-danger">* The repeat password does not match</div>
-        </div>
-        <button type="submit" class="btn btn-dark btn-block" id="signUp">Sign Up</button>
-        <hr/>
-        <a class="btn btn-block btn-info" href="./signInPage">Go to sign in</a>
-        <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
-    </form>
+<div>
+    <div class="container-lg">
+        <h2 class="title">Sign Up</h2>
+        <div id="contentBox" class="container-sm my-5 card py-5" style="max-width: 400px">
+        <form action="./signUp" method="post" class="m-auto">
+            <div class="form-group was-validated">
+                <input class="form-control" type="text" name="userName" id="userName" placeholder="username" required>
+                <div class="invalid-feedback">* Please input your username</div>
+                <div id="takenName" class="d-none text-danger validation-info">* This username is already taken</div>
+            </div>
+            <div class="form-group was-validated">
+                <input class="form-control" type="password" name="password" id="password" placeholder="password" required>
+                <div class="invalid-feedback">* Please input your password</div>
+            </div>
+            <div class="form-group was-validated">
+                <input class="form-control" type="password" name="password" id="repeatPassword" placeholder="repeat password"
+                       required>
+                <div class="invalid-feedback">* Please repeat your password</div>
+                <div id="notMatch" class="d-none text-danger validation-info">* The repeat password does not match</div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="signUp">Sign Up</button>
+            <hr/>
+            <a class="btn btn-block btn-info" href="./signInPage">Go to sign in</a>
+            <a class="btn btn-block btn-info" href="./indexPage">Go to landing page</a>
+        </form>
+    </div>
 </div>
-
 <script>
     document.getElementById("userName").addEventListener("input", async () => {
         const userName = document.getElementById("userName").value;

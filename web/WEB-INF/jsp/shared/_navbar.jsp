@@ -46,12 +46,15 @@
                         <img src="./images/avatar/${user.avatar}" class="avatar-sm">
                     </a>
                     <div id="navList" class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="./articlesPage?userName=${user.userName}">My Blog</a>
                         <a class="dropdown-item" href="./editArticlePage?userName=${user.userName}">New Article</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="./articlesPage?userName=${user.userName}">My Blog</a>
                         <a class="dropdown-item" href="./articlesByUserLikePage?userName=${user.userName}">I Liked</a>
                         <a class="dropdown-item" href="./followersPage?follower=${user.id}">I Followed</a>
                         <a class="dropdown-item" href="./followeesPage?followee=${user.id}">My Followers</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="./editProfilePage?userName=${user.userName}">Edit Profile</a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="./signOut">Sign Out</a>
                     </div>
                 </li>
