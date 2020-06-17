@@ -16,8 +16,8 @@
                         <span class="separator">&nbsp;&nbsp;replied&nbsp;&nbsp; </span>
                         <c:set var="userSummary" value="${comment.parentUser}"/>
                         <%@include file="shared/_userSummary.jsp" %>
-                        <span class="time">&nbsp;${comment.time}&nbsp;</span>
                     </c:if>
+                    <span class="time">&nbsp;${comment.time}&nbsp;</span>
                 </div>
                 <p class="my-0">${comment.content}</p>
                 <span id="commentLikes_${comment.id}" class="summary-likes">${comment.likes}</span>
