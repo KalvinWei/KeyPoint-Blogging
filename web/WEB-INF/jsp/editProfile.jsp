@@ -104,7 +104,7 @@
             <div id="rightBlock" class="float-md-right col-md-4 mb-3 mt-5 mt-md-0">
                 <input id="defaultAvatar" type="hidden" name="defaultAvatar" value="0">
                 <input id="originalAvatar" type="hidden" name="originalAvatar" value="${user.avatar}">
-                <input id="avatarInput" type="file" name="avatar" accept="image/jpeg, image/png" style="display: none">
+                <input id="avatarInput" type="file" name="avatar" accept="image/jpeg, image/png, image/jpg" style="display: none">
                 <p class="mt-md-3 text-center">
                     <img id="avatarDisplay" class="rounded-circle inline" src="./images/avatar/${user.avatar}"
                          style="width: 180px; height: 180px">

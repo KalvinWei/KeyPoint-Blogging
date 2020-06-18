@@ -131,7 +131,7 @@
 
 
     <form action="./deleteArticle" method="post" class="form align-content-center">
-        <button type="submit" form="articleForm" class="btn btn-dark btn-sm mx-2 px-4">Post</button>
+        <button type="submit" form="articleForm" class="btn btn-primary btn-sm mx-2 px-4">Post</button>
         <c:if test="${article.id != null}">
             <input type="hidden" name="id" value="${article.id}">
             <button type="submit" class="btn btn-danger btn-sm mx-2 px-4">Delete</button>
