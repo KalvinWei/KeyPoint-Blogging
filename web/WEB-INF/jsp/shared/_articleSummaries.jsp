@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="list-unstyled">
     <c:forEach items="${articleSummaries}" var="article">
-        <div class="card my-2" >
+        <div class="card my-2" id="articleSummary_${article.id}">
             <div class="row no-gutters">
                 <img src="./images/cover/${article.cover}" alt="cover"
                          class="card-img col-sm-3 cover-summary" >
@@ -22,10 +22,12 @@
                             </c:forEach>
                         </p>
                         <c:if test="${isUserLoggedIn && article.user.userName.equals(user.userName)}">
-                            <a href="./editArticlePage?id=${article.id}" class="btn btn-sm btn-info">edit</a>
-                            <form action="./deleteArticle?id=${article.id}" method="post" class="d-inline">
-                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            <a href="./editArticlePage?id=${article.id}" class="btn btn-sm btn-info">Edit</a>
+                            <form action="./deleteArticle" method="post" class="d-inline" id="articleDeleteForm_${article.id}">
+                                <input type="hidden" name="id" value="${article.id}">
+                                <button type="submit" class="btn btn-sm btn-danger" id="articleDeleteButton_${article.id}">Delete</button>
                             </form>
+                            <script>enableArticleDeletion(${article.id});</script>
                         </c:if>
                         <!--
                         <p class="text-justify text-secondary font-weight-light content-summary">${article.contentSummary}</p>
