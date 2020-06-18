@@ -22,7 +22,7 @@ public class EditProfilePage extends HttpServlet {
             return;
         }
 
-        int numberOfDefaultAvatars = 10;
+        int numberOfDefaultAvatars = 29;
         List<String> defaultAvatars = new ArrayList<>();
         for (int i = 1; i <= numberOfDefaultAvatars; i++) {
             defaultAvatars.add("default/" + i + ".png");

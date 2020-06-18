@@ -80,7 +80,7 @@ public class SaveProfile extends FileUploadBase {
 
         if (defaultAvatar.equals("0") && !avatarFileUploaded) {
             user.setAvatar(originalAvatar);
-        } else if (!defaultAvatar.equals("0")) {
+        } else if (!defaultAvatar.equals("0") && !avatarFileUploaded) {
             user.setAvatar(defaultAvatar);
         }
 

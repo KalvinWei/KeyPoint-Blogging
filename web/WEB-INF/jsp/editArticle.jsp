@@ -114,14 +114,14 @@
         <input type="hidden" name="id" value="${article.id}">
         <input type="hidden" name="userName" value="${article.user.userName}">
         <div class="form-group my-2">
-            <label for="title" class="text-muted">Title:</label>
+            <label for="title" class="text-muted" required>Title:</label>
             <input type="text" id="title" name="title" value="${article.title}" placeholder="title"
                    class="form-control">
         </div>
         <div class="form-group my-2">
             <label for="tags" class="text-muted">Tags:</label>
             <input type="text" id="tags" name="tags" value="${String.join(", ", article.tags)}"
-                   placeholder="tags, separated by ','" class="form-control">
+                   placeholder="tags, separated by ','" class="form-control" maxlength="128">
         </div>
         <div class="form-group my-2">
             <label for="content" class="text-muted">Content</label>
@@ -131,7 +131,7 @@
 
 
     <form action="./deleteArticle" method="post" class="form align-content-center">
-        <button type="submit" form="articleForm" class="btn btn-dark btn-sm mx-2 px-4">Post</button>
+        <button type="submit" form="articleForm" class="btn btn-primary btn-sm mx-2 px-4">Post</button>
         <c:if test="${article.id != null}">
             <input type="hidden" name="id" value="${article.id}">
             <button type="submit" class="btn btn-danger btn-sm mx-2 px-4">Delete</button>

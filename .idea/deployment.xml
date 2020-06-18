@@ -5,7 +5,7 @@
       <paths name="MyServer">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/out/artifacts/KeyPoint" web="/taz_KeyPoint" />
           </mappings>
         </serverdata>
       </paths>

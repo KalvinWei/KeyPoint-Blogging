@@ -34,6 +34,8 @@ html, body {
 
 .avatar-sm {
     width: 22px;
+    height: 22px;
+    object-fit: cover;
     border-radius: 50%;
     border: rgba(255, 255, 255, 0.5) 2px solid;
 }
@@ -162,7 +164,8 @@ form {
     object-fit:cover;
     border-radius: 50%;
     border: 5px #eeeeee solid;
-    max-width: 50%;
+    width: 200px;
+    height: 200px;
 }
 
 .profile-userName:hover .profile-avatar {
