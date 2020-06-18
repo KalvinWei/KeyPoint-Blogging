@@ -113,6 +113,7 @@
         <input type="file" id="coverInput" name="cover" style="display: none">
         <input type="hidden" name="id" value="${article.id}">
         <input type="hidden" name="userName" value="${article.user.userName}">
+        <input type="hidden" name="originalCover" value="${article.cover}">
         <div class="form-group my-2">
             <label for="title" class="text-muted" required>Title:</label>
             <input type="text" id="title" name="title" value="${article.title}" placeholder="title"

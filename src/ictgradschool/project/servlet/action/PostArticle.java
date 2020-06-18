@@ -44,6 +44,7 @@ public class PostArticle extends FileUploadBase {
 
         Article article = new Article();
         String originalCover = article.getCover();
+        String newCover = null;
 
         try {
             List<FileItem> fileItems = upload.parseRequest(req);
@@ -63,6 +64,7 @@ public class PostArticle extends FileUploadBase {
                     file = new File(uploadsFolder, fileName);
                     item.write(file);
                     article.setField("cover", fileName);
+                    newCover = fileName;
                 }
             }
         } catch (Exception e) {
@@ -70,7 +72,7 @@ public class PostArticle extends FileUploadBase {
         }
 
         article.setTime(new Timestamp(System.currentTimeMillis()));
-        if (article.getCover() == null || article.getCover().isEmpty()) {
+        if (newCover == null || newCover.isEmpty()) {
             article.setCover(originalCover);
         }
         try {
