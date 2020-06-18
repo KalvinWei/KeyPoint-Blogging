@@ -13,10 +13,6 @@ import java.sql.SQLException;
 
 @WebServlet(name = "LikeArticle", urlPatterns = {"/likeArticle"})
 public class LikeArticle extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp); // do not support
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
