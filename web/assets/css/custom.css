@@ -206,3 +206,7 @@ form {
     word-wrap: break-word;
     word-break: break-word;
 }
+
+.follower-number {
+    color:  #f36300;
+}

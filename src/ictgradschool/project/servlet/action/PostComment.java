@@ -15,10 +15,6 @@ import java.sql.Timestamp;
 
 @WebServlet(name = "PostComment", urlPatterns = {"/postComment"})
 public class PostComment extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp); // do not support
-    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

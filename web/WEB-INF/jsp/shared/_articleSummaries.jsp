@@ -18,7 +18,7 @@
                         </p>
                         <p class="my-2">
                             <c:forEach var="tag" items="${article.tags}">
-                                <a href="./articlesByTagPage?tag=${tag}" class="badge badge-pill badge-light">${tag}</a>
+                                <a href="./articlesByTagPage?tag=${tag}" class="badge badge-pill badge-light">#${tag}</a>
                             </c:forEach>
                         </p>
                         <c:if test="${isUserLoggedIn && article.user.userName.equals(user.userName)}">

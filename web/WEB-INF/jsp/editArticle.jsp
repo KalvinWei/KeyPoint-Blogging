@@ -29,8 +29,7 @@
             let editor = new Simditor({
                 textarea: $('#content'),
                 //optional options
-                toobar: [
-                    'title',
+                toolbar: [
                     'bold',
                     'italic',
                     'underline',
