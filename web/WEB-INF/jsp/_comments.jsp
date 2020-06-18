@@ -8,7 +8,7 @@
     <c:if test="${article.comments.size() != 0}">
         <c:forEach var="comment" items="${article.comments}">
             <div class="comment" id="comment_${comment.id}"
-                 style="margin-left: ${comment.level >= 2 ? 4 : comment.level * 2}rem">
+                 style="margin-left: ${comment.level >= 3 ? 9 : comment.level * 3}rem">
                 <div class="summary-info">
                     <c:set var="userSummary" value="${comment.user}"/>
                     <%@include file="shared/_userSummary.jsp" %>

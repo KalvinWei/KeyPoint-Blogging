@@ -68,7 +68,6 @@
             };
 
             btnRemove.onclick = () => {
-                console.log(inputOriginalAvatar.value);
                 imgDisplay.src = "./images/avatar/" + inputOriginalAvatar.value;
                 let newInputAvatar = inputAvatar.cloneNode(true);
                 rightBlock.removeChild(inputAvatar);
