@@ -50,6 +50,15 @@
             const inputOriginalAvatar = document.getElementById("originalAvatar");
             const rightBlock = document.getElementById("rightBlock");
 
+            const inputChangeEvent = () => {
+                const newAvatar = inputAvatar.files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imgDisplay.src = e.target.result;
+                };
+                reader.readAsDataURL(newAvatar);
+            };
+
             imgOptions.forEach(option => {
                 option.onclick = (e) => {
                     e.target.nextElementSibling.checked = true;
@@ -73,20 +82,14 @@
                 rightBlock.removeChild(inputAvatar);
                 rightBlock.appendChild(newInputAvatar);
                 inputAvatar = newInputAvatar;
+                inputAvatar.onchange = inputChangeEvent;
             };
 
             btnUpload.onclick = () => {
                 inputAvatar.click();
             };
 
-            inputAvatar.onchange = () => {
-                const newAvatar = inputAvatar.files[0];
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    imgDisplay.src = e.target.result;
-                };
-                reader.readAsDataURL(newAvatar);
-            }
+            inputAvatar.onchange = inputChangeEvent;
 
         });
     </script>
