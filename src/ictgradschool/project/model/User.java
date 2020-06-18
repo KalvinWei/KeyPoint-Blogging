@@ -54,7 +54,11 @@ public class User implements Serializable {
                 if (fieldValue == null || fieldValue.isEmpty()) {
                     setDateOfBirth(LocalDate.of(1970,1,1));
                 } else {
-                    setDateOfBirth(LocalDate.parse(fieldValue));
+                    try {
+                        setDateOfBirth(LocalDate.parse(fieldValue));
+                    } catch (Exception e) {
+                        setDateOfBirth(LocalDate.of(1970,1,1));
+                    }
                 }
                 break;
             case "email":
