@@ -52,12 +52,12 @@ public class User implements Serializable {
                 break;
             case "dateOfBirth":
                 if (fieldValue == null || fieldValue.isEmpty()) {
-                    setDateOfBirth(LocalDate.of(1970,1,1));
+                    setDateOfBirth(LocalDate.of(1234,5,6));
                 } else {
                     try {
                         setDateOfBirth(LocalDate.parse(fieldValue));
                     } catch (Exception e) {
-                        setDateOfBirth(LocalDate.of(1970,1,1));
+                        setDateOfBirth(LocalDate.of(1234,5,6));
                     }
                 }
                 break;
