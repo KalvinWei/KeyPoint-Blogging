@@ -26,6 +26,6 @@ public class DeleteArticle extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        resp.sendRedirect("./articlesPage?userName=" + AuthenticationUtil.getLoggedInUserName(req));
+        resp.sendRedirect("./indexPage");
     }
 }
