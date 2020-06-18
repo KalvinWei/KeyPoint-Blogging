@@ -106,8 +106,7 @@
                 <input id="originalAvatar" type="hidden" name="originalAvatar" value="${user.avatar}">
                 <input id="avatarInput" type="file" name="avatar" accept="image/jpeg, image/png, image/jpg" style="display: none">
                 <p class="mt-md-3 text-center">
-                    <img id="avatarDisplay" class="rounded-circle inline" src="./images/avatar/${user.avatar}"
-                         style="width: 180px; height: 180px">
+                    <img id="avatarDisplay" class="rounded-circle inline profile-avatar" src="./images/avatar/${user.avatar}">
                 </p>
                 <!-- default avatar button -->
                 <div class="row justify-content-center ">
