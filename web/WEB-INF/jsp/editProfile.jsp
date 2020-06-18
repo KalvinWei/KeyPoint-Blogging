@@ -43,12 +43,21 @@
             const btnDecide = document.getElementById("btnDecide");
             const btnUpload = document.getElementById("btnUpload");
             const btnRemove = document.getElementById("btnRemove");
-            const inputAvatar = document.getElementById("avatarInput");
+            let inputAvatar = document.getElementById("avatarInput");
             const imgDisplay = document.getElementById("avatarDisplay");
             const imgOptions = document.querySelectorAll("img.avatar-option");
             const inputDefaultAvatar = document.getElementById("defaultAvatar");
             const inputOriginalAvatar = document.getElementById("originalAvatar");
             const rightBlock = document.getElementById("rightBlock");
+
+            const inputChangeEvent = () => {
+                const newAvatar = inputAvatar.files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    imgDisplay.src = e.target.result;
+                };
+                reader.readAsDataURL(newAvatar);
+            };
 
             imgOptions.forEach(option => {
                 option.onclick = (e) => {
@@ -68,25 +77,19 @@
             };
 
             btnRemove.onclick = () => {
-                console.log(inputOriginalAvatar.value);
                 imgDisplay.src = "./images/avatar/" + inputOriginalAvatar.value;
                 let newInputAvatar = inputAvatar.cloneNode(true);
                 rightBlock.removeChild(inputAvatar);
                 rightBlock.appendChild(newInputAvatar);
+                inputAvatar = newInputAvatar;
+                inputAvatar.onchange = inputChangeEvent;
             };
 
             btnUpload.onclick = () => {
                 inputAvatar.click();
             };
 
-            inputAvatar.onchange = () => {
-                const newAvatar = inputAvatar.files[0];
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    imgDisplay.src = e.target.result;
-                };
-                reader.readAsDataURL(newAvatar);
-            }
+            inputAvatar.onchange = inputChangeEvent;
 
         });
     </script>
