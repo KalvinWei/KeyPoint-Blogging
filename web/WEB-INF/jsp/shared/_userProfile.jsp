@@ -17,8 +17,8 @@
                 </tr>
                 <tr>
                     <th>Followers:</th>
-                    <td id="followers_${author.id}">
-                        <a href="./followeesPage?followee=${author.id}">${author.followers}</a>
+                    <td>
+                        <a href="./followeesPage?followee=${author.id}" id="followers_${author.id}" class="follower-number">${author.followers}</a>
                     </td>
                 </tr>
                 <tr>
