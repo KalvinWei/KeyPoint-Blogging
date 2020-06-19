@@ -1,7 +1,7 @@
 # KeyPoint: a blog
 
 #### Team name
-The KEY
+- The KEY
 
 #### Members:
 - Kalvin Wei
@@ -9,18 +9,29 @@ The KEY
 - Yihao Wang
 
 #### Website
+https://trex-sandwich.com/taz_KeyPoint/
 
+#### Extra Features
+- Nested comments (in "article" page)
+  - nested up to 2 levels.
+  - auto indented in accordance with their levels. 
+  - arranged in chronological order (later goes upper).
+  - user can choose to show or hide comments block.
+  - essential info about comments included.
+- WYSIWYG editor (in "edit article" page)
+  - font weights used to denote title, subtitle and others levels
+  - text can be in bold, italic, strikethrough, underlined and containing links.
+  - content correctly displayed in correspondent pages.
+- Follow authors
+  - users can easily access an author's page via their "I followed" page.
+  - authors can get an idea of how popular they are
+- Like articles and comments
+  - liked articles are gathered in "I liked" page.
+  - likes show the popularity of articles and comments besides them.
+  
+  
+#### On setup
+- nothing needs to be done.
 
-**TODO:** Include some information about your team's project within this README. The following information must be included:
-
-- ~~Team name~~
-
-- Website URL on the course server (trex-sandwich)
-
-- A list of your extra features
-
-- Are there any special setup instructions, beyond initializing the database and running your servlet project?
-
-- At least one username / password combination for an existing user in your system, with some already-created articles & comments
-
-- Any other instructions / comments you wish to make to your markers.
+#### Accounts for testing and evaluation
+- username: Kalvin, password: kkkkkkkk

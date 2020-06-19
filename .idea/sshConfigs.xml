@@ -10,6 +10,10 @@
       <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="0026884f-c2c3-43a6-b80f-70326064dd73" port="22" customName="MyServer" nameFormat="CUSTOM" />
       <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="9f904ae9-a505-4180-9f1b-f08604eb413b" port="22" customName="MyServer" nameFormat="CUSTOM" />
       <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="6bc8e33d-a358-4dbe-a797-3af0110e397f" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="31816c54-c845-4c9c-9466-fde1f2f5852b" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="9e5b257f-7ee5-4ced-b722-af2702c57721" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="13478382-e8f3-4ec6-a99d-4fede9f6021c" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="8e86d49c-b259-4b2a-a045-3981b5977f08" port="22" customName="MyServer" nameFormat="CUSTOM" />
     </configs>
   </component>
 </project>
