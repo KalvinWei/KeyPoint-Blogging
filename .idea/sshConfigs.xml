@@ -14,6 +14,19 @@
       <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="9e5b257f-7ee5-4ced-b722-af2702c57721" port="22" customName="MyServer" nameFormat="CUSTOM" />
       <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="13478382-e8f3-4ec6-a99d-4fede9f6021c" port="22" customName="MyServer" nameFormat="CUSTOM" />
       <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="8e86d49c-b259-4b2a-a045-3981b5977f08" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="42c28aff-6ba3-4cfc-9ec1-0e4f662de123" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="97104143-0675-45cb-a8ce-d5e30807098e" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="9762f560-ec91-4962-a92a-2f87e54dfc52" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="709c2c36-281e-4698-affb-efc7e9a38e1c" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="51b5685a-5e61-450f-a494-c3049c340652" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="5cb3a167-bdec-4f87-81a8-036e24be8d89" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="ebd7cc05-abce-4e03-a9b6-dc22e4661be2" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="a9ee3502-8746-4802-a1db-377bc800db82" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="2c9b80a7-7c0c-4630-bf5c-96dd0a934f71" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="ccf3c2ba-4e26-4a9a-98f8-b7513503f258" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="7dab1218-53a4-4fce-8318-1baad95a669f" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="7cdf574e-b1c3-45a0-ad72-0d8904075f8a" port="22" customName="MyServer" nameFormat="CUSTOM" />
+      <sshConfig authType="PASSWORD" host="trex-sandwich.com" id="9ef3f607-29e1-4c0b-9ba3-4a25a1685a17" port="22" customName="MyServer" nameFormat="CUSTOM" />
     </configs>
   </component>
 </project>
